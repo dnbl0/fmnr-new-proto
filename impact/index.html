@@ -1,29 +1,142 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Evidence of real-world impact — FMNR</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FMNR — Impact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'fmnr-green': '#00552f',
+            'fmnr-mid': '#2da57f',
+            'fmnr-teal': '#0dfaab',
+            'fmnr-dark': '#111111',
+            'fmnr-gray': '#abb8c3',
+            'fmnr-base': '#f9f9f9',
+          },
+          fontFamily: {
+            'display': ['FatFrank', 'Impact', 'Arial Black', 'sans-serif'],
+            'body': ['Lato', 'sans-serif'],
+          },
+          maxWidth: {
+            'container': '1280px',
+          },
+        }
+      }
+    }
+  </script>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:24px;color:#111;background:#fff}
-    header{max-width:980px;margin:0 auto;padding:24px 0}
-    h1{letter-spacing:0.02em}
-    main{max-width:980px;margin:0 auto;padding:12px}
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* Header styles (copied from index) */
+    .header {
+      background: #f9f9f9;
+      height: 118px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo { display:flex; align-items:center; gap:2px; text-decoration:none; flex-shrink:0 }
+    .logo-text { font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif; font-weight:900; font-size:28px }
+    .nav-links { display:flex; align-items:center; gap:0 }
+    .nav-link { font-family:'Lato',sans-serif; font-weight:500; font-size:18px; color:#00552f; text-decoration:none; padding:24px }
+    .header-actions { display:flex; align-items:center; gap:24px }
+    .btn-donate { background:#00552f;color:white;padding:12px 24px;border-radius:4px;font-weight:700;text-decoration:none }
+
+    /* Impact content scoped styles */
+    header.impact-intro { max-width:980px; margin:0 auto; padding:24px 0 }
+    main.impact-main { max-width:980px; margin:0 auto; padding:12px }
     .hero{background:#f7f7f7;padding:24px;border-radius:6px}
     section{margin:28px 0}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    footer{max-width:980px;margin:40px auto;color:#666;font-size:14px}
+    footer.impact-footer{max-width:980px;margin:40px auto;color:#666;font-size:14px}
     a{color:#0064a8}
     img{max-width:100%;height:auto}
   </style>
 </head>
 <body>
-  <header>
-    <h1>EVIDENCE OF REAL-WORLD IMPACT.</h1>
-    <p style="margin-top:6px;color:#444">Four decades. Eight countries. One clear conclusion — Farmer Managed Natural Regeneration (FMNR) produces rapid, measurable improvements to trees, soil, income, food security, child wellbeing and gender equality.</p>
+
+  <!-- site header (copied from homepage) -->
+  <header class="header">
+    <div class="section-container">
+      <!-- Logo -->
+      <a href="/" class="logo" aria-label="FMNR Home">
+        <!-- simplified text logo fallback -->
+        <span class="logo-text font-display">FMNR</span>
+      </a>
+
+      <!-- Nav Links (simplified to avoid duplicating mega panels) -->
+      <nav class="nav-links" id="mainNav">
+        <a href="partners.html" class="nav-link">Partner</a>
+        <a href="adopt.html" class="nav-link">Adopt</a>
+        <a href="impact/index.html" class="nav-link">Impact</a>
+        <a href="resource-hub.html" class="nav-link">Resource Hub</a>
+        <a href="blog.html" class="nav-link">Stories</a>
+        <a href="tony-rinaudo.html" class="nav-link">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <button aria-label="Search" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round">
+            <circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/>
+          </svg>
+        </button>
+        <a href="#" class="btn-donate">Donate</a>
+      </div>
+    </div>
   </header>
 
-  <main>
+  <!-- Impact content (extracted) -->
+  <main class="impact-main">
+    <header class="impact-intro">
+      <h1 class="section-heading">EVIDENCE OF REAL-WORLD IMPACT.</h1>
+      <p style="margin-top:6px;color:#444">Four decades. Eight countries. One clear conclusion — Farmer Managed Natural Regeneration (FMNR) produces rapid, measurable improvements to trees, soil, income, food security, child wellbeing and gender equality.</p>
+    </header>
+
     <div class="hero">
       <p>This page summarises findings from World Vision Australia's 2019 meta-analysis of eight recently completed FMNR projects spanning Timor-Leste, Kenya, Rwanda, Tanzania, Uganda, Ethiopia and Ghana — covering more than 900,000 direct beneficiaries.</p>
     </div>
@@ -96,8 +209,14 @@
     </section>
   </main>
 
-  <footer>
+  <footer class="impact-footer">
     <p>Proudly hosted by the FMNR Scale Up Team at World Vision Australia. Copyright © 2026 World Vision Australia, ABN 28 004 778 081.</p>
   </footer>
+
+  <!-- site scripts (matching homepage dependencies) -->
+  <link rel="stylesheet" href="assets/css/motion.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="assets/js/motion-init.js" defer></script>
 </body>
 </html>

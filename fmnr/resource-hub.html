@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FMNR Resource Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'fmnr-green': '#00552f',
+            'fmnr-mid': '#2da57f',
+            'fmnr-teal': '#0dfaab',
+            'fmnr-dark': '#111111',
+            'fmnr-gray': '#abb8c3',
+            'fmnr-base': '#f9f9f9',
+          },
+          fontFamily: {
+            'display': ['FatFrank', 'Impact', 'Arial Black', 'sans-serif'],
+            'body': ['Lato', 'sans-serif'],
+          },
+          maxWidth: { container: '1280px' }
+        }
+      }
+    }
+  </script>
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+    body { font-family: 'Lato', sans-serif; background: #f9f9f9; }
+    .font-display { font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif; font-weight:900; }
+  </style>
+</head>
+<body class="text-fmnr-dark">
+  <!-- Header (simple, consistent with index) -->
+  <header class="bg-fmnr-base sticky top-0 z-40 border-b border-gray-200">
+    <div class="max-w-container mx-auto px-8 flex items-center justify-between h-28">
+      <a href="/index.html" class="flex items-center gap-2 text-fmnr-green no-underline">
+        <span class="font-display text-2xl">FMNR</span>
+        <span class="text-xl font-bold text-fmnr-mid">.</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-4">
+        <a href="/index.html" class="text-base font-medium text-fmnr-green">Home</a>
+        <a href="/blog.html" class="text-base font-medium text-fmnr-green">Blog</a>
+        <a href="/partners.html" class="text-base font-medium text-fmnr-green">Partner</a>
+        <a href="/adopt.html" class="text-base font-medium text-fmnr-green">Adopt</a>
+        <a href="/fmnr-resource-hub.html" class="text-base font-medium text-white bg-fmnr-green px-4 py-2 rounded">Resources</a>
+        <a href="/contact/" class="text-base font-medium text-fmnr-green">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="max-w-container mx-auto px-8 py-16">
+    <section class="mb-12">
+      <p class="text-sm font-bold uppercase tracking-widest text-gray-600">Resources</p>
+      <h1 class="font-display text-5xl text-fmnr-dark mt-4">FMNR Resource Hub</h1>
+      <p class="mt-4 text-gray-700 max-w-2xl">Find guides, reports, toolkits and media that support Farmer Managed Natural Regeneration (FMNR) implementation and advocacy.</p>
+    </section>
+
+    <!-- Search & filters -->
+    <section class="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex-1">
+        <label class="sr-only">Search resources</label>
+        <input type="search" placeholder="Search resources, topics, authors..." class="w-full md:w-96 px-4 py-3 rounded border border-gray-200 focus:outline-none" />
+      </div>
+      <div class="flex items-center gap-3">
+        <select class="px-4 py-3 border border-gray-200 rounded">
+          <option>All types</option>
+          <option>Guides</option>
+          <option>Reports</option>
+          <option>Case studies</option>
+          <option>Media</option>
+        </select>
+        <select class="px-4 py-3 border border-gray-200 rounded">
+          <option>All regions</option>
+          <option>Sub-Saharan Africa</option>
+          <option>West Africa</option>
+          <option>Sahel</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Grid of resource cards -->
+    <section>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card (repeat) -->
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4">
+            <p class="text-xs font-bold uppercase text-gray-500">Guide</p>
+            <h3 class="font-display text-xl mt-2">Practical FMNR Handbook for Field Teams</h3>
+            <p class="text-sm text-gray-600 mt-2">A concise field guide to implementing FMNR with smallholder farmers.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <a href="#" class="text-fmnr-green font-bold">Download</a>
+              <span class="text-xs text-gray-400">2024 • PDF</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4">
+            <p class="text-xs font-bold uppercase text-gray-500">Report</p>
+            <h3 class="font-display text-xl mt-2">Scaling FMNR: Impact & Lessons</h3>
+            <p class="text-sm text-gray-600 mt-2">An evidence synthesis of FMNR projects across multiple countries.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <a href="#" class="text-fmnr-green font-bold">Read</a>
+              <span class="text-xs text-gray-400">2023 • 24 pages</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4">
+            <p class="text-xs font-bold uppercase text-gray-500">Case study</p>
+            <h3 class="font-display text-xl mt-2">Community-Led Regeneration in Niger</h3>
+            <p class="text-sm text-gray-600 mt-2">A field case study exploring local governance models supporting FMNR.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <a href="#" class="text-fmnr-green font-bold">Open</a>
+              <span class="text-xs text-gray-400">2022 • Article</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-4">
+            <p class="text-xs font-bold uppercase text-gray-500">Toolkit</p>
+            <h3 class="font-display text-xl mt-2">Monitoring & Evaluation Toolkit</h3>
+            <p class="text-sm text-gray-600 mt-2">Templates and indicators for tracking FMNR outcomes.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <a href="#" class="text-fmnr-green font-bold">Download</a>
+              <span class="text-xs text-gray-400">2021 • XLS</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Repeat sample cards to fill grid -->
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" /></div>
+          <div class="p-4"><p class="text-xs font-bold uppercase text-gray-500">Media</p><h3 class="font-display text-xl mt-2">FMNR Short Documentary</h3><p class="text-sm text-gray-600 mt-2">A 12-minute film telling farmer stories.</p><div class="mt-4 flex items-center justify-between"><a href="#" class="text-fmnr-green font-bold">Watch</a><span class="text-xs text-gray-400">Video • 12m</span></div></div>
+        </article>
+
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" /></div>
+          <div class="p-4"><p class="text-xs font-bold uppercase text-gray-500">Guide</p><h3 class="font-display text-xl mt-2">Farmer-Led Tree Management</h3><p class="text-sm text-gray-600 mt-2">Practical notes on pruning and protection.</p><div class="mt-4 flex items-center justify-between"><a href="#" class="text-fmnr-green font-bold">Download</a><span class="text-xs text-gray-400">2020 • PDF</span></div></div>
+        </article>
+
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100"><img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" /></div>
+          <div class="p-4"><p class="text-xs font-bold uppercase text-gray-500">Report</p><h3 class="font-display text-xl mt-2">Climate Benefits of FMNR</h3><p class="text-sm text-gray-600 mt-2">Estimates of carbon sequestration and co-benefits.</p><div class="mt-4 flex items-center justify-between"><a href="#" class="text-fmnr-green font-bold">Read</a><span class="text-xs text-gray-400">2023 • 40pp</span></div></div>
+        </article>
+
+        <article class="bg-white rounded-lg shadow-sm overflow-hidden border">
+          <div class="h-44 bg-gray-100"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="" class="w-full h-full object-cover" /></div>
+          <div class="p-4"><p class="text-xs font-bold uppercase text-gray-500">Case study</p><h3 class="font-display text-xl mt-2">Land Restoration with Faith Leaders</h3><p class="text-sm text-gray-600 mt-2">Exploring community outreach and faith-based engagement.</p><div class="mt-4 flex items-center justify-between"><a href="#" class="text-fmnr-green font-bold">Open</a><span class="text-xs text-gray-400">2022 • Article</span></div></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Pagination / Load more -->
+    <section class="mt-12 flex justify-center">
+      <button class="px-6 py-3 bg-white border border-gray-200 rounded">Load more</button>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-gray-200 mt-12 py-8">
+    <div class="max-w-container mx-auto px-8 text-sm text-gray-600">© FMNR Prototype</div>
+  </footer>
+</body>
+</html>

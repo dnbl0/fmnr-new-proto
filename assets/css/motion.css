@@ -1,0 +1,26 @@
+/* assets/css/motion.css */
+
+/* Only apply will-change when JS has initialized (body.mfx-ready) */
+body.mfx-ready [data-mfx] {
+    will-change: transform, opacity;
+}
+
+/* Subtle helper for items that may be visually moved */
+[data-mfx] {
+    transition: transform 0.28s ease-out, opacity 0.28s ease-out;
+}
+
+/* Respect user reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    body.mfx-ready [data-mfx],
+    [data-mfx] {
+        transition: none !important;
+        will-change: auto !important;
+    }
+}
+
+/* Prevent accidental layout shift by ensuring animated layers are composited */
+body.mfx-ready [data-mfx] {
+    backface-visibility: hidden;
+}

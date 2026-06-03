@@ -1157,7 +1157,7 @@
             var hamburger = document.getElementById('hamburger');
             var filterInput = document.getElementById('sidebar-filter');
             var mainTitle = { textContent: '' }; // sentinel — no DOM element needed
-            // contentToolbar now lives inside preview-panel, no separate toggle needed
+            var contentToolbar = document.getElementById('content-toolbar');
             var tabBar = document.getElementById('tab-bar');
             var tabBtns = tabBar.querySelectorAll('button');
             var deviceToggle = document.getElementById('device-toggle-inner');
@@ -1680,7 +1680,6 @@
             handleHash();
         })();
     </script>
-    <script src="/assets/js/footer.js" defer></script>
   <script src="/assets/js/motion-init.js" defer></script>
 </body>
 

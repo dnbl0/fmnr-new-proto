@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Search Overlay — Demo</title>
+  <script src="/assets/js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body{font-family:Inter,system-ui,Arial;margin:0}
@@ -40,5 +41,7 @@
     closeBtn.addEventListener('click', closeSearch);
     document.addEventListener('keydown', function(e){ if(e.key==='/' && document.activeElement!==input){ e.preventDefault(); openSearch(); } if(e.key==='Escape'){ closeSearch(); } });
   </script>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
 </body>
 </html>

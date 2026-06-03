@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FMNR &amp; World Vision — Farmer Managed Natural Regeneration</title>
+  <meta name="description" content="For over two decades, World Vision has led the global movement to scale Farmer Managed Natural Regeneration (FMNR) — restoring land and transforming lives across more than 30 countries." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ===================== HEADER ===================== */
+    .header {
+      background: #f9f9f9;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container { display: flex; align-items: center; justify-content: space-between; }
+
+    .logo { display: flex; align-items: center; gap: 2px; text-decoration: none; flex-shrink: 0; }
+
+    .nav-links { display: flex; align-items: center; gap: 0; }
+
+    .nav-link {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #00552f;
+      text-decoration: none;
+      padding: 24px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover { opacity: 0.7; }
+
+    .nav-link.active { font-weight: 700; }
+
+    .header-actions { display: flex; align-items: center; gap: 24px; }
+
+    .btn-donate {
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-donate:hover { background: #004026; }
+
+    /* ===================== MEGA MENU ===================== */
+    .mega-item { position: static; }
+
+    .mega-panel {
+      position: fixed;
+      left: 0; right: 0;
+      top: 0;
+      background: white;
+      border-top: 3px solid #00552f;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+      z-index: 200;
+      display: none;
+      animation: megaFadeIn 0.18s ease;
+    }
+
+    @keyframes megaFadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .mega-item:focus-within .mega-panel { display: block; }
+
+    .mega-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mega-header-row { display: flex; align-items: center; justify-content: space-between; }
+
+    .mega-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .mega-contact-btn {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      border: 2px solid #00552f;
+      border-radius: 4px;
+      padding: 8px 20px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mega-contact-btn:hover { background: #00552f; color: white; }
+
+    .mega-content-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mega-featured {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 360px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+    }
+
+    .mega-featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
+    }
+
+    .mega-featured-content { position: relative; z-index: 1; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+
+    .mega-featured-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.45);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    .mega-featured-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .mega-featured-desc { font-family: 'Lato', sans-serif; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.45; }
+
+    .mega-featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+    }
+
+    .mega-featured-cta:hover { background: #004026; }
+
+    .mega-icon-grid { display: grid; gap: 14px; align-content: start; }
+    .mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
+
+    .mega-icon-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 18px 20px;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+      background: #f8f9f8;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+
+    .mega-icon-card:hover { border-color: #b2d4c0; background: white; box-shadow: 0 2px 14px rgba(0,85,47,0.09); }
+
+    .mega-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mega-icon-wrap svg { width: 22px; height: 22px; stroke: #00552f; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .mega-icon-title { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; color: #00552f; line-height: 1.2; }
+    .mega-icon-desc { font-family: 'Lato', sans-serif; font-size: 12px; color: #666; line-height: 1.4; }
+
+    /* ===================== PAGE HERO (SECONDARY BANNER) ===================== */
+    .page-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 80vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .page-hero-left {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px;
+      gap: 20px;
+    }
+
+    .page-hero-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .page-hero-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .page-hero-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 20px;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      max-width: 420px;
+    }
+
+    .page-hero-right {
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/AU115-0014-12-scaled.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: #1a3a25;
+    }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    /* ===================== BLOG / CONTENT SECTIONS ===================== */
+    .blog-section { padding: 80px 0; }
+    .blog-section + .blog-section { border-top: 1px solid #e8e8e8; }
+
+    .blog-section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .blog-section-header { display: flex; flex-direction: column; gap: 8px; }
+
+    .blog-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .blog-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 720px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .btn-link:hover { text-decoration: underline; }
+
+    .grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    /* ===================== INTRO ===================== */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .intro-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(0,0,0,0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .intro-image {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #d4e8db center/cover no-repeat;
+    }
+
+    /* ===================== FIVE STEPS ===================== */
+    .steps-section { background: #f0fff8; padding: 80px 0; border-top: 1px solid #e8e8e8; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .step-card-img {
+      aspect-ratio: 16/11;
+      background: #d4e8db center/cover no-repeat;
+    }
+
+    .step-card-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+
+    .step-number {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .step-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .step-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ===================== VIDEO EMBED ===================== */
+    .video-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #111;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-caption { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+    .video-caption-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .video-caption-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .video-caption-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+    }
+
+    /* ===================== BEFORE / AFTER ===================== */
+    .ba-section { background: #111; padding: 80px 0; }
+
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .ba-card {
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+    }
+
+    .ba-img {
+      aspect-ratio: 4/3;
+      background: #222 center/cover no-repeat;
+    }
+
+    .ba-body { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+
+    .ba-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .ba-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ===================== RESOURCE CARDS ===================== */
+    .resource-card {
+      background: white;
+      border: 1px solid #f0ede5;
+      border-radius: 8px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      transition: box-shadow 0.18s, border-color 0.18s;
+    }
+
+    .resource-card:hover { box-shadow: 0 4px 20px rgba(0,85,47,0.1); border-color: #b2d4c0; }
+
+    .resource-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* ===================== CTA SECTION ===================== */
+    .tony-cta {
+      background: #2da57f;
+      padding: 80px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tony-cta-inner {
+      max-width: 1280px;
+      width: 100%;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .tony-cta-text { display: flex; flex-direction: column; gap: 8px; }
+
+    .tony-cta-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .tony-cta-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+      max-width: 720px;
+    }
+
+    .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+
+    .btn-cta-white {
+      background: white;
+      color: #00552f;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta-white:hover { background: #f0fff8; }
+
+    .btn-cta-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.7);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 30px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta-outline:hover { background: rgba(255,255,255,0.12); }
+
+    /* ===================== STAT ROW ===================== */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      border-top: 1px solid #e8e8e8;
+      padding-top: 32px;
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 6px; }
+
+    .stat-num {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      color: #00552f;
+    }
+
+    .stat-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .header { padding: 16px 0; }
+      .nav-links { display: none; }
+      .mega-panel { top: 0; }
+      .page-hero { grid-template-columns: 1fr; height: auto; }
+      .page-hero-left { padding: 60px 24px 48px; }
+      .page-hero-heading { font-size: 48px; }
+      .page-hero-right { height: 320px; }
+      .blog-section { padding: 60px 0; }
+      .blog-section-inner { padding: 0 24px; }
+      .blog-heading { font-size: 36px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .grid-4col { grid-template-columns: 1fr 1fr; }
+      .grid-3col, .grid-2col, .ba-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .tony-cta-heading { font-size: 32px; }
+      .tony-cta-inner { flex-direction: column; align-items: flex-start; }
+      .section-h2 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HEADER -->
+  <!-- ============================================================ -->
+  <!-- ============================================================ -->
+  <!-- PAGE HERO -->
+  <!-- ============================================================ -->
+  <section class="page-hero">
+    <div class="page-hero-left">
+      <p class="page-hero-overline">About · Our partnership</p>
+      <h1 class="page-hero-heading">FMNR &amp; World&nbsp;Vision</h1>
+      <p class="page-hero-tagline">For over two decades, World Vision has led the charge to bring invisible forests back to life.</p>
+    </div>
+    <div class="page-hero-right" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/W345-0219-010-768x1024.jpg');background-position:center top;" role="img" aria-label="A community member tending regenerating trees"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- OUR HISTORY -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="intro-grid">
+        <div>
+          <p class="blog-overline" style="margin-bottom:12px;">Our history</p>
+          <h2 class="section-h2" style="margin-bottom:24px;">Two decades of regreening</h2>
+          <div class="intro-body">
+            <p>For over two decades, World Vision has been leading the charge to bring invisible forests back to life with a powerful technique called FMNR. FMNR is an age-old practice, now recognised by various United Nations agencies, the World Bank, the World Resources Institute, the World Council of Churches, the World Future Council and many others as an outstanding practice in agroecology.</p>
+            <p>World Vision has seen FMNR adopted and spread in over 30 countries by individuals, communities and more than 2,000 partners.</p>
+          </div>
+        </div>
+        <div class="intro-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/AU385-0005-01-768x1024.jpg');background-position:center top;" role="img" aria-label="A World Vision FMNR farmer"></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num">30+</span><span class="stat-label">Countries reached</span></div>
+        <div class="stat"><span class="stat-num">2,000+</span><span class="stat-label">Partner organisations</span></div>
+        <div class="stat"><span class="stat-num">~1M</span><span class="stat-label">Farmers trained</span></div>
+        <div class="stat"><span class="stat-num">~1M</span><span class="stat-label">Hectares regenerated</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- OUR VISION -->
+  <!-- ============================================================ -->
+  <section class="steps-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Our vision</p>
+        <h2 class="blog-heading">A movement, not a project</h2>
+        <p class="section-lead" style="margin-top:8px;">In addition to enabling the global community to adopt FMNR, World Vision is committed to restoring 27 million hectares and reaching 8.1 million children over 10 years.</p>
+      </div>
+      <div class="intro-body" style="max-width:820px;">
+        <p>World Vision has adopted a movement mindset to mobilise farmers, local community groups and institutions to restore 973 million hectares — and to advocate for the government policies, laws and funding that support greater uptake of FMNR.</p>
+        <p>The exponential spread will come from partners rapidly adopting FMNR — from governments, NGOs, businesses, influencers, philanthropists and local-to-global organisations. World Vision is committed to equipping partners with the knowledge, resources and support they need to spread FMNR.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SCALING FMNR -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Scaling FMNR</p>
+        <h2 class="blog-heading">Everyone's business at World Vision</h2>
+      </div>
+      <div class="intro-body" style="max-width:820px;">
+        <p>Scaling up FMNR will be embedded into our business-as-usual mechanisms — from core project models for Area Programs and promotions to child sponsors, to new offers for high-net-worth and corporate donors, to grant acquisition from existing and new institutional donors.</p>
+        <p>We have already started and know where to focus our efforts and resources to scale FMNR quickly. We have many program and business initiatives that can integrate FMNR to widen our footprint and impact. We are building new tracking technology to report the spread of FMNR with new partners, and will continue to join forces with others to prove that FMNR works for many communities, geographies and contexts.</p>
+        <a href="../partners.html" class="btn-link">Read more about partnering
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- HUMBO, ETHIOPIA -->
+  <!-- ============================================================ -->
+  <section class="blog-section" style="background:#f9f9f9;">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Case study</p>
+        <h2 class="blog-heading">Humbo, Ethiopia</h2>
+        <p class="section-lead" style="margin-top:8px;">World Vision's first climate change mitigation project is a community-managed reforestation initiative in Humbo, Ethiopia — improving natural resource management and biodiversity while alleviating poverty in three ways.</p>
+      </div>
+      <div class="grid-3col">
+        <div class="resource-card">
+          <h3 class="resource-card-title">Increased grass</h3>
+          <p class="step-desc">A direct benefit — providing increased grass (cut and carried) for livestock and more domestic firewood for households.</p>
+        </div>
+        <div class="resource-card">
+          <h3 class="resource-card-title">Environmental benefits</h3>
+          <p class="step-desc">Direct environmental gains such as improved ground water and decreased erosion across the project landscape.</p>
+        </div>
+        <div class="resource-card">
+          <h3 class="resource-card-title">Community income</h3>
+          <p class="step-desc">An indirect benefit — a new community-based income stream from carbon offset credits under the Clean Development Mechanism (CDM).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- HUMBO BEFORE / AFTER -->
+  <!-- ============================================================ -->
+  <section class="ba-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline" style="color:#0dfaab;">Impact on the ground</p>
+        <h2 class="blog-heading" style="color:white;">Humbo, before &amp; after</h2>
+      </div>
+      <div class="ba-grid">
+        <div class="ba-card">
+          <div class="ba-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Humbo-Project-Ethiopia-Before.jpg');" role="img" aria-label="The bare Humbo hillsides before FMNR"></div>
+          <div class="ba-body">
+            <p class="ba-label">Humbo before FMNR</p>
+            <p class="ba-text">The area was bare of trees, although some small shrubs remained. High rainfall led to flash flooding, destroying roads and bridges, and extensive erosion stripped topsoil — reducing productivity in higher areas and leaving silt and rock on farms below.</p>
+          </div>
+        </div>
+        <div class="ba-card">
+          <div class="ba-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Humbo-Project-Ethiopia-After.jpg');" role="img" aria-label="The regenerated, forested Humbo hillsides after FMNR"></div>
+          <div class="ba-body">
+            <p class="ba-label">Humbo after FMNR</p>
+            <p class="ba-text">Since June 2006, the project site has been managed using FMNR. The communities are very excited about the project, and tree growth has been exceptional. Tree nurseries were also very successful — some 450,000 seedlings were established in 2006.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- GENERATIONAL IMPACT -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="intro-grid">
+        <div class="intro-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/AU485-0014-04.jpg');" role="img" aria-label="Students taking part in an FMNR club"></div>
+        <div>
+          <p class="blog-overline" style="margin-bottom:12px;">Generational impact</p>
+          <h2 class="section-h2" style="margin-bottom:24px;">An acre, a school, a future</h2>
+          <div class="intro-body">
+            <p>The children and staff of a secondary school in Zambia are addressing some of the world's biggest challenges, starting right in their schoolyard. "We have decided to dedicate one acre to land regeneration," says head teacher Mr Nkhata, one of three staff members trained in FMNR by World Vision's Sustainable Land Restoration project. The school has established an FMNR club with 20 students, including three children with disabilities.</p>
+            <p>Already, the designated land is taking shape and will soon provide much-needed shade and soil cover. "The best part is that the pupils in the FMNR club will be able to train other students and guardians on the importance of FMNR. This will ensure sustainability and have a long-lasting impact on communities," says Mr Nkhata.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CTA -->
+  <!-- ============================================================ -->
+  <section class="tony-cta">
+    <div class="tony-cta-inner">
+      <div class="tony-cta-text">
+        <p class="tony-cta-overline">Get involved</p>
+        <h2 class="tony-cta-heading">Anyone can join the global FMNR movement.</h2>
+      </div>
+      <div class="cta-actions">
+        <a href="/contact/" class="btn-cta-outline">Contact us</a>
+        <a href="#" class="btn-cta-white">Donate</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      document.querySelectorAll('.mega-item').forEach(item => {
+        const panel = item.querySelector('.mega-panel');
+        if (!panel) return;
+        let hideTimer = null;
+        function show() {
+          clearTimeout(hideTimer);
+          document.querySelectorAll('.mega-panel').forEach(p => { if (p !== panel) p.style.display = 'none'; });
+          panel.style.display = 'block';
+        }
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(() => { panel.style.display = 'none'; }, 80);
+        }
+        item.addEventListener('mouseenter', show);
+        item.addEventListener('mouseleave', scheduleHide);
+        panel.addEventListener('mouseenter', show);
+        panel.addEventListener('mouseleave', scheduleHide);
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
+          document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none');
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
+
+  <script src="/assets/js/header.js" defer></script>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/site-a11y.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
+</body>
+</html>

@@ -4,10 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resource Hub — FMNR</title>
+  <script src="/assets/js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/filter.css" />
   <style>
     @font-face {
       font-family: 'FatFrank';
@@ -315,6 +317,101 @@
       line-height: 1.4;
     }
 
+    /* ===================== HERO ===================== */
+    .hero {
+      position: relative;
+      height: 580px;
+      display: flex;
+      align-items: flex-end;
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 40px 72px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-h1 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 860px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 580px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
+      color: #003d22;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: #0ae49e; }
+
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
     /* ===================== RESOURCE SECTIONS ===================== */
     .blog-section {
       padding: 80px 0;
@@ -461,11 +558,178 @@
       gap: 24px;
     }
 
+    /* ── Card meta row (format / file size) ── */
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .blog-card-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: #c4c4c4; }
+
+    /* ── Faceted filter bar (Oxfam-style, native selects) ── */
+    .filter-bar-section {
+      background: #f9f9f9;
+      border-bottom: 1px solid #e4e4e0;
+    }
+
+    .filter-bar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-selects { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .filter-select-wrap { position: relative; display: inline-block; }
+
+    .filter-select {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1a1a1a;
+      background: #fff;
+      border: 1.5px solid #d8d8d2;
+      border-radius: 8px;
+      padding: 14px 52px 14px 20px;
+      min-width: 210px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      transition: border-color 0.15s;
+    }
+
+    .filter-select:hover { border-color: #00552f; }
+    .filter-select:focus { outline: none; border-color: #00552f; }
+
+    /* Chevron icon */
+    .filter-select-wrap::after {
+      content: "";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      transform: translateY(-65%) rotate(45deg);
+      border-right: 2px solid #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      pointer-events: none;
+    }
+
+    .filter-result-count {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1a1a1a;
+      flex-shrink: 0;
+    }
+
+    .filter-empty {
+      display: none;
+      padding: 80px 40px;
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #888;
+    }
+
+    /* ── PDF / download card affordances ── */
+    .blog-card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #00552f;
+      background: #e8eeeb;
+      border-radius: 4px;
+      padding: 4px 9px;
+    }
+
+    .blog-card-tag svg {
+      width: 13px; height: 13px;
+      stroke: #00552f; fill: none; stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── Newsletter / download CTA band ── */
+    .cta-band {
+      background: #00552f;
+      border-radius: 16px;
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .cta-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .cta-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 40px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: white;
+    }
+
+    .cta-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 540px;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-input {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      padding: 14px 18px;
+      border-radius: 4px;
+      border: none;
+      width: 320px;
+      max-width: 100%;
+    }
+
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 768px) {
       .header { padding: 16px 0; }
       .nav-links { display: none; }
       .mega-panel { top: 0; }
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
       .blog-section { padding: 60px 0; }
       .blog-section-inner { padding: 0 24px; }
       .blog-heading { font-size: 36px; }
@@ -473,6 +737,13 @@
       .featured-grid { grid-template-columns: 1fr; }
       .grid-4col { grid-template-columns: 1fr 1fr; }
       .grid-3col { grid-template-columns: 1fr; }
+      .filter-bar-inner { padding: 18px 24px; flex-direction: column; align-items: stretch; gap: 14px; }
+      .filter-selects { flex-direction: column; }
+      .filter-select-wrap { width: 100%; }
+      .filter-select { width: 100%; min-width: 0; }
+      .cta-band { padding: 40px 24px; }
+      .cta-heading { font-size: 30px; }
+      .cta-input { width: 100%; }
     }
 
     @media (max-width: 480px) {
@@ -485,331 +756,6 @@
   <!-- ============================================================ -->
   <!-- HEADER -->
   <!-- ============================================================ -->
-  <header class="header">
-    <div class="section-container">
-      <a href="index.html" class="logo">
-        <svg width="121" height="33" viewBox="0 0 265 69" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="FMNR">
-          <g clip-path="url(#clip0_resource)">
-            <path d="M51.5076 0.181641C54.8481 0.181641 58.1887 0.181641 61.612 0.257497C61.8787 0.403198 62.0576 0.49521 62.2476 0.539385C63.7887 0.897601 65.3909 1.08805 66.8617 1.63285C69.672 2.67383 72.0906 4.31577 74.209 6.50952C76.4012 8.77974 77.9363 11.3972 78.9666 14.2901C81.1889 20.5302 83.2549 26.8257 85.3884 33.0974C86.059 35.0685 86.7411 37.0358 87.418 39.0048C88.0751 37.7055 88.5554 36.4306 88.9956 35.1421C90.9526 29.4131 92.869 23.67 94.8616 17.9534C95.7091 15.5219 96.4902 13.0275 97.6942 10.7702C99.062 8.20557 100.942 5.9583 103.389 4.23496C106.24 2.22729 109.311 0.861474 112.812 0.530098C113.013 0.510989 113.197 0.302173 113.389 0.181643C116.73 0.181641 120.071 0.181641 123.478 0.24605C124.427 0.984554 124.511 1.9008 124.51 2.9413C124.486 23.996 124.49 45.0507 124.496 66.1054C124.496 67.1963 124.616 68.2998 123.764 69.1816C118.118 69.1816 112.472 69.1816 106.759 69.1165C106.012 68.39 105.911 67.5743 105.913 66.6606C105.936 56.6815 105.927 46.7024 105.927 36.7233C105.927 36.3759 105.927 36.0286 105.927 35.6813C104.611 38.7884 103.442 41.9199 102.266 45.0486C100.684 49.2546 99.0955 53.4577 97.5131 57.6632C96.0687 61.5019 94.6288 65.3421 93.1868 69.1816C89.1789 69.1816 85.171 69.1816 81.0973 69.1179C80.6612 68.3754 80.1959 67.7305 79.9375 67.0115C79.0357 64.5016 78.2056 61.966 77.3477 59.4404C75.2171 53.1676 73.087 46.8945 70.9545 40.6222C70.4103 39.0215 69.858 37.4236 69.3094 35.8244C69.2601 35.8361 69.2109 35.8478 69.1616 35.8595C69.1616 36.1878 69.1616 36.5161 69.1616 36.8445C69.1616 46.3101 69.1641 55.7758 69.1589 65.2415C69.1581 66.5957 69.3817 67.9978 68.4341 69.1816C62.7881 69.1816 57.1421 69.1816 51.4261 69.1158C50.7329 68.5267 50.5816 67.8643 50.5823 67.0589C50.6015 45.7575 50.5982 24.4561 50.5956 3.15472C50.5955 2.11431 50.4117 1.02322 51.5216 0.348632C51.543 0.335639 51.5134 0.239165 51.5076 0.181641Z" fill="#077D57"/>
-            <path d="M187.466 69.1816C183.397 69.1816 179.328 69.1816 175.18 69.1083C174.918 68.9629 174.74 68.8519 174.551 68.8246C170.497 68.2413 166.988 66.502 163.963 63.789C161.211 61.3211 159.39 58.2171 158.184 54.7727C156.064 48.7164 154.035 42.6285 151.968 36.5537C151.307 34.6115 150.648 32.6688 149.988 30.7263C149.779 31.698 149.661 32.6172 149.615 33.5399C149.477 36.3358 149.366 39.133 149.247 41.9297C149.124 44.8177 149.005 47.7059 148.881 50.5939C148.763 53.3296 148.628 56.0647 148.522 58.801C148.388 62.2608 148.275 65.7214 148.152 69.1816C142.871 69.1816 137.589 69.1816 132.237 69.1169C131.456 68.4974 131.206 67.8 131.207 66.8747C131.232 45.6688 131.228 24.4629 131.222 3.25705C131.221 2.16653 131.101 1.06287 131.954 0.181641C136.447 0.181641 140.941 0.181641 145.512 0.253907C146.239 0.509579 146.885 0.699165 147.536 0.875327C150.459 1.6674 153.031 3.1232 155.314 5.07836C157.302 6.78148 158.952 8.80894 160.074 11.1574C161.052 13.2054 161.777 15.3803 162.522 17.531C164.72 23.8788 166.872 30.2423 169.042 36.6C169.25 37.2107 169.452 37.8237 169.657 38.4357C169.708 38.4252 169.76 38.4147 169.812 38.4042C169.812 38.0826 169.812 37.7609 169.812 37.4393C169.812 26.3343 169.809 15.2293 169.814 4.12425C169.815 2.76935 169.591 1.36624 170.539 0.181641C176.246 0.181641 181.952 0.181641 187.727 0.248268C188.048 1.15874 188.505 1.99894 188.52 2.84704C188.596 7.07444 188.556 11.3039 188.556 15.5327C188.556 22.775 188.556 30.0173 188.556 37.2597C188.556 38.3009 188.559 39.3421 188.555 40.3833C188.526 48.7913 188.465 57.1994 188.497 65.6071C188.502 66.9553 188.427 68.1649 187.466 69.1816Z" fill="#077D57"/>
-            <path d="M195.838 0.181641C205.185 0.181641 214.531 0.181641 223.955 0.252717C224.184 0.399156 224.328 0.512645 224.488 0.544343C229.326 1.50238 233.328 3.8975 236.61 7.53888C238.131 9.22591 239.331 11.1285 240.237 13.1949C241.313 15.6497 242.103 18.1989 242.068 20.9193C242.044 22.7981 242.181 24.7222 241.82 26.542C241.395 28.69 240.695 30.8324 239.778 32.8231C238.556 35.4772 236.806 37.8233 234.449 39.6445C233.962 40.0208 233.927 40.4253 234.202 40.9639C234.665 41.8727 235.082 42.806 235.491 43.7407C237.331 47.9423 239.16 52.1486 240.996 56.3521C242.46 59.7037 243.936 63.05 245.387 66.4069C245.764 67.2784 245.524 68.0988 244.825 68.7322C244.712 68.8347 244.683 69.0295 244.615 69.1816C242.185 69.1816 239.754 69.1816 237.244 69.1068C237.01 68.9623 236.861 68.8438 236.703 68.8304C234.174 68.615 231.805 67.8015 229.632 66.5796C225.722 64.3804 222.817 61.1677 220.934 57.0985C219.273 53.5073 217.703 49.8736 216.113 46.2496C215.524 44.9053 215.203 44.7386 213.674 45.2203C213.674 45.5578 213.674 45.9177 213.674 46.2776C213.674 52.6284 213.677 58.9792 213.672 65.33C213.671 66.6582 213.935 68.0589 212.74 69.0974C212.731 69.1055 212.756 69.1527 212.764 69.1816C207.24 69.1816 201.715 69.1816 196.121 69.117C195.285 68.5239 195.091 67.8007 195.092 66.8802C195.115 45.6077 195.112 24.3351 195.105 3.06248C195.104 2.03106 194.996 0.991232 195.838 0.181641ZM219.863 27.3968C221.869 26.7508 223.045 25.3945 223.459 23.3279C223.884 21.2057 222.174 18.1366 220.23 17.8225C218.753 17.5837 217.243 17.4962 215.744 17.4507C214.48 17.4123 213.702 18.1141 213.686 19.2229C213.654 21.43 213.649 23.6384 213.689 25.8453C213.709 26.9705 214.423 27.6161 215.556 27.5921C216.942 27.5627 218.326 27.4752 219.863 27.3968Z" fill="#077D57"/>
-            <path d="M17.1085 69.1816C11.8266 69.1816 6.54459 69.1816 1.19415 69.1179C0.81111 68.8545 0.49656 68.6549 0.182008 68.4553C0.182007 45.7137 0.182007 22.972 0.182007 0.181641C14.5035 0.181641 28.8251 0.181641 43.2141 0.248113C43.5346 1.03699 43.9945 1.75597 44.0066 2.48238C44.0767 6.68752 44.1048 10.8959 44.0078 15.0999C43.973 16.6055 43.8093 17.4694 41.5246 17.4519C34.3363 17.3967 27.1473 17.4316 19.9585 17.4316C19.5792 17.4316 19.1998 17.4316 18.842 17.4316C18.7424 18.9091 18.6312 20.2266 18.5701 21.5464C18.488 23.3225 18.4427 25.1004 18.385 26.8776C18.2617 30.6731 18.1414 34.4687 18.0182 38.2642C17.9604 40.0411 17.8963 41.8177 17.839 43.5945C17.7156 47.421 17.5956 51.2476 17.4725 55.0741C17.4143 56.8813 17.3399 58.6881 17.295 60.4956C17.2232 63.3907 17.1697 66.2863 17.1085 69.1816Z" fill="#077D57"/>
-            <path d="M265.182 68.7333C262.304 68.8184 259.426 68.8485 256.548 68.8086C254.346 68.778 252.271 68.1894 250.421 66.9886C247.661 65.1978 246.019 62.5998 245.209 59.4557C245.07 58.9135 244.993 58.3401 244.99 57.7805C244.969 54.6078 244.98 51.4349 244.98 48.1184C245.291 48.1184 245.578 48.1184 245.864 48.1184C248.47 48.1185 251.075 48.096 253.68 48.1246C256.454 48.1551 258.886 49.1104 260.986 50.9204C263.002 52.6572 264.301 54.8096 264.843 57.416C264.864 57.5165 264.993 57.5947 265.127 57.6219C265.182 61.2564 265.182 64.9523 265.182 68.7333Z" fill="#FA6B01"/>
-            <path d="M18.5646 38.1317C18.4651 35.4532 18.6819 32.934 19.975 30.5989C20.8171 29.0781 21.862 27.7543 23.2516 26.6971C25.5196 24.9715 28.0849 24.2676 30.9155 24.3212C33.4883 24.3699 36.0628 24.3315 38.7671 24.3315C38.7671 24.6579 38.7671 24.9457 38.7671 25.2336C38.7671 27.7433 38.7604 30.253 38.7691 32.7627C38.7767 34.9352 38.3615 37.0323 37.275 38.9056C35.9002 41.2758 34.0274 43.1285 31.3726 44.1526C29.6621 44.8124 27.93 45.035 26.1331 45.0323C23.6513 45.0286 21.1695 45.0314 18.5646 45.0314C18.5646 42.7316 18.5646 40.477 18.5646 38.1317Z" fill="#FA6B01"/>
-          </g>
-          <defs>
-            <clipPath id="clip0_resource">
-              <rect width="265" height="69" fill="white"/>
-            </clipPath>
-          </defs>
-        </svg>
-      </a>
-
-      <nav class="nav-links" id="mainNav">
-
-        <!-- ══════════════ PARTNER WITH US ══════════════ -->
-        <div class="mega-item">
-          <a href="/partners.html" class="nav-link">Partner</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Partner with Us</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1a3a25 0%,#2d6040 50%,#3a7a52 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">Scaling FMNR Across Sub-Saharan Africa</p>
-                    <p class="mega-featured-desc">See how faith networks and NGOs are driving landscape restoration.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="/partners/faith-based.html" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-                    <p class="mega-icon-title">Faith-Based Partners</p>
-                    <p class="mega-icon-desc">Churches, pastors and faith network leaders</p>
-                  </a>
-                  <a href="/partners/ngo.html" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
-                    <p class="mega-icon-title">NGOs &amp; Development Orgs</p>
-                    <p class="mega-icon-desc">Programme teams and implementation partners</p>
-                  </a>
-                  <a href="/partners/government.html" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="20" width="18" height="2" rx="1"/><path d="M4 8l8-5 8 5"/><rect x="6" y="8" width="3" height="12"/><rect x="10.5" y="8" width="3" height="12"/><rect x="15" y="8" width="3" height="12"/></svg></div>
-                    <p class="mega-icon-title">Governments &amp; Policy</p>
-                    <p class="mega-icon-desc">National programme leaders and policy makers</p>
-                  </a>
-                  <a href="/partners/funders.html" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-                    <p class="mega-icon-title">Funders &amp; Investors</p>
-                    <p class="mega-icon-desc">Philanthropists, impact investors and grant-makers</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══════════════ ADOPT ══════════════ -->
-        <div class="mega-item">
-          <a href="adopt.html" class="nav-link">Adopt</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Adopt FMNR</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#252e1a 0%,#445a28 50%,#5a7835 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">Field Guide to FMNR Adoption</p>
-                    <p class="mega-featured-desc">Step-by-step practitioner guide for your landscape.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C9.5 9 6 9 4 10c0 3 2 6 5 7 1-3 2-5 3-5z"/><path d="M12 12c2.5-3 6-3 8-2 0 3-2 6-5 7-1-3-2-5-3-5z"/></svg></div>
-                    <p class="mega-icon-title">How FMNR Works</p>
-                    <p class="mega-icon-desc">The technique and its core principles explained</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M12 8v8"/><path d="M8.5 14l3.5 4 3.5-4"/><path d="M7 19c-2 0-4-1-4-3s2-3 4-3"/><path d="M17 19c2 0 4-1 4-3s-2-3-4-3"/></svg></div>
-                    <p class="mega-icon-title">Growth Steps</p>
-                    <p class="mega-icon-desc">Step-by-step guide to implementing FMNR</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-                    <p class="mega-icon-title">Community Engagement</p>
-                    <p class="mega-icon-desc">Mobilise your community for adoption</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-                    <p class="mega-icon-title">FMNR Manual</p>
-                    <p class="mega-icon-desc">Comprehensive practitioner reference guide</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══════════════ IMPACT ══════════════ -->
-        <div class="mega-item">
-          <a href="/impact/" class="nav-link">Impact</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Our Impact</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#0d2318 0%,#1a4028 50%,#265c3a 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">1 Billion Hectare Vision</p>
-                    <p class="mega-featured-desc">Track progress toward our global restoration target.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-                    <p class="mega-icon-title">Impact Overview</p>
-                    <p class="mega-icon-desc">Comprehensive data on FMNR outcomes</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
-                    <p class="mega-icon-title">Evidence of Impact</p>
-                    <p class="mega-icon-desc">Research and peer-reviewed studies</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-                    <p class="mega-icon-title">27 Countries</p>
-                    <p class="mega-icon-desc">See where FMNR is being practised</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
-                    <p class="mega-icon-title">Impact Stories</p>
-                    <p class="mega-icon-desc">Stories from FMNR communities</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══════════════ RESOURCE HUB (active) ══════════════ -->
-        <div class="mega-item">
-          <a href="resource-hub.html" class="nav-link active">Resource Hub</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Resource Hub</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1a2535 0%,#2d4560 50%,#3a5878 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">FMNR e-Courses Now Available</p>
-                    <p class="mega-featured-desc">Online learning modules for practitioners at every level.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x3">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
-                    <p class="mega-icon-title">Resource Library</p>
-                    <p class="mega-icon-desc">Browse all resources, tools and materials</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-                    <p class="mega-icon-title">FMNR e-Courses</p>
-                    <p class="mega-icon-desc">Online learning modules and training</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <p class="mega-icon-title">Country Resources</p>
-                    <p class="mega-icon-desc">Region and country-specific guides</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M9 3H5l2 9H5l2 9h10l2-9h-2l2-9h-4"/><line x1="9" y1="3" x2="15" y2="3"/></svg></div>
-                    <p class="mega-icon-title">Research &amp; Evidence</p>
-                    <p class="mega-icon-desc">Technical papers and published studies</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-                    <p class="mega-icon-title">Case Studies</p>
-                    <p class="mega-icon-desc">In-depth case studies from the field</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-                    <p class="mega-icon-title">FMNR Manual</p>
-                    <p class="mega-icon-desc">The comprehensive FMNR practitioner manual</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══════════════ STORIES ══════════════ -->
-        <div class="mega-item">
-          <a href="blog.html" class="nav-link">Stories</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Stories</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#2e1e10 0%,#5a3820 50%,#744830 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">From Desert to Forest: Niger's Transformation</p>
-                    <p class="mega-featured-desc">How millions of farmers changed the Sahel landscape.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x3">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
-                    <p class="mega-icon-title">All Stories</p>
-                    <p class="mega-icon-desc">Browse all FMNR community stories</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
-                    <p class="mega-icon-title">Niger</p>
-                    <p class="mega-icon-desc">The greening of the Sahel</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg></div>
-                    <p class="mega-icon-title">Kenya</p>
-                    <p class="mega-icon-desc">Dryland transformation in Kenya</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22v-7"/><path d="M5.45 5.11L2 12h20l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/><path d="M12 15c-3.31 0-6 1.34-6 3v1h12v-1c0-1.66-2.69-3-6-3z"/></svg></div>
-                    <p class="mega-icon-title">Zambia</p>
-                    <p class="mega-icon-desc">Community forests in Zambia</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg></div>
-                    <p class="mega-icon-title">Tigray, Ethiopia</p>
-                    <p class="mega-icon-desc">Restoration in Tigray highlands</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12c-2-3-6-3-8-2 0 4 2 7 5 8 1-3 2-5 3-6zM12 12c2-3 6-3 8-2 0 4-2 7-5 8-1-3-2-5-3-6z"/></svg></div>
-                    <p class="mega-icon-title">Honey &amp; Livelihoods</p>
-                    <p class="mega-icon-desc">How FMNR creates new income streams</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══════════════ ABOUT ══════════════ -->
-        <div class="mega-item">
-          <a href="/about-fmnr/" class="nav-link">About</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">About FMNR</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1e1e2e 0%,#2e3050 50%,#3a3d65 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">Tony Rinaudo — The Forest Maker</p>
-                    <p class="mega-featured-desc">The story of the man behind the global FMNR movement.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
-                    <p class="mega-icon-title">About FMNR</p>
-                    <p class="mega-icon-desc">The technique and movement explained</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-                    <p class="mega-icon-title">Tony Rinaudo</p>
-                    <p class="mega-icon-desc">Meet the Forest Maker</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-                    <p class="mega-icon-title">FMNR &amp; World Vision</p>
-                    <p class="mega-icon-desc">Our partnership and shared mission</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-                    <p class="mega-icon-title">FAQs</p>
-                    <p class="mega-icon-desc">Frequently asked questions about FMNR</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </nav>
-
-      <div class="header-actions">
-        <button style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round">
-            <circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/>
-          </svg>
-        </button>
-        <a href="#" class="btn-donate">Donate</a>
-      </div>
-    </div>
-  </header>
-
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="hero-overlay"></div>
@@ -824,10 +770,76 @@
     </div>
   </section>
 
+  <!-- ===================== FILTER BAR (faceted) ===================== -->
+  <section class="filter-bar-section" id="filter">
+    <div class="filter-bar-inner">
+      <div class="filter-controls">
+        <div class="filter-selects">
+
+          <div class="filter-dropdown" data-facet="area">
+            <button type="button" class="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <span class="filter-dropdown-label">Area of Work</span>
+              <span class="filter-dropdown-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="filter-dropdown-panel" role="group" aria-label="Filter by area of work" hidden>
+              <label class="filter-check"><input type="checkbox" value="food-security"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Food Security</span></label>
+              <label class="filter-check"><input type="checkbox" value="climate-carbon"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Climate &amp; Carbon</span></label>
+              <label class="filter-check"><input type="checkbox" value="livelihoods"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Livelihoods</span></label>
+              <label class="filter-check"><input type="checkbox" value="community-engagement"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Community Engagement</span></label>
+              <label class="filter-check"><input type="checkbox" value="monitoring-evaluation"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Monitoring &amp; Evaluation</span></label>
+              <label class="filter-check"><input type="checkbox" value="faith-community"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Faith &amp; Community</span></label>
+            </div>
+          </div>
+
+          <div class="filter-dropdown" data-facet="country">
+            <button type="button" class="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <span class="filter-dropdown-label">Country</span>
+              <span class="filter-dropdown-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="filter-dropdown-panel" role="group" aria-label="Filter by country" hidden>
+              <label class="filter-check"><input type="checkbox" value="global"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Global / Multi-country</span></label>
+              <label class="filter-check"><input type="checkbox" value="niger"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Niger</span></label>
+              <label class="filter-check"><input type="checkbox" value="kenya"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Kenya</span></label>
+              <label class="filter-check"><input type="checkbox" value="ethiopia"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Ethiopia</span></label>
+              <label class="filter-check"><input type="checkbox" value="mali"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Mali</span></label>
+            </div>
+          </div>
+
+          <div class="filter-dropdown" data-facet="type">
+            <button type="button" class="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <span class="filter-dropdown-label">Document Type</span>
+              <span class="filter-dropdown-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="filter-dropdown-panel" role="group" aria-label="Filter by document type" hidden>
+              <label class="filter-check"><input type="checkbox" value="manual"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Manual</span></label>
+              <label class="filter-check"><input type="checkbox" value="field-guide"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Field Guide</span></label>
+              <label class="filter-check"><input type="checkbox" value="toolkit"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Toolkit</span></label>
+              <label class="filter-check"><input type="checkbox" value="training-pack"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Training Pack</span></label>
+              <label class="filter-check"><input type="checkbox" value="country-guide"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Country Guide</span></label>
+              <label class="filter-check"><input type="checkbox" value="research-paper"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Research Paper</span></label>
+              <label class="filter-check"><input type="checkbox" value="technical-report"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Technical Report</span></label>
+              <label class="filter-check"><input type="checkbox" value="case-study"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Case Study</span></label>
+              <label class="filter-check"><input type="checkbox" value="video"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Video</span></label>
+              <label class="filter-check"><input type="checkbox" value="webinar"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Webinar</span></label>
+              <label class="filter-check"><input type="checkbox" value="ecourse"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">e-Course</span></label>
+            </div>
+          </div>
+
+        </div>
+        <div class="filter-chips" id="filterChips" aria-live="polite"></div>
+        <button type="button" class="filter-clear-all" id="filterClearAll" hidden>Clear all</button>
+      </div>
+      <span class="filter-result-count" id="filterResultCount" data-noun="Resource" data-noun-plural="Resources"></span>
+    </div>
+  </section>
+
+  <!-- No-results message (shown when filters match nothing) -->
+  <p class="filter-empty" id="filterEmpty">No resources match these filters — try removing one.</p>
+
   <!-- ============================================================ -->
   <!-- SECTION 1: FEATURED RESOURCES (2-col) -->
   <!-- ============================================================ -->
-  <section class="blog-section">
+  <section class="blog-section" data-filterable>
     <div class="blog-section-inner">
       <div class="blog-section-header">
         <p class="blog-overline">Featured</p>
@@ -835,27 +847,29 @@
       </div>
       <div class="featured-grid">
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="manual" data-area="community-engagement" data-country="global">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Practitioner Manual</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Manual</span>
             <h2 class="blog-card-heading">The FMNR Practitioner Manual</h2>
             <p class="blog-card-sub">The comprehensive reference guide for field practitioners. Covers the full FMNR technique — pruning, protection, phased implementation — with country-specific guidance and monitoring frameworks.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>4.2 MB</span></div>
             <span class="btn-link">
-              Download manual
+              Download PDF
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </div>
         </a>
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="ecourse" data-area="community-engagement" data-country="global">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">e-Learning</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>e-Course</span>
             <h2 class="blog-card-heading">FMNR e-Courses: Learn at Your Own Pace</h2>
             <p class="blog-card-sub">Self-paced online modules covering FMNR fundamentals, community mobilisation, and monitoring. Available in English, French, and Hausa — free for all practitioners.</p>
+            <div class="blog-card-meta"><span>Online course</span><span class="dot"></span><span>Free</span></div>
             <span class="btn-link">
               Browse courses
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -872,7 +886,7 @@
   <!-- ============================================================ -->
   <!-- SECTION 2: RESOURCE TYPES (4-col) -->
   <!-- ============================================================ -->
-  <section class="blog-section">
+  <section class="blog-section" data-filterable>
     <div class="blog-section-inner">
       <div class="blog-section-header">
         <p class="blog-overline">Browse by Type</p>
@@ -880,57 +894,61 @@
       </div>
       <div class="grid-4col">
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="field-guide" data-area="community-engagement" data-country="global">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Field Guide</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Field Guide</span>
             <h3 class="blog-card-heading">FMNR Implementation Guide</h3>
             <p class="blog-card-sub">Step-by-step guide to planning, implementing and monitoring FMNR in dryland farming communities. Includes farmer training scripts and data collection templates.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>2.8 MB</span></div>
             <span class="btn-link">
-              Download
+              Download PDF
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </div>
         </a>
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="toolkit" data-area="monitoring-evaluation" data-country="global">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Monitoring Tool</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Toolkit</span>
             <h3 class="blog-card-heading">FMNR Monitoring &amp; Evaluation Toolkit</h3>
             <p class="blog-card-sub">Standardised indicators, data collection forms, and reporting templates for tracking FMNR adoption and impact at the landscape scale.</p>
+            <div class="blog-card-meta"><span>ZIP</span><span class="dot"></span><span>5.4 MB</span></div>
             <span class="btn-link">
-              Download
+              Download files
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </div>
         </a>
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="training-pack" data-area="community-engagement" data-country="global">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Training Material</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Training Pack</span>
             <h3 class="blog-card-heading">Community Facilitator Training Pack</h3>
             <p class="blog-card-sub">Presentation slides, facilitator notes, and participant worksheets for running community FMNR awareness and adoption sessions.</p>
+            <div class="blog-card-meta"><span>ZIP</span><span class="dot"></span><span>11 MB</span></div>
             <span class="btn-link">
-              Download
+              Download files
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </div>
         </a>
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="country-guide" data-area="community-engagement" data-country="niger kenya ethiopia mali">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Country Guide</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Country Guide</span>
             <h3 class="blog-card-heading">Country-Specific FMNR Guides</h3>
             <p class="blog-card-sub">Localised guidance covering land tenure, species selection, and enabling policy for FMNR practitioners working in Niger, Kenya, Ethiopia, Mali, and beyond.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>5 guides</span></div>
             <span class="btn-link">
               Browse guides
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -947,7 +965,7 @@
   <!-- ============================================================ -->
   <!-- SECTION 3: RESEARCH & TECHNICAL PAPERS (3-col) -->
   <!-- ============================================================ -->
-  <section class="blog-section">
+  <section class="blog-section" data-filterable>
     <div class="blog-section-inner">
       <div class="blog-section-header">
         <p class="blog-overline">Knowledge Base</p>
@@ -955,44 +973,78 @@
       </div>
       <div class="grid-3col">
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="research-paper" data-area="food-security" data-country="global">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Peer-Reviewed Paper</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Research Paper</span>
             <h3 class="blog-card-heading">FMNR &amp; Dryland Food Security: A Meta-Analysis</h3>
             <p class="blog-card-sub">Systematic review of 38 studies across 14 countries examining the relationship between FMNR adoption and household food security outcomes in dryland farming systems.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>1.6 MB</span></div>
             <span class="btn-link">
-              Read paper
+              Download PDF
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </div>
         </a>
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="technical-report" data-area="climate-carbon" data-country="niger">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Technical Report</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Technical Report</span>
             <h3 class="blog-card-heading">Satellite Assessment of FMNR Landscape Change</h3>
             <p class="blog-card-sub">Remote sensing analysis documenting vegetation cover change in FMNR landscapes across the Sahel from 1985–2023, with spatial data and methodology available for download.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>3.9 MB</span></div>
             <span class="btn-link">
-              Read report
+              Download PDF
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
           </div>
         </a>
 
-        <a href="resource-post.html" class="blog-card">
+        <a href="resource-post.html" class="blog-card" data-type="case-study" data-area="livelihoods" data-country="niger">
           <div class="blog-card-image"></div>
           <div class="blog-card-body">
-            <p class="blog-card-overline">Case Study</p>
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Case Study</span>
             <h3 class="blog-card-heading">Scaling FMNR: Lessons from the Maradi Region</h3>
             <p class="blog-card-sub">In-depth case study of what enabled FMNR to spread across 5 million hectares in southern Niger — covering enabling conditions, farmer decision-making, and policy shifts.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>2.1 MB</span></div>
             <span class="btn-link">
-              Read case study
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: VIDEOS & WEBINARS (3-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section" data-filterable>
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Watch &amp; Learn</p>
+        <h2 class="blog-subheading">Videos &amp; Webinars</h2>
+      </div>
+      <div class="grid-3col">
+
+        <a href="resource-post.html" class="blog-card" data-type="video" data-area="community-engagement" data-country="global">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>Video</span>
+            <h3 class="blog-card-heading">FMNR Pruning Techniques Explained</h3>
+            <p class="blog-card-sub">A practical field demonstration of stem selection, pruning and protection — the core steps every FMNR practitioner needs to master.</p>
+            <div class="blog-card-meta"><span>Video</span><span class="dot"></span><span>12 min</span></div>
+            <span class="btn-link">
+              Watch video
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1000,6 +1052,134 @@
           </div>
         </a>
 
+        <a href="resource-post.html" class="blog-card" data-type="webinar" data-area="faith-community" data-country="kenya">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Webinar</span>
+            <h3 class="blog-card-heading">Scaling FMNR Through Faith Networks</h3>
+            <p class="blog-card-sub">A panel of practitioners shares how churches and faith leaders have mobilised communities to restore land across East and West Africa.</p>
+            <div class="blog-card-meta"><span>Webinar</span><span class="dot"></span><span>58 min</span></div>
+            <span class="btn-link">
+              Watch webinar
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="resource-post.html" class="blog-card" data-type="video" data-area="community-engagement" data-country="global">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>Video</span>
+            <h3 class="blog-card-heading">What Is FMNR? In 5 Minutes</h3>
+            <p class="blog-card-sub">A short animated introduction to Farmer Managed Natural Regeneration — ideal for sharing with communities, donors and new partners.</p>
+            <div class="blog-card-meta"><span>Video</span><span class="dot"></span><span>5 min</span></div>
+            <span class="btn-link">
+              Watch video
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5: e-COURSES (4-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section" data-filterable>
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Online Learning</p>
+        <h2 class="blog-subheading">FMNR e-Courses</h2>
+      </div>
+      <div class="grid-4col">
+
+        <a href="resource-post.html" class="blog-card" data-type="ecourse" data-area="community-engagement" data-country="global">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>e-Course</span>
+            <h3 class="blog-card-heading">FMNR Foundations</h3>
+            <p class="blog-card-sub">An introduction to the principles, history and practice of FMNR for newcomers and partners.</p>
+            <div class="blog-card-meta"><span>Beginner</span><span class="dot"></span><span>6 modules</span><span class="dot"></span><span>Free</span></div>
+            <span class="btn-link">
+              Start course
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="resource-post.html" class="blog-card" data-type="ecourse" data-area="community-engagement" data-country="global">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>e-Course</span>
+            <h3 class="blog-card-heading">Community Mobilisation</h3>
+            <p class="blog-card-sub">How to engage communities, build agreements and sustain FMNR adoption over time.</p>
+            <div class="blog-card-meta"><span>Intermediate</span><span class="dot"></span><span>8 modules</span><span class="dot"></span><span>Free</span></div>
+            <span class="btn-link">
+              Start course
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="resource-post.html" class="blog-card" data-type="ecourse" data-area="monitoring-evaluation" data-country="global">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>e-Course</span>
+            <h3 class="blog-card-heading">Monitoring &amp; Evaluation</h3>
+            <p class="blog-card-sub">Set up indicators, collect field data and report on FMNR adoption and impact with confidence.</p>
+            <div class="blog-card-meta"><span>Intermediate</span><span class="dot"></span><span>5 modules</span><span class="dot"></span><span>Free</span></div>
+            <span class="btn-link">
+              Start course
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="resource-post.html" class="blog-card" data-type="ecourse" data-area="community-engagement" data-country="global">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>e-Course</span>
+            <h3 class="blog-card-heading">Training of Trainers</h3>
+            <p class="blog-card-sub">Equip yourself to train others — facilitation skills, lesson plans and assessment tools for FMNR trainers.</p>
+            <div class="blog-card-meta"><span>Advanced</span><span class="dot"></span><span>10 modules</span><span class="dot"></span><span>Free</span></div>
+            <span class="btn-link">
+              Start course
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6: NEWSLETTER CTA -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="cta-band">
+        <p class="cta-overline">New resources monthly</p>
+        <h2 class="cta-heading">Get New Resources First</h2>
+        <p class="cta-sub">Be the first to know when we publish new manuals, courses and research. Join our practitioner mailing list and get a monthly round-up of the latest FMNR tools.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" class="cta-input" placeholder="you@example.com" aria-label="Email address" />
+          <button type="submit" class="btn-teal">Subscribe</button>
+        </form>
       </div>
     </div>
   </section>
@@ -1042,5 +1222,10 @@
     })();
   </script>
 
+  <script src="/assets/js/filter.js" defer></script>
+  <script src="/assets/js/header.js" defer></script>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/site-a11y.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
 </body>
 </html>

@@ -6,7 +6,13 @@
     document.addEventListener('DOMContentLoaded', fn);
   }
 
-  ready(function(){
+  function init(){
+    // The search toggle lives in the shared header, which header.js injects
+    // asynchronously. Run once when all required elements are present — on
+    // DOMContentLoaded for legacy inline headers, or on 'header:ready' for
+    // injected ones. Guard against double-binding.
+    if(init.done) return;
+
     var toggle = document.getElementById('search-toggle');
     var overlay = document.getElementById('search-overlay');
     var form = document.getElementById('search-form');
@@ -14,6 +20,7 @@
     var clearBtn = document.getElementById('search-clear');
 
     if(!toggle || !overlay || !form || !input) return;
+    init.done = true;
 
     function openOverlay(){
       overlay.classList.add('open');
@@ -71,5 +78,9 @@
       // close overlay shortly after submit to avoid visible flash
       setTimeout(function(){ closeOverlay(); }, 300);
     });
-  });
+  }
+
+  ready(init);
+  // header is injected asynchronously by header.js
+  document.addEventListener('header:ready', init);
 })();

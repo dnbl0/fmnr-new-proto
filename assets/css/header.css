@@ -1,0 +1,332 @@
+/* ============================================================
+   header.css — shared site header + mega-menu
+   Single source of truth for the injected header (see assets/js/header.js).
+   Extracted from index.html's inline styles so every page (and new stub
+   pages) shares one stylesheet.
+   ============================================================ */
+
+/* .section-container is the header's layout wrapper. Content pages also
+   define it inline; this copy lets injected headers lay out on pages that
+   don't (e.g. stub pages). */
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 40px;
+}
+
+/* ===================== HEADER ===================== */
+.header {
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 16px 0;
+}
+
+.header .section-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+}
+
+.logo-f { color: #2da57f; }
+.logo-m { color: #2da57f; }
+.logo-n { color: #2da57f; }
+.logo-r { color: #2da57f; }
+.logo-dot { color: #f5a623; font-size: 32px; line-height: 0.8; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-link {
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #00552f;
+  text-decoration: none;
+  padding: 24px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover { opacity: 0.7; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.btn-donate {
+  background: #00552f;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-donate:hover { background: #004026; }
+
+/* ===================== MEGA MENU ===================== */
+/*
+ * UberMenu compatibility notes:
+ * – .mega-featured  → UberMenu "Custom Content" column (HTML item), ~30% column width
+ * – .mega-icon-card → UberMenu icon items with description, standard column width
+ * – .mega-header-row → UberMenu Custom Content item spanning full width (top row)
+ * – Full-width panel → UberMenu "Unbounded Submenus" setting
+ * – Colors/icon squares → ~25 lines of CSS in UberMenu's Custom CSS panel
+ */
+.mega-item { position: static; }
+
+.mega-panel {
+  position: fixed;
+  left: 0; right: 0;
+  top: 88px; /* positioned below header via JS */
+  background: white;
+  border-top: 3px solid #00552f;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+  z-index: 200;
+  display: none;
+  animation: megaFadeIn 0.18s ease;
+}
+
+@keyframes megaFadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* hover is handled entirely by JS — CSS :hover dropped because
+   position:fixed panel breaks out of .mega-item's bounding box */
+.mega-item:focus-within .mega-panel { display: block; }
+
+.mega-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header row: FatFrank section title + "Contact us" outlined button */
+.mega-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mega-title {
+  font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  text-transform: uppercase;
+  color: #111;
+  line-height: 1;
+}
+
+.mega-contact-btn {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #00552f;
+  border: 2px solid #00552f;
+  border-radius: 4px;
+  padding: 8px 20px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mega-contact-btn:hover { background: #00552f; color: white; }
+
+/* Content row: featured card (left) + icon grid (right) */
+.mega-content-row {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Featured image card — UberMenu: Custom Content item with inline HTML */
+.mega-featured {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 360px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+}
+
+.mega-featured::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
+}
+
+.mega-featured-content {
+  position: relative;
+  z-index: 1;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mega-featured-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.45);
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.mega-featured-title {
+  font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: white;
+  line-height: 1.1;
+}
+
+.mega-featured-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.45;
+}
+
+.mega-featured-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #00552f;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.mega-featured-cta:hover { background: #004026; }
+
+/* Icon grid — UberMenu: standard icon items with description */
+.mega-icon-grid {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
+.mega-icon-grid--2x3 { grid-template-columns: repeat(3, 1fr); }
+/* Auto-flow variant for panels with 5/7/8 items — flows to as many columns
+   as fit, so item counts that don't match a fixed grid still lay out cleanly. */
+.mega-icon-grid--auto { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+
+.mega-icon-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 18px 20px;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+  background: #f8f9f8;
+  text-decoration: none;
+  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+}
+
+.mega-icon-card:hover {
+  border-color: #b2d4c0;
+  background: white;
+  box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+}
+
+/* Icon square background — UberMenu: .ubermenu-item .ubermenu-icon-wrap { ... } */
+.mega-icon-wrap {
+  width: 44px;
+  height: 44px;
+  background: #e8eeeb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mega-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  stroke: #00552f;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mega-icon-title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #00552f;
+  line-height: 1.2;
+}
+
+.mega-icon-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .header { padding: 16px 0; }
+  .nav-links { display: none; }
+  .mega-panel { top: 0; }
+}

@@ -1,0 +1,237 @@
+/* ===========================================================================
+   Faceted filter — checkbox dropdowns, dismissible chips, clear-all.
+   Shared by blog.html and resource-hub.html.
+   Relies on the per-page .filter-bar-section / .filter-bar-inner /
+   .filter-result-count / .filter-empty styles already defined inline.
+   =========================================================================== */
+
+/* Row that holds the dropdowns, the active chips and the clear-all link. */
+.filter-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── Dropdown shell ──────────────────────────────────────────────────────── */
+.filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #1a1a1a;
+  background: #fff;
+  border: 1.5px solid #d8d8d2;
+  border-radius: 8px;
+  padding: 14px 18px 14px 20px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.filter-dropdown-toggle:hover,
+.filter-dropdown.open .filter-dropdown-toggle {
+  border-color: #00552f;
+}
+
+.filter-dropdown-toggle:focus-visible {
+  outline: 2px solid #00552f;
+  outline-offset: 2px;
+}
+
+/* Small count badge appended to the toggle label when items are selected. */
+.filter-dropdown-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #00552f;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Chevron — rotates when the panel is open. */
+.filter-dropdown-chevron {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  transform: translateY(-2px) rotate(45deg);
+  border-right: 2px solid #1a1a1a;
+  border-bottom: 2px solid #1a1a1a;
+  transition: transform 0.18s ease;
+}
+
+.filter-dropdown.open .filter-dropdown-chevron {
+  transform: translateY(2px) rotate(225deg);
+}
+
+/* ── Dropdown panel ──────────────────────────────────────────────────────── */
+.filter-dropdown-panel {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 280px;
+  max-height: 340px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e0e0db;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+}
+
+.filter-dropdown-panel[hidden] {
+  display: none;
+}
+
+/* ── Checkbox row ────────────────────────────────────────────────────────── */
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #1a1a1a;
+  user-select: none;
+}
+
+.filter-check:hover {
+  background: #f3f6f4;
+}
+
+/* Hide the native control; the styled box mirrors its state. */
+.filter-check input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.filter-check-box {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #b9b9b3;
+  border-radius: 5px;
+  background: #fff;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.filter-check-box::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid #fff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.12s ease;
+}
+
+.filter-check input:checked + .filter-check-box {
+  background: #00552f;
+  border-color: #00552f;
+}
+
+.filter-check input:checked + .filter-check-box::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.filter-check input:focus-visible + .filter-check-box {
+  outline: 2px solid #00552f;
+  outline-offset: 2px;
+}
+
+/* ── Active-filter chips ─────────────────────────────────────────────────── */
+.filter-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #00552f;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.filter-chip:hover {
+  background: #06492a;
+}
+
+.filter-chip-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.filter-chip:focus-visible {
+  outline: 2px solid #00552f;
+  outline-offset: 2px;
+}
+
+/* ── Clear-all link ──────────────────────────────────────────────────────── */
+.filter-clear-all {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #1a1a1a;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.filter-clear-all:hover {
+  color: #00552f;
+}
+
+.filter-clear-all[hidden] {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .filter-controls { width: 100%; }
+  .filter-dropdown { width: 100%; }
+  .filter-dropdown-toggle { width: 100%; min-width: 0; }
+  .filter-dropdown-panel { min-width: 0; width: 100%; }
+}

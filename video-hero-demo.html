@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Video Hero — Demo</title>
+  <script src="/assets/js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body,html{height:100%;margin:0}
     .hero{position:relative;height:80vh;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff}
     .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .hero-overlay{position:relative;z-index:2;padding:20px;text-align:center}
-    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.6));z-index:1}
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.7));z-index:1}
     .demo-wrap{max-width:1280px;margin:0 auto}
   </style>
 </head>
@@ -23,5 +24,8 @@
       <div style="margin-top:12px;"><button style="background:#077D57;color:#fff;padding:10px 16px;border-radius:6px;border:none">Learn more</button></div>
     </div>
   </section>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/site-a11y.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
 </body>
 </html>

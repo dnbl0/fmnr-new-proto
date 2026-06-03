@@ -4,31 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FMNR Resource Hub</title>
+  <script src="/assets/js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'fmnr-green': '#00552f',
-            'fmnr-mid': '#2da57f',
-            'fmnr-teal': '#0dfaab',
-            'fmnr-dark': '#111111',
-            'fmnr-gray': '#abb8c3',
-            'fmnr-base': '#f9f9f9',
-          },
-          fontFamily: {
-            'display': ['FatFrank', 'Impact', 'Arial Black', 'sans-serif'],
-            'body': ['Lato', 'sans-serif'],
-          },
-          maxWidth: { container: '1280px' }
-        }
-      }
-    }
-  </script>
+  <!-- tailwind config moved to /assets/js/tailwind-config.js -->
   <style>
     @font-face {
       font-family: 'FatFrank';
@@ -186,8 +167,7 @@
 
   </main>
 
-  <footer class="border-t border-gray-200 mt-12 py-8">
-    <div class="max-w-container mx-auto px-8 text-sm text-gray-600">© FMNR Prototype</div>
-  </footer>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
 </body>
 </html>

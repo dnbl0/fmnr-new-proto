@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FMNR Hub — Component Plugin Proposal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f6f8;
+      color: #1a1a2e;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Barlow', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      font-size: 0.97rem;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 720px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    thead tr {
+      background: #1b4a28;
+      color: #fff;
+    }
+
+    thead th {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #eef0f4;
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f9fafb; }
+
+    td {
+      padding: 16px 18px;
+      vertical-align: top;
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+
+    td.plugin-name {
+      font-weight: 600;
+      color: #1a1a2e;
+      white-space: nowrap;
+      min-width: 160px;
+    }
+
+    td.cost {
+      white-space: nowrap;
+      min-width: 180px;
+      color: #333;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
+
+    .badge-custom {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .badge-recommended {
+      background: #fff3e0;
+      color: #e65100;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Plugins</h1>
+    <p class="intro">
+      The table below summarises the proposed new WordPress plugins for key interactive components on the FMNR Hub.
+      If no suitable off-the-shelf plugin exists, a custom-built component is recommended. Where possible we will try to match design.
+      Costs are in USD unless otherwise noted.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Plugin</th>
+          <th>Description</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="plugin-name">UberMenu</td>
+          <td>Feature-rich mega menu alternative. Similar capabilities and limitations to Max Mega Menu — custom CSS required to match the design closely.</td>
+          <td class="cost">USD $29 one-time</td>
+        </tr>
+        <tr>
+          <td class="plugin-name">Interactive Geo Maps</td>
+          <td>Interactive world/country map plugin. Free version supports basic interactive maps close to the design. Paid version unlocks additional customisation. Custom CSS required regardless of tier.<br><em>Recommendation: Free version with simplified design.</em></td>
+          <td class="cost">Free<br>USD $39.99 / year<br>USD $199.99 one-time</td>
+        </tr>
+        <tr>
+          <td class="plugin-name">
+            Custom Carousel Component
+          </td>
+          <td>Bespoke carousel block built to match the design. Allows near pixel-perfect output. Requires custom HTML/CSS development and content-team UX consideration. Effort estimate TBD.</td>
+          <td class="cost">No recurring cost<br><small>(development time only)</small></td>
+        </tr>
+        <tr>
+          <td class="plugin-name">Ivory Search</td>
+          <td>WordPress search plugin with free starter tier. Suitable for basic enhanced search needs. Pro version adds additional configuration options. Recommended over SearchWP for cost efficiency.</td>
+          <td class="cost">Free (Starter)<br>USD $19 / year (Pro)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

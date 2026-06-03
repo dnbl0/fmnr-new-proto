@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Card Grid — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    .section-white { background: white; padding: 80px 0; }
+
+    /* ===================== PARTNER TYPE CARDS ===================== */
+    .partner-type-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .partner-type-card {
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #e8e8e8;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .partner-type-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+
+    .partner-type-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .partner-type-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+    }
+
+    .partner-type-body {
+      padding: 20px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .partner-type-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .partner-type-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .partner-type-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .partner-type-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .section-white { padding: 60px 0; }
+      .section-container { padding: 0 24px; }
+      .partner-type-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="section-white" id="partner-types">
+    <div class="section-container">
+      <div class="partner-type-grid">
+
+        <a href="../partners/faith-based.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Malawi_day1_151.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">Faith-Based Partners</h2>
+            <p class="partner-type-desc">Churches, pastors and faith networks are trusted community convenors. We equip faith leaders to mobilise congregations and scale FMNR through existing spiritual networks.</p>
+            <span class="partner-type-cta">Explore →</span>
+          </div>
+        </a>
+
+        <a href="../partners/ngo.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">NGO &amp; Development</h2>
+            <p class="partner-type-desc">We work with programme teams to embed FMNR into existing projects — with co-design support, field training, and practical M&amp;E tools to demonstrate outcomes to donors.</p>
+            <span class="partner-type-cta">Explore →</span>
+          </div>
+        </a>
+
+        <a href="../partners/government.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/09/AU200-0033-17.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">Government &amp; Policy</h2>
+            <p class="partner-type-desc">We support national and sub-national governments to integrate FMNR into policy, extension systems and climate commitments — with technical evidence and implementation roadmaps.</p>
+            <span class="partner-type-cta">Explore →</span>
+          </div>
+        </a>
+
+        <a href="../partners/funders.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/10/W200-0586-008_12.2024_Kenya_womanwithfood_HQ_CNS.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">Funders &amp; Investors</h2>
+            <p class="partner-type-desc">FMNR delivers measurable landscape restoration at $6/ha — a fraction of conventional approaches. We work with philanthropists and impact investors to structure high-leverage partnerships.</p>
+            <span class="partner-type-cta">Explore →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>

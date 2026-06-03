@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stories Carousel — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* ===================== CARD SHARED ===================== */
+    .card-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+    }
+
+    .card-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* ===================== CAROUSEL SECTION ===================== */
+    .carousel-section {
+      background: #2da57f;
+      display: flex;
+      justify-content: center;
+    }
+
+    .carousel-section .section-overline { color: rgba(255,255,255,0.7); }
+    .carousel-section .section-heading { color: white; }
+
+    /* Standalone carousel block — the carousel component on its own band,
+       no heading/text column. Shows the block can stand alone. */
+    .carousel-section--plain { background: #f9f9f9; }
+
+    .carousel-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .carousel-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .carousel-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    .btn-link-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn-link-white:hover { opacity: 0.8; }
+
+    .carousel-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .carousel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .carousel-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .carousel-card-image {
+      aspect-ratio: 280/157;
+      background: linear-gradient(to bottom, rgba(217,217,217,0) 54%, #999 100%);
+      overflow: hidden;
+    }
+
+    .carousel-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-card-body {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .carousel-progress {
+      flex: 1;
+      height: 8px;
+      border-radius: 999px;
+      background: #0dfaab;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-progress-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: white;
+      border-radius: 999px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-btns {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .carousel-btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .carousel-btn-prev { background: #abb8c3; color: white; }
+    .carousel-btn-next { background: #d0ffef; color: #2da57f; }
+
+    /* ===================== CAROUSEL FUNCTIONAL ===================== */
+    .carousel-viewport {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 0;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ===================== DARK CAROUSEL SECTION ===================== */
+    /* The carousel component on a dark (#111) band — two cards per slide. */
+    .carousel-section--dark { background: #111; }
+
+    .carousel-section--dark .carousel-slide {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .section-heading { font-size: 36px; }
+      .carousel-layout { grid-template-columns: 1fr; }
+      .carousel-slide,
+      .carousel-section--dark .carousel-slide { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="carousel-section">
+    <div class="section-stack">
+      <div class="carousel-layout">
+        <!-- Left: Text -->
+        <div class="carousel-text">
+          <p class="section-overline" style="color:rgba(255,255,255,0.7)">From the Field</p>
+          <h2 class="section-heading" style="color:white;font-size:72px">FMNR<br>Stories</h2>
+          <p class="carousel-body">Real accounts from the farmers, communities and organisations transforming land — and lives — through FMNR.</p>
+          <a href="#" class="btn-link-white">
+            View all stories
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: Cards + Controls -->
+        <div class="carousel-cards">
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="carouselTrack">
+
+              <!-- Slide 1 -->
+              <div class="carousel-slide">
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/savanna,sahel?lock=11" alt="How Niger Reversed Decades of Desertification" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">West Africa</p>
+                    <h3 class="card-heading" style="font-size:18px">How Niger Reversed Decades of Desertification</h3>
+                  </div>
+                </div>
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/farmer,field?lock=12" alt="Women Farmers Lead the Restoration Revolution" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">East Africa</p>
+                    <h3 class="card-heading" style="font-size:18px">Women Farmers Lead the Restoration Revolution</h3>
+                  </div>
+                </div>
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/forest,trees?lock=13" alt="Tony Rinaudo: The Forest Hidden Underground" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">The Founder</p>
+                    <h3 class="card-heading" style="font-size:18px">Tony Rinaudo: The Forest Hidden Underground</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-slide">
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/farm,australia?lock=14" alt="From Barren to Bountiful: An Australian Farmer's Journey" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">Australia</p>
+                    <h3 class="card-heading" style="font-size:18px">From Barren to Bountiful: An Australian Farmer's Journey</h3>
+                  </div>
+                </div>
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/savanna,landscape?lock=15" alt="5 Million Hectares Restored Across the Sahel" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">Sahel Region</p>
+                    <h3 class="card-heading" style="font-size:18px">5 Million Hectares Restored Across the Sahel</h3>
+                  </div>
+                </div>
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/village,forest?lock=16" alt="Communities Rebuilding Forests and Livelihoods" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">Ethiopia</p>
+                    <h3 class="card-heading" style="font-size:18px">Communities Rebuilding Forests and Livelihoods</h3>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="carousel-slide">
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/seedling,planting?lock=17" alt="Planting Hope in the Heart of the Sahel" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">Burkina Faso</p>
+                    <h3 class="card-heading" style="font-size:18px">Planting Hope in the Heart of the Sahel</h3>
+                  </div>
+                </div>
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/farmland,landscape?lock=18" alt="How Ancient Wisdom Is Healing Modern Land" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">Mali</p>
+                    <h3 class="card-heading" style="font-size:18px">How Ancient Wisdom Is Healing Modern Land</h3>
+                  </div>
+                </div>
+                <div class="carousel-card">
+                  <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/ricefield,tropical?lock=19" alt="FMNR Takes Root in Southeast Asia" /></div>
+                  <div class="carousel-card-body">
+                    <p class="card-overline">Indonesia</p>
+                    <h3 class="card-heading" style="font-size:18px">FMNR Takes Root in Southeast Asia</h3>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- Controls -->
+          <div class="carousel-controls">
+            <div class="carousel-progress">
+              <div class="carousel-progress-fill" id="carouselProgress"></div>
+            </div>
+            <div class="carousel-btns">
+              <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="Previous">
+                <img src="https://www.figma.com/api/mcp/asset/f75417b7-640f-459b-9740-7f5b8a251573" alt="prev" width="12" height="12" />
+              </button>
+              <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="Next">
+                <img src="https://www.figma.com/api/mcp/asset/3d242b78-0a26-42d9-8c6a-4f74ebdbfae6" alt="next" width="12" height="12" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STANDALONE CAROUSEL BLOCK
+       The same carousel component, on its own #f9f9f9 band, with no
+       heading/text column — demonstrating it can be placed by itself.
+       ============================================================ -->
+  <section class="carousel-section carousel-section--plain">
+    <div class="section-stack">
+      <div class="carousel-cards">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+
+            <!-- Slide 1 -->
+            <div class="carousel-slide">
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/savanna,sahel?lock=11" alt="How Niger Reversed Decades of Desertification" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">West Africa</p>
+                  <h3 class="card-heading" style="font-size:18px">How Niger Reversed Decades of Desertification</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/farmer,field?lock=12" alt="Women Farmers Lead the Restoration Revolution" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">East Africa</p>
+                  <h3 class="card-heading" style="font-size:18px">Women Farmers Lead the Restoration Revolution</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/forest,trees?lock=13" alt="Tony Rinaudo: The Forest Hidden Underground" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">The Founder</p>
+                  <h3 class="card-heading" style="font-size:18px">Tony Rinaudo: The Forest Hidden Underground</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/farm,australia?lock=14" alt="From Barren to Bountiful: An Australian Farmer's Journey" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Australia</p>
+                  <h3 class="card-heading" style="font-size:18px">From Barren to Bountiful: An Australian Farmer's Journey</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/savanna,landscape?lock=15" alt="5 Million Hectares Restored Across the Sahel" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Sahel Region</p>
+                  <h3 class="card-heading" style="font-size:18px">5 Million Hectares Restored Across the Sahel</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/village,forest?lock=16" alt="Communities Rebuilding Forests and Livelihoods" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Ethiopia</p>
+                  <h3 class="card-heading" style="font-size:18px">Communities Rebuilding Forests and Livelihoods</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/seedling,planting?lock=17" alt="Planting Hope in the Heart of the Sahel" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Burkina Faso</p>
+                  <h3 class="card-heading" style="font-size:18px">Planting Hope in the Heart of the Sahel</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/farmland,landscape?lock=18" alt="How Ancient Wisdom Is Healing Modern Land" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Mali</p>
+                  <h3 class="card-heading" style="font-size:18px">How Ancient Wisdom Is Healing Modern Land</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/ricefield,tropical?lock=19" alt="FMNR Takes Root in Southeast Asia" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Indonesia</p>
+                  <h3 class="card-heading" style="font-size:18px">FMNR Takes Root in Southeast Asia</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Controls -->
+        <div class="carousel-controls">
+          <div class="carousel-progress">
+            <div class="carousel-progress-fill"></div>
+          </div>
+          <div class="carousel-btns">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Previous">
+              <img src="https://www.figma.com/api/mcp/asset/f75417b7-640f-459b-9740-7f5b8a251573" alt="prev" width="12" height="12" />
+            </button>
+            <button class="carousel-btn carousel-btn-next" aria-label="Next">
+              <img src="https://www.figma.com/api/mcp/asset/3d242b78-0a26-42d9-8c6a-4f74ebdbfae6" alt="next" width="12" height="12" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DARK CAROUSEL BLOCK
+       The same carousel component on a #111 band — no heading, four
+       cards across two slides (two cards per slide).
+       ============================================================ -->
+  <section class="carousel-section carousel-section--dark">
+    <div class="section-stack">
+      <div class="carousel-cards">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+
+            <!-- Slide 1 -->
+            <div class="carousel-slide">
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/desert,green,landscape?lock=21" alt="Restoring Degraded Land" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Land</p>
+                  <h3 class="card-heading" style="font-size:18px">Restoring Degraded Land</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/farmer,agriculture?lock=22" alt="Training Local Farmers" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">People</p>
+                  <h3 class="card-heading" style="font-size:18px">Training Local Farmers</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/village,community?lock=23" alt="Growing Resilient Communities" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Community</p>
+                  <h3 class="card-heading" style="font-size:18px">Growing Resilient Communities</h3>
+                </div>
+              </div>
+              <div class="carousel-card">
+                <div class="carousel-card-image"><img src="https://loremflickr.com/600/400/forest,wildlife?lock=24" alt="Protecting Biodiversity" /></div>
+                <div class="carousel-card-body">
+                  <p class="card-overline">Nature</p>
+                  <h3 class="card-heading" style="font-size:18px">Protecting Biodiversity</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Controls -->
+        <div class="carousel-controls">
+          <div class="carousel-progress">
+            <div class="carousel-progress-fill"></div>
+          </div>
+          <div class="carousel-btns">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Previous">
+              <img src="https://www.figma.com/api/mcp/asset/f75417b7-640f-459b-9740-7f5b8a251573" alt="prev" width="12" height="12" />
+            </button>
+            <button class="carousel-btn carousel-btn-next" aria-label="Next">
+              <img src="https://www.figma.com/api/mcp/asset/3d242b78-0a26-42d9-8c6a-4f74ebdbfae6" alt="next" width="12" height="12" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ── CAROUSEL ──────────────────────────────────────────────────────────────
+    // Scoped per `.carousel-cards` so any number of carousel blocks on the page
+    // (e.g. the headed one and the standalone one) run independently.
+    (function () {
+      function initCarousel(root) {
+        const track    = root.querySelector('.carousel-track');
+        const progress = root.querySelector('.carousel-progress-fill');
+        const prevBtn  = root.querySelector('.carousel-btn-prev');
+        const nextBtn  = root.querySelector('.carousel-btn-next');
+        if (!track || !progress || !prevBtn || !nextBtn) return;
+
+        const slides  = track.querySelectorAll('.carousel-slide');
+        const total   = slides.length;
+        let   current = 0;
+
+        function updateCarousel() {
+          track.style.transform = `translateX(-${current * 100}%)`;
+
+          // progress bar: white fill shows how far through we are
+          // at slide 0 → fill spans full width (100%); at last → narrow strip
+          const pct = total > 1 ? ((total - 1 - current) / (total - 1)) * 100 : 100;
+          progress.style.width = pct + '%';
+
+          prevBtn.style.opacity = current === 0 ? '0.4' : '1';
+          nextBtn.style.opacity = current === total - 1 ? '0.4' : '1';
+        }
+
+        prevBtn.addEventListener('click', () => {
+          if (current > 0) { current--; updateCarousel(); }
+        });
+        nextBtn.addEventListener('click', () => {
+          if (current < total - 1) { current++; updateCarousel(); }
+        });
+
+        // keyboard arrow support when focus is within this carousel
+        root.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft')  { if (current > 0)         { current--; updateCarousel(); } }
+          if (e.key === 'ArrowRight') { if (current < total - 1) { current++; updateCarousel(); } }
+        });
+
+        updateCarousel();
+      }
+
+      document.querySelectorAll('.carousel-cards').forEach(initCarousel);
+    })();
+  </script>
+</body>
+</html>

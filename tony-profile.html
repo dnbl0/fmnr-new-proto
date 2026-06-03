@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tony Rinaudo — FMNR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('/fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ===================== HEADER ===================== */
+    .header {
+      background: #f9f9f9;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container { display: flex; align-items: center; justify-content: space-between; }
+
+    .logo { display: flex; align-items: center; gap: 2px; text-decoration: none; flex-shrink: 0; }
+
+    .nav-links { display: flex; align-items: center; gap: 0; }
+
+    .nav-link {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #00552f;
+      text-decoration: none;
+      padding: 24px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover { opacity: 0.7; }
+
+    .nav-link.active { font-weight: 700; /* no bottom border */ }
+
+    .header-actions { display: flex; align-items: center; gap: 24px; }
+
+    .btn-donate {
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-donate:hover { background: #004026; }
+
+    /* ===================== MEGA MENU ===================== */
+    .mega-item { position: static; }
+
+    .mega-panel {
+      position: fixed;
+      left: 0; right: 0;
+      top: 0; /* positioned below header via JS */
+      background: white;
+      border-top: 3px solid #00552f;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+      z-index: 200;
+      display: none;
+      animation: megaFadeIn 0.18s ease;
+    }
+
+    @keyframes megaFadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .mega-item:focus-within .mega-panel { display: block; }
+
+    .mega-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mega-header-row { display: flex; align-items: center; justify-content: space-between; }
+
+    .mega-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .mega-contact-btn {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      border: 2px solid #00552f;
+      border-radius: 4px;
+      padding: 8px 20px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mega-contact-btn:hover { background: #00552f; color: white; }
+
+    .mega-content-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mega-featured {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 360px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+    }
+
+    .mega-featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
+    }
+
+    .mega-featured-content { position: relative; z-index: 1; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+
+    .mega-featured-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.45);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    .mega-featured-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .mega-featured-desc { font-family: 'Lato', sans-serif; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.45; }
+
+    .mega-featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+    }
+
+    .mega-featured-cta:hover { background: #004026; }
+
+    .mega-icon-grid { display: grid; gap: 14px; align-content: start; }
+    .mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
+    .mega-icon-grid--2x3 { grid-template-columns: repeat(3, 1fr); }
+
+    .mega-icon-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 18px 20px;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+      background: #f8f9f8;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+
+    .mega-icon-card:hover { border-color: #b2d4c0; background: white; box-shadow: 0 2px 14px rgba(0,85,47,0.09); }
+
+    .mega-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mega-icon-wrap svg { width: 22px; height: 22px; stroke: #00552f; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .mega-icon-title { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; color: #00552f; line-height: 1.2; }
+    .mega-icon-desc { font-family: 'Lato', sans-serif; font-size: 12px; color: #666; line-height: 1.4; }
+
+    /* ===================== BREADCRUMB ===================== */
+    .breadcrumb {
+      display: none;
+    }
+
+    .breadcrumb-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+    }
+
+    .breadcrumb-link:hover { text-decoration: underline; }
+
+    .breadcrumb-sep {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .breadcrumb-current {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* ===================== PAGE HERO (SECONDARY BANNER) ===================== */
+    .page-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 80vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .page-hero-left {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px;
+      gap: 20px;
+    }
+
+    .page-hero-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .page-hero-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .page-hero-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 20px;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      max-width: 420px;
+    }
+
+    .page-hero-right {
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/1017351-W115-0130-049-scaled.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-color: #1a3a25;
+    }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 680px;
+    }
+
+    /* ===================== BLOG SECTIONS ===================== */
+    .blog-section { padding: 80px 0; }
+    .blog-section + .blog-section { border-top: 1px solid #e8e8e8; }
+
+    .blog-section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .blog-section-header { display: flex; flex-direction: column; gap: 8px; }
+
+    .blog-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .blog-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .blog-subheading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .blog-card {
+      background: white;
+      border: 1px solid #f0ede5;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .blog-card-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(to bottom, rgba(217,217,217,0) 54%, #b0b0b0 100%);
+      background-color: #e0e0e0;
+      flex-shrink: 0;
+    }
+
+    .blog-card-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+    .blog-card-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .blog-card-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .blog-card-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .btn-link:hover { text-decoration: underline; }
+
+    .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    /* ===================== TONY WORDS SECTION ===================== */
+    .words-section {
+      background: #f0fff8;
+      padding: 80px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .words-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .words-left { display: flex; flex-direction: column; gap: 20px; }
+
+    .words-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .lessons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .lessons-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid #c8ead9;
+    }
+
+    .lessons-item:first-child { border-top: 1px solid #c8ead9; }
+
+    .lessons-number {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      line-height: 1;
+      color: #00552f;
+      opacity: 0.3;
+      flex-shrink: 0;
+      width: 40px;
+      padding-top: 2px;
+    }
+
+    .lessons-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(0,0,0,0.7);
+    }
+
+    /* ===================== APPROACH CARDS ===================== */
+    .approach-card {
+      background: white;
+      border: 1px solid #f0ede5;
+      border-radius: 8px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .approach-number {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 40px;
+      line-height: 1;
+      color: #00552f;
+      opacity: 0.3;
+    }
+
+    .approach-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .approach-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.6;
+    }
+
+    /* ===================== TIMELINE ===================== */
+    .timeline-section {
+      background: #f9f9f9;
+      padding: 80px 0;
+    }
+
+    .tl-intro { padding: 0 40px; margin-bottom: 40px; max-width: 1280px; margin-left: auto; margin-right: auto; }
+
+    .tl-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+      margin-bottom: 12px;
+    }
+
+    .tl-section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .tl-list {
+      max-width: 1280px;
+      margin: 0 auto;
+      border: 1px solid #abb8c3;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tl-row { display: flex; align-items: stretch; min-height: 280px; }
+
+    .tl-left {
+      width: 35.8%;
+      background: #f9f9f9;
+      padding: 24px 24px 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: stretch;
+      flex-shrink: 0;
+    }
+
+    .tl-left-inner { display: flex; gap: 12px; align-items: flex-start; justify-content: flex-end; width: 100%; }
+
+    .tl-date {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: right;
+      color: #111;
+      width: 149px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .tl-connector { width: 16px; flex-shrink: 0; align-self: stretch; display: flex; flex-direction: column; align-items: center; }
+
+    .tl-dot { width: 16px; height: 16px; border-radius: 50%; background: #077d57; flex-shrink: 0; }
+
+    .tl-line { flex: 1 0 0; min-height: 1px; width: 2px; margin-top: 4px; background: #abb8c3; }
+
+    .tl-row:last-child .tl-line { display: none; }
+
+    .tl-right {
+      flex: 1;
+      background: #fff;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .tl-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .tl-body-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ===================== QUOTE SECTION ===================== */
+    .tony-quote-section {
+      background: #111;
+      padding: 100px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tony-quote-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .tony-quote-mark {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-size: 120px;
+      line-height: 0.7;
+      color: #0dfaab;
+      opacity: 0.4;
+    }
+
+    .tony-quote-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 28px;
+      font-style: italic;
+      line-height: 1.5;
+      color: white;
+      font-weight: 400;
+    }
+
+    .tony-quote-attr {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ===================== ABOUT BIO ===================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-body-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .credential-list { display: flex; flex-direction: column; gap: 0; }
+
+    .credential-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 20px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .credential-item:first-child { border-top: 1px solid #e8e8e8; }
+
+    .credential-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .credential-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: #111;
+    }
+
+    /* ===================== MEDIA CARDS ===================== */
+    .media-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.18s, border-color 0.18s;
+    }
+
+    .media-card:hover { box-shadow: 0 4px 20px rgba(0,85,47,0.1); border-color: #b2d4c0; }
+
+    .media-card-thumb {
+      aspect-ratio: 16/9;
+      background-size: cover;
+      background-position: center;
+      background-color: #d4e8db;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-play-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-play-icon svg { width: 22px; height: 22px; fill: #00552f; }
+
+    .media-card-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+    .media-card-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .media-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .media-card-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    /* ===================== AWARD CARDS ===================== */
+    .award-card {
+      background: white;
+      border: 1px solid #f0ede5;
+      border-radius: 8px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .award-meta {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .award-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .award-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+    }
+
+    /* ===================== CTA SECTION ===================== */
+    .tony-cta {
+      background: #2da57f;
+      padding: 80px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tony-cta-inner {
+      max-width: 1280px;
+      width: 100%;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .tony-cta-text { display: flex; flex-direction: column; gap: 8px; }
+
+    .tony-cta-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .tony-cta-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .btn-cta-white {
+      background: white;
+      color: #00552f;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-cta-white:hover { background: #f0fff8; }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .header { padding: 16px 0; }
+      .nav-links { display: none; }
+      .mega-panel { top: 0; }
+      .page-hero { grid-template-columns: 1fr; height: auto; }
+      .page-hero-left { padding: 60px 24px 48px; }
+      .page-hero-heading { font-size: 48px; }
+      .page-hero-right { height: 320px; }
+      .blog-section { padding: 60px 0; }
+      .blog-section-inner { padding: 0 24px; }
+      .blog-heading { font-size: 36px; }
+      .blog-subheading { font-size: 28px; }
+      .words-inner, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .grid-4col { grid-template-columns: 1fr 1fr; }
+      .grid-3col { grid-template-columns: 1fr; }
+      .tl-list { padding: 16px; }
+      .tl-left { width: auto; padding: 16px 16px 0; }
+      .tl-date { font-size: 14px; width: auto; white-space: nowrap; }
+      .tl-right { padding: 16px; }
+      .tl-title { font-size: 18px; }
+      .tl-row { min-height: 0; }
+      .tony-quote-text { font-size: 20px; }
+      .tony-cta-heading { font-size: 32px; }
+      .tony-cta-inner { flex-direction: column; }
+      .section-h2 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HEADER -->
+  <!-- ============================================================ -->
+  <!-- ============================================================ -->
+  <!-- BREADCRUMB -->
+  <!-- ============================================================ -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="/index.html" class="breadcrumb-link">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="#" class="breadcrumb-link">About</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Tony Rinaudo</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PAGE HERO — SECONDARY BANNER (80vh, heading left / image right) -->
+  <!-- ============================================================ -->
+  <section class="page-hero">
+    <div class="page-hero-left">
+      <p class="page-hero-overline">About · Founder of FMNR</p>
+      <h1 class="page-hero-heading">Tony Rinaudo</h1>
+      <p class="page-hero-tagline">The man who refused to give up on the land — and changed the lives of millions.</p>
+    </div>
+    <div class="page-hero-right" role="img" aria-label="Tony Rinaudo holding his book The Forest Underground"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- HIS APPROACH -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">His approach</p>
+        <h2 class="blog-heading">Faith + Persistence + Community</h2>
+      </div>
+      <div class="grid-3col">
+
+        <div class="approach-card">
+          <p class="approach-number">01</p>
+          <h3 class="approach-heading">Believe the Impossible</h3>
+          <p class="approach-body">When the agricultural establishment said the Sahel was beyond saving, Tony refused to accept it. He saw what others overlooked — a hidden forest waiting beneath the surface of what appeared to be dead ground.</p>
+        </div>
+
+        <div class="approach-card">
+          <p class="approach-number">02</p>
+          <h3 class="approach-heading">Empower the Farmer</h3>
+          <p class="approach-body">FMNR does not depend on outside experts, expensive inputs or government programs. Tony's insight was radical: the knowledge, the labour and the solution already exist within farming communities themselves.</p>
+        </div>
+
+        <div class="approach-card">
+          <p class="approach-number">03</p>
+          <h3 class="approach-heading">Scale through Community</h3>
+          <p class="approach-body">Real change is contagious. By working with communities rather than for them, Tony's approach spreads farmer to farmer, village to village, country to country — without losing its local roots.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IN HIS OWN WORDS — sourced from fmnrhub.com.au -->
+  <!-- ============================================================ -->
+  <section class="words-section">
+    <div class="words-inner">
+      <div class="words-left">
+        <p class="blog-overline">In his own words</p>
+        <h2 class="section-h2" style="margin-bottom: 8px;">Why FMNR matters</h2>
+        <p class="words-body">While living in Niger Republic, I witnessed firsthand the devastating impact of deforestation and land degradation on the world's most vulnerable people — children, women and poor farm families.</p>
+        <p class="words-body">FMNR was born out of the bitterness of failure using conventional reforestation methods and, I am convinced, as a result of heartfelt prayer to God to intervene. FMNR's subsequent adoption by millions of smallholder farmers transformed broken land and lives and restored hope. Today, the Niger FMNR story inspires regreening movements around the world.</p>
+        <p class="words-body">My shock at seeing people suffering from avoidable hunger and poverty — combined with joy at witnessing how such a simple and low-cost intervention can build resilience and enable vulnerable people to thrive — has galvanised my focus.</p>
+        <p class="words-body">Today I am as passionate as ever promoting FMNR globally in an ambassadorial capacity: creating awareness, advocating for funding, favourable policies and action, and inspiring others to take up the challenge of restoring one billion hectares of degraded land within the next decade.</p>
+        <p style="font-family:'Lato',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#077d57;">— Tony Rinaudo, FMNR Founder</p>
+      </div>
+
+      <div>
+        <p class="blog-overline" style="margin-bottom: 16px;">Three key lessons from Niger</p>
+        <div class="lessons-list">
+          <div class="lessons-item">
+            <span class="lessons-number">01</span>
+            <p class="lessons-text">The power of people to create the future they want by working with nature instead of fighting and destroying it.</p>
+          </div>
+          <div class="lessons-item">
+            <span class="lessons-number">02</span>
+            <p class="lessons-text">The power of nature to self-heal if given a chance and a small helping hand.</p>
+          </div>
+          <div class="lessons-item">
+            <span class="lessons-number">03</span>
+            <p class="lessons-text">The power of movements to rapidly transform landscapes and to change history.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- THE JOURNEY — TIMELINE -->
+  <!-- ============================================================ -->
+  <section class="timeline-section">
+    <div class="tl-intro">
+      <p class="tl-overline">The journey</p>
+      <h2 class="tl-section-heading">Accelerating land restoration since 1981</h2>
+    </div>
+
+    <div class="tl-list">
+
+      <div class="tl-row">
+        <div class="tl-left">
+          <div class="tl-left-inner">
+            <span class="tl-date">1981</span>
+            <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          </div>
+        </div>
+        <div class="tl-right">
+          <h3 class="tl-title">A young agronomist arrives in the Sahel</h3>
+          <p class="tl-body-text">Tony Rinaudo arrives in the Maradi region of Niger as a missionary agronomist with Serving in Mission (SIM). The landscape is bleak — a semi-arid wasteland stripped bare by decades of over-farming, drought and population pressure. Conventional development approaches, from tree-planting campaigns to large-scale irrigation projects, were failing to reverse the tide.</p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-left">
+          <div class="tl-left-inner">
+            <span class="tl-date">1983</span>
+            <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          </div>
+        </div>
+        <div class="tl-right">
+          <h3 class="tl-title">The underground forest discovery</h3>
+          <p class="tl-body-text">During a moment of despair on a dusty road, Tony notices small green shoots emerging from what appear to be dead tree stumps. He realises these are not weeds — they are the living remnants of a vast "underground forest" suppressed for generations by farmers who were taught that trees competed with crops.</p>
+          <p class="tl-body-text">The insight is revolutionary: the root systems of ancient trees still survive across millions of hectares of degraded farmland. By selectively pruning and protecting these shoots rather than cutting them down, farmers can regenerate productive trees in months — at virtually zero cost. FMNR is born.</p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-left">
+          <div class="tl-left-inner">
+            <span class="tl-date">1990s</span>
+            <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          </div>
+        </div>
+        <div class="tl-right">
+          <h3 class="tl-title">Niger's great green wall begins</h3>
+          <p class="tl-body-text">FMNR spreads across the Maradi and Zinder regions of Niger as farmers witness their neighbours' fields transform. Satellite imagery later confirms what local communities already know: over 5 million hectares of land have been regenerated across southern Niger — one of the largest environmental transformations in African history, driven entirely by smallholder farmers.</p>
+          <p class="tl-body-text">Studies document dramatic improvements in soil fertility, crop yields, water retention and biodiversity. Food security improves for an estimated 2.5 million people. The term "The Re-greening of the Sahel" enters the scientific literature.</p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-left">
+          <div class="tl-left-inner">
+            <span class="tl-date">2000s</span>
+            <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          </div>
+        </div>
+        <div class="tl-right">
+          <h3 class="tl-title">World Vision and global expansion</h3>
+          <p class="tl-body-text">Tony joins World Vision Australia as Principal Advisor on Food Security, providing the platform and resources to scale FMNR internationally. Training programs are developed and facilitated across Ethiopia, Mali, Senegal, Burkina Faso and beyond. The World Bank and CGIAR research centres start documenting FMNR outcomes. Tony becomes the leading advocate for farmer-centred, low-cost land restoration at an international level.</p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-left">
+          <div class="tl-left-inner">
+            <span class="tl-date">2018</span>
+            <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          </div>
+        </div>
+        <div class="tl-right">
+          <h3 class="tl-title">Right Livelihood Award — the "Alternative Nobel"</h3>
+          <p class="tl-body-text">Tony receives the Right Livelihood Award in recognition of his transformative work in land restoration and food security. The award acknowledges not just the scale of FMNR's impact but the profound paradigm shift it represents: empowering communities rather than imposing external solutions. It elevates FMNR to global prominence, attracting new research, policy attention and funding.</p>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-left">
+          <div class="tl-left-inner">
+            <span class="tl-date">Today</span>
+            <div class="tl-connector"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          </div>
+        </div>
+        <div class="tl-right">
+          <h3 class="tl-title">26 countries. Millions of hectares. Growing.</h3>
+          <p class="tl-body-text">FMNR is now practised in 26 countries across Africa, Asia and the Pacific. Tens of millions of hectares of degraded land are in various stages of regeneration. Tony continues to travel, train and advocate — from village meetings in Ethiopia to climate conferences in Geneva. His book <em>The Forest Underground</em> brings the story to a global audience.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- QUOTE -->
+  <!-- ============================================================ -->
+  <section class="tony-quote-section">
+    <div class="tony-quote-inner">
+      <div class="tony-quote-mark">"</div>
+      <p class="tony-quote-text">The trees were never dead. They were simply waiting for someone to give them permission to grow.</p>
+      <p class="tony-quote-attr">— Tony Rinaudo, FMNR Founder</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ABOUT BIO -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">About</p>
+        <h2 class="blog-heading">Tony Rinaudo</h2>
+        <p style="font-family:'Lato',sans-serif;font-size:15px;color:#077d57;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;">Principal Advisor &amp; FMNR Pioneer</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-body-text">
+          <p>Tony grew up in rural Australia with a deep love of the land. After completing his agricultural studies he moved to Niger in 1981 with his wife Liz, not knowing that a chance observation beside a dusty road would set the course for the rest of his life.</p>
+          <p>Over four decades he has dedicated himself to demonstrating that degraded land is not dead land — and that the communities who live on that land hold the keys to its restoration. His approach is rooted in humility: Tony does not impose solutions, he reveals them.</p>
+          <p>Today Tony is recognised as one of the world's leading voices on farmer-led land restoration. He is an Honorary Associate Professor at the University of New England, a Right Livelihood Laureate, and author of <em>The Forest Underground</em>.</p>
+        </div>
+        <div class="credential-list">
+          <div class="credential-item">
+            <p class="credential-label">Award — 2018</p>
+            <p class="credential-value">Right Livelihood Laureate</p>
+          </div>
+          <div class="credential-item">
+            <p class="credential-label">Widely known as</p>
+            <p class="credential-value">The Forest Maker</p>
+          </div>
+          <div class="credential-item">
+            <p class="credential-label">Role</p>
+            <p class="credential-value">World Vision Principal Advisor</p>
+          </div>
+          <div class="credential-item">
+            <p class="credential-label">FMNR reach</p>
+            <p class="credential-value">26 Countries</p>
+          </div>
+          <div class="credential-item">
+            <p class="credential-label">Academic</p>
+            <p class="credential-value">Honorary Associate Professor, UNE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- MEDIA — FILM, BOOK, TEDX -->
+  <!-- ============================================================ -->
+  <section class="blog-section" style="background: #f9f9f9;">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Tony's story told</p>
+        <h2 class="blog-heading">Film, Book &amp; Talk</h2>
+        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:600px;margin-top:8px;">Tony's life work has been documented in film, published in an award-winning autobiography and shared on one of the world's biggest stages.</p>
+      </div>
+      <div class="grid-3col">
+
+        <a href="https://www.sbs.com.au/ondemand/movie/the-forest-maker/2188955203566" class="media-card" target="_blank" rel="noopener">
+          <div class="media-card-thumb" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/5-scaled.jpg');">
+            <div class="media-play-icon">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-type">Documentary Film</p>
+            <h3 class="media-card-title">The Forest Maker</h3>
+            <p class="media-card-desc">Directed by Volker Schlöndorff. Arriving in Niger in the 1980s, Australian agronomist Tony Rinaudo discovered the ravages of intensive agriculture inherited from the colonial era — and found the world's best-kept secret hidden underground.</p>
+            <span class="btn-link">Watch on SBS On Demand
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://iscast.org/tfu/" class="media-card" target="_blank" rel="noopener">
+          <div class="media-card-thumb" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/TheForestUnderground_Cover.jpg'); background-size: contain; background-repeat: no-repeat; background-color: #e8eeeb;">
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-type">Autobiography · 2022</p>
+            <h3 class="media-card-title">The Forest Underground</h3>
+            <p class="media-card-desc">Tony shares his insights and inspiring life story in <em>The Forest Underground: Hope for a Planet in Crisis</em> — named 2022 Australian Christian Book of the Year.</p>
+            <span class="btn-link">Learn more
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=29bqRTW2aow&t=20s" class="media-card" target="_blank" rel="noopener">
+          <div class="media-card-thumb" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/53162584159_7490424d12_o-scaled.jpg');">
+            <div class="media-play-icon">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-type">TEDx Sydney</p>
+            <h3 class="media-card-title">TEDx Sydney Talk</h3>
+            <p class="media-card-desc">Tony's TEDx talk highlights this powerful solution, aiming to restore one billion hectares of degraded land and combat climate change — presented to one of the world's most engaged audiences.</p>
+            <span class="btn-link">Watch on YouTube
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIDEO RESOURCES -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Learn more</p>
+        <h2 class="blog-heading">Video Resources</h2>
+        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:600px;margin-top:8px;">Short films and explainers covering the origins of FMNR, Tony's time in Niger and how the technique works in practice.</p>
+      </div>
+      <div class="grid-4col">
+
+        <a href="https://www.youtube.com/watch?v=p-terQL6RO0&t=1s" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#d4e8db;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">Ecosystem</p>
+            <h4 class="blog-card-heading">Everything is connected</h4>
+            <p class="blog-card-sub">In a balanced ecosystem, people and animals thrive. But when trees are cut down and land is burned, that balance is lost.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=afjVaehQRxg" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#c8ddd0;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">Niger</p>
+            <h4 class="blog-card-heading">Tony's time in Niger</h4>
+            <p class="blog-card-sub">In Niger, Tony's approach transformed barren land — planting 60 million trees across 5 million hectares, benefiting 2.5 million people.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=afjVaehQRxg" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#d4e0c8;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">How-to</p>
+            <h4 class="blog-card-heading">Pruning for natural regeneration</h4>
+            <p class="blog-card-sub">A step-by-step guide demonstrating how to practise FMNR — from selecting species to prune through to protecting regrowing trees.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=AjweUDtOrqQ" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#e0d8c4;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">Origin</p>
+            <h4 class="blog-card-heading">The origin story of FMNR</h4>
+            <p class="blog-card-sub">FMNR is a low-cost land restoration technique used to combat poverty and hunger amongst poor subsistence farmers by increasing food and timber production.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TONY IN THE WORLD — PODCASTS & ARTICLES -->
+  <!-- ============================================================ -->
+  <section class="blog-section" style="background:#f9f9f9;">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Tony in the world</p>
+        <h2 class="blog-heading">Podcasts &amp; Articles</h2>
+        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:600px;margin-top:8px;">Tony's work has moved from dusty roads in Niger into podcasts, documentaries, global media, awards platforms and restoration conversations across the world.</p>
+      </div>
+
+      <div>
+        <h3 class="blog-subheading" style="margin-bottom:24px;">Podcasts</h3>
+        <div class="grid-4col">
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">Mongabay Newscast</p>
+              <h4 class="blog-card-heading">Invisible forests in plain view</h4>
+              <p class="blog-card-sub">Tony explains FMNR's potential to restore degraded land while strengthening livelihoods and food security.</p>
+              <span class="btn-link">Listen
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">The RegenNarration</p>
+              <h4 class="blog-card-heading">The hidden roots of restoration</h4>
+              <p class="blog-card-sub">A long-form conversation on mindsets, <em>The Forest Underground</em> and the human side of regeneration.</p>
+              <span class="btn-link">Listen
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">ABC Radio National</p>
+              <h4 class="blog-card-heading">The forest makers</h4>
+              <p class="blog-card-sub">Tony joins Ruth Jerotich to discuss what it takes to re-green a desert through farmer-led practice.</p>
+              <span class="btn-link">Listen
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">Life &amp; Faith</p>
+              <h4 class="blog-card-heading">Forestmaker</h4>
+              <p class="blog-card-sub">A conversation about climate hope, land restoration and the convictions behind Tony's life work.</p>
+              <span class="btn-link">Listen
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <div>
+        <h3 class="blog-subheading" style="margin-bottom:24px;">Articles</h3>
+        <div class="grid-4col">
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">The Guardian</p>
+              <h4 class="blog-card-heading">Reforesting the world</h4>
+              <p class="blog-card-sub">A profile of Tony's work restoring millions of hectares and encouraging hundreds of millions of trees to regrow.</p>
+              <span class="btn-link">Read
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">Sight Magazine</p>
+              <h4 class="blog-card-heading">Turning deserts into farmland</h4>
+              <p class="blog-card-sub">An interview on Tony's early calling, Niger years and the human behaviour change behind FMNR.</p>
+              <span class="btn-link">Read
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">World Vision International</p>
+              <h4 class="blog-card-heading">Unleashing underground forests</h4>
+              <p class="blog-card-sub">Tony writes about regeneration, land degradation and the practical invitation to work with nature.</p>
+              <span class="btn-link">Read
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="#" class="blog-card">
+            <div class="blog-card-image"></div>
+            <div class="blog-card-body">
+              <p class="blog-card-overline">Deutsche Welle</p>
+              <h4 class="blog-card-heading">The Forest Maker portrayed</h4>
+              <p class="blog-card-sub">Coverage of Volker Schlöndorff's documentary about Tony's work and the promise of FMNR at global scale.</p>
+              <span class="btn-link">Read
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- AWARDS & HONOURS -->
+  <!-- ============================================================ -->
+  <section class="blog-section" style="background:#111;">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline" style="color:#0dfaab;">Recognition</p>
+        <h2 class="blog-heading" style="color:white;">Awards &amp; Honours</h2>
+        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(255,255,255,0.55);line-height:1.5;max-width:600px;margin-top:8px;">Selected honours that show the breadth of Tony's impact: land restoration, conservation, literature, public service and peacebuilding.</p>
+      </div>
+      <div class="grid-3col">
+
+        <div class="award-card">
+          <p class="award-meta">Award — 2018</p>
+          <h3 class="award-title">Right Livelihood Award</h3>
+          <p class="award-body">Recognised for showing at large scale how drylands can be greened at minimal cost while improving the livelihoods of millions of people.</p>
+        </div>
+
+        <div class="award-card">
+          <p class="award-meta">Honour — 2019</p>
+          <h3 class="award-title">Member of the Order of Australia</h3>
+          <p class="award-body">Appointed AM for significant service to conservation as a pioneer in international reforestation programs.</p>
+        </div>
+
+        <div class="award-card">
+          <p class="award-meta">Book — 2022</p>
+          <h3 class="award-title">The Forest Underground</h3>
+          <p class="award-body">Tony's autobiography, <em>The Forest Underground: Hope for a Planet in Crisis</em>, was named Australian Christian Book of the Year.</p>
+        </div>
+
+        <div class="award-card">
+          <p class="award-meta">National — Niger</p>
+          <h3 class="award-title">Order of Agriculture with Merit</h3>
+          <p class="award-body">The Government of Niger honoured Tony for long service to humanity and the environment through farmer-led land restoration.</p>
+        </div>
+
+        <div class="award-card">
+          <p class="award-meta">Peace — 2025</p>
+          <h3 class="award-title">Luxembourg Peace Prize</h3>
+          <p class="award-body">Named Outstanding Environmental Peace laureate for work that restores ecosystems, livelihoods and hope in degraded landscapes.</p>
+        </div>
+
+        <div class="award-card">
+          <p class="award-meta">Academic — Ongoing</p>
+          <h3 class="award-title">Honorary Associate Professor</h3>
+          <p class="award-body">Tony contributes to research and practice around dryland agriculture, agroforestry and community-led natural resource management at the University of New England.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CTA -->
+  <!-- ============================================================ -->
+  <section class="tony-cta">
+    <div class="tony-cta-inner">
+      <div class="tony-cta-text">
+        <p class="tony-cta-overline">Learn about FMNR</p>
+        <h2 class="tony-cta-heading">Tony's life work is a methodology available to everyone.</h2>
+      </div>
+      <a href="/resource-hub.html" class="btn-cta-white">Explore resources</a>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      document.querySelectorAll('.mega-item').forEach(item => {
+        const panel = item.querySelector('.mega-panel');
+        if (!panel) return;
+        let hideTimer = null;
+        function show() {
+          clearTimeout(hideTimer);
+          document.querySelectorAll('.mega-panel').forEach(p => { if (p !== panel) p.style.display = 'none'; });
+          panel.style.display = 'block';
+        }
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(() => { panel.style.display = 'none'; }, 80);
+        }
+        item.addEventListener('mouseenter', show);
+        item.addEventListener('mouseleave', scheduleHide);
+        panel.addEventListener('mouseenter', show);
+        panel.addEventListener('mouseleave', scheduleHide);
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
+          document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none');
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
+
+  <script src="/assets/js/header.js" defer></script>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/site-a11y.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
+</body>
+</html>

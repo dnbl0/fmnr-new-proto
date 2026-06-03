@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FMNR Hub — Site Map</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ajf0nww.css">
+  <link href="../design-tokens.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    :root {
+      --green: #077D57;
+      --green-soft: rgba(7, 125, 87, 0.08);
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #e0e3e1;
+      --font-head: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      --font-body: 'Lato', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% 0, rgba(7, 125, 87, 0.05), transparent 60%),
+        #f6f7f6;
+      -webkit-font-smoothing: antialiased;
+      padding: 48px 32px 64px;
+    }
+
+    .sm-wrap { max-width: 1180px; margin: 0 auto; }
+
+    /* ── Heading ── */
+    .sm-head { text-align: center; margin-bottom: 8px; }
+    .sm-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-soft);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .sm-head h1 {
+      font-family: var(--font-head);
+      font-size: clamp(30px, 5vw, 50px);
+      text-transform: uppercase;
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+    }
+    .sm-head p {
+      max-width: 560px;
+      margin: 12px auto 0;
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* ── Root (Home) node + connector ── */
+    .sm-root-zone { display: flex; flex-direction: column; align-items: center; margin-top: 36px; }
+    .sm-root {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #0a8c62, #066a4a);
+      padding: 16px 28px;
+      border-radius: 14px;
+      box-shadow: 0 10px 26px rgba(7, 125, 87, 0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .sm-root:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(7, 125, 87, 0.36); }
+    .sm-root svg { width: 22px; height: 22px; }
+    .sm-root .sm-root-label { font-family: var(--font-head); font-size: 22px; text-transform: uppercase; line-height: 1; }
+    .sm-root .sm-root-sub { font-size: 11px; opacity: 0.82; letter-spacing: 0.04em; }
+    .sm-stem { width: 2px; height: 30px; background: var(--line); }
+    .sm-bus {
+      width: min(72%, 760px);
+      height: 2px;
+      background: var(--line);
+      position: relative;
+      border-radius: 2px;
+    }
+    .sm-bus::before,
+    .sm-bus::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+    .sm-bus::before { left: -5px; }
+    .sm-bus::after { right: -5px; }
+
+    /* ── Section grid ── */
+    .sm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .sm-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    /* little connector stub + node above each card */
+    .sm-card::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 16px;
+      background: var(--line);
+    }
+    .sm-card::after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--green);
+    }
+
+    .sm-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      background: var(--green);
+      padding: 13px 16px;
+    }
+    .sm-card-head:hover { background: #066a4a; }
+    .sm-num {
+      font-family: var(--font-head);
+      font-size: 13px;
+      line-height: 1;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 6px;
+      padding: 5px 7px;
+      min-width: 26px;
+      text-align: center;
+    }
+    .sm-card-head .sm-title { font-family: var(--font-head); font-size: 16px; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1; flex: 1; }
+    .sm-card-head .sm-count { font-size: 11px; opacity: 0.8; }
+
+    .sm-children { list-style: none; padding: 6px; }
+    .sm-children li { margin: 0; }
+    .sm-children a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      color: #33403b;
+      font-size: 13.5px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: background 0.14s ease, color 0.14s ease;
+    }
+    .sm-children a:hover { background: var(--green-soft); color: var(--green); }
+    .sm-children a::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #c5ccc8;
+      flex-shrink: 0;
+      transition: background 0.14s ease;
+    }
+    .sm-children a:hover::before { background: var(--green); }
+    .sm-children a .sm-stub { display: none; }
+
+    /* Utility card variant */
+    .sm-card.is-utility .sm-card-head { background: #464646; }
+    .sm-card.is-utility .sm-card-head:hover { background: #333; }
+    .sm-card.is-utility::after { border-color: #464646; }
+
+    .sm-foot {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 32px 18px 48px; }
+      .sm-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sm-wrap">
+
+    <div class="sm-head">
+      <span class="sm-eyebrow">Information Architecture</span>
+      <h1>FMNR Hub Site Map</h1>
+      <p>Every top-level section of the new FMNR Hub and the pages beneath it. Section headers and page nodes link to the live prototype.</p>
+    </div>
+
+    <div class="sm-root-zone">
+      <a class="sm-root" href="../index.html" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10.5 12 3l9 7.5" />
+          <path d="M5 9.5V21h14V9.5" />
+          <path d="M9.5 21v-6h5v6" />
+        </svg>
+        <span>
+          <span class="sm-root-label">Home</span><br>
+          <span class="sm-root-sub">index.html</span>
+        </span>
+      </a>
+      <div class="sm-stem"></div>
+      <div class="sm-bus"></div>
+    </div>
+
+    <div class="sm-grid">
+
+      <!-- 01 Partner -->
+      <section class="sm-card">
+        <a class="sm-card-head" href="../partners.html" target="_blank" rel="noopener">
+          <span class="sm-num">01</span><span class="sm-title">Partner</span><span class="sm-count">6</span>
+        </a>
+        <ul class="sm-children">
+          <li><a href="../partners.html" target="_blank" rel="noopener">Partner with FMNR</a></li>
+          <li><a href="../partners/faith-based.html" target="_blank" rel="noopener">Faith-Based Partners</a></li>
+          <li><a href="../partners/ngo.html" target="_blank" rel="noopener">NGOs</a></li>
+          <li><a href="../partners/government.html" target="_blank" rel="noopener">Governments</a></li>
+          <li><a href="../partners/funders.html" target="_blank" rel="noopener">Funders</a></li>
+          <li><a href="../partners.html" target="_blank" rel="noopener">Become a Champion</a></li>
+        </ul>
+      </section>
+
+      <!-- 02 Adopt -->
+      <section class="sm-card">
+        <a class="sm-card-head" href="../adopt.html" target="_blank" rel="noopener">
+          <span class="sm-num">02</span><span class="sm-title">Adopt</span><span class="sm-count">4</span>
+        </a>
+        <ul class="sm-children">
+          <li><a href="../adopt.html" target="_blank" rel="noopener">How FMNR Works</a></li>
+          <li><a href="../adopt.html" target="_blank" rel="noopener">Adopt FMNR</a></li>
+          <li><a href="../resource-hub/manual.html" target="_blank" rel="noopener">Training &amp; Guides</a></li>
+          <li><a href="../resource-hub.html" target="_blank" rel="noopener">Decision Trees</a></li>
+        </ul>
+      </section>
+
+      <!-- 03 Impact -->
+      <section class="sm-card">
+        <a class="sm-card-head" href="../impact/index.html" target="_blank" rel="noopener">
+          <span class="sm-num">03</span><span class="sm-title">Impact</span><span class="sm-count">5</span>
+        </a>
+        <ul class="sm-children">
+          <li><a href="../impact/index.html" target="_blank" rel="noopener">The Impact of FMNR</a></li>
+          <li><a href="../impact/evidence.html" target="_blank" rel="noopener">Evidence of Impact</a></li>
+          <li><a href="../impact/index.html" target="_blank" rel="noopener">Data Dashboard</a></li>
+          <li><a href="../resource-hub/research.html" target="_blank" rel="noopener">Published Research</a></li>
+          <li><a href="../blog.html" target="_blank" rel="noopener">Impact Stories</a></li>
+        </ul>
+      </section>
+
+      <!-- 04 Resource Hub -->
+      <section class="sm-card">
+        <a class="sm-card-head" href="../resource-hub.html" target="_blank" rel="noopener">
+          <span class="sm-num">04</span><span class="sm-title">Resource Hub</span><span class="sm-count">7</span>
+        </a>
+        <ul class="sm-children">
+          <li><a href="../resource-hub.html" target="_blank" rel="noopener">All Resources</a></li>
+          <li><a href="../resource-hub/research.html" target="_blank" rel="noopener">Research &amp; Papers</a></li>
+          <li><a href="../resource-hub/country-specific.html" target="_blank" rel="noopener">Country-Specific</a></li>
+          <li><a href="../resource-hub/manual.html" target="_blank" rel="noopener">FMNR Manual</a></li>
+          <li><a href="../resource-hub/media.html" target="_blank" rel="noopener">FMNR Media</a></li>
+          <li><a href="../resource-hub/e-courses.html" target="_blank" rel="noopener">e-Courses</a></li>
+          <li><a href="../resource-hub/webinars.html" target="_blank" rel="noopener">Webinars</a></li>
+        </ul>
+      </section>
+
+      <!-- 05 Stories -->
+      <section class="sm-card">
+        <a class="sm-card-head" href="../blog.html" target="_blank" rel="noopener">
+          <span class="sm-num">05</span><span class="sm-title">Stories</span><span class="sm-count">3</span>
+        </a>
+        <ul class="sm-children">
+          <li><a href="../blog.html" target="_blank" rel="noopener">All Stories</a></li>
+          <li><a href="../stories/fmnr.html" target="_blank" rel="noopener">Community Voices</a></li>
+          <li><a href="../about-fmnr/latest-updates.html" target="_blank" rel="noopener">News &amp; Updates</a></li>
+        </ul>
+      </section>
+
+      <!-- 06 Countries -->
+      <section class="sm-card">
+        <a class="sm-card-head" href="../impact/countries.html" target="_blank" rel="noopener">
+          <span class="sm-num">06</span><span class="sm-title">Countries</span><span class="sm-count">5</span>
+        </a>
+        <ul class="sm-children">
+          <li><a href="../impact/countries.html" target="_blank" rel="noopener">Countries of Impact</a></li>
+          <li><a href="../impact/countries/niger.html" target="_blank" rel="noopener">Niger</a></li>
+          <li><a href="../impact/countries.html" target="_blank" rel="noopener">Ethiopia</a></li>
+          <li><a href="../impact/countries.html" target="_blank" rel="noopener">Kenya</a></li>
+          <li><a href="../impact/countries.html" target="_blank" rel="noopener">Uganda</a></li>
+        </ul>
+      </section>
+
+      <!-- 07 About -->
+      <section class="sm-card">
+        <a class="sm-card-head" href="../about-fmnr/index.html" target="_blank" rel="noopener">
+          <span class="sm-num">07</span><span class="sm-title">About</span><span class="sm-count">7</span>
+        </a>
+        <ul class="sm-children">
+          <li><a href="../about-fmnr/index.html" target="_blank" rel="noopener">About FMNR</a></li>
+          <li><a href="../about-fmnr/tony-rinaudo.html" target="_blank" rel="noopener">Tony Rinaudo</a></li>
+          <li><a href="../about-fmnr/fmnr-world-vision.html" target="_blank" rel="noopener">FMNR &amp; World Vision</a></li>
+          <li><a href="../about-fmnr/scaling-projects.html" target="_blank" rel="noopener">Scaling Projects</a></li>
+          <li><a href="../about-fmnr/tracking-tool.html" target="_blank" rel="noopener">Tracking Tool</a></li>
+          <li><a href="../about-fmnr/faqs.html" target="_blank" rel="noopener">FAQs</a></li>
+          <li><a href="../contact/index.html" target="_blank" rel="noopener">Contact FMNR</a></li>
+        </ul>
+      </section>
+
+      <!-- 08 Utility -->
+      <section class="sm-card is-utility">
+        <div class="sm-card-head" style="cursor:default;">
+          <span class="sm-num">08</span><span class="sm-title">Utility</span><span class="sm-count">2</span>
+        </div>
+        <ul class="sm-children">
+          <li><a href="../privacy/index.html" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="../privacy/terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
+        </ul>
+      </section>
+
+    </div>
+
+    <p class="sm-foot">FMNR Hub information architecture · 8 top-level sections · 39 pages</p>
+
+  </div>
+
+  <script>
+    // Report our rendered height to a parent docs viewer so the embedding
+    // iframe can size to fit. Works cross-origin (incl. file://), where the
+    // parent cannot read this document directly.
+    (function () {
+      if (window.parent === window) return;
+      function post() {
+        var h = Math.max(
+          document.documentElement.scrollHeight,
+          document.body.scrollHeight
+        );
+        try { window.parent.postMessage({ type: 'fmnr:doc-height', height: h }, '*'); } catch (e) {}
+      }
+      if (window.ResizeObserver) {
+        new ResizeObserver(post).observe(document.documentElement);
+      }
+      window.addEventListener('load', post);
+      window.addEventListener('resize', post);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(post);
+      post();
+    })();
+  </script>
+</body>
+
+</html>

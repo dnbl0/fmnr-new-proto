@@ -1031,18 +1031,34 @@
                             <path d="M6 9l6 6 6-6" />
                         </svg></div>
                     <div class="nav-group-items">
-                        <a class="nav-item" href="#mega-menu" data-url="../mega-menu-demo.html">Mega Menu</a>
-                        <a class="nav-item" href="#search" data-url="../search-demo.html">Search</a>
-                        <a class="nav-item" href="#video-hero" data-url="../video-hero-demo.html">Video Hero</a>
-                        <a class="nav-item" href="#image-hero" data-url="../about-fmnr/tony-rinaudo.html">Image Hero</a>
-                        <a class="nav-item" href="#card-grid" data-url="../partners.html">Card Grid</a>
-                        <a class="nav-item" href="#timeline" data-url="../about-fmnr/tony-rinaudo.html">Timeline</a>
-                        <a class="nav-item" href="#split-bio" data-url="../about-fmnr/tony-rinaudo.html">Split Bio</a>
-                        <a class="nav-item" href="#map" data-url="../map-demo.html">Interactive Map</a>
+                        <a class="nav-item" href="#mega-menu" data-url="../blocks/mega-menu-demo.html">Mega Menu</a>
+                        <a class="nav-item" href="#search" data-url="../blocks/search-demo.html">Search</a>
+                        <a class="nav-item" href="#video-hero" data-url="../blocks/video-hero-demo.html">Video Hero</a>
+                        <a class="nav-item" href="#image-hero" data-url="../index.html">Image Hero</a>
+                        <a class="nav-item" href="#card-grid" data-url="../index.html">Card Grid</a>
+                        <a class="nav-item" href="#timeline" data-url="../index.html">Timeline</a>
+                        <a class="nav-item" href="#split-bio" data-url="../index.html">Split Bio</a>
+                        <a class="nav-item" href="#pillars" data-url="../index.html">Numbered Pillars</a>
+                        <a class="nav-item" href="#awards" data-url="../index.html">Awards Grid</a>
+                        <a class="nav-item" href="#media-cards" data-url="../index.html">Media Grid</a>
+                        <a class="nav-item" href="#map" data-url="../map-demo.html" data-section="interactive-map">Interactive Map</a>
                         <a class="nav-item" href="#stat-stack" data-url="../index.html">Stat Stack</a>
+                        <a class="nav-item" href="#editorial-band" data-url="../index.html">Editorial
+                            Band</a>
+                        <a class="nav-item" href="#twin-panels" data-url="../index.html">Twin Panels</a>
+                        <a class="nav-item" href="#hub-section" data-url="../index.html">Hub Section</a>
+                        <a class="nav-item" href="#stories-carousel" data-url="../blocks/stories-carousel.html">Stories
+                            Carousel</a>
+                        <a class="nav-item" href="#story-block" data-url="../index.html">Story Block</a>
+                        <a class="nav-item" href="#growth-steps" data-url="../index.html">Growth Steps</a>
+                        <a class="nav-item" href="#infographic" data-url="../index.html">Infographic</a>
+                        <a class="nav-item" href="#intro-strip" data-url="../index.html">Intro Strip</a>
                         <a class="nav-item" href="#pull-quote" data-url="../index.html">Pull Quote</a>
                         <a class="nav-item" href="#cta-band" data-url="../index.html">CTA Band</a>
-                        <a class="nav-item" href="#scroll-animations" data-url="../index.html">Scrolling Effects</a>
+                        <a class="nav-item" href="#data-viz" data-url="../index.html">Country Data Widgets</a>
+                        <a class="nav-item" href="#bar-chart" data-url="../index.html">Data Visualisations</a>
+                        <a class="nav-item" href="#scroll-animations"
+                            data-url="../index.html">Scrolling Effects</a>
                     </div>
                 </div>
                 <div class="nav-group" data-group="forms">
@@ -1155,7 +1171,7 @@
             var sidebarClose = document.getElementById('sidebar-close');
             var hamburger = document.getElementById('hamburger');
             var filterInput = document.getElementById('sidebar-filter');
-            var mainTitle = { textContent: '' }; // sentinel — no DOM element needed
+            var mainTitle = null;
             var contentToolbar = document.getElementById('content-toolbar');
             var tabBar = document.getElementById('tab-bar');
             var tabBtns = tabBar.querySelectorAll('button');
@@ -1273,14 +1289,16 @@
                 previewDesc.textContent = data ? data.desc : '';
                 previewLabel.textContent = data ? data.label : 'Component';
 
-                // Load iframe (skip sentinel URLs)
+                // Load iframe
                 previewPanel.style.display = 'flex';
                 contentToolbar.style.display = 'flex';
                 iframe.className = '';
+                // disconnect any observer watching previous iframe content
                 try { if (iframe._docsObserver) { iframe._docsObserver.disconnect(); iframe._docsObserver = null; } } catch (e) {}
                 iframe.style.height = '';
+                // allow caller to target a specific section inside the demo page
                 iframe._docsSection = item.dataset.section || '';
-                iframe.src = (url && url.indexOf('__') === -1) ? url : 'about:blank';
+                iframe.src = url;
                 deviceBtns.forEach(function (b) { b.classList.remove('active'); });
                 deviceBtns[0].classList.add('active');
 
@@ -1360,7 +1378,7 @@
                     var iframeSrc = iframe.getAttribute('src') || '';
                     var isDemo = /\-demo\.html/.test(iframeSrc);
                     var isFullPage = doc.querySelector('script[src*="shared-header"]');
-                    var baseCSS = '[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;} .reveal,.reveal-hero,[class*="reveal-"]{opacity:1!important;transform:none!important;transition:none!important;} html,body{scroll-snap-type:none!important;overflow-x:hidden!important;} #demo-toolbar,.demo-toolbar,.demo-nav,[class*="demo-toolbar"],[id*="demo-toolbar"],.dtb{display:none!important;} body>.search-overlay:not(.open),body>.mega-menu-overlay:not(.open),body>div[aria-hidden="true"]:not(.open){display:none!important;} .video-hero,.hero,.hero-section,.page-hero{height:680px!important;min-height:0!important;}';
+                    var baseCSS = '[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;} .reveal,.reveal-hero,[class*="reveal-"]{opacity:1!important;transform:none!important;transition:none!important;} html,body{scroll-snap-type:none!important;overflow-x:hidden!important;} #demo-toolbar,.demo-toolbar,.demo-nav,[class*="demo-toolbar"],[id*="demo-toolbar"],.dtb{display:none!important;} body>.search-overlay:not(.open),body>.mega-menu-overlay:not(.open),body>div[aria-hidden="true"]:not(.open){display:none!important;} .video-hero,.hero,.hero-section{height:680px!important;min-height:0!important;}';
                     if (!isFullPage) { baseCSS += ' body{padding-top:0!important;margin:0!important;margin-top:0!important;}'; }
                     s.textContent = baseCSS;
                     doc.head.appendChild(s);
@@ -1427,30 +1445,27 @@
             // ─── Docs rendering ───
             // Alias map
             var docsAlias = {
-                // Blocks
                 "Video Hero": "Video Hero Banner",
                 "Image Hero": "Image Hero with Overlay",
                 "Timeline": "Timeline Accordion",
                 "Split Bio": "Split Bio Panel",
+                "Numbered Pillars": "Numbered Pillars",
+                "Awards Grid": "Awards Grid",
+                "Media Grid": "Media Cards Grid",
                 "Interactive Map": "Interactive Map",
                 "Stat Stack": "Stat Stack",
                 "Pull Quote": "Pull Quote Band",
                 "CTA Band": "CTA Band",
                 "Scrolling Effects": "Scroll Animations",
+                "Data Visualisations": "Bar Chart",
+                "Country Data Widgets": "Impact Stats",
                 "Header & Navigation": "Mega Menu",
                 "Sign-Up Forms": "Contact & Newsletter",
                 "Contact Forms": "Contact & Newsletter",
                 "Search": "Search",
-                "Mega Menu": "Mega Menu",
-                // Pages
-                "Home": "Home",
-                "Partner with FMNR": "Partner with FMNR",
-                "Faith-Based\n                Partners": "Faith-Based Partners",
-                "Faith-Based Partners": "Faith-Based Partners",
-                "NGOs": "NGOs",
-                "Governments": "Governments",
-                "Funders": "Funders",
-                "How FMNR Works / Adopt": "How FMNR Works",
+                "Homepage": "Homepage",
+                "Impact Overview": "Impact Overview",
+                "Country Page": "Country Page",
                 "How FMNR Works": "How FMNR Works",
                 "Adopt FMNR": "How FMNR Works",
                 "Resources": "All Resources",
@@ -1476,7 +1491,34 @@
                 "6 · Conversion Page": "Conversion Page",
                 // Misc
                 "Footer": "Footer",
-                "Sitemap": "Sitemap"
+                "Sitemap": "Sitemap",
+                // Block aliases
+                "Faith Partners": "Faith Partners",
+                "Funder Partners": "Funder Partners",
+                "NGO Partners": "NGO Partners",
+                "Government Partners": "Government Partners",
+                "Heading": "Heading",
+                "Body Text": "Body Text",
+                "Button": "Button",
+                "Icon": "Icon",
+                "Image": "Image",
+                "Video": "Video",
+                "Tag": "Tag",
+                "Stat Number": "Stat Number",
+                "Divider": "Divider",
+                "Spacer": "Spacer",
+                "Form Field": "Form Field",
+                "List Item": "List Item",
+                "Card Grid": "Card Grid",
+                "Editorial Band": "Editorial Band",
+                "Twin Panels": "Twin Panels",
+                "Hub Section": "Hub Section",
+                "Stories Carousel": "Stories Carousel",
+                "Story Block": "Story Block",
+                "Growth Steps": "Growth Steps",
+                "Intro Strip": "Intro Strip",
+                "Infographic": "Infographic Block",
+                "Mega Menu": "Mega Menu"
             };
 
             // Plugin screenshots
@@ -1663,7 +1705,7 @@
 `;
 
             // ─── Init ───
-            // Override loadComponent to handle analytics + sitemap special cases
+            // Override loadComponent to handle analytics special case
             var _origLoadComponent = loadComponent;
             loadComponent = function (hash) {
                 if (hash === '#analytics') {
@@ -1683,18 +1725,9 @@
                 return _origLoadComponent(hash);
             };
 
-            // Prevent __analytics__ and similar sentinel URLs loading in the iframe
-            var _origSrc = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, 'src');
-            iframe.addEventListener('load', function () {
-                if (iframe.src && iframe.src.indexOf('__') !== -1) {
-                    iframe.src = 'about:blank';
-                }
-            });
-
             handleHash();
         })();
     </script>
-  <script src="../assets/js/motion-init.js" defer></script>
 </body>
 
 </html>

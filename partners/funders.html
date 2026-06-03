@@ -506,6 +506,15 @@
       line-height: 1.6;
     }
 
+    /* ===================== SECTION WRAPPER ===================== */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section-cream { background: #f9f9f9; }
+
     /* ===================== STEP STRIPS ===================== */
     .step-strip {
       min-height: 480px;
@@ -1019,6 +1028,7 @@
       .grid-3col { grid-template-columns: 1fr; }
       .grid-4col { grid-template-columns: 1fr; }
 
+      .section { padding: 60px 24px; }
       .step-strip { grid-template-columns: 1fr; min-height: auto; }
       .step-strip--reversed { direction: ltr; }
       .step-image { min-height: 240px; }
@@ -1090,34 +1100,38 @@
   <!-- ===================== HOW WE WORK TOGETHER ===================== -->
 
   <!-- Strip 1: image left, content right -->
-  <section class="step-strip">
-    <div class="step-image" style="background: linear-gradient(160deg, #0d3320 0%, #1a5c38 50%, #2a7a50 100%);"></div>
-    <div class="step-content">
-      <p class="step-number">01</p>
-      <h3 class="step-h3">Define Your Impact Thesis</h3>
-      <p class="step-body">We start by understanding your investment thesis — which outcomes matter most, at what scale, and in which geographies. Together we identify the right funding instrument and portfolio of projects.</p>
-      <ul class="step-checklist">
-        <li>Impact thesis scoping</li>
-        <li>Geographic and landscape prioritisation</li>
-        <li>Funding structure design</li>
-        <li>Portfolio identification</li>
-      </ul>
+  <section class="section section-white">
+    <div class="step-strip">
+      <div class="step-image" style="background: linear-gradient(160deg, #0d3320 0%, #1a5c38 50%, #2a7a50 100%);"></div>
+      <div class="step-content">
+        <p class="step-number">01</p>
+        <h3 class="step-h3">Define Your Impact Thesis</h3>
+        <p class="step-body">We start by understanding your investment thesis — which outcomes matter most, at what scale, and in which geographies. Together we identify the right funding instrument and portfolio of projects.</p>
+        <ul class="step-checklist">
+          <li>Impact thesis scoping</li>
+          <li>Geographic and landscape prioritisation</li>
+          <li>Funding structure design</li>
+          <li>Portfolio identification</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- Strip 2: image right, content left (reversed) -->
-  <section class="step-strip step-strip--reversed">
-    <div class="step-image" style="background: linear-gradient(160deg, #1a2e40 0%, #253d52 50%, #2e4d63 100%);"></div>
-    <div class="step-content step-content--alt">
-      <p class="step-number">02</p>
-      <h3 class="step-h3">Deploy &amp; Monitor</h3>
-      <p class="step-body">Once funding is deployed, our team manages implementation, monitoring and reporting — providing you with the data and evidence needed to demonstrate impact to your stakeholders.</p>
-      <ul class="step-checklist">
-        <li>Satellite-based landscape monitoring</li>
-        <li>Field verification and farmer data</li>
-        <li>Quarterly and annual reporting</li>
-        <li>Investor community convening</li>
-      </ul>
+  <section class="section section-cream">
+    <div class="step-strip step-strip--reversed">
+      <div class="step-image" style="background: linear-gradient(160deg, #1a2e40 0%, #253d52 50%, #2e4d63 100%);"></div>
+      <div class="step-content step-content--alt">
+        <p class="step-number">02</p>
+        <h3 class="step-h3">Deploy &amp; Monitor</h3>
+        <p class="step-body">Once funding is deployed, our team manages implementation, monitoring and reporting — providing you with the data and evidence needed to demonstrate impact to your stakeholders.</p>
+        <ul class="step-checklist">
+          <li>Satellite-based landscape monitoring</li>
+          <li>Field verification and farmer data</li>
+          <li>Quarterly and annual reporting</li>
+          <li>Investor community convening</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -1328,9 +1342,9 @@
       window.addEventListener('load', updateMegaPanelTop);
     })();
   </script>
-  <script src="/assets/js/header.js" defer></script>
-  <script src="/assets/js/footer.js" defer></script>
-  <script src="/assets/js/site-a11y.js" defer></script>
-  <script src="/assets/js/motion-init.js" defer></script>
+  <script src="../assets/js/header.js" defer></script>
+  <script src="../assets/js/footer.js" defer></script>
+  <script src="../assets/js/site-a11y.js" defer></script>
+  <script src="../assets/js/motion-init.js" defer></script>
 </body>
 </html>

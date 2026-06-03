@@ -5,6 +5,27 @@
    Pages include this with: <script src="/assets/js/header.js" defer></script>
    and must NOT carry an inline <header class="header"> any more.
    ============================================================ */
+// Capture this script's own URL now (document.currentScript is only valid
+// during synchronous top-level execution, not inside later callbacks). From it
+// we derive the site root so absolute partial paths work whether the site is
+// served from a domain root (localhost) or a subpath (GitHub Pages project site).
+var SELF = document.currentScript;
+function siteRoot() {
+  var s = (SELF && SELF.src) || '';
+  var i = s.indexOf('/assets/js/');
+  return i >= 0 ? s.slice(0, i + 1) : '/';
+}
+// Rewrite a fetched fragment's root-relative ("/foo") href/src to the real
+// site root so its links resolve correctly at any page depth.
+function absolutise(el, root) {
+  ['href', 'src'].forEach(function (attr) {
+    el.querySelectorAll('[' + attr + '^="/"]').forEach(function (node) {
+      var v = node.getAttribute(attr);
+      if (v.charAt(1) !== '/') node.setAttribute(attr, root + v.slice(1)); // skip protocol-relative //
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('header.header')) {
     // Header already present (legacy inline header) — just wire it up.
@@ -12,19 +33,22 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
+  var root = siteRoot();
+
   // add header stylesheet
   var link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/assets/css/header.css';
+  link.href = root + 'assets/css/header.css';
   document.head.appendChild(link);
 
   // fetch and insert header (prepended to body so it sits first)
-  fetch('/header.html', {cache: 'no-cache'})
+  fetch(root + 'header.html', {cache: 'no-cache'})
     .then(function (res) { if (!res.ok) throw new Error('Header fetch failed'); return res.text(); })
     .then(function (html) {
       var div = document.createElement('div');
       div.innerHTML = html.trim();
       var header = div.querySelector('header.header') || div.firstElementChild;
+      absolutise(header, root);
       document.body.insertBefore(header, document.body.firstChild);
       initHeader();
       // let other scripts (e.g. search.js) bind to header elements
@@ -34,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // graceful fallback: minimal header so the page still has a home link
       var fallback = document.createElement('header');
       fallback.className = 'header header-fallback';
-      fallback.innerHTML = '<div class="section-container"><a href="/index.html" class="logo">FMNR</a></div>';
+      fallback.innerHTML = '<div class="section-container"><a href="' + root + 'index.html" class="logo">FMNR</a></div>';
       document.body.insertBefore(fallback, document.body.firstChild);
       console.warn('Could not load header:', err);
     });

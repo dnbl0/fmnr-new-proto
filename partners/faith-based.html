@@ -516,6 +516,15 @@
       line-height: 1.6;
     }
 
+    /* ===================== SECTION WRAPPER ===================== */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section-cream { background: #f9f9f9; }
+
     /* ===================== STEP STRIPS ===================== */
     .step-strip {
       min-height: 480px;
@@ -1097,6 +1106,7 @@
       .grid-3col { grid-template-columns: 1fr; }
       .grid-4col { grid-template-columns: 1fr; }
 
+      .section { padding: 60px 24px; }
       .step-strip { grid-template-columns: 1fr; min-height: auto; }
       .step-strip--reversed { direction: ltr; }
       .step-image { min-height: 240px; }
@@ -1168,34 +1178,38 @@
   <!-- ===================== HOW WE WORK TOGETHER ===================== -->
 
   <!-- Strip 1: image left, content right -->
-  <section class="step-strip">
-    <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480-1024x683.jpg'); background-size: cover; background-position: center;"></div>
-    <div class="step-content">
-      <p class="step-number">01</p>
-      <h3 class="step-h3">Walk With Your Community</h3>
-      <p class="step-body">Faith leaders in FMNR programmes don't just teach restoration techniques — they model them. Leaders like Gebregziebeher visit local churches every Sunday, weaving FMNR into the message of creation care and farming households into a network of practice. We help faith partners develop this local champion model and embed it into their pastoral rhythms.</p>
-      <ul class="step-checklist">
-        <li>Landscape assessment with local faith leaders</li>
-        <li>Integration into existing pastoral programmes</li>
-        <li>Identification of farmer champions within congregations</li>
-        <li>Demonstration plot establishment and Sunday teaching</li>
-      </ul>
+  <section class="section section-white">
+    <div class="step-strip">
+      <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480-1024x683.jpg'); background-size: cover; background-position: center;"></div>
+      <div class="step-content">
+        <p class="step-number">01</p>
+        <h3 class="step-h3">Walk With Your Community</h3>
+        <p class="step-body">Faith leaders in FMNR programmes don't just teach restoration techniques — they model them. Leaders like Gebregziebeher visit local churches every Sunday, weaving FMNR into the message of creation care and farming households into a network of practice. We help faith partners develop this local champion model and embed it into their pastoral rhythms.</p>
+        <ul class="step-checklist">
+          <li>Landscape assessment with local faith leaders</li>
+          <li>Integration into existing pastoral programmes</li>
+          <li>Identification of farmer champions within congregations</li>
+          <li>Demonstration plot establishment and Sunday teaching</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- Strip 2: image right, content left (reversed) -->
-  <section class="step-strip step-strip--reversed">
-    <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/09/AU200-0033-17-scaled.jpg'); background-size: cover; background-position: center;"></div>
-    <div class="step-content step-content--alt">
-      <p class="step-number">02</p>
-      <h3 class="step-h3">Train &amp; Multiply Faith Champions</h3>
-      <p class="step-body">One trained faith leader can reach hundreds of households across a congregation — and through their networks, thousands more. We provide structured training, materials and ongoing support so that faith-based FMNR champions can multiply the movement across their denomination and geography without ongoing dependence on outside expertise.</p>
-      <ul class="step-checklist">
-        <li>Certified faith leader FMNR training</li>
-        <li>Train-the-trainer programmes across denominations</li>
-        <li>Faith-adapted monitoring and accountability frameworks</li>
-        <li>Network convening and inter-denomination exchange</li>
-      </ul>
+  <section class="section section-cream">
+    <div class="step-strip step-strip--reversed">
+      <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/09/AU200-0033-17-scaled.jpg'); background-size: cover; background-position: center;"></div>
+      <div class="step-content step-content--alt">
+        <p class="step-number">02</p>
+        <h3 class="step-h3">Train &amp; Multiply Faith Champions</h3>
+        <p class="step-body">One trained faith leader can reach hundreds of households across a congregation — and through their networks, thousands more. We provide structured training, materials and ongoing support so that faith-based FMNR champions can multiply the movement across their denomination and geography without ongoing dependence on outside expertise.</p>
+        <ul class="step-checklist">
+          <li>Certified faith leader FMNR training</li>
+          <li>Train-the-trainer programmes across denominations</li>
+          <li>Faith-adapted monitoring and accountability frameworks</li>
+          <li>Network convening and inter-denomination exchange</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -1441,9 +1455,9 @@
       window.addEventListener('load', updateMegaPanelTop);
     })();
   </script>
-  <script src="/assets/js/header.js" defer></script>
-  <script src="/assets/js/footer.js" defer></script>
-  <script src="/assets/js/site-a11y.js" defer></script>
-  <script src="/assets/js/motion-init.js" defer></script>
+  <script src="../assets/js/header.js" defer></script>
+  <script src="../assets/js/footer.js" defer></script>
+  <script src="../assets/js/site-a11y.js" defer></script>
+  <script src="../assets/js/motion-init.js" defer></script>
 </body>
 </html>

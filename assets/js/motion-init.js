@@ -18,7 +18,15 @@
 
   var GSAP_URL = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
   var ST_URL   = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
-  var CSS_URL  = '/assets/css/motion.css';
+  // Derive the site root from this script's own URL so the CSS resolves whether
+  // served from a domain root (localhost) or a subpath (GitHub Pages project site).
+  var SELF     = document.currentScript;
+  var ROOT     = (function () {
+    var s = (SELF && SELF.src) || '';
+    var i = s.indexOf('/assets/js/');
+    return i >= 0 ? s.slice(0, i + 1) : '/';
+  })();
+  var CSS_URL  = ROOT + 'assets/css/motion.css';
 
   function ready(fn){
     if(document.readyState !== 'loading') return fn();

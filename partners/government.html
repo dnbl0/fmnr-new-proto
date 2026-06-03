@@ -499,6 +499,15 @@
       line-height: 1.55;
     }
 
+    /* ===================== SECTION WRAPPER ===================== */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section-cream { background: #f9f9f9; }
+
     /* ===================== STEP STRIPS ===================== */
     .step-strip {
       display: grid;
@@ -1003,6 +1012,7 @@
       .grid-3col { grid-template-columns: 1fr; }
       .grid-4col { grid-template-columns: 1fr; }
 
+      .section { padding: 60px 24px; }
       .step-strip { grid-template-columns: 1fr; min-height: auto; }
       .step-strip--reversed { direction: ltr; }
       .step-image { min-height: 240px; }
@@ -1071,33 +1081,37 @@
   </section>
 
   <!-- ===================== HOW WE WORK TOGETHER ===================== -->
-  <section class="step-strip">
-    <div class="step-image" style="background: linear-gradient(160deg, #0d2a1a 0%, #1a4a2a 50%, #0d3a20 100%);"></div>
-    <div class="step-content">
-      <p class="step-number">01</p>
-      <h3 class="step-h3">Assess Policy Landscape</h3>
-      <p class="step-body">We start by mapping existing policy frameworks, extension systems and restoration commitments to identify where FMNR integration creates the greatest leverage — without duplicating existing structures.</p>
-      <ul class="step-checklist">
-        <li>Policy gap analysis and mapping</li>
-        <li>Extension system capacity assessment</li>
-        <li>Stakeholder and champion identification</li>
-        <li>Landscape prioritisation support</li>
-      </ul>
+  <section class="section section-white">
+    <div class="step-strip">
+      <div class="step-image" style="background: linear-gradient(160deg, #0d2a1a 0%, #1a4a2a 50%, #0d3a20 100%);"></div>
+      <div class="step-content">
+        <p class="step-number">01</p>
+        <h3 class="step-h3">Assess Policy Landscape</h3>
+        <p class="step-body">We start by mapping existing policy frameworks, extension systems and restoration commitments to identify where FMNR integration creates the greatest leverage — without duplicating existing structures.</p>
+        <ul class="step-checklist">
+          <li>Policy gap analysis and mapping</li>
+          <li>Extension system capacity assessment</li>
+          <li>Stakeholder and champion identification</li>
+          <li>Landscape prioritisation support</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="step-strip step-strip--reversed">
-    <div class="step-image" style="background: linear-gradient(160deg, #1a2e40 0%, #253d52 50%, #1a3040 100%);"></div>
-    <div class="step-content step-content--alt">
-      <p class="step-number">02</p>
-      <h3 class="step-h3">Build &amp; Deliver</h3>
-      <p class="step-body">Once the policy entry points are identified, we co-develop implementation plans, training materials and monitoring systems — supporting government teams to deliver FMNR through their own structures at scale.</p>
-      <ul class="step-checklist">
-        <li>Extension officer training programmes</li>
-        <li>Community facilitation toolkits</li>
-        <li>Satellite-based landscape monitoring</li>
-        <li>Annual progress reporting</li>
-      </ul>
+  <section class="section section-cream">
+    <div class="step-strip step-strip--reversed">
+      <div class="step-image" style="background: linear-gradient(160deg, #1a2e40 0%, #253d52 50%, #1a3040 100%);"></div>
+      <div class="step-content step-content--alt">
+        <p class="step-number">02</p>
+        <h3 class="step-h3">Build &amp; Deliver</h3>
+        <p class="step-body">Once the policy entry points are identified, we co-develop implementation plans, training materials and monitoring systems — supporting government teams to deliver FMNR through their own structures at scale.</p>
+        <ul class="step-checklist">
+          <li>Extension officer training programmes</li>
+          <li>Community facilitation toolkits</li>
+          <li>Satellite-based landscape monitoring</li>
+          <li>Annual progress reporting</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -1304,9 +1318,9 @@
       window.addEventListener('load', updateMegaPanelTop);
     })();
   </script>
-  <script src="/assets/js/header.js" defer></script>
-  <script src="/assets/js/footer.js" defer></script>
-  <script src="/assets/js/site-a11y.js" defer></script>
-  <script src="/assets/js/motion-init.js" defer></script>
+  <script src="../assets/js/header.js" defer></script>
+  <script src="../assets/js/footer.js" defer></script>
+  <script src="../assets/js/site-a11y.js" defer></script>
+  <script src="../assets/js/motion-init.js" defer></script>
 </body>
 </html>

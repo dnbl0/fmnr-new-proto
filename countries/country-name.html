@@ -1300,6 +1300,54 @@
     })();
   </script>
   <script>
+    // Country parameter mapper: allow a single template file to render different
+    // country-specific content when opened with ?country=ethiopia (or kenya,
+    // uganda, zambia). This keeps the docs preview working while showing
+    // different content per sidebar link.
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var country = (params.get('country') || '').toLowerCase();
+      if (!country) return;
+      var map = {
+        ethiopia: {
+          title: 'Ethiopia — FMNR in the Highlands',
+          label: 'Country · Ethiopia',
+          headline: "Farmers restoring landscapes across the Ethiopian highlands",
+          subtitle: "Community-led FMNR initiatives in Ethiopia have restored woodlands and improved yields across thousands of hectares."
+        },
+        kenya: {
+          title: 'Kenya — Community-Led Restoration',
+          label: 'Country · Kenya',
+          headline: "Scaling FMNR across Kenya's arid and semi-arid lands",
+          subtitle: "Local farmer groups in Kenya are adopting FMNR practices to increase resilience and diversify incomes."
+        },
+        uganda: {
+          title: 'Uganda — Regreening Landscapes',
+          label: 'Country · Uganda',
+          headline: "Regreening landscapes and strengthening livelihoods in Uganda",
+          subtitle: "Ugandan communities report improved water retention and crop yields following FMNR adoption."
+        },
+        zambia: {
+          title: 'Zambia — Restoration in Action',
+          label: 'Country · Zambia',
+          headline: "Community restoration and charcoal alternatives in Zambia",
+          subtitle: "Zambian pilot programmes demonstrate FMNR's potential for climate resilience and local enterprise."
+        }
+      };
+      var data = map[country];
+      if (!data) return;
+      try {
+        document.title = data.title;
+        var lbl = document.querySelector('.hero-label');
+        var h1 = document.querySelector('.hero-h1');
+        var sub = document.querySelector('.hero-subtitle');
+        if (lbl) lbl.textContent = data.label;
+        if (h1) h1.textContent = data.headline;
+        if (sub) sub.textContent = data.subtitle;
+      } catch (e) { /* ignore if elements not present */ }
+    })();
+  </script>
+  <script>
     (function () {
       function updateMegaPanelTop() {
         var header = document.querySelector('.header');

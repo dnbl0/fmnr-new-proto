@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About FMNR — Farmer Managed Natural Regeneration</title>
+  <meta name="description" content="Farmer Managed Natural Regeneration (FMNR) is a low-cost, sustainable land restoration technique that regenerates trees and shrubs from existing stumps, roots and seeds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('/fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ===================== HEADER ===================== */
+    .header {
+      background: #f9f9f9;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container { display: flex; align-items: center; justify-content: space-between; }
+
+    .logo { display: flex; align-items: center; gap: 2px; text-decoration: none; flex-shrink: 0; }
+
+    .nav-links { display: flex; align-items: center; gap: 0; }
+
+    .nav-link {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #00552f;
+      text-decoration: none;
+      padding: 24px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover { opacity: 0.7; }
+
+    .nav-link.active { font-weight: 700; }
+
+    .header-actions { display: flex; align-items: center; gap: 24px; }
+
+    .btn-donate {
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-donate:hover { background: #004026; }
+
+    /* ===================== MEGA MENU ===================== */
+    .mega-item { position: static; }
+
+    .mega-panel {
+      position: fixed;
+      left: 0; right: 0;
+      top: 0;
+      background: white;
+      border-top: 3px solid #00552f;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+      z-index: 200;
+      display: none;
+      animation: megaFadeIn 0.18s ease;
+    }
+
+    @keyframes megaFadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .mega-item:focus-within .mega-panel { display: block; }
+
+    .mega-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mega-header-row { display: flex; align-items: center; justify-content: space-between; }
+
+    .mega-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .mega-contact-btn {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      border: 2px solid #00552f;
+      border-radius: 4px;
+      padding: 8px 20px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mega-contact-btn:hover { background: #00552f; color: white; }
+
+    .mega-content-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mega-featured {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 360px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+    }
+
+    .mega-featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
+    }
+
+    .mega-featured-content { position: relative; z-index: 1; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+
+    .mega-featured-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.45);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    .mega-featured-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .mega-featured-desc { font-family: 'Lato', sans-serif; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.45; }
+
+    .mega-featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+    }
+
+    .mega-featured-cta:hover { background: #004026; }
+
+    .mega-icon-grid { display: grid; gap: 14px; align-content: start; }
+    .mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
+
+    .mega-icon-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 18px 20px;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+      background: #f8f9f8;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+
+    .mega-icon-card:hover { border-color: #b2d4c0; background: white; box-shadow: 0 2px 14px rgba(0,85,47,0.09); }
+
+    .mega-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mega-icon-wrap svg { width: 22px; height: 22px; stroke: #00552f; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .mega-icon-title { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; color: #00552f; line-height: 1.2; }
+    .mega-icon-desc { font-family: 'Lato', sans-serif; font-size: 12px; color: #666; line-height: 1.4; }
+
+    /* ===================== PAGE HERO (SECONDARY BANNER) ===================== */
+    .page-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 80vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .page-hero-left {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px;
+      gap: 20px;
+    }
+
+    .page-hero-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .page-hero-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .page-hero-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 20px;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      max-width: 420px;
+    }
+
+    .page-hero-right {
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/AU115-0014-12-scaled.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: #1a3a25;
+    }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    /* ===================== BLOG / CONTENT SECTIONS ===================== */
+    .blog-section { padding: 80px 0; }
+    .blog-section + .blog-section { border-top: 1px solid #e8e8e8; }
+
+    .blog-section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .blog-section-header { display: flex; flex-direction: column; gap: 8px; }
+
+    .blog-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .blog-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 720px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .btn-link:hover { text-decoration: underline; }
+
+    .grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    /* ===================== INTRO ===================== */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .intro-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(0,0,0,0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .intro-image {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #d4e8db center/cover no-repeat;
+    }
+
+    /* ===================== FIVE STEPS ===================== */
+    .steps-section { background: #f0fff8; padding: 80px 0; border-top: 1px solid #e8e8e8; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .step-card-img {
+      aspect-ratio: 16/11;
+      background: #d4e8db center/cover no-repeat;
+    }
+
+    .step-card-body { padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+
+    .step-number {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .step-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .step-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ===================== VIDEO EMBED ===================== */
+    .video-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #111;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-caption { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+    .video-caption-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .video-caption-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .video-caption-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+    }
+
+    /* ===================== BEFORE / AFTER ===================== */
+    .ba-section { background: #111; padding: 80px 0; }
+
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .ba-card {
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+    }
+
+    .ba-img {
+      aspect-ratio: 4/3;
+      background: #222 center/cover no-repeat;
+    }
+
+    .ba-body { padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+
+    .ba-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .ba-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ===================== RESOURCE CARDS ===================== */
+    .resource-card {
+      background: white;
+      border: 1px solid #f0ede5;
+      border-radius: 8px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      transition: box-shadow 0.18s, border-color 0.18s;
+    }
+
+    .resource-card:hover { box-shadow: 0 4px 20px rgba(0,85,47,0.1); border-color: #b2d4c0; }
+
+    .resource-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* ===================== CTA SECTION ===================== */
+    .tony-cta {
+      background: #2da57f;
+      padding: 80px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tony-cta-inner {
+      max-width: 1280px;
+      width: 100%;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .tony-cta-text { display: flex; flex-direction: column; gap: 8px; }
+
+    .tony-cta-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .tony-cta-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+      max-width: 720px;
+    }
+
+    .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+
+    .btn-cta-white {
+      background: white;
+      color: #00552f;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta-white:hover { background: #f0fff8; }
+
+    .btn-cta-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.7);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 30px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta-outline:hover { background: rgba(255,255,255,0.12); }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .header { padding: 16px 0; }
+      .nav-links { display: none; }
+      .mega-panel { top: 0; }
+      .page-hero { grid-template-columns: 1fr; height: auto; }
+      .page-hero-left { padding: 60px 24px 48px; }
+      .page-hero-heading { font-size: 48px; }
+      .page-hero-right { height: 320px; }
+      .blog-section { padding: 60px 0; }
+      .blog-section-inner { padding: 0 24px; }
+      .blog-heading { font-size: 36px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .grid-4col { grid-template-columns: 1fr 1fr; }
+      .grid-3col, .grid-2col, .ba-grid { grid-template-columns: 1fr; }
+      .tony-cta-heading { font-size: 32px; }
+      .tony-cta-inner { flex-direction: column; align-items: flex-start; }
+      .section-h2 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HEADER -->
+  <!-- ============================================================ -->
+  <!-- ============================================================ -->
+  <!-- PAGE HERO -->
+  <!-- ============================================================ -->
+  <section class="page-hero">
+    <div class="page-hero-left">
+      <p class="page-hero-overline">About · The technique</p>
+      <h1 class="page-hero-heading">About FMNR</h1>
+      <p class="page-hero-tagline">Farmer Managed Natural Regeneration — a low-cost, farmer-led way to bring degraded land back to life.</p>
+    </div>
+    <div class="page-hero-right" role="img" aria-label="A farmer standing among regenerating trees on restored farmland"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- INTRO — WHAT IS FMNR -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="intro-grid">
+        <div>
+          <p class="blog-overline" style="margin-bottom:12px;">Farmer Managed Natural Regeneration</p>
+          <h2 class="section-h2" style="margin-bottom:24px;">Regreening starts from the roots</h2>
+          <div class="intro-body">
+            <p><strong>Farmer Managed Natural Regeneration (FMNR)</strong> is a low-cost, sustainable land restoration technique. It involves regenerating and managing trees and shrubs from stumps, roots and seeds to combat poverty, increase food production and enhance resilience to climate extremes.</p>
+            <p>Farmers can implement FMNR without external inputs or expensive equipment, making it a scalable approach for restoring degraded land. A significant proportion of Earth's degraded agricultural land was cleared using methods that leave roots in the ground — making FMNR an ideal way to start regreening.</p>
+          </div>
+        </div>
+        <div class="intro-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/AU115-0014-12-scaled.jpg');" role="img" aria-label="Regenerated farmland"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- THE FIVE STEPS OF FMNR -->
+  <!-- ============================================================ -->
+  <section class="steps-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">How it works</p>
+        <h2 class="blog-heading">The five steps of FMNR</h2>
+        <p class="section-lead" style="margin-top:8px;">Communities tailor FMNR to their own needs, resources and climate — but the practice always follows the same five simple steps.</p>
+      </div>
+      <div class="steps-grid">
+
+        <div class="step-card">
+          <div class="step-card-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/M1p1-gif1-Rally-the-community-360p-240801-16-9.gif');"></div>
+          <div class="step-card-body">
+            <p class="step-number">Step 01</p>
+            <h3 class="step-title">Find</h3>
+            <p class="step-desc">Rally the community to create a realistic wish list of tree species — firewood, shade, fruit. Survey the land to find which species are present and identify indigenous shrubs with extensive root systems.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/M1p1-gif2-Survey-the-land-360p-240802.gif');"></div>
+          <div class="step-card-body">
+            <p class="step-number">Step 02</p>
+            <h3 class="step-title">Prune</h3>
+            <p class="step-desc">Pruning is a key principle of FMNR and is essential for its success. Select the strongest stems on each stump and carefully remove the rest so the tree can grow tall and strong.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/M1p1-Step3-Gif-Protect-360p-240811-1.gif');"></div>
+          <div class="step-card-body">
+            <p class="step-number">Step 03</p>
+            <h3 class="step-title">Protect</h3>
+            <p class="step-desc">Protect regrowing trees from fire, livestock and competing weeds. Ideally, exclude livestock for six months to a year so trees grow strong enough to withstand grazing pressure.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/M1P1-Step4-Gif-Grow-360p-240824.gif');"></div>
+          <div class="step-card-body">
+            <p class="step-number">Step 04</p>
+            <h3 class="step-title">Grow</h3>
+            <p class="step-desc">New branches and shoots keep growing, so prune them every two to six months. This helps the main stems grow stronger and faster. Consistent care is key.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-card-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/AU115-0014-12-scaled.jpg');"></div>
+          <div class="step-card-body">
+            <p class="step-number">Step 05</p>
+            <h3 class="step-title">Utilise</h3>
+            <p class="step-desc">FMNR trees serve many purposes based on what the community needs. Members have the freedom to tailor FMNR to local climate, soil and crop conditions, using available resources.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIDEOS -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Watch &amp; learn</p>
+        <h2 class="blog-heading">FMNR in practice</h2>
+        <p class="section-lead" style="margin-top:8px;">See how FMNR works on the ground — from the all-important pruning step to a full demonstration of the five steps.</p>
+      </div>
+      <div class="grid-2col">
+
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/bigghGgsVcw" title="Pruning for FMNR" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="video-caption">
+            <p class="video-caption-type">How-to</p>
+            <h3 class="video-caption-title">The art of pruning</h3>
+            <p class="video-caption-desc">Pruning is a key principle of FMNR and is essential for its success. This short film explains how to prune regenerating stumps the right way.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/0xF27ROVrbg" title="Instructional video — the five steps of FMNR" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="video-caption">
+            <p class="video-caption-type">Instructional video</p>
+            <h3 class="video-caption-title">The five steps, demonstrated</h3>
+            <p class="video-caption-desc">The late FMNR Champion Norbert Akolbila from Ghana demonstrates one way of practising FMNR, step by step.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IMPACT SEEN FROM SPACE — BEFORE / AFTER -->
+  <!-- ============================================================ -->
+  <section class="ba-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline" style="color:#0dfaab;">Impact seen from space</p>
+        <h2 class="blog-heading" style="color:white;">Niger, 1975 → 2005</h2>
+        <p class="section-lead" style="margin-top:8px;color:rgba(255,255,255,0.6);">In southern Niger, farmer-led regeneration transformed barren land into productive, tree-filled farmland — a change so vast it is visible from space.</p>
+      </div>
+      <div class="ba-grid">
+
+        <div class="ba-card">
+          <div class="ba-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Niger-1975.png');" role="img" aria-label="Aerial view of Niger farmland in 1975, largely bare of trees"></div>
+          <div class="ba-body">
+            <p class="ba-label">Before FMNR — 1975</p>
+            <p class="ba-text">Farmers believed a good farmer was a "clean" farmer who cut down all farm trees and burned crop residue. As trees belonged to the government, there was no incentive to protect them — so theft was common and many farmers cut their own trees for the wood.</p>
+          </div>
+        </div>
+
+        <div class="ba-card">
+          <div class="ba-img" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Niger-2005-1.png');" role="img" aria-label="Aerial view of the same Niger farmland in 2005, now dense with trees"></div>
+          <div class="ba-body">
+            <p class="ba-label">After FMNR — 2005</p>
+            <p class="ba-text">Today, farmers leave an average of 40 trees per hectare — some as many as 150 — on their farmland. They benefit from increased income, improved crop yields and more fodder for livestock. Wind speeds have reduced and, in some regions, water tables have risen.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- RESOURCES -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Go deeper</p>
+        <h2 class="blog-heading">Resources</h2>
+        <p class="section-lead" style="margin-top:8px;">Everything you need to understand, practise and scale FMNR — from the fundamentals to peer-reviewed research and country-specific guidance.</p>
+      </div>
+      <div class="grid-4col">
+
+        <a href="/resource-hub.html" class="resource-card">
+          <h3 class="resource-card-title">FMNR Fundamentals</h3>
+          <p class="step-desc">The core principles and practice of FMNR explained from the ground up.</p>
+          <span class="btn-link">Read more
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="/resource-hub.html" class="resource-card">
+          <h3 class="resource-card-title">Research</h3>
+          <p class="step-desc">Peer-reviewed studies and evidence documenting FMNR's impact.</p>
+          <span class="btn-link">Read more
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="/resource-hub.html" class="resource-card">
+          <h3 class="resource-card-title">Case Studies &amp; Stories</h3>
+          <p class="step-desc">Real-world examples of communities transforming their land with FMNR.</p>
+          <span class="btn-link">Read more
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="/resource-hub.html" class="resource-card">
+          <h3 class="resource-card-title">Country Specific</h3>
+          <p class="step-desc">Guidance and results tailored to specific countries and contexts.</p>
+          <span class="btn-link">Read more
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CTA -->
+  <!-- ============================================================ -->
+  <section class="tony-cta">
+    <div class="tony-cta-inner">
+      <div class="tony-cta-text">
+        <p class="tony-cta-overline">Get involved</p>
+        <h2 class="tony-cta-heading">Anyone can join the global FMNR movement.</h2>
+      </div>
+      <div class="cta-actions">
+        <a href="/contact" class="btn-cta-outline">Contact us</a>
+        <a href="#" class="btn-cta-white">Donate</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      document.querySelectorAll('.mega-item').forEach(item => {
+        const panel = item.querySelector('.mega-panel');
+        if (!panel) return;
+        let hideTimer = null;
+        function show() {
+          clearTimeout(hideTimer);
+          document.querySelectorAll('.mega-panel').forEach(p => { if (p !== panel) p.style.display = 'none'; });
+          panel.style.display = 'block';
+        }
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(() => { panel.style.display = 'none'; }, 80);
+        }
+        item.addEventListener('mouseenter', show);
+        item.addEventListener('mouseleave', scheduleHide);
+        panel.addEventListener('mouseenter', show);
+        panel.addEventListener('mouseleave', scheduleHide);
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
+          document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none');
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
+
+  <script src="/assets/js/header.js" defer></script>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/site-a11y.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Conversion Page Template — FMNR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+<style>
+@font-face { font-family:'FatFrank'; src:url('/fatfrank.otf') format('opentype'); font-weight:900; font-style:normal; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Lato',sans-serif; background:#f4f3f1; color:#1a1a1a; }
+.wrap { max-width:960px; margin:0 auto; padding:0 32px; }
+.tpl-hero { background:linear-gradient(155deg,#0d2318 0%,#1a4028 60%,#265c3a 100%); color:#fff; padding:48px 0 44px; }
+.tpl-eyebrow { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.7); font-weight:700; }
+.tpl-headrow { display:flex; align-items:baseline; gap:18px; margin-top:14px; }
+.tpl-num { font-family:'FatFrank','Impact',sans-serif; font-weight:900; font-size:64px; line-height:.85; color:#6fd6a6; }
+.tpl-name { font-family:'FatFrank','Impact',sans-serif; font-weight:900; font-size:46px; line-height:.95; text-transform:uppercase; }
+.tpl-purpose { margin-top:16px; font-size:18px; max-width:620px; color:rgba(255,255,255,.92); line-height:1.5; }
+.tpl-body { padding:40px 0 64px; }
+.tpl-card { background:#fff; border:1px solid #e4e2de; border-radius:14px; padding:28px 30px; margin-bottom:24px; }
+.tpl-card h2 { font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:#077D57; font-weight:900; margin-bottom:16px; }
+.tpl-pages { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.tpl-pages li { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:14px; color:#2a2a2a; background:#f7f6f4; border:1px solid #ece9e4; border-radius:7px; padding:9px 13px; }
+.tpl-anatomy { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.tpl-anatomy li { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; padding-bottom:10px; border-bottom:1px solid #f0eee9; }
+.tpl-anatomy li:last-child { border-bottom:0; padding-bottom:0; }
+.tpl-tag { font-family:ui-monospace,Menlo,monospace; font-size:13px; font-weight:700; color:#077D57; }
+.tpl-role { font-size:14px; color:#555; }
+.tpl-btn { display:inline-flex; align-items:center; gap:8px; background:#00552f; color:#fff; font-weight:700; font-size:15px; padding:13px 24px; border-radius:7px; text-decoration:none; }
+.tpl-btn:hover { background:#004026; }
+.tpl-wp { font-size:14px; color:#555; line-height:1.6; }
+.tpl-wp code { font-family:ui-monospace,Menlo,monospace; background:#f0eee9; padding:2px 7px; border-radius:5px; font-size:13px; color:#1a1a1a; }
+@media (max-width:560px){ .tpl-num{ font-size:46px; } .tpl-name{ font-size:32px; } .tpl-headrow{ flex-wrap:wrap; gap:8px; } }
+</style>
+</head>
+<body>
+<header class="tpl-hero">
+  <div class="wrap">
+    <p class="tpl-eyebrow">FMNR Page Template</p>
+    <div class="tpl-headrow">
+      <span class="tpl-num">06</span>
+      <h1 class="tpl-name">Conversion Page</h1>
+    </div>
+    <p class="tpl-purpose">Lead generation — forms and donations.</p>
+  </div>
+</header>
+<main class="tpl-body">
+  <div class="wrap">
+    <section class="tpl-card">
+      <h2>Pages using this template</h2>
+      <ul class="tpl-pages"><li>/contact.html</li><li>/donate.html</li></ul>
+    </section>
+    <section class="tpl-card">
+      <h2>Template anatomy</h2>
+      <ul class="tpl-anatomy"><li><span class="tpl-tag">section.hero</span><span class="tpl-role">Focused hero — single clear goal</span></li><li><span class="tpl-tag">.intro</span><span class="tpl-role">Short supporting copy</span></li><li><span class="tpl-tag">.form</span><span class="tpl-role">Contact / donation form</span></li><li><span class="tpl-tag">.trust-signals</span><span class="tpl-role">Reassurance — logos, stats, security</span></li><li><span class="tpl-tag">.cta-band</span><span class="tpl-role">Secondary CTA</span></li></ul>
+    </section>
+    <section class="tpl-card">
+      <h2>WordPress</h2>
+      <p class="tpl-wp">page-conversion.php with an embedded forms / donation plugin. Built as <code>page-conversion.php</code>.</p>
+    </section>
+    <a class="tpl-btn" href="../contact/index.html">View an example page — Contact page →</a>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adopt FMNR — Farmer Managed Natural Regeneration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/search.css" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('/fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    .header {
+      background: #f9f9f9;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav-link {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #00552f;
+      text-decoration: none;
+      padding: 24px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover { opacity: 0.7; }
+
+    .nav-link.active {
+      font-weight: 700;
+      /* no bottom border for active nav-link */
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .btn-donate {
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-donate:hover { background: #004026; }
+
+    .mega-item { position: static; }
+
+    .mega-panel {
+      position: fixed;
+      left: 0; right: 0;
+      top: 0; /* positioned below header via JS */
+      background: white;
+      border-top: 3px solid #00552f;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+      z-index: 200;
+      display: none;
+      animation: megaFadeIn 0.18s ease;
+    }
+
+    @keyframes megaFadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .mega-item:focus-within .mega-panel { display: block; }
+
+    .mega-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mega-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mega-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .mega-contact-btn {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      border: 2px solid #00552f;
+      border-radius: 4px;
+      padding: 8px 20px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mega-contact-btn:hover { background: #00552f; color: white; }
+
+    .mega-content-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mega-featured {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 360px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .mega-featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
+    }
+
+    .mega-featured-content {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mega-featured-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.45);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    .mega-featured-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .mega-featured-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
+    }
+
+    .mega-featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+    }
+
+    .mega-featured-cta:hover { background: #004026; }
+
+    .mega-icon-grid {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
+    .mega-icon-grid--2x3 { grid-template-columns: repeat(3, 1fr); }
+
+    .mega-icon-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 18px 20px;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+      background: #f8f9f8;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+
+    .mega-icon-card:hover {
+      border-color: #b2d4c0;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .mega-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mega-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mega-icon-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      line-height: 1.2;
+    }
+
+    .mega-icon-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .hero {
+      position: relative;
+      height: 580px;
+      display: flex;
+      align-items: flex-end;
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/KEN-DryDev-FMNR-Farmer-Group-1-3B8A0006.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 40px 72px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-h1 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 860px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 580px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
+      color: #003d22;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: #0ae49e; }
+
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
+    .section-white { background: white; padding: 80px 0; }
+    .section-tinted { background: #f9f9f9; padding: 80px 0; }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+      margin-bottom: 12px;
+    }
+
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .partner-type-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .partner-type-card {
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #e8e8e8;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .partner-type-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+
+    .partner-type-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .partner-type-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+    }
+
+    /* partner-type-badge removed — no longer used */
+
+    .partner-type-body {
+      padding: 20px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .partner-type-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .partner-type-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .partner-type-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #f8f9f8;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: #e0ede6;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .feature-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .feature-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+    }
+
+    .stats-section {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .stat-tile {
+      background: #111;
+      border-radius: 4px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #abb8c3;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+      margin-bottom: 12px;
+    }
+
+    .stat-description {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #abb8c3;
+      line-height: 1.4;
+    }
+
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .stories-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .stories-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+    }
+
+    .btn-link:hover { text-decoration: underline; }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .story-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .story-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    .story-card-image {
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .story-card-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .story-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .story-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .story-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    .cta-section {
+      background: #00552f;
+      padding: 80px 0;
+    }
+
+    .cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .cta-left { display: flex; flex-direction: column; gap: 16px; }
+
+    .cta-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 680px;
+    }
+
+    .cta-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-outline-teal {
+      display: inline-block;
+      background: transparent;
+      color: #0dfaab;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #0dfaab;
+      transition: background 0.2s;
+    }
+
+    .btn-outline-teal:hover { background: rgba(13,250,171,0.1); }
+
+    @media (max-width: 1024px) {
+      .hero-h1 { font-size: 48px; }
+      .section-h2 { font-size: 40px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile { height: auto; min-height: 200px; }
+      .partner-type-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .header { padding: 16px 0; }
+      .nav-links { display: none; }
+      .mega-panel { top: 0; }
+
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
+
+      .section-white, .section-tinted, .cta-section { padding: 60px 0; }
+      .section-container { padding: 0 24px; }
+      .cta-inner { padding: 0 24px; }
+
+      .section-h2 { font-size: 36px; }
+      .feature-cards { grid-template-columns: 1fr; }
+      .partner-type-grid { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
+
+      .cta-h2 { font-size: 32px; }
+      .stories-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">Adopt FMNR</p>
+      <h1 class="hero-h1">Grow a Forest from the Ground Up</h1>
+      <p class="hero-subtitle">FMNR is one of the most powerful and affordable land restoration techniques available. Anyone can start. Here's how.</p>
+      <div class="hero-buttons">
+        <a href="#get-started" class="btn-teal">Start the four steps</a>
+        <a href="/resource-post.html" class="btn-outline-white">Download the manual</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white" id="how-it-works">
+    <div class="section-container">
+      <p class="section-label">What is FMNR?</p>
+      <h2 class="section-h2">Your land already holds the answer</h2>
+      <p class="section-lead">Farmer Managed Natural Regeneration is a low-cost, farmer-driven technique that works with nature, not against it. Instead of planting new trees, FMNR protects and manages the regrowth of trees and shrubs from existing root systems already in your soil.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C9.5 9 6 9 4 10c0 3 2 6 5 7 1-3 2-5 3-5z"/><path d="M12 12c2.5-3 6-3 8-2 0 3-2 6-5 7-1-3-2-5-3-5z"/></svg>
+          </div>
+          <p class="feature-overline">Regrowth</p>
+          <h3 class="feature-heading">Use Living Roots</h3>
+          <p class="feature-body">Find existing stumps, roots and shrub regrowth, then protect the strongest shoots so trees can return quickly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <p class="feature-overline">Knowledge</p>
+          <h3 class="feature-heading">Learn by Practice</h3>
+          <p class="feature-body">The technique requires no expensive inputs. It depends on observation, pruning, protection and consistent management.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <p class="feature-overline">Results</p>
+          <h3 class="feature-heading">Build Resilience</h3>
+          <p class="feature-body">Used across dozens of countries, FMNR restores degraded farmland, improves soil health, increases yields and helps communities withstand drought.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tinted" id="get-started">
+    <div class="section-container">
+      <p class="section-label">The Process</p>
+      <h2 class="section-h2">Four steps to regeneration</h2>
+      <p class="section-lead">Each FMNR step builds on the last. Most farmers begin to see measurable change within their first season when the practice is protected and repeated.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
+          <p class="feature-overline">Step 01</p>
+          <h3 class="feature-heading">Assess Your Land</h3>
+          <p class="feature-body">Walk your fields and map existing stumps, root systems and shrub regrowth. Identify which species are most valuable for your landscape and goals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 011.4 0l1.6 1.6a1 1 0 010 1.4L9 18H5v-4z"/><path d="M13 8l3 3"/></svg>
+          </div>
+          <p class="feature-overline">Step 02</p>
+          <h3 class="feature-heading">Select &amp; Prune</h3>
+          <p class="feature-body">Choose the strongest shoots on each stump and prune away the rest. Focus your farm's energy on the trees with the greatest potential.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p class="feature-overline">Step 03</p>
+          <h3 class="feature-heading">Protect &amp; Guard</h3>
+          <p class="feature-body">Shield young trees from grazing, fire and overuse during the critical early growth period. Community agreements help protect shared land.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <p class="feature-overline">Step 04</p>
+          <h3 class="feature-heading">Monitor &amp; Grow</h3>
+          <p class="feature-body">Track tree growth, crop yields and canopy cover across seasons. Share lessons with neighbours and adjust pruning as trees mature.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="section-stack">
+      <div class="section-heading-wrap">
+        <p class="section-overline">Proven results at scale</p>
+        <h2 class="section-heading">Adoption can start with what is already there</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-tile">
+          <p class="stat-overline">Countries practising FMNR</p>
+          <p class="stat-value">27</p>
+          <p class="stat-description">From Niger and Kenya to India and East Timor</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Hectares restored</p>
+          <p class="stat-value">30M+</p>
+          <p class="stat-description">Of degraded farmland and landscape brought back to life</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Increase in crop yield</p>
+          <p class="stat-value">+20%</p>
+          <p class="stat-description">Average for FMNR-practising households in the Sahel</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Cost to adopt</p>
+          <p class="stat-value">$0</p>
+          <p class="stat-description">FMNR requires no purchased inputs, only time and knowledge</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white" id="community">
+    <div class="section-container">
+      <p class="section-label">Community Mobilisation</p>
+      <h2 class="section-h2">FMNR works best as a community</h2>
+      <p class="section-lead">Individual farmers can begin FMNR on their own plots, but the technique reaches its full potential when adopted across an entire landscape. Faith leaders, women's groups, village elders and local government can all help protect regrowth and spread practice.</p>
+      <div class="featured-grid">
+        <a href="/blog.html" class="story-card">
+          <div class="story-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Malawi_day1_151.jpg');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Community Adoption</p>
+            <h3 class="story-heading">Mobilise Local Leaders</h3>
+            <p class="story-body">Community-wide adoption protects regenerating trees from grazing and human pressure, and creates a shared sense of ownership over the land's recovery.</p>
+            <span class="card-cta">Read community stories</span>
+          </div>
+        </a>
+        <a href="/resource-hub.html" class="story-card">
+          <div class="story-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/03/W232-0346-029.jpg');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Training &amp; Learning</p>
+            <h3 class="story-heading">Watch, Learn, Apply</h3>
+            <p class="story-body">Use field guides, e-courses and facilitator materials to support farmers, extension officers and community trainers at every stage.</p>
+            <span class="card-cta">Explore resources</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tinted">
+    <div class="section-container">
+      <div class="stories-header">
+        <div class="stories-header-left">
+          <p class="section-label">Resources to Get You Started</p>
+          <h2 class="section-h2" style="margin-bottom:0">Everything you need to begin</h2>
+        </div>
+        <a href="/resource-hub.html" class="btn-link">
+          Browse all resources
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="partner-type-grid">
+        <a href="/resource-post.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">FMNR Practitioner Manual</h2>
+            <p class="partner-type-desc">The comprehensive step-by-step field guide for farmers and extension workers implementing FMNR.</p>
+            <span class="partner-type-cta">Download PDF</span>
+          </div>
+        </a>
+        <a href="/resource-hub.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/07/KEN-DryDev-FMNR-Farmer-Group-1-3B8A0006.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">FMNR Online Training</h2>
+            <p class="partner-type-desc">Self-paced online learning modules for practitioners, facilitators and community leaders at every level.</p>
+            <span class="partner-type-cta">Start learning</span>
+          </div>
+        </a>
+        <a href="/resource-hub.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/W485-0178-115.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">Facilitator &amp; Training Pack</h2>
+            <p class="partner-type-desc">Ready-to-use workshop materials, slide decks and field activity cards for community training sessions.</p>
+            <span class="partner-type-cta">Browse toolkit</span>
+          </div>
+        </a>
+        <a href="/blog-post.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/11/Unknown_2017_Niger_BNATonywithcar_HQ_CNS.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">From Desert to Forest</h2>
+            <p class="partner-type-desc">How millions of farmers in Niger's Maradi region reversed decades of land degradation.</p>
+            <span class="partner-type-cta">Read story</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-left">
+        <h2 class="cta-h2">Ready to start restoring?</h2>
+        <p class="cta-body">FMNR has transformed millions of hectares across 27 countries. Your land can be next. Download the practitioner manual, enrol in the free e-courses, or connect with a partner organisation in your region.</p>
+        <div class="cta-buttons">
+          <a href="/resource-post.html" class="btn-teal">Download the manual</a>
+          <a href="/resource-hub.html" class="btn-outline-teal">Explore resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="search-overlay" id="search-overlay" aria-hidden="true">
+    <div class="search-overlay-inner">
+      <form class="search-input-wrap" id="search-form" action="resource-hub.html" method="get" autocomplete="off">
+        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M16 16l5 5"></path></svg>
+        <input type="text" id="search-input" name="q" placeholder="Search FMNR resources, topics, regions..." aria-label="Search">
+        <button type="button" class="search-clear" id="search-clear" aria-label="Clear">
+          <svg viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </form>
+      <div class="search-body" id="search-body">
+        <p class="search-section-label">Quick Links</p>
+        <ul class="search-suggestions" id="search-suggestions"><li><a href="/partners.html">Partner with FMNR</a></li><li><a href="/resource-hub.html">Resource Hub</a></li><li><a href="/impact/index.html">See the Impact</a></li><li><a href="/about-fmnr/tony-rinaudo.html">Tony Rinaudo</a></li><li><a href="/contact/index.html">Get in Touch</a></li></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/search.js"></script>
+  <script>
+    (function () {
+      document.querySelectorAll('.mega-item').forEach(function (item) {
+        var panel = item.querySelector('.mega-panel');
+        if (!panel) return;
+        var hideTimer = null;
+
+        function show() {
+          clearTimeout(hideTimer);
+          document.querySelectorAll('.mega-panel').forEach(function (p) {
+            if (p !== panel) p.style.display = 'none';
+          });
+          panel.style.display = 'block';
+        }
+
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () { panel.style.display = 'none'; }, 80);
+        }
+
+        item.addEventListener('mouseenter', show);
+        item.addEventListener('mouseleave', scheduleHide);
+        panel.addEventListener('mouseenter', show);
+        panel.addEventListener('mouseleave', scheduleHide);
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
+          document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.display = 'none'; });
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
+  <script src="/assets/js/header.js" defer></script>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/site-a11y.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
+</body>
+</html>

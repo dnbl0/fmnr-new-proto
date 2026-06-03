@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Faith-Based Partners — FMNR</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
@@ -24,6 +23,7 @@
       overflow-x: hidden;
     }
 
+    /* ===================== LAYOUT ===================== */
     .section-container {
       max-width: 1280px;
       margin: 0 auto;
@@ -259,7 +259,6 @@
     }
 
     .mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
-    .mega-icon-grid--2x3 { grid-template-columns: repeat(3, 1fr); }
 
     .mega-icon-card {
       display: flex;
@@ -315,100 +314,119 @@
       line-height: 1.4;
     }
 
-    /* ===================== BLOG SECTIONS ===================== */
-    .blog-section {
-      padding: 80px 0;
+    /* ===================== HERO ===================== */
+    .hero {
+      height: 520px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: linear-gradient(160deg, #1a0d25 0%, #2e1a40 50%, #3d2552 100%);
     }
 
-    .blog-section + .blog-section {
-      border-top: 1px solid #e8e8e8;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center 30%;
     }
 
-    .blog-section-inner {
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(10,5,20,0.45) 60%, rgba(10,5,20,0.2) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 40px;
+      width: 100%;
+      padding: 0 40px 72px;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 20px;
     }
 
-    .blog-section-header {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .blog-overline {
+    .hero-label {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
       font-size: 13px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #077d57;
+      color: #0dfaab;
     }
 
-    .blog-heading {
+    .hero-h1 {
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
       font-weight: 900;
-      font-size: 56px;
+      font-size: 64px;
       text-transform: uppercase;
+      color: white;
       line-height: 1;
+      max-width: 820px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.55;
+      max-width: 620px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
       color: #111;
-    }
-
-    .blog-card {
-      background: white;
-      border: 1px solid #f0ede5;
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-    }
-
-    .blog-card-image {
-      aspect-ratio: 16/9;
-      background: linear-gradient(to bottom, rgba(217,217,217,0) 54%, #b0b0b0 100%);
-      background-color: #e0e0e0;
-      flex-shrink: 0;
-    }
-
-    .blog-card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-    }
-
-    .blog-card-overline {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #077d57;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
 
-    .blog-card-heading {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 22px;
-      line-height: 1.1;
-      text-transform: uppercase;
-      color: #111;
-    }
+    .btn-teal:hover { opacity: 0.88; }
 
-    .blog-card-sub {
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
       font-family: 'Lato', sans-serif;
-      font-size: 14px;
-      color: rgba(0,0,0,0.6);
-      line-height: 1.5;
-      flex: 1;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    .btn-link {
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* ===================== BREADCRUMB ===================== */
+    .breadcrumb { display: none; }
+
+    .breadcrumb-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .breadcrumb-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -417,10 +435,332 @@
       font-size: 14px;
       color: #00552f;
       text-decoration: none;
+    }
+
+    .breadcrumb-link:hover { text-decoration: underline; }
+
+    /* ===================== WHAT WE OFFER ===================== */
+    .section-white {
+      background: white;
+      padding: 80px 0;
+    }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+      margin-bottom: 16px;
+    }
+
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      max-width: 760px;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.65);
+      line-height: 1.6;
+      max-width: 680px;
+      margin-top: 20px;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .feature-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .feature-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: rgba(0,0,0,0.65);
+      line-height: 1.6;
+    }
+
+    /* ===================== STEP STRIPS ===================== */
+    .step-strip {
+      min-height: 480px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .step-strip--reversed { direction: rtl; }
+    .step-strip--reversed > * { direction: ltr; }
+
+    .step-image {
+      background: linear-gradient(135deg, #1a0d25 0%, #2e1a40 50%, #3d2552 100%);
+      min-height: 480px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .step-content {
+      padding: 64px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+      background: white;
+    }
+
+    .step-content--alt { background: #f9f9f9; }
+
+    .step-number {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .step-h3 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.05;
+    }
+
+    .step-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(0,0,0,0.65);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    .step-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       margin-top: 8px;
     }
 
-    .btn-link:hover { text-decoration: underline; }
+    .step-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #111;
+      font-weight: 600;
+    }
+
+    .step-checklist li::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 50%;
+      background: #0dfaab;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* ===================== VIDEO STRIP ===================== */
+    .video-strip {
+      background: #111;
+      padding: 80px 0;
+    }
+
+    .video-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .video-embed {
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .video-text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .video-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .video-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 44px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.05;
+    }
+
+    .video-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+
+    /* ===================== STAT TILES ===================== */
+    .stats-section {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .stat-tile {
+      background: #111;
+      border-radius: 4px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #abb8c3;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+      margin-bottom: 12px;
+    }
+
+    .stat-description {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #abb8c3;
+      line-height: 1.4;
+    }
+
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* ===================== PARTNER STORIES ===================== */
+    .section-tinted {
+      background: #f9f9f9;
+      padding: 80px 0;
+    }
+
+    .stories-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
 
     .grid-3col {
       display: grid;
@@ -428,20 +768,351 @@
       gap: 24px;
     }
 
+    .story-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .story-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    .story-card-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a0d25 0%, #2e1a40 100%);
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .story-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .story-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .story-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .story-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    /* ===================== CTA ===================== */
+    .cta-section {
+      background: #00552f;
+      padding: 80px 0;
+    }
+
+    .cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .cta-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 720px;
+    }
+
+    .cta-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-outline-teal {
+      display: inline-block;
+      background: transparent;
+      color: #0dfaab;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #0dfaab;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-outline-teal:hover { background: rgba(13,250,171,0.1); }
+
+    /* ===================== RELATED PARTNER TYPES ===================== */
+    .related-section {
+      background: #f9f9f9;
+      padding: 80px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .related-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .related-card {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      border: 1px solid #e8e8e8;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .related-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .related-card-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 4px;
+    }
+
+    .related-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .related-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .related-card-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+    }
+
+    .related-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 6px;
+    }
+
+    /* ===================== PARTNER RESOURCES ===================== */
+    .resource-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .resource-card {
+      background: #f5f5f5;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-decoration: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .resource-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .resource-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .resource-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .resource-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .resource-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .resource-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .resource-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 4px;
+    }
+
     /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .hero-h1 { font-size: 48px; }
+      .section-h2 { font-size: 44px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile { height: auto; min-height: 200px; }
+      .grid-4col { grid-template-columns: repeat(2, 1fr); }
+      .video-inner { grid-template-columns: 1fr; gap: 40px; }
+      .video-h2 { font-size: 36px; }
+    }
+
     @media (max-width: 768px) {
       .header { height: 88px; }
       .nav-links { display: none; }
       .mega-panel { top: 88px; }
-      .blog-section { padding: 60px 0; }
-      .blog-section-inner { padding: 0 24px; }
-      .blog-heading { font-size: 36px; }
+
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
+
+      .section-white, .section-tinted, .video-strip, .cta-section, .related-section { padding: 60px 0; }
+      .section-container { padding: 0 24px; }
+      .breadcrumb-inner { padding: 0 24px; }
+      .cta-inner { padding: 0 24px; }
+      .video-inner { padding: 0 24px; }
+
+      .section-h2 { font-size: 36px; }
+      .feature-cards { grid-template-columns: 1fr; }
       .grid-3col { grid-template-columns: 1fr; }
+      .grid-4col { grid-template-columns: 1fr; }
+
+      .step-strip { grid-template-columns: 1fr; min-height: auto; }
+      .step-strip--reversed { direction: ltr; }
+      .step-image { min-height: 240px; }
+      .step-content { padding: 40px 24px; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
+      .resource-cards { grid-template-columns: 1fr; }
+
+      .cta-h2 { font-size: 36px; }
+      .related-heading { font-size: 28px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ===================== HEADER ===================== -->
   <header class="header">
     <div class="section-container">
       <a href="../index.html" class="logo">
@@ -454,15 +1125,12 @@
             <path d="M265.182 68.7333C262.304 68.8184 259.426 68.8485 256.548 68.8086C254.346 68.778 252.271 68.1894 250.421 66.9886C247.661 65.1978 246.019 62.5998 245.209 59.4557C245.07 58.9135 244.993 58.3401 244.99 57.7805C244.969 54.6078 244.98 51.4349 244.98 48.1184C245.291 48.1184 245.578 48.1184 245.864 48.1184C248.47 48.1185 251.075 48.096 253.68 48.1246C256.454 48.1551 258.886 49.1104 260.986 50.9204C263.002 52.6572 264.301 54.8096 264.843 57.416C264.864 57.5165 264.993 57.5947 265.127 57.6219C265.182 61.2564 265.182 64.9523 265.182 68.7333Z" fill="#FA6B01"/>
             <path d="M18.5646 38.1317C18.4651 35.4532 18.6819 32.934 19.975 30.5989C20.8171 29.0781 21.862 27.7543 23.2516 26.6971C25.5196 24.9715 28.0849 24.2676 30.9155 24.3212C33.4883 24.3699 36.0628 24.3315 38.7671 24.3315C38.7671 24.6579 38.7671 24.9457 38.7671 25.2336C38.7671 27.7433 38.7604 30.253 38.7691 32.7627C38.7767 34.9352 38.3615 37.0323 37.275 38.9056C35.9002 41.2758 34.0274 43.1285 31.3726 44.1526C29.6621 44.8124 27.93 45.035 26.1331 45.0323C23.6513 45.0286 21.1695 45.0314 18.5646 45.0314C18.5646 42.7316 18.5646 40.477 18.5646 38.1317Z" fill="#FA6B01"/>
           </g>
-          <defs>
-            <clipPath id="clip0_faith">
-              <rect width="265" height="69" fill="white"/>
-            </clipPath>
-          </defs>
+          <defs><clipPath id="clip0_faith"><rect width="265" height="69" fill="white"/></clipPath></defs>
         </svg>
       </a>
 
       <nav class="nav-links" id="mainNav">
+        <!-- Partner -->
         <div class="mega-item">
           <a href="../partners.html" class="nav-link active">Partner</a>
           <div class="mega-panel">
@@ -472,11 +1140,11 @@
                 <a href="/contact/" class="mega-contact-btn">Contact us</a>
               </div>
               <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1a3a25 0%,#2d6040 50%,#3a7a52 100%)">
+                <a href="#" class="mega-featured" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/03/W232-0346-029.jpg');background-size:cover;background-position:center;">
                   <div class="mega-featured-content">
                     <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">Scaling FMNR Across Sub-Saharan Africa</p>
-                    <p class="mega-featured-desc">See how faith networks and NGOs are driving landscape restoration.</p>
+                    <p class="mega-featured-title">Faith in Action for God's Creation</p>
+                    <p class="mega-featured-desc">See how faith networks and faith leaders are driving landscape restoration.</p>
                     <span class="mega-featured-cta">Explore →</span>
                   </div>
                 </a>
@@ -506,122 +1174,382 @@
             </div>
           </div>
         </div>
+
+        <!-- Adopt -->
         <div class="mega-item">
           <a href="../adopt.html" class="nav-link">Adopt</a>
-          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Adopt FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+          <div class="mega-panel">
+            <div class="mega-inner">
+              <div class="mega-header-row">
+                <h2 class="mega-title">Adopt FMNR</h2>
+                <a href="/contact/" class="mega-contact-btn">Contact us</a>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Impact -->
         <div class="mega-item">
-          <a href="#" class="nav-link">Impact</a>
-          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Our Impact</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+          <a href="../impact/index.html" class="nav-link">Impact</a>
+          <div class="mega-panel">
+            <div class="mega-inner">
+              <div class="mega-header-row">
+                <h2 class="mega-title">Our Impact</h2>
+                <a href="/contact/" class="mega-contact-btn">Contact us</a>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Resource Hub -->
         <div class="mega-item">
           <a href="../resource-hub.html" class="nav-link">Resource Hub</a>
-          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Resource Hub</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+          <div class="mega-panel">
+            <div class="mega-inner">
+              <div class="mega-header-row">
+                <h2 class="mega-title">Resource Hub</h2>
+                <a href="/contact/" class="mega-contact-btn">Contact us</a>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Stories -->
         <div class="mega-item">
           <a href="../blog.html" class="nav-link">Stories</a>
-          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Stories</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+          <div class="mega-panel">
+            <div class="mega-inner">
+              <div class="mega-header-row">
+                <h2 class="mega-title">Stories</h2>
+                <a href="/contact/" class="mega-contact-btn">Contact us</a>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- About -->
         <div class="mega-item">
           <a href="#" class="nav-link">About</a>
-          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">About FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+          <div class="mega-panel">
+            <div class="mega-inner">
+              <div class="mega-header-row"><h2 class="mega-title">About FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div>
+              <div class="mega-content-row">
+                <a href="../tony-rinaudo.html" class="mega-featured" style="background:linear-gradient(160deg,#1e1e2e 0%,#2e3050 50%,#3a3d65 100%)">
+                  <div class="mega-featured-content"><span class="mega-featured-badge">Featured</span><p class="mega-featured-title">Tony Rinaudo — The Forest Maker</p><p class="mega-featured-desc">The story of the man behind the global FMNR movement.</p><span class="mega-featured-cta">Read his story →</span></div>
+                </a>
+                <div class="mega-icon-grid mega-icon-grid--2x2">
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><p class="mega-icon-title">About FMNR</p><p class="mega-icon-desc">The technique and movement explained</p></a>
+                  <a href="../tony-rinaudo.html" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><p class="mega-icon-title">Tony Rinaudo</p><p class="mega-icon-desc">Meet the Forest Maker</p></a>
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><p class="mega-icon-title">FMNR &amp; World Vision</p><p class="mega-icon-desc">Our partnership and shared mission</p></a>
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><p class="mega-icon-title">FAQs</p><p class="mega-icon-desc">Frequently asked questions about FMNR</p></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
 
       <div class="header-actions">
-        <button style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round">
-            <circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/>
-          </svg>
+        <button style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/></svg>
         </button>
         <a href="#" class="btn-donate">Donate</a>
       </div>
     </div>
   </header>
 
-  <!-- ============================================================ -->
-  <!-- MAIN CONTENT -->
-  <!-- ============================================================ -->
-  <section class="blog-section">
-    <div class="blog-section-inner">
-
-      <div class="blog-section-header">
-        <a href="../partners.html" class="btn-link" style="margin-top:0">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          All partner types
-        </a>
-        <p class="blog-overline" style="margin-top:16px">Partner</p>
-        <h1 class="blog-heading">Faith-Based Partners</h1>
-        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:640px;margin-top:8px;">Churches, pastors and faith networks are trusted community convenors — we work with faith leaders to build local capacity and scale FMNR in ways that respect local institutions.</p>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-bg" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/03/W232-0346-029-scaled.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">Partner · Faith-Based Partners</p>
+      <h1 class="hero-h1">Faith in Action for God's Creation</h1>
+      <p class="hero-subtitle">Faith leaders are the most trusted voices in rural communities. We partner with churches, mosques and faith networks to mobilise congregations as stewards of the land — turning restoration into an act of worship.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-teal">Connect with our team</a>
+        <a href="#" class="btn-outline-white">Faith &amp; restoration resources</a>
       </div>
-
-      <div class="grid-3col">
-
-        <div class="blog-card">
-          <div class="blog-card-image"></div>
-          <div class="blog-card-body">
-            <p class="blog-card-overline">Engagement</p>
-            <h2 class="blog-card-heading">Community Mobilisation</h2>
-            <p class="blog-card-sub">Workshops, sermons and demonstration plots to show FMNR in action and build congregational momentum for restoration.</p>
-          </div>
-        </div>
-
-        <div class="blog-card">
-          <div class="blog-card-image"></div>
-          <div class="blog-card-body">
-            <p class="blog-card-overline">Training</p>
-            <h2 class="blog-card-heading">Leader Resources</h2>
-            <p class="blog-card-sub">Leader guides, training packs and faith-adapted materials for local use in churches, mosques and faith-based community groups.</p>
-          </div>
-        </div>
-
-        <div class="blog-card">
-          <div class="blog-card-image"></div>
-          <div class="blog-card-body">
-            <p class="blog-card-overline">Impact</p>
-            <h2 class="blog-card-heading">Case Studies</h2>
-            <p class="blog-card-sub">Examples of congregations leading restoration and livelihoods improvements across Sub-Saharan Africa and beyond.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div>
-        <a href="#" class="btn-donate">Contact our partnership team</a>
-      </div>
-
     </div>
   </section>
 
+  <!-- ===================== BREADCRUMB ===================== -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="../partners.html" class="breadcrumb-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All partner types
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================== WHAT WE OFFER ===================== -->
+  <section class="section-white">
+    <div class="section-container">
+      <p class="section-label">How we partner</p>
+      <h2 class="section-h2">Restoring Land and Communities Through Faith</h2>
+      <p class="section-lead">Faith communities are uniquely positioned to drive lasting change — their moral authority, local trust and deep networks reach where other institutions cannot. We equip faith leaders to integrate FMNR into their ministry and mobilise their congregations.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <p class="feature-overline">Mobilisation</p>
+          <h3 class="feature-heading">Community Engagement</h3>
+          <p class="feature-body">Workshops, sermons and demonstration plots help faith communities understand and adopt FMNR. Restoration becomes embedded in the rhythms of congregational life — not a separate project, but an expression of faith.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Training</p>
+          <h3 class="feature-heading">Leader Resources</h3>
+          <p class="feature-body">Faith-adapted training packs, guides and sermon outlines let pastors and imams integrate land stewardship into their teaching. Materials are designed for local languages and oral traditions across Sub-Saharan Africa and beyond.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Networks</p>
+          <h3 class="feature-heading">Faith Network Reach</h3>
+          <p class="feature-body">We work with the World Council of Churches and regional faith networks to scale FMNR rapidly across denominations and traditions — amplifying local champions through connected institutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW WE WORK TOGETHER ===================== -->
+
+  <!-- Strip 1: image left, content right -->
+  <section class="step-strip">
+    <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480-1024x683.jpg'); background-size: cover; background-position: center;"></div>
+    <div class="step-content">
+      <p class="step-number">01</p>
+      <h3 class="step-h3">Walk With Your Community</h3>
+      <p class="step-body">Faith leaders in FMNR programmes don't just teach restoration techniques — they model them. Leaders like Gebregziebeher visit local churches every Sunday, weaving FMNR into the message of creation care and farming households into a network of practice. We help faith partners develop this local champion model and embed it into their pastoral rhythms.</p>
+      <ul class="step-checklist">
+        <li>Landscape assessment with local faith leaders</li>
+        <li>Integration into existing pastoral programmes</li>
+        <li>Identification of farmer champions within congregations</li>
+        <li>Demonstration plot establishment and Sunday teaching</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Strip 2: image right, content left (reversed) -->
+  <section class="step-strip step-strip--reversed">
+    <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/09/AU200-0033-17-scaled.jpg'); background-size: cover; background-position: center;"></div>
+    <div class="step-content step-content--alt">
+      <p class="step-number">02</p>
+      <h3 class="step-h3">Train &amp; Multiply Faith Champions</h3>
+      <p class="step-body">One trained faith leader can reach hundreds of households across a congregation — and through their networks, thousands more. We provide structured training, materials and ongoing support so that faith-based FMNR champions can multiply the movement across their denomination and geography without ongoing dependence on outside expertise.</p>
+      <ul class="step-checklist">
+        <li>Certified faith leader FMNR training</li>
+        <li>Train-the-trainer programmes across denominations</li>
+        <li>Faith-adapted monitoring and accountability frameworks</li>
+        <li>Network convening and inter-denomination exchange</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== VIDEO STRIP ===================== -->
+  <div class="video-strip">
+    <div class="video-inner">
+      <div class="video-embed">
+        <iframe src="https://player.vimeo.com/video/1094686052?title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Faith and FMNR"></iframe>
+      </div>
+      <div class="video-text">
+        <p class="video-label">Faith • Restoration • Hope</p>
+        <h2 class="video-h2">The Role of Faith in Healing the Land</h2>
+        <p class="video-body">In communities across Ethiopia, Niger and Kenya, faith leaders are becoming some of the most effective advocates for FMNR. When restoration is framed as a sacred act — caring for what God has given — adoption rates accelerate and the movement deepens. Watch how faith is transforming landscapes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== STAT TILES ===================== -->
+  <section class="stats-section">
+    <div class="section-stack">
+      <div class="section-heading-wrap">
+        <p class="section-overline">FMNR Impact</p>
+        <h2 class="section-heading">Numbers that speak for themselves</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-tile">
+          <p class="stat-overline">Communities reached</p>
+          <p class="stat-value">2,000+</p>
+          <p class="stat-description">Faith communities engaged in FMNR across Sub-Saharan Africa and South Asia</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Faith networks</p>
+          <p class="stat-value">40+</p>
+          <p class="stat-description">Denominational and inter-faith networks carrying FMNR into local congregation programmes</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Adoption rate</p>
+          <p class="stat-value">5–8×</p>
+          <p class="stat-description">Faster FMNR adoption where faith champions lead compared to non-faith extension approaches</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Cost per hectare</p>
+          <p class="stat-value">$6</p>
+          <p class="stat-description">Average restoration cost per hectare through FMNR — delivered at scale through faith networks</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PARTNER STORIES ===================== -->
+  <section class="section-tinted">
+    <div class="section-container">
+      <div class="stories-header">
+        <p class="section-label">From the field</p>
+        <h2 class="section-h2">Faith Partner Stories</h2>
+      </div>
+      <div class="grid-3col">
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Malawi_day1_151.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Ethiopia</p>
+            <h3 class="story-heading">Gebregziebeher — "Tony the Second"</h3>
+            <p class="story-body">A local faith leader in Ethiopia so inspired by Tony Rinaudo's work that he became known as "Tony the Second" — visiting congregations every Sunday to teach FMNR and mobilise farmers across his region.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2026/03/D395-0940-089-scaled.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Niger</p>
+            <h3 class="story-heading">World Council of Churches FMNR Programme</h3>
+            <p class="story-body">The World Council of Churches partnered to embed FMNR within its existing African member churches — reaching communities across West Africa through trusted denominational structures that no NGO programme could replicate.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/11/1-Trailor-circa-1983.jpg'); background-size: cover; background-position: center top;"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Kenya</p>
+            <h3 class="story-heading">DryDev Faith Leader Network</h3>
+            <p class="story-body">In drought-affected regions of Kenya, faith leaders trained through the DryDev programme became the primary vehicle for FMNR adoption — achieving community uptake rates more than five times higher than parallel extension approaches.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PARTNER RESOURCES ===================== -->
+  <section class="section-tinted">
+    <div class="section-container">
+      <p class="section-label">Resources</p>
+      <h2 class="section-h2">Faith Leader Resources</h2>
+      <p class="section-lead">Practical guides, sermon outlines and community engagement tools for faith leaders and faith-based organisations integrating FMNR.</p>
+      <div class="resource-cards">
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 20 pages</p>
+          <h3 class="resource-title">Faith Leader Guide</h3>
+          <p class="resource-desc">A comprehensive introduction to FMNR for faith leaders — including the theological case for land stewardship, practical steps and how to engage your congregation.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 8 pages</p>
+          <h3 class="resource-title">Sermon Outline Pack</h3>
+          <p class="resource-desc">Six ready-to-use sermon outlines connecting scripture to land stewardship and FMNR — adaptable for Christian, Muslim and interfaith contexts.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 28 pages</p>
+          <h3 class="resource-title">Community Mobilisation Toolkit</h3>
+          <p class="resource-desc">Step-by-step workshop guides, demonstration plot instructions and congregation engagement tools for faith communities introducing FMNR at the grassroots.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-h2">Ready to Mobilise Your Faith Community?</h2>
+      <p class="cta-body">Whether you lead a single congregation or a regional network of thousands, we can help you integrate FMNR into your mission. Restoration is an act of faith — and we'd love to walk alongside you.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn-teal">Talk to our partnerships team</a>
+        <a href="#" class="btn-outline-teal">Download faith leader resources</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RELATED PARTNER TYPES ===================== -->
+  <section class="related-section">
+    <div class="section-container">
+      <h2 class="related-heading">Other Partner Types</h2>
+      <div class="grid-4col">
+        <a href="ngo.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          </div>
+          <p class="related-card-title">NGO &amp; Development</p>
+          <p class="related-card-body">Programme teams and implementation partners embedding FMNR in development work at scale.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="government.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="20" width="18" height="2" rx="1"/><path d="M4 8l8-5 8 5"/><rect x="6" y="8" width="3" height="12"/><rect x="10.5" y="8" width="3" height="12"/><rect x="15" y="8" width="3" height="12"/></svg>
+          </div>
+          <p class="related-card-title">Government &amp; Policy</p>
+          <p class="related-card-body">National programme leaders and policy makers integrating FMNR at restoration scale.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="funders.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <p class="related-card-title">Funders &amp; Investors</p>
+          <p class="related-card-body">Philanthropists, impact investors and bilateral donors funding FMNR at landscape scale.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../partners.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+          </div>
+          <p class="related-card-title">All Partner Types</p>
+          <p class="related-card-body">See all the ways organisations and individuals can partner with FMNR globally.</p>
+          <span class="related-card-cta">View all →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MEGA MENU JS ===================== -->
   <script>
     (function () {
-      document.querySelectorAll('.mega-item').forEach(item => {
-        const panel = item.querySelector('.mega-panel');
+      document.querySelectorAll('.mega-item').forEach(function (item) {
+        var panel = item.querySelector('.mega-panel');
         if (!panel) return;
-        let hideTimer = null;
+        var hideTimer = null;
+
         function show() {
           clearTimeout(hideTimer);
-          document.querySelectorAll('.mega-panel').forEach(p => { if (p !== panel) p.style.display = 'none'; });
+          document.querySelectorAll('.mega-panel').forEach(function (p) {
+            if (p !== panel) p.style.display = 'none';
+          });
           panel.style.display = 'block';
         }
+
         function scheduleHide() {
           clearTimeout(hideTimer);
-          hideTimer = setTimeout(() => { panel.style.display = 'none'; }, 80);
+          hideTimer = setTimeout(function () {
+            panel.style.display = 'none';
+          }, 80);
         }
+
         item.addEventListener('mouseenter', show);
         item.addEventListener('mouseleave', scheduleHide);
         panel.addEventListener('mouseenter', show);
         panel.addEventListener('mouseleave', scheduleHide);
       });
-      document.addEventListener('click', (e) => {
+
+      document.addEventListener('click', function (e) {
         if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
-          document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none');
+          document.querySelectorAll('.mega-panel').forEach(function (p) {
+            p.style.display = 'none';
+          });
         }
       });
     })();
   </script>
-
 </body>
 </html>

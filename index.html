@@ -1285,9 +1285,12 @@
       .video-block-heading { font-size: 48px; }
     }
   </style>
+    <!-- Map stylesheet and Leaflet CSS -->
+  <link rel="stylesheet" href="assets/css/map.css">
+  <link rel="stylesheet" href="assets/css/search.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 </head>
 <body>
-
   <!-- ============================================================ -->
   <!-- HEADER -->
   <!-- ============================================================ -->
@@ -1409,7 +1412,7 @@
 
         <!-- ══════════════ IMPACT ══════════════ -->
         <div class="mega-item">
-          <a href="#" class="nav-link">Impact</a>
+          <a href="impact/index.html" class="nav-link">Impact</a>
           <div class="mega-panel">
             <div class="mega-inner">
               <div class="mega-header-row">
@@ -1612,7 +1615,7 @@
 
       <!-- Actions -->
       <div class="header-actions">
-        <button style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
+        <button id="search-toggle" aria-label="Open search" aria-controls="search-overlay" aria-expanded="false" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round">
             <circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/>
           </svg>
@@ -1899,8 +1902,13 @@
               <img src="https://www.figma.com/api/mcp/asset/96a0a482-40eb-41d5-b00a-d30218de670b" alt="reset" width="14" height="14" />
             </button>
           </div>
-          <div class="map-placeholder-text">
-            <span style="color:#444;font-size:13px">Map placeholder</span>
+          <div id="map"></div>
+          <div class="map-legend" aria-hidden="true">
+            <strong>Countries of impact</strong>
+            <div style="margin-top:6px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="width:12px;height:12px;background:#2da57f;display:inline-block;border-radius:2px;"></span><span>Affected / Restored</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;background:#abb8c3;display:inline-block;border-radius:2px;"></span><span>Reference</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -2224,8 +2232,29 @@
 
   <!-- Motion effects: conservative defaults (GSAP + ScrollTrigger) -->
   <link rel="stylesheet" href="assets/css/motion.css">
+  <!-- Search overlay markup (site-wide) -->
+  <div class="search-overlay" id="search-overlay" aria-hidden="true">
+    <div class="search-overlay-inner">
+      <form class="search-input-wrap" id="search-form" action="resource-hub.html" method="get" autocomplete="off">
+        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M16 16l5 5"></path></svg>
+        <input type="text" id="search-input" name="q" placeholder="Search FMNR resources, topics, regions…" aria-label="Search">
+        <button type="button" class="search-clear" id="search-clear" aria-label="Clear">
+          <svg viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <kbd class="search-kbd">⌘K</kbd>
+      </form>
+      <div class="search-body" id="search-body">
+        <p class="search-section-label">Quick Links</p>
+        <ul class="search-suggestions" id="search-suggestions"><li><a href="partner.html">Partner with FMNR</a></li><li><a href="resource-hub.html">Resource Hub</a></li><li><a href="impact.html">See the Impact</a></li><li><a href="tony-rinaudo.html">Tony Rinaudo</a></li><li><a href="index.html#contact">Get in Touch</a></li></ul>
+      </div>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Leaflet JS and page map script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
+  <script src="assets/js/map.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
   <script src="assets/js/motion-init.js" defer></script>
 
 </body>

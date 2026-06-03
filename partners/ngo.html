@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NGO &amp; Development Partners — FMNR</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
@@ -15,72 +14,1006 @@
       font-weight: 900;
       font-style: normal;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Lato', sans-serif; background: #f9f9f9; overflow-x: hidden; }
-    .section-container { max-width: 1280px; margin: 0 auto; width: 100%; padding: 0 40px; }
-    .header { background: #f9f9f9; height: 118px; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #e8e8e8; }
-    .header .section-container { display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: flex; align-items: center; gap: 2px; text-decoration: none; flex-shrink: 0; }
-    .nav-links { display: flex; align-items: center; gap: 0; }
-    .nav-link { font-family: 'Lato', sans-serif; font-weight: 500; font-size: 18px; color: #00552f; text-decoration: none; padding: 24px; white-space: nowrap; transition: opacity 0.2s; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ===================== HEADER ===================== */
+    .header {
+      background: #f9f9f9;
+      height: 118px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav-link {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #00552f;
+      text-decoration: none;
+      padding: 24px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
     .nav-link:hover { opacity: 0.7; }
-    .nav-link.active { font-weight: 700; border-bottom: 3px solid #00552f; }
-    .header-actions { display: flex; align-items: center; gap: 24px; }
-    .btn-donate { background: #00552f; color: white; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 16px; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; white-space: nowrap; }
+
+    .nav-link.active {
+      font-weight: 700;
+      border-bottom: 3px solid #00552f;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .btn-donate {
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
     .btn-donate:hover { background: #004026; }
+
+    /* ===================== MEGA MENU ===================== */
     .mega-item { position: static; }
-    .mega-panel { position: fixed; left: 0; right: 0; top: 118px; background: white; border-top: 3px solid #00552f; box-shadow: 0 8px 40px rgba(0,0,0,0.13); z-index: 200; display: none; animation: megaFadeIn 0.18s ease; }
-    @keyframes megaFadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+    .mega-panel {
+      position: fixed;
+      left: 0; right: 0;
+      top: 118px;
+      background: white;
+      border-top: 3px solid #00552f;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+      z-index: 200;
+      display: none;
+      animation: megaFadeIn 0.18s ease;
+    }
+
+    @keyframes megaFadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .mega-item:focus-within .mega-panel { display: block; }
-    .mega-inner { max-width: 1280px; margin: 0 auto; padding: 28px 40px 36px; display: flex; flex-direction: column; gap: 20px; }
-    .mega-header-row { display: flex; align-items: center; justify-content: space-between; }
-    .mega-title { font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif; font-weight: 900; font-size: 32px; text-transform: uppercase; color: #111; line-height: 1; }
-    .mega-contact-btn { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; color: #00552f; border: 2px solid #00552f; border-radius: 4px; padding: 8px 20px; text-decoration: none; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
+
+    .mega-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mega-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mega-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .mega-contact-btn {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      border: 2px solid #00552f;
+      border-radius: 4px;
+      padding: 8px 20px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
     .mega-contact-btn:hover { background: #00552f; color: white; }
-    .mega-content-row { display: grid; grid-template-columns: 280px 1fr; gap: 20px; align-items: start; }
-    .mega-featured { border-radius: 12px; overflow: hidden; height: 360px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; text-decoration: none; }
-    .mega-featured::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%); }
-    .mega-featured-content { position: relative; z-index: 1; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
-    .mega-featured-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.45); color: white; font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; width: fit-content; }
-    .mega-featured-title { font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif; font-weight: 900; font-size: 20px; text-transform: uppercase; color: white; line-height: 1.1; }
-    .mega-featured-desc { font-family: 'Lato', sans-serif; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.45; }
-    .mega-featured-cta { display: inline-flex; align-items: center; gap: 6px; background: #00552f; color: white; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 18px; border-radius: 4px; text-decoration: none; width: fit-content; margin-top: 4px; }
+
+    .mega-content-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mega-featured {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 360px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+    }
+
+    .mega-featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
+    }
+
+    .mega-featured-content {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mega-featured-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.45);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    .mega-featured-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .mega-featured-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
+    }
+
+    .mega-featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+    }
+
     .mega-featured-cta:hover { background: #004026; }
+
     .mega-icon-grid { display: grid; gap: 14px; align-content: start; }
     .mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
-    .mega-icon-card { display: flex; flex-direction: column; gap: 8px; padding: 18px 18px 20px; border-radius: 10px; border: 1px solid #e8e8e8; background: #f8f9f8; text-decoration: none; transition: border-color 0.18s, background 0.18s, box-shadow 0.18s; }
-    .mega-icon-card:hover { border-color: #b2d4c0; background: white; box-shadow: 0 2px 14px rgba(0,85,47,0.09); }
-    .mega-icon-wrap { width: 44px; height: 44px; background: #e8eeeb; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .mega-icon-wrap svg { width: 22px; height: 22px; stroke: #00552f; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .mega-icon-title { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; color: #00552f; line-height: 1.2; }
-    .mega-icon-desc { font-family: 'Lato', sans-serif; font-size: 12px; color: #666; line-height: 1.4; }
-    .blog-section { padding: 80px 0; }
-    .blog-section-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 40px; }
-    .blog-section-header { display: flex; flex-direction: column; gap: 8px; }
-    .blog-overline { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #077d57; }
-    .blog-heading { font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif; font-weight: 900; font-size: 56px; text-transform: uppercase; line-height: 1; color: #111; }
-    .blog-card { background: white; border: 1px solid #f0ede5; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; }
-    .blog-card-image { aspect-ratio: 16/9; background: linear-gradient(to bottom, rgba(217,217,217,0) 54%, #b0b0b0 100%); background-color: #e0e0e0; flex-shrink: 0; }
-    .blog-card-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-    .blog-card-overline { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #077d57; }
-    .blog-card-heading { font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif; font-weight: 900; font-size: 22px; line-height: 1.1; text-transform: uppercase; color: #111; }
-    .blog-card-sub { font-family: 'Lato', sans-serif; font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.5; flex: 1; }
-    .btn-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; color: #00552f; text-decoration: none; margin-top: 8px; }
-    .btn-link:hover { text-decoration: underline; }
-    .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    .mega-icon-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 18px 20px;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+      background: #f8f9f8;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+
+    .mega-icon-card:hover {
+      border-color: #b2d4c0;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .mega-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mega-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mega-icon-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      line-height: 1.2;
+    }
+
+    .mega-icon-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      position: relative;
+      height: 540px;
+      display: flex;
+      align-items: flex-end;
+      background: linear-gradient(160deg, #0d1f2a 0%, #1a3a4a 50%, #0d2030 100%);
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 40px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-h1 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 780px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
+      color: #003d22;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: #0ae49e; }
+
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
+    /* ===================== BREADCRUMB ===================== */
+    .breadcrumb { display: none; }
+
+    .breadcrumb-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 40px;
+    }
+
+    .breadcrumb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+    }
+
+    .breadcrumb-link:hover { text-decoration: underline; }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-white { background: white; padding: 80px 0; }
+    .section-tinted { background: #f9f9f9; padding: 80px 0; }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+      margin-bottom: 12px;
+    }
+
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    /* ===================== FEATURE CARDS ===================== */
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #f8f9f8;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .feature-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .feature-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+    }
+
+    /* ===================== STEP STRIPS ===================== */
+    .step-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 460px;
+    }
+
+    .step-strip--reversed { direction: rtl; }
+
+    .step-image { min-height: 380px; }
+
+    .step-content {
+      direction: ltr;
+      padding: 64px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      background: white;
+    }
+
+    .step-content--alt { background: #f9f9f9; }
+
+    .step-number {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      color: #e0ede6;
+      line-height: 1;
+    }
+
+    .step-h3 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.05;
+    }
+
+    .step-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 480px;
+    }
+
+    .step-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-checklist li {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #222;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .step-checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 12px;
+      height: 7px;
+      border-left: 2px solid #00552f;
+      border-bottom: 2px solid #00552f;
+      transform: rotate(-45deg);
+    }
+
+    /* ===================== STAT TILES ===================== */
+    .stats-section {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .stat-tile {
+      background: #111;
+      border-radius: 4px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #abb8c3;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+      margin-bottom: 12px;
+    }
+
+    .stat-description {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #abb8c3;
+      line-height: 1.4;
+    }
+
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* ===================== STORIES ===================== */
+    .stories-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .story-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .story-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    .story-card-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a2e3a 0%, #2d4a5a 100%);
+      flex-shrink: 0;
+    }
+
+    .story-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .story-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .story-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .story-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    /* ===================== CTA ===================== */
+    .cta-section {
+      background: #00552f;
+      padding: 80px 0;
+    }
+
+    .cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .cta-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 720px;
+    }
+
+    .cta-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-outline-teal {
+      display: inline-block;
+      background: transparent;
+      color: #0dfaab;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #0dfaab;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-outline-teal:hover { background: rgba(13,250,171,0.1); }
+
+    /* ===================== RELATED ===================== */
+    .related-section {
+      background: #f9f9f9;
+      padding: 80px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .related-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .related-card {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      border: 1px solid #e8e8e8;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .related-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .related-card-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 4px;
+    }
+
+    .related-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .related-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .related-card-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+    }
+
+    .related-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 6px;
+    }
+
+    /* ===================== PARTNER RESOURCES ===================== */
+    .resource-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .resource-card {
+      background: #f5f5f5;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-decoration: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .resource-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .resource-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .resource-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .resource-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .resource-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .resource-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .resource-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 4px;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .hero-h1 { font-size: 44px; }
+      .section-h2 { font-size: 40px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile { height: auto; min-height: 200px; }
+      .grid-4col { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
       .header { height: 88px; }
       .nav-links { display: none; }
       .mega-panel { top: 88px; }
-      .blog-section { padding: 60px 0; }
-      .blog-section-inner { padding: 0 24px; }
-      .blog-heading { font-size: 36px; }
+
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
+
+      .section-white, .section-tinted, .cta-section, .related-section { padding: 60px 0; }
+      .section-container { padding: 0 24px; }
+      .breadcrumb-inner { padding: 0 24px; }
+      .cta-inner { padding: 0 24px; }
+
+      .section-h2 { font-size: 36px; }
+      .feature-cards { grid-template-columns: 1fr; }
       .grid-3col { grid-template-columns: 1fr; }
+      .grid-4col { grid-template-columns: 1fr; }
+
+      .step-strip { grid-template-columns: 1fr; min-height: auto; }
+      .step-strip--reversed { direction: ltr; }
+      .step-image { min-height: 240px; }
+      .step-content { padding: 40px 24px; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
+      .resource-cards { grid-template-columns: 1fr; }
+
+      .cta-h2 { font-size: 36px; }
+      .related-heading { font-size: 28px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ===================== HEADER ===================== -->
   <header class="header">
     <div class="section-container">
       <a href="../index.html" class="logo">
@@ -96,34 +1029,90 @@
           <defs><clipPath id="clip0_ngo"><rect width="265" height="69" fill="white"/></clipPath></defs>
         </svg>
       </a>
+
       <nav class="nav-links" id="mainNav">
         <div class="mega-item">
           <a href="../partners.html" class="nav-link active">Partner</a>
           <div class="mega-panel">
             <div class="mega-inner">
-              <div class="mega-header-row"><h2 class="mega-title">Partner with Us</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div>
+              <div class="mega-header-row">
+                <h2 class="mega-title">Partner with Us</h2>
+                <a href="/contact/" class="mega-contact-btn">Contact us</a>
+              </div>
               <div class="mega-content-row">
                 <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1a3a25 0%,#2d6040 50%,#3a7a52 100%)">
-                  <div class="mega-featured-content"><span class="mega-featured-badge">Featured</span><p class="mega-featured-title">Scaling FMNR Across Sub-Saharan Africa</p><p class="mega-featured-desc">See how faith networks and NGOs are driving landscape restoration.</p><span class="mega-featured-cta">Explore →</span></div>
+                  <div class="mega-featured-content">
+                    <span class="mega-featured-badge">Featured</span>
+                    <p class="mega-featured-title">Scaling FMNR Across Sub-Saharan Africa</p>
+                    <p class="mega-featured-desc">See how faith networks and NGOs are driving landscape restoration.</p>
+                    <span class="mega-featured-cta">Explore →</span>
+                  </div>
                 </a>
                 <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="faith-based.html" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><p class="mega-icon-title">Faith-Based Partners</p><p class="mega-icon-desc">Churches, pastors and faith network leaders</p></a>
-                  <a href="ngo.html" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><p class="mega-icon-title">NGOs &amp; Development Orgs</p><p class="mega-icon-desc">Programme teams and implementation partners</p></a>
-                  <a href="government.html" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="20" width="18" height="2" rx="1"/><path d="M4 8l8-5 8 5"/><rect x="6" y="8" width="3" height="12"/><rect x="10.5" y="8" width="3" height="12"/><rect x="15" y="8" width="3" height="12"/></svg></div><p class="mega-icon-title">Governments &amp; Policy</p><p class="mega-icon-desc">National programme leaders and policy makers</p></a>
-                  <a href="funders.html" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><p class="mega-icon-title">Funders &amp; Investors</p><p class="mega-icon-desc">Philanthropists, impact investors and grant-makers</p></a>
+                  <a href="faith-based.html" class="mega-icon-card">
+                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+                    <p class="mega-icon-title">Faith-Based Partners</p>
+                    <p class="mega-icon-desc">Churches, pastors and faith network leaders</p>
+                  </a>
+                  <a href="ngo.html" class="mega-icon-card">
+                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+                    <p class="mega-icon-title">NGOs &amp; Development Orgs</p>
+                    <p class="mega-icon-desc">Programme teams and implementation partners</p>
+                  </a>
+                  <a href="government.html" class="mega-icon-card">
+                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="20" width="18" height="2" rx="1"/><path d="M4 8l8-5 8 5"/><rect x="6" y="8" width="3" height="12"/><rect x="10.5" y="8" width="3" height="12"/><rect x="15" y="8" width="3" height="12"/></svg></div>
+                    <p class="mega-icon-title">Governments &amp; Policy</p>
+                    <p class="mega-icon-desc">National programme leaders and policy makers</p>
+                  </a>
+                  <a href="funders.html" class="mega-icon-card">
+                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                    <p class="mega-icon-title">Funders &amp; Investors</p>
+                    <p class="mega-icon-desc">Philanthropists, impact investors and grant-makers</p>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="mega-item"><a href="../adopt.html" class="nav-link">Adopt</a><div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Adopt FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div></div>
-        <div class="mega-item"><a href="#" class="nav-link">Impact</a><div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Our Impact</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div></div>
-        <div class="mega-item"><a href="../resource-hub.html" class="nav-link">Resource Hub</a><div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Resource Hub</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div></div>
-        <div class="mega-item"><a href="../blog.html" class="nav-link">Stories</a><div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Stories</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div></div>
-        <div class="mega-item"><a href="#" class="nav-link">About</a><div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">About FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div></div>
+        <div class="mega-item">
+          <a href="../adopt.html" class="nav-link">Adopt</a>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Adopt FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+        </div>
+        <div class="mega-item">
+          <a href="../impact/index.html" class="nav-link">Impact</a>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Our Impact</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+        </div>
+        <div class="mega-item">
+          <a href="../resource-hub.html" class="nav-link">Resource Hub</a>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Resource Hub</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+        </div>
+        <div class="mega-item">
+          <a href="../blog.html" class="nav-link">Stories</a>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Stories</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
+        </div>
+        <div class="mega-item">
+          <a href="#" class="nav-link">About</a>
+          <div class="mega-panel">
+            <div class="mega-inner">
+              <div class="mega-header-row"><h2 class="mega-title">About FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div>
+              <div class="mega-content-row">
+                <a href="../tony-rinaudo.html" class="mega-featured" style="background:linear-gradient(160deg,#1e1e2e 0%,#2e3050 50%,#3a3d65 100%)">
+                  <div class="mega-featured-content"><span class="mega-featured-badge">Featured</span><p class="mega-featured-title">Tony Rinaudo — The Forest Maker</p><p class="mega-featured-desc">The story of the man behind the global FMNR movement.</p><span class="mega-featured-cta">Read his story →</span></div>
+                </a>
+                <div class="mega-icon-grid mega-icon-grid--2x2">
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><p class="mega-icon-title">About FMNR</p><p class="mega-icon-desc">The technique and movement explained</p></a>
+                  <a href="../tony-rinaudo.html" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><p class="mega-icon-title">Tony Rinaudo</p><p class="mega-icon-desc">Meet the Forest Maker</p></a>
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><p class="mega-icon-title">FMNR &amp; World Vision</p><p class="mega-icon-desc">Our partnership and shared mission</p></a>
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><p class="mega-icon-title">FAQs</p><p class="mega-icon-desc">Frequently asked questions about FMNR</p></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </nav>
+
       <div class="header-actions">
-        <button style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
+        <button style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;" aria-label="Search">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/></svg>
         </button>
         <a href="#" class="btn-donate">Donate</a>
@@ -131,61 +1120,275 @@
     </div>
   </header>
 
-  <section class="blog-section">
-    <div class="blog-section-inner">
-      <div class="blog-section-header">
-        <a href="../partners.html" class="btn-link" style="margin-top:0">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          All partner types
-        </a>
-        <p class="blog-overline" style="margin-top:16px">Partner</p>
-        <h1 class="blog-heading">NGO &amp; Development Partners</h1>
-        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:640px;margin-top:8px;">We collaborate with NGOs to embed FMNR into programmes, combine technical assistance with monitoring, and design scalable models for landscape restoration.</p>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">Partner · NGOs &amp; Development Organisations</p>
+      <h1 class="hero-h1">Embed FMNR Into Your Programme. Watch It Scale.</h1>
+      <p class="hero-subtitle">FMNR integrates into existing development programmes with minimal additional cost — and generates compounding environmental and livelihood gains that strengthen your outcomes year on year.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-teal">Get in touch</a>
+        <a href="#" class="btn-outline-white">Programme resources</a>
       </div>
-      <div class="grid-3col">
-        <div class="blog-card">
-          <div class="blog-card-image"></div>
-          <div class="blog-card-body">
-            <p class="blog-card-overline">Programme</p>
-            <h2 class="blog-card-heading">Programme Design</h2>
-            <p class="blog-card-sub">Co-design FMNR activities that align with your monitoring frameworks, log frames and donor outcomes requirements.</p>
-          </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-image"></div>
-          <div class="blog-card-body">
-            <p class="blog-card-overline">Capacity</p>
-            <h2 class="blog-card-heading">Field Training</h2>
-            <p class="blog-card-sub">On-the-ground training for extension workers and community facilitators, with localised materials and contextual support.</p>
-          </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-card-image"></div>
-          <div class="blog-card-body">
-            <p class="blog-card-overline">Tools</p>
-            <h2 class="blog-card-heading">Monitoring &amp; Evaluation</h2>
-            <p class="blog-card-sub">Practical M&amp;E tools and indicators for FMNR programmes, including satellite-based verification and community data collection.</p>
-          </div>
-        </div>
-      </div>
-      <div><a href="#" class="btn-donate">Partner with us</a></div>
     </div>
   </section>
 
+  <!-- ===================== BREADCRUMB ===================== */
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="../partners.html" class="breadcrumb-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All partner types
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================== WHAT WE OFFER ===================== -->
+  <section class="section-white">
+    <div class="section-container">
+      <p class="section-label">How we partner</p>
+      <h2 class="section-h2">Practical Support for Programme Teams</h2>
+      <p class="section-lead">We work directly with NGO programme teams to co-design FMNR integration, build field capacity and provide the monitoring tools needed to demonstrate outcomes to donors and beneficiaries alike.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <p class="feature-overline">Design</p>
+          <h3 class="feature-heading">Programme Integration</h3>
+          <p class="feature-body">Co-design FMNR activities that align with your log frames, theory of change and donor outcome requirements — so FMNR strengthens your programme rather than duplicating it.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Capacity</p>
+          <h3 class="feature-heading">Field Training &amp; Tools</h3>
+          <p class="feature-body">On-the-ground training for extension staff and community facilitators — including localised manuals, demonstration plot guides and community data collection protocols.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Evidence</p>
+          <h3 class="feature-heading">Monitoring &amp; Evaluation</h3>
+          <p class="feature-body">Practical M&amp;E frameworks and indicators tailored to FMNR — including satellite-based vegetation monitoring, household surveys and farmer-reported outcome data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW WE WORK TOGETHER ===================== -->
+  <section class="step-strip">
+    <div class="step-image" style="background: linear-gradient(160deg, #0d1f2a 0%, #1a3a4a 50%, #0d2534 100%);"></div>
+    <div class="step-content">
+      <p class="step-number">01</p>
+      <h3 class="step-h3">Assess &amp; Align</h3>
+      <p class="step-body">We start by reviewing your programme context — target communities, geography, existing activities and donor requirements — to identify the most effective way to integrate FMNR without disrupting what's working.</p>
+      <ul class="step-checklist">
+        <li>Programme context and landscape review</li>
+        <li>FMNR potential mapping</li>
+        <li>Donor outcome alignment</li>
+        <li>Community readiness assessment</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step-strip step-strip--reversed">
+    <div class="step-image" style="background: linear-gradient(160deg, #1a2e10 0%, #2d4a1a 50%, #1a3010 100%);"></div>
+    <div class="step-content step-content--alt">
+      <p class="step-number">02</p>
+      <h3 class="step-h3">Train &amp; Scale</h3>
+      <p class="step-body">Once integrated, we provide practical training for your field teams and community facilitators, along with monitoring tools to track adoption and impact — giving you the data needed for donor reporting and programme adaptation.</p>
+      <ul class="step-checklist">
+        <li>Field officer and facilitator training</li>
+        <li>Localised training materials</li>
+        <li>Satellite and field monitoring setup</li>
+        <li>Quarterly impact reporting templates</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== STAT TILES ===================== -->
+  <section class="stats-section">
+    <div class="section-stack">
+      <div class="section-heading-wrap">
+        <p class="section-overline">FMNR Impact</p>
+        <h2 class="section-heading">Numbers that speak for themselves</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-tile">
+          <p class="stat-overline">Cost per hectare</p>
+          <p class="stat-value">$6</p>
+          <p class="stat-description">Typical cost to restore one hectare through FMNR — making it feasible at the scale of most NGO programme budgets</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Farmer adoption</p>
+          <p class="stat-value">5–8×</p>
+          <p class="stat-description">Average rate at which FMNR spreads through communities once introduced — driven by visible results within the first season</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Yield improvement</p>
+          <p class="stat-value">+25%</p>
+          <p class="stat-description">Typical crop yield increase reported by farming households after three years of practising FMNR</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Training reach</p>
+          <p class="stat-value">100+</p>
+          <p class="stat-description">NGO programme teams and field staff trained in FMNR facilitation and monitoring across 20+ countries</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NGO STORIES ===================== -->
+  <section class="section-tinted">
+    <div class="section-container">
+      <div class="stories-header">
+        <p class="section-label">From the field</p>
+        <h2 class="section-h2">NGO Partnership Stories</h2>
+      </div>
+      <div class="grid-3col">
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background: linear-gradient(135deg, #1a2e3a 0%, #2d4a5a 100%);"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Food Security</p>
+            <h3 class="story-heading">World Vision's FMNR Integration in the Sahel</h3>
+            <p class="story-body">How World Vision embedded FMNR across food security programmes in Mali and Burkina Faso, reaching 500,000 farming households.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background: linear-gradient(135deg, #1a3a1a 0%, #2d5a2d 100%);"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Livelihoods</p>
+            <h3 class="story-heading">CARE Ethiopia — Farmer-Led Restoration at Scale</h3>
+            <p class="story-body">Partnering with CARE to integrate FMNR into a livelihoods programme, generating measurable income and landscape recovery across 80,000 hectares.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background: linear-gradient(135deg, #2a1a10 0%, #4a3020 100%);"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Climate Resilience</p>
+            <h3 class="story-heading">Tearfund's Climate Adaptation Programming</h3>
+            <p class="story-body">How Tearfund wove FMNR into climate resilience work across East Africa — strengthening outcomes for both people and landscapes.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PARTNER RESOURCES ===================== -->
+  <section class="section-tinted">
+    <div class="section-container">
+      <p class="section-label">Resources</p>
+      <h2 class="section-h2">NGO Resources</h2>
+      <p class="section-lead">Programme integration guides, field training materials and M&amp;E toolkits for NGO and development organisation partners.</p>
+      <div class="resource-cards">
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 24 pages</p>
+          <h3 class="resource-title">Programme Integration Guide</h3>
+          <p class="resource-desc">How to embed FMNR within existing food security, livelihoods or climate resilience programmes — with log frame examples and donor alignment notes.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 36 pages</p>
+          <h3 class="resource-title">Field Training Manual</h3>
+          <p class="resource-desc">Practical guide for extension staff and community facilitators — including demonstration plot setup, farmer coaching protocols and community engagement tools.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 16 pages</p>
+          <h3 class="resource-title">M&amp;E Toolkit</h3>
+          <p class="resource-desc">Monitoring and evaluation framework, outcome indicators and data collection tools adapted for FMNR integration in NGO programmes.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-h2">Ready to Integrate FMNR Into Your Programme?</h2>
+      <p class="cta-body">Whether you're designing a new programme or looking to strengthen an existing one, our team can provide practical support — from initial assessment through to field delivery and M&amp;E.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn-teal">Talk to our NGO partnerships team</a>
+        <a href="#" class="btn-outline-teal">Download the programme guide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RELATED PARTNER TYPES ===================== -->
+  <section class="related-section">
+    <div class="section-container">
+      <h2 class="related-heading">Other Partner Types</h2>
+      <div class="grid-4col">
+        <a href="faith-based.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <p class="related-card-title">Faith-Based Partners</p>
+          <p class="related-card-body">Churches, pastors and faith networks mobilising community-level restoration across Sub-Saharan Africa.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="government.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="20" width="18" height="2" rx="1"/><path d="M4 8l8-5 8 5"/><rect x="6" y="8" width="3" height="12"/><rect x="10.5" y="8" width="3" height="12"/><rect x="15" y="8" width="3" height="12"/></svg>
+          </div>
+          <p class="related-card-title">Government &amp; Policy</p>
+          <p class="related-card-body">National programme leaders and policy makers integrating FMNR into restoration and climate strategies.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="funders.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <p class="related-card-title">Funders &amp; Investors</p>
+          <p class="related-card-body">Philanthropists, impact investors and bilateral donors funding FMNR at landscape and national scale.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../partners.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+          </div>
+          <p class="related-card-title">All Partner Types</p>
+          <p class="related-card-body">See all the ways organisations and individuals can partner with FMNR globally.</p>
+          <span class="related-card-cta">View all →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MEGA MENU JS ===================== -->
   <script>
     (function () {
-      document.querySelectorAll('.mega-item').forEach(item => {
-        const panel = item.querySelector('.mega-panel');
+      document.querySelectorAll('.mega-item').forEach(function (item) {
+        var panel = item.querySelector('.mega-panel');
         if (!panel) return;
-        let hideTimer = null;
-        function show() { clearTimeout(hideTimer); document.querySelectorAll('.mega-panel').forEach(p => { if (p !== panel) p.style.display = 'none'; }); panel.style.display = 'block'; }
-        function scheduleHide() { clearTimeout(hideTimer); hideTimer = setTimeout(() => { panel.style.display = 'none'; }, 80); }
+        var hideTimer = null;
+
+        function show() {
+          clearTimeout(hideTimer);
+          document.querySelectorAll('.mega-panel').forEach(function (p) {
+            if (p !== panel) p.style.display = 'none';
+          });
+          panel.style.display = 'block';
+        }
+
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () { panel.style.display = 'none'; }, 80);
+        }
+
         item.addEventListener('mouseenter', show);
         item.addEventListener('mouseleave', scheduleHide);
         panel.addEventListener('mouseenter', show);
         panel.addEventListener('mouseleave', scheduleHide);
       });
-      document.addEventListener('click', (e) => { if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) { document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none'); } });
+
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
+          document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.display = 'none'; });
+        }
+      });
     })();
   </script>
 </body>

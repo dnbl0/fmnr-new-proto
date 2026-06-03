@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tony Rinaudo — FMNR</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
@@ -247,6 +246,124 @@
     .mega-icon-title { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; color: #00552f; line-height: 1.2; }
     .mega-icon-desc { font-family: 'Lato', sans-serif; font-size: 12px; color: #666; line-height: 1.4; }
 
+    /* ===================== BREADCRUMB ===================== */
+    .breadcrumb {
+      display: none;
+    }
+
+    .breadcrumb-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+    }
+
+    .breadcrumb-link:hover { text-decoration: underline; }
+
+    .breadcrumb-sep {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .breadcrumb-current {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* ===================== PAGE HERO (SECONDARY BANNER) ===================== */
+    .page-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 80vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .page-hero-left {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px;
+      gap: 20px;
+    }
+
+    .page-hero-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .page-hero-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .page-hero-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 20px;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      max-width: 420px;
+    }
+
+    .page-hero-right {
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/1017351-W115-0130-049-scaled.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-color: #1a3a25;
+    }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 680px;
+    }
+
     /* ===================== BLOG SECTIONS ===================== */
     .blog-section { padding: 80px 0; }
     .blog-section + .blog-section { border-top: 1px solid #e8e8e8; }
@@ -352,57 +469,65 @@
     .grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     .grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
-    /* ===================== TONY HERO ===================== */
-    .tony-hero {
-      background: #111;
-      padding: 100px 0 80px;
+    /* ===================== TONY WORDS SECTION ===================== */
+    .words-section {
+      background: #f0fff8;
+      padding: 80px 0;
+      border-top: 1px solid #e8e8e8;
     }
 
-    .tony-hero-inner {
+    .words-inner {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 40px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: center;
+      align-items: start;
     }
 
-    .tony-hero-left { display: flex; flex-direction: column; gap: 24px; }
+    .words-left { display: flex; flex-direction: column; gap: 20px; }
 
-    .tony-hero-overline {
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #0dfaab;
-    }
-
-    .tony-hero-heading {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 80px;
-      line-height: 1;
-      text-transform: uppercase;
-      color: white;
-    }
-
-    .tony-hero-tagline {
-      font-family: 'Lato', sans-serif;
-      font-size: 20px;
-      font-style: italic;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.4;
-    }
-
-    .tony-hero-right { display: flex; flex-direction: column; gap: 20px; }
-
-    .tony-hero-body {
+    .words-body {
       font-family: 'Lato', sans-serif;
       font-size: 16px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .lessons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .lessons-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid #c8ead9;
+    }
+
+    .lessons-item:first-child { border-top: 1px solid #c8ead9; }
+
+    .lessons-number {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      line-height: 1;
+      color: #00552f;
+      opacity: 0.3;
+      flex-shrink: 0;
+      width: 40px;
+      padding-top: 2px;
+    }
+
+    .lessons-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(0,0,0,0.7);
     }
 
     /* ===================== APPROACH CARDS ===================== */
@@ -421,11 +546,9 @@
       font-weight: 900;
       font-size: 40px;
       line-height: 1;
-      color: #0dfaab;
+      color: #00552f;
+      opacity: 0.3;
     }
-
-    /* Override approach-number on light bg */
-    .approach-card .approach-number { color: #00552f; opacity: 0.3; }
 
     .approach-heading {
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
@@ -586,7 +709,7 @@
       color: rgba(255,255,255,0.4);
     }
 
-    /* ===================== ABOUT BIO SECTION ===================== */
+    /* ===================== ABOUT BIO ===================== */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -632,6 +755,72 @@
       text-transform: uppercase;
       line-height: 1.1;
       color: #111;
+    }
+
+    /* ===================== MEDIA CARDS ===================== */
+    .media-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.18s, border-color 0.18s;
+    }
+
+    .media-card:hover { box-shadow: 0 4px 20px rgba(0,85,47,0.1); border-color: #b2d4c0; }
+
+    .media-card-thumb {
+      aspect-ratio: 16/9;
+      background-size: cover;
+      background-position: center;
+      background-color: #d4e8db;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-play-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .media-play-icon svg { width: 22px; height: 22px; fill: #00552f; }
+
+    .media-card-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+    .media-card-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .media-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .media-card-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
     }
 
     /* ===================== AWARD CARDS ===================== */
@@ -728,16 +917,18 @@
       .header { height: 88px; }
       .nav-links { display: none; }
       .mega-panel { top: 88px; }
+      .page-hero { grid-template-columns: 1fr; height: auto; }
+      .page-hero-left { padding: 60px 24px 48px; }
+      .page-hero-heading { font-size: 48px; }
+      .page-hero-right { height: 320px; }
       .blog-section { padding: 60px 0; }
       .blog-section-inner { padding: 0 24px; }
       .blog-heading { font-size: 36px; }
       .blog-subheading { font-size: 28px; }
-      .featured-grid, .about-grid, .tony-hero-inner, .tony-cta-inner { grid-template-columns: 1fr; gap: 40px; }
+      .words-inner, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .featured-grid { grid-template-columns: 1fr; }
       .grid-4col { grid-template-columns: 1fr 1fr; }
       .grid-3col { grid-template-columns: 1fr; }
-      .tony-hero { padding: 60px 0; }
-      .tony-hero-heading { font-size: 48px; }
-      .tony-hero-inner, .tony-cta-inner { flex-direction: column; }
       .tl-list { padding: 16px; }
       .tl-left { width: auto; padding: 16px 16px 0; }
       .tl-date { font-size: 14px; width: auto; white-space: nowrap; }
@@ -746,6 +937,8 @@
       .tl-row { min-height: 0; }
       .tony-quote-text { font-size: 20px; }
       .tony-cta-heading { font-size: 32px; }
+      .tony-cta-inner { flex-direction: column; }
+      .section-h2 { font-size: 36px; }
     }
   </style>
 </head>
@@ -798,7 +991,7 @@
         </div>
 
         <div class="mega-item">
-          <a href="#" class="nav-link">Impact</a>
+          <a href="impact/index.html" class="nav-link">Impact</a>
           <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Our Impact</h2><a href="#" class="mega-contact-btn">Contact us</a></div></div></div>
         </div>
 
@@ -846,20 +1039,28 @@
   </header>
 
   <!-- ============================================================ -->
-  <!-- HERO -->
+  <!-- BREADCRUMB -->
   <!-- ============================================================ -->
-  <section class="tony-hero">
-    <div class="tony-hero-inner">
-      <div class="tony-hero-left">
-        <p class="tony-hero-overline">Founder of FMNR</p>
-        <h1 class="tony-hero-heading">Tony Rinaudo</h1>
-        <p class="tony-hero-tagline">The man who refused to give up on the land.</p>
-      </div>
-      <div class="tony-hero-right">
-        <p class="tony-hero-body">Tony Rinaudo arrived in Niger in 1981 as a young Australian agronomist with a mission to fight famine. What he discovered — buried beneath the bare soil — would change the lives of millions of people across the developing world and reshape how the world thinks about land restoration.</p>
-        <p class="tony-hero-body">By recognising that the stumps and roots of long-suppressed trees still lay alive beneath degraded farmland, Tony pioneered Farmer Managed Natural Regeneration (FMNR): a simple, low-cost technique that empowers farmers to regenerate trees on their own land. No saplings. No trucks. No budget. Just knowledge, persistence, and community.</p>
-      </div>
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html" class="breadcrumb-link">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="#" class="breadcrumb-link">About</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Tony Rinaudo</span>
     </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PAGE HERO — SECONDARY BANNER (80vh, heading left / image right) -->
+  <!-- ============================================================ -->
+  <section class="page-hero">
+    <div class="page-hero-left">
+      <p class="page-hero-overline">About · Founder of FMNR</p>
+      <h1 class="page-hero-heading">Tony Rinaudo</h1>
+      <p class="page-hero-tagline">The man who refused to give up on the land — and changed the lives of millions.</p>
+    </div>
+    <div class="page-hero-right" role="img" aria-label="Tony Rinaudo holding his book The Forest Underground"></div>
   </section>
 
   <!-- ============================================================ -->
@@ -891,6 +1092,41 @@
           <p class="approach-body">Real change is contagious. By working with communities rather than for them, Tony's approach spreads farmer to farmer, village to village, country to country — without losing its local roots.</p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- IN HIS OWN WORDS — sourced from fmnrhub.com.au -->
+  <!-- ============================================================ -->
+  <section class="words-section">
+    <div class="words-inner">
+      <div class="words-left">
+        <p class="blog-overline">In his own words</p>
+        <h2 class="section-h2" style="margin-bottom: 8px;">Why FMNR matters</h2>
+        <p class="words-body">While living in Niger Republic, I witnessed firsthand the devastating impact of deforestation and land degradation on the world's most vulnerable people — children, women and poor farm families.</p>
+        <p class="words-body">FMNR was born out of the bitterness of failure using conventional reforestation methods and, I am convinced, as a result of heartfelt prayer to God to intervene. FMNR's subsequent adoption by millions of smallholder farmers transformed broken land and lives and restored hope. Today, the Niger FMNR story inspires regreening movements around the world.</p>
+        <p class="words-body">My shock at seeing people suffering from avoidable hunger and poverty — combined with joy at witnessing how such a simple and low-cost intervention can build resilience and enable vulnerable people to thrive — has galvanised my focus.</p>
+        <p class="words-body">Today I am as passionate as ever promoting FMNR globally in an ambassadorial capacity: creating awareness, advocating for funding, favourable policies and action, and inspiring others to take up the challenge of restoring one billion hectares of degraded land within the next decade.</p>
+        <p style="font-family:'Lato',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#077d57;">— Tony Rinaudo, FMNR Founder</p>
+      </div>
+
+      <div>
+        <p class="blog-overline" style="margin-bottom: 16px;">Three key lessons from Niger</p>
+        <div class="lessons-list">
+          <div class="lessons-item">
+            <span class="lessons-number">01</span>
+            <p class="lessons-text">The power of people to create the future they want by working with nature instead of fighting and destroying it.</p>
+          </div>
+          <div class="lessons-item">
+            <span class="lessons-number">02</span>
+            <p class="lessons-text">The power of nature to self-heal if given a chance and a small helping hand.</p>
+          </div>
+          <div class="lessons-item">
+            <span class="lessons-number">03</span>
+            <p class="lessons-text">The power of movements to rapidly transform landscapes and to change history.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1043,13 +1279,138 @@
   </section>
 
   <!-- ============================================================ -->
-  <!-- TONY IN THE WORLD — PODCASTS -->
+  <!-- MEDIA — FILM, BOOK, TEDX -->
+  <!-- ============================================================ -->
+  <section class="blog-section" style="background: #f9f9f9;">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Tony's story told</p>
+        <h2 class="blog-heading">Film, Book &amp; Talk</h2>
+        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:600px;margin-top:8px;">Tony's life work has been documented in film, published in an award-winning autobiography and shared on one of the world's biggest stages.</p>
+      </div>
+      <div class="grid-3col">
+
+        <a href="https://www.sbs.com.au/ondemand/movie/the-forest-maker/2188955203566" class="media-card" target="_blank" rel="noopener">
+          <div class="media-card-thumb" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/5-scaled.jpg');">
+            <div class="media-play-icon">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-type">Documentary Film</p>
+            <h3 class="media-card-title">The Forest Maker</h3>
+            <p class="media-card-desc">Directed by Volker Schlöndorff. Arriving in Niger in the 1980s, Australian agronomist Tony Rinaudo discovered the ravages of intensive agriculture inherited from the colonial era — and found the world's best-kept secret hidden underground.</p>
+            <span class="btn-link">Watch on SBS On Demand
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://iscast.org/tfu/" class="media-card" target="_blank" rel="noopener">
+          <div class="media-card-thumb" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/TheForestUnderground_Cover.jpg'); background-size: contain; background-repeat: no-repeat; background-color: #e8eeeb;">
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-type">Autobiography · 2022</p>
+            <h3 class="media-card-title">The Forest Underground</h3>
+            <p class="media-card-desc">Tony shares his insights and inspiring life story in <em>The Forest Underground: Hope for a Planet in Crisis</em> — named 2022 Australian Christian Book of the Year.</p>
+            <span class="btn-link">Learn more
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=29bqRTW2aow&t=20s" class="media-card" target="_blank" rel="noopener">
+          <div class="media-card-thumb" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/53162584159_7490424d12_o-scaled.jpg');">
+            <div class="media-play-icon">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+          <div class="media-card-body">
+            <p class="media-card-type">TEDx Sydney</p>
+            <h3 class="media-card-title">TEDx Sydney Talk</h3>
+            <p class="media-card-desc">Tony's TEDx talk highlights this powerful solution, aiming to restore one billion hectares of degraded land and combat climate change — presented to one of the world's most engaged audiences.</p>
+            <span class="btn-link">Watch on YouTube
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VIDEO RESOURCES -->
   <!-- ============================================================ -->
   <section class="blog-section">
     <div class="blog-section-inner">
       <div class="blog-section-header">
+        <p class="blog-overline">Learn more</p>
+        <h2 class="blog-heading">Video Resources</h2>
+        <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:600px;margin-top:8px;">Short films and explainers covering the origins of FMNR, Tony's time in Niger and how the technique works in practice.</p>
+      </div>
+      <div class="grid-4col">
+
+        <a href="https://www.youtube.com/watch?v=p-terQL6RO0&t=1s" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#d4e8db;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">Ecosystem</p>
+            <h4 class="blog-card-heading">Everything is connected</h4>
+            <p class="blog-card-sub">In a balanced ecosystem, people and animals thrive. But when trees are cut down and land is burned, that balance is lost.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=afjVaehQRxg" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#c8ddd0;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">Niger</p>
+            <h4 class="blog-card-heading">Tony's time in Niger</h4>
+            <p class="blog-card-sub">In Niger, Tony's approach transformed barren land — planting 60 million trees across 5 million hectares, benefiting 2.5 million people.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=afjVaehQRxg" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#d4e0c8;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">How-to</p>
+            <h4 class="blog-card-heading">Pruning for natural regeneration</h4>
+            <p class="blog-card-sub">A step-by-step guide demonstrating how to practise FMNR — from selecting species to prune through to protecting regrowing trees.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=AjweUDtOrqQ" class="blog-card" target="_blank" rel="noopener">
+          <div class="blog-card-image" style="background-color:#e0d8c4;"></div>
+          <div class="blog-card-body">
+            <p class="blog-card-overline">Origin</p>
+            <h4 class="blog-card-heading">The origin story of FMNR</h4>
+            <p class="blog-card-sub">FMNR is a low-cost land restoration technique used to combat poverty and hunger amongst poor subsistence farmers by increasing food and timber production.</p>
+            <span class="btn-link">Watch
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TONY IN THE WORLD — PODCASTS & ARTICLES -->
+  <!-- ============================================================ -->
+  <section class="blog-section" style="background:#f9f9f9;">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
         <p class="blog-overline">Tony in the world</p>
-        <h2 class="blog-heading">Podcasts, Articles &amp; Recognition</h2>
+        <h2 class="blog-heading">Podcasts &amp; Articles</h2>
         <p style="font-family:'Lato',sans-serif;font-size:16px;color:rgba(0,0,0,0.6);line-height:1.5;max-width:600px;margin-top:8px;">Tony's work has moved from dusty roads in Niger into podcasts, documentaries, global media, awards platforms and restoration conversations across the world.</p>
       </div>
 
@@ -1153,7 +1514,7 @@
             <div class="blog-card-body">
               <p class="blog-card-overline">Deutsche Welle</p>
               <h4 class="blog-card-heading">The Forest Maker portrayed</h4>
-              <p class="blog-card-sub">Coverage of Volker Schlondorff's documentary about Tony's work and the promise of FMNR at global scale.</p>
+              <p class="blog-card-sub">Coverage of Volker Schlöndorff's documentary about Tony's work and the promise of FMNR at global scale.</p>
               <span class="btn-link">Read
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>

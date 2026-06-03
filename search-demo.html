@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Search Overlay — Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{font-family:Inter,system-ui,Arial;margin:0}
+    .search-trigger{position:fixed;right:18px;top:18px;z-index:20}
+    .search-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:30}
+    .search-panel{background:#fff;padding:20px;border-radius:10px;max-width:720px;width:90%}
+    .demo-wrap{max-width:1280px;margin:40px auto;padding:0 20px}
+  </style>
+</head>
+<body>
+  <div class="demo-wrap">
+    <h1>Search Overlay (Demo)</h1>
+    <p>Click the search icon to open the overlay. Try pressing <kbd>/</kbd>.</p>
+  </div>
+
+  <button class="search-trigger" id="search-toggle" aria-label="Open search">🔍</button>
+
+  <div class="search-overlay" id="search-overlay" role="dialog" aria-hidden="true">
+    <div class="search-panel" role="search">
+      <input id="search-input" type="search" placeholder="Search the site…" style="width:100%;padding:12px;font-size:18px;">
+      <div id="search-results" style="margin-top:12px;color:#333;font-size:14px">No results (static demo)</div>
+      <div style="margin-top:12px;text-align:right"><button id="close-search">Close</button></div>
+    </div>
+  </div>
+
+  <script>
+    var toggle = document.getElementById('search-toggle');
+    var overlay = document.getElementById('search-overlay');
+    var input = document.getElementById('search-input');
+    var closeBtn = document.getElementById('close-search');
+    function openSearch(){ overlay.style.display='flex'; overlay.setAttribute('aria-hidden','false'); input.focus(); }
+    function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); }
+    toggle.addEventListener('click', openSearch);
+    closeBtn.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e){ if(e.key==='/' && document.activeElement!==input){ e.preventDefault(); openSearch(); } if(e.key==='Escape'){ closeSearch(); } });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Interactive Map — Demo</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body{margin:0;font-family:Inter,system-ui,Arial}
+    #leaflet-map{width:100%;height:520px}
+    .demo-wrap{max-width:1280px;margin:40px auto;padding:0 20px}
+  </style>
+</head>
+<body>
+  <div class="demo-wrap">
+    <h1>Interactive Map (Demo)</h1>
+  </div>
+  <div id="leaflet-map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Initialize simple Leaflet map centred on Africa with CartoDB Positron
+    var map = L.map('leaflet-map', {scrollWheelZoom:false}).setView([6.5, 20.0], 3);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      maxZoom: 19
+    }).addTo(map);
+
+    var countries = [
+      {name:'Ethiopia', coords:[9.145,40.489673]},
+      {name:'Kenya', coords:[-0.0236,37.9062]},
+      {name:'Uganda', coords:[1.3733,32.2903]},
+      {name:'Zambia', coords:[-13.1339,27.8493]}
+    ];
+    countries.forEach(function(c){
+      L.circleMarker(c.coords,{radius:8,color:'#077D57',fill:true,fillOpacity:0.9}).addTo(map).bindPopup('<strong>'+c.name+'</strong>');
+    });
+  </script>
+</body>
+</html>

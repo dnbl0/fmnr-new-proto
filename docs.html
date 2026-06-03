@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FMNR Hub — Deliverables</title>
+    <link rel="stylesheet" href="https://use.typekit.net/ajf0nww.css">
+    <link href="../design-tokens.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: #1d1d1f;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        /* ── Top Site Header ── */
+        .site-bar {
+            display: flex;
+            align-items: center;
+            padding: 14px 24px;
+            border-bottom: 1px solid #e5e5e5;
+            background: #fff;
+            flex-shrink: 0;
+            gap: 12px;
+        }
+
+        .site-bar h1 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            text-transform: uppercase;
+            color: #1d1d1f;
+            line-height: 1;
+        }
+
+        .site-bar span {
+            font-size: 12px;
+            color: #86868b;
+            margin-left: 4px;
+        }
+
+        .app-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            width: 260px;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid #e5e5e5;
+            background: #fafafa;
+            flex-shrink: 0;
+            padding: 24px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            display: none;
+        }
+
+        .sidebar-search {
+            padding: 0 16px 12px;
+        }
+
+        .sidebar-search input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 13px;
+            background: #fff;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .sidebar-search input:focus {
+            border-color: var(--color-green);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 8px;
+        }
+
+        .nav-group {
+            margin-bottom: 4px;
+        }
+
+        .nav-group-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #86868b;
+            padding: 10px 12px 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 6px;
+            user-select: none;
+        }
+
+        .nav-group-label:hover {
+            background: #f0f0f0;
+        }
+
+        .nav-group-label svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.2s;
+        }
+
+        .nav-group.collapsed .nav-group-label svg {
+            transform: rotate(-90deg);
+        }
+
+        .nav-group.collapsed .nav-group-items {
+            display: none;
+        }
+
+        .nav-group-items {
+            padding: 0 0 4px;
+        }
+
+        .nav-item {
+            display: block;
+            font-size: 13px;
+            color: #4a4a4a;
+            padding: 7px 12px 7px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-item:hover {
+            background: #f0f0f0;
+            color: #1d1d1f;
+        }
+
+        .nav-item.active {
+            background: rgba(7, 125, 87, 0.08);
+            color: var(--color-green);
+            font-weight: 600;
+        }
+
+        .nav-subgroup {
+            margin-top: 4px;
+        }
+
+        .nav-subgroup-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1d1d1f;
+            padding: 6px 12px 2px 12px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-subgroup .nav-item {
+            padding-left: 28px;
+            font-size: 12.5px;
+        }
+
+        /* ── Main Panel ── */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .main-header {
+            display: none;
+        }
+
+        .main-header-actions {
+            display: none;
+        }
+
+        .tab-bar {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .tab-bar button {
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: #86868b;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+
+        .tab-bar button.active {
+            background: #fff;
+            color: #1d1d1f;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .device-toggle {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .device-toggle button {
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            color: #86868b;
+        }
+
+        .device-toggle button.active {
+            background: #fff;
+            color: #1d1d1f;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .device-toggle button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .open-tab-btn {
+            font-size: 13px;
+            font-weight: 700;
+            color: #FF6600;
+            background: #F6DFD0;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 14px;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .open-tab-btn:hover {
+            background: #f0cebc;
+        }
+
+        /* ── Content Area ── */
+        .main-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            background: #f5f5f7;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0 0;
+            gap: 12px;
+        }
+
+        .content-toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Preview panel */
+        .preview-panel {
+            flex: 1;
+            background: #fafafa;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-header {
+            width: 100%;
+            padding: 40px 48px 24px;
+            flex-shrink: 0;
+        }
+
+        .preview-meta {
+            margin-bottom: 20px;
+            max-width: 640px;
+        }
+
+        .preview-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+            gap: 12px;
+        }
+
+        .preview-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .preview-frame-wrap {
+            width: 100%;
+            padding: 0 48px 48px;
+            flex-shrink: 0;
+        }
+
+        .preview-frame-wrap iframe {
+            width: 100%;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            background: #fff;
+            display: block;
+            transition: width 0.3s ease;
+            min-height: 400px;
+        }
+
+        .preview-frame-wrap iframe.mobile-view {
+            width: min(390px, 100%);
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .preview-header {
+                padding: 24px 20px 16px;
+            }
+
+            .preview-frame-wrap {
+                padding: 0 20px 32px;
+            }
+        }
+
+        /* Docs & WP panels */
+        .docs-panel,
+        .wp-panel {
+            flex: 1;
+            background: #fafafa;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .docs-panel.visible,
+        .wp-panel.visible {
+            display: block;
+        }
+
+        /* ── Welcome Screen ── */
+        .welcome {
+            flex: 1;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            overflow-y: auto;
+        }
+
+        .welcome.hidden {
+            display: none;
+        }
+
+        .welcome-inner {
+            max-width: 640px;
+            text-align: center;
+        }
+
+        .welcome-inner h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 4vw, 48px);
+            text-transform: uppercase;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .welcome-inner p {
+            font-size: 15px;
+            color: #6e6e73;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .welcome-inner .instructions {
+            margin-top: 32px;
+            padding: 24px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .welcome-inner .instructions h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #86868b;
+            margin-bottom: 12px;
+        }
+
+        .welcome-inner .instructions li {
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.8;
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .welcome-inner .instructions li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-green);
+        }
+
+        /* ── Mobile hamburger ── */
+        .hamburger {
+            display: none;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .hamburger svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
+
+        .sidebar-close {
+            display: none;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .sidebar-close svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 1000;
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: none;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+                box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+            }
+
+            .sidebar-overlay.visible {
+                display: block;
+            }
+
+            .sidebar-close {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .device-toggle {
+                display: none;
+            }
+
+            .tab-bar button {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .preview-controls {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ── Doc styles (carried over) ── */
+        .doc-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 56px 48px 80px;
+        }
+
+        .doc-header {
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .doc-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-green);
+            background: rgba(7, 125, 87, 0.08);
+            padding: 5px 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .wp-panel .doc-label {
+            color: #21759b;
+            background: rgba(33, 117, 155, 0.1);
+        }
+
+        .doc-title {
+            font-family: var(--font-heading);
+            font-size: clamp(24px, 3vw, 32px);
+            text-transform: uppercase;
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .doc-desc {
+            font-size: 15px;
+            color: #6e6e73;
+            line-height: 1.6;
+            max-width: 640px;
+        }
+
+        .doc-where {
+            font-size: 13px;
+            color: #1d1d1f;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .doc-where span {
+            font-weight: 400;
+            color: #6e6e73;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px 48px;
+        }
+
+        .doc-grid--full {
+            grid-template-columns: 1fr;
+        }
+
+        .doc-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .doc-section h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #86868b;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .doc-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .doc-section li {
+            font-size: 13px;
+            color: #4a4a4a;
+            line-height: 1.6;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .doc-section li:last-child {
+            border-bottom: none;
+        }
+
+        .doc-section li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-green);
+        }
+
+        .wp-panel .doc-section li::before {
+            background: #21759b;
+        }
+
+        .wp-plugin-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #21759b;
+            background: rgba(33, 117, 155, 0.08);
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+        }
+
+        .wp-screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .wp-screenshot-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e5e5e5;
+            background: #fafafa;
+        }
+
+        .wp-screenshot-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .wp-screenshot-item figcaption {
+            font-size: 11px;
+            color: #86868b;
+            padding: 6px 10px;
+            border-top: 1px solid #f0f0f0;
+            line-height: 1.4;
+        }
+
+        .doc-anatomy {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .doc-anatomy-item {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .doc-anatomy-item:last-child {
+            border-bottom: none;
+        }
+
+        .doc-anatomy-tag {
+            font-family: monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-green);
+            min-width: 200px;
+            flex-shrink: 0;
+            line-height: 1.5;
+        }
+
+        .doc-anatomy-role {
+            font-size: 13px;
+            color: #6e6e73;
+            line-height: 1.5;
+        }
+
+        .doc-anatomy-depth-0 .doc-anatomy-tag {
+            padding-left: 0;
+        }
+
+        .doc-anatomy-depth-1 .doc-anatomy-tag {
+            padding-left: 16px;
+        }
+
+        .doc-anatomy-depth-2 .doc-anatomy-tag {
+            padding-left: 32px;
+        }
+
+        .doc-anatomy-depth-1 .doc-anatomy-tag::before {
+            content: "└ ";
+            color: #d0d0d0;
+        }
+
+        .doc-anatomy-depth-2 .doc-anatomy-tag::before {
+            content: "  └ ";
+            color: #d0d0d0;
+        }
+
+        .doc-tokens-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .doc-token {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 10px 14px;
+            background: #fafafa;
+            min-width: 180px;
+        }
+
+        .doc-token-swatch {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .doc-token-swatch.font {
+            background: #1d1d1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .doc-token-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .doc-token-name {
+            font-family: monospace;
+            font-size: 11px;
+            color: #86868b;
+        }
+
+        .doc-token-value {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .doc-table th {
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #86868b;
+            padding: 10px 14px;
+            border-bottom: 2px solid #e5e5e5;
+            background: #fafafa;
+        }
+
+        .doc-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
+
+        .doc-table-wrap {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            max-width: 100%;
+        }
+
+        .cell-tag {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--color-green);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .doc-inner {
+                padding: 32px 20px 60px;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Header -->
+    <div class="site-bar">
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
+        </button>
+        <a href="#" id="site-bar-logo" style="display:flex;align-items:center;text-decoration:none;">
+            <img src="../fmnr-logo-figma.png" alt="FMNR Hub" style="height:28px;width:auto;">
+        </a>
+        <span>Deliverables</span>
+        <a href="../homepage-demo.html" class="open-tab-btn" style="margin-left:auto;">View Functional Prototype</a>
+    </div>
+
+    <!-- App Body -->
+    <div class="app-body">
+
+        <!-- Sidebar overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close sidebar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-filter" placeholder="Search components…" autocomplete="off">
+            </div>
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <div class="nav-group" data-group="pages">
+                    <div class="nav-group-label">Pages <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" href="#homepage" data-url="../homepage-demo.html">Home</a>
+
+                        <div class="nav-subgroup">
+                            <span class="nav-subgroup-label">Partner</span>
+                            <a class="nav-item" href="#partner-with-us" data-url="../partner.html">Partner with FMNR</a>
+                            <a class="nav-item" href="#faith-partners" data-url="../partner-faith-demo.html">Faith-Based
+                                Partners</a>
+                            <a class="nav-item" href="#ngo-partners" data-url="../partner-ngo-demo.html">NGOs</a>
+                            <a class="nav-item" href="#government-partners"
+                                data-url="../partner-government-demo.html">Governments</a>
+                            <a class="nav-item" href="#funder-partners"
+                                data-url="../partner-funder-demo.html">Funders</a>
+                            <a class="nav-item" href="#adopter-partners"
+                                data-url="../partner-adopter-demo.html">Adopters</a>
+                        </div>
+
+                        <div class="nav-subgroup">
+                            <span class="nav-subgroup-label">Adopt</span>
+                            <a class="nav-item" href="#how-fmnr-works" data-url="../adopt-demo.html">How FMNR Works</a>
+                            <a class="nav-item" href="#adopt-fmnr" data-url="../adopt-demo.html">Adopt FMNR</a>
+                            <a class="nav-item" href="#resources" data-url="../resources.html">Resources</a>
+                        </div>
+
+                        <div class="nav-subgroup">
+                            <span class="nav-subgroup-label">Impact</span>
+                            <a class="nav-item" href="#impact-overview" data-url="../impact-demo.html">The Impact of
+                                FMNR</a>
+                            <a class="nav-item" href="#evidence-of-impact" data-url="../impact-demo.html">Evidence of
+                                Impact</a>
+                            <a class="nav-item" href="#impact-stories" data-url="../blog.html">Impact Stories</a>
+                        </div>
+
+                        <div class="nav-subgroup">
+                            <span class="nav-subgroup-label">Resource Hub</span>
+                            <a class="nav-item" href="#resource-hub" data-url="../resources.html">All Resources</a>
+                            <a class="nav-item" href="#resources-research"
+                                data-url="../resources-research.html">Research</a>
+                            <a class="nav-item" href="#resources-country"
+                                data-url="../resources-country.html">Country-Specific Resources</a>
+                            <a class="nav-item" href="#resources-fundamentals"
+                                data-url="../resources-fundamentals.html">FMNR Manual</a>
+                            <a class="nav-item" href="#resources-media" data-url="../resources.html">FMNR Media</a>
+                            <a class="nav-item" href="#resources-ecourse" data-url="../resources-ecourse.html">FMNR
+                                e-Courses</a>
+                            <a class="nav-item" href="#resources-webinar" data-url="../resources.html">FMNR Webinar</a>
+                        </div>
+
+                        <div class="nav-subgroup">
+                            <span class="nav-subgroup-label">Countries</span>
+                            <a class="nav-item" href="#country-template" data-url="../country-page-demo.html">Country
+                                Template</a>
+                            <a class="nav-item" href="#ethiopia" data-url="../ethiopia-demo.html">Ethiopia</a>
+                            <a class="nav-item" href="#kenya" data-url="../kenya-demo.html">Kenya</a>
+                            <a class="nav-item" href="#uganda" data-url="../uganda-demo.html">Uganda</a>
+                            <a class="nav-item" href="#zambia" data-url="../zambia-demo.html">Zambia</a>
+                        </div>
+
+                        <div class="nav-subgroup">
+                            <span class="nav-subgroup-label">Stories</span>
+                            <a class="nav-item" href="#blog" data-url="../blog.html">All Stories</a>
+                            <a class="nav-item" href="#blog-post" data-url="../blog-post.html">Story Category</a>
+                            <a class="nav-item" href="#blog-post-2" data-url="../blog-post.html">Story Category</a>
+                        </div>
+
+                        <div class="nav-subgroup">
+                            <span class="nav-subgroup-label">About</span>
+                            <a class="nav-item" href="#about-fmnr" data-url="../about-fmnr.html">About FMNR</a>
+                            <a class="nav-item" href="#tony-rinaudo" data-url="../tony-rinaudo.html">Tony Rinaudo — The
+                                Forest Maker</a>
+                            <a class="nav-item" href="#contact-fmnr" data-url="../contact-forms-demo.html">Contact
+                                FMNR</a>
+                            <a class="nav-item" href="#fmnr-world-vision" data-url="../homepage-demo.html">FMNR and
+                                World Vision</a>
+                            <a class="nav-item" href="#scaling-projects" data-url="../homepage-demo.html">FMNR Scaling
+                                Projects</a>
+                            <a class="nav-item" href="#tracking-tool" data-url="../homepage-demo.html">FMNR Tracking
+                                Tool</a>
+                            <a class="nav-item" href="#latest-updates" data-url="../blog.html">Latest Updates</a>
+                            <a class="nav-item" href="#fmnr-faqs" data-url="../homepage-demo.html">FMNR FAQs</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-group" data-group="blocks">
+                    <div class="nav-group-label">Blocks <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" href="#mega-menu" data-url="../mega-menu-demo.html">Mega Menu</a>
+                        <a class="nav-item" href="#search" data-url="../search-demo.html">Search</a>
+                        <a class="nav-item" href="#video-hero" data-url="../video-hero-demo.html">Video Hero</a>
+                        <a class="nav-item" href="#image-hero" data-url="../image-hero-demo.html">Image Hero</a>
+                        <a class="nav-item" href="#card-grid" data-url="../card-grid-demo.html">Card Grid</a>
+                        <a class="nav-item" href="#timeline" data-url="../timeline-demo.html">Timeline</a>
+                        <a class="nav-item" href="#split-bio" data-url="../split-bio-demo.html">Split Bio</a>
+                        <a class="nav-item" href="#pillars" data-url="../pillars-demo.html">Numbered Pillars</a>
+                        <a class="nav-item" href="#awards" data-url="../awards-demo.html">Awards Grid</a>
+                        <a class="nav-item" href="#media-cards" data-url="../media-cards-demo.html">Media Grid</a>
+                        <a class="nav-item" href="#map" data-url="../map-demo.html">Interactive Map</a>
+                        <a class="nav-item" href="#stat-stack" data-url="../stat-stack-demo.html">Stat Stack</a>
+                        <a class="nav-item" href="#editorial-band" data-url="../editorial-band-demo.html">Editorial
+                            Band</a>
+                        <a class="nav-item" href="#twin-panels" data-url="../twin-panels-demo.html">Twin Panels</a>
+                        <a class="nav-item" href="#hub-section" data-url="../hub-section-demo.html">Hub Section</a>
+                        <a class="nav-item" href="#stories-carousel" data-url="../stories-carousel-demo.html">Stories
+                            Carousel</a>
+                        <a class="nav-item" href="#story-block" data-url="../story-block-demo.html">Story Block</a>
+                        <a class="nav-item" href="#growth-steps" data-url="../growth-steps-demo.html">Growth Steps</a>
+                        <a class="nav-item" href="#infographic" data-url="../infographic-demo.html">Infographic</a>
+                        <a class="nav-item" href="#intro-strip" data-url="../intro-strip-demo.html">Intro Strip</a>
+                        <a class="nav-item" href="#pull-quote" data-url="../pull-quote-demo.html">Pull Quote</a>
+                        <a class="nav-item" href="#cta-band" data-url="../cta-band-demo.html">CTA Band</a>
+                        <a class="nav-item" href="#data-viz" data-url="../data-viz-demo.html">Country Data Widgets</a>
+                        <a class="nav-item" href="#bar-chart" data-url="../bar-chart-demo.html">Data Visualisations</a>
+                        <a class="nav-item" href="#scroll-animations"
+                            data-url="../scroll-animations-demo.html">Scrolling Effects</a>
+                    </div>
+                </div>
+                <div class="nav-group" data-group="template-parts">
+                    <div class="nav-group-label">Template Parts <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" href="#header-nav" data-url="../mega-menu-demo.html">Header &amp;
+                            Navigation</a>
+                        <a class="nav-item" href="#footer" data-url="../footer-demo.html">Footer</a>
+                    </div>
+                </div>
+                <div class="nav-group" data-group="forms">
+                    <div class="nav-group-label">Forms <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" href="#signup-forms" data-url="../signup-forms-demo.html">Sign-Up Forms</a>
+                        <a class="nav-item" href="#contact-forms" data-url="../contact-forms-demo.html">Contact
+                            Forms</a>
+                    </div>
+                </div>
+                <!-- Core Blocks commented out
+        <div class="nav-group" data-group="core-blocks">
+            <div class="nav-group-label">Core Blocks <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+            <div class="nav-group-items">
+                <a class="nav-item" href="#heading" data-url="../heading-demo.html">Heading</a>
+                <a class="nav-item" href="#body-text" data-url="../body-text-demo.html">Body Text</a>
+                <a class="nav-item" href="#button" data-url="../button-demo.html">Button</a>
+                <a class="nav-item" href="#icon" data-url="../icon-demo.html">Icon</a>
+                <a class="nav-item" href="#image" data-url="../image-demo.html">Image</a>
+                <a class="nav-item" href="#video" data-url="../video-demo.html">Video</a>
+                <a class="nav-item" href="#tag" data-url="../tag-demo.html">Tag</a>
+                <a class="nav-item" href="#stat-number" data-url="../stat-number-demo.html">Stat Number</a>
+                <a class="nav-item" href="#divider" data-url="../divider-demo.html">Divider</a>
+                <a class="nav-item" href="#spacer" data-url="../spacer-demo.html">Spacer</a>
+                <a class="nav-item" href="#form-field" data-url="../form-field-demo.html">Form Field</a>
+                <a class="nav-item" href="#list-item" data-url="../list-item-demo.html">List Item</a>
+            </div>
+        </div>
+        -->
+                <div class="nav-group" data-group="ia">
+                    <div class="nav-group-label">Information Architecture <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" href="#sitemap" data-url="../sitemap-demo.html">Sitemap</a>
+                    </div>
+                </div>
+                <div class="nav-group" data-group="analytics">
+                    <div class="nav-group-label">Analytics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg></div>
+                    <div class="nav-group-items">
+                        <a class="nav-item" href="#analytics" data-url="__analytics__">Analytics Improvements</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Panel -->
+        <div class="main">
+
+            <div class="main-content" id="main-content">
+                <!-- Welcome -->
+                <div class="welcome" id="welcome-screen">
+                    <div class="welcome-inner">
+                        <h1>FMNR Hub<br>Deliverables</h1>
+                        <p>Welcome to the interactive design documentation for the new FMNR Hub website. Browse the
+                            sidebar to explore components, page templates and blocks.</p>
+                        <p style="font-size:13px;">Each component includes a live preview, design documentation, and
+                            WordPress implementation guide.</p>
+                        <div class="instructions">
+                            <h3>How to use</h3>
+                            <ul>
+                                <li>Click any item in the sidebar to load its preview</li>
+                                <li>Switch between <strong>Preview</strong>, <strong>Docs</strong> and
+                                    <strong>WordPress</strong> tabs</li>
+                                <li>Toggle Desktop / Mobile view in the Preview tab</li>
+                                <li>Use the search field to filter components quickly</li>
+                                <li>Share links — the URL updates with each selection</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Preview panel -->
+                <div class="preview-panel" id="preview-panel" style="display:none;">
+                    <div class="preview-header">
+                        <div class="preview-meta">
+                            <span class="doc-label" id="preview-label">Component</span>
+                            <h2 class="doc-title" id="preview-title">Component</h2>
+                            <p class="doc-desc" id="preview-desc"></p>
+                        </div>
+                        <div class="content-toolbar" id="content-toolbar">
+                            <div class="device-toggle" id="device-toggle-inner">
+                                <button class="active" data-view="desktop" aria-label="Desktop view">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                                        <path d="M8 21h8M12 17v4" />
+                                    </svg>
+                                </button>
+                                <button data-view="mobile" aria-label="Mobile view">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="7" y="2" width="10" height="20" rx="2" />
+                                        <path d="M11 18h2" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="content-toolbar-right">
+                                <div class="tab-bar" id="tab-bar">
+                                    <button class="active" data-tab="preview">Preview</button>
+                                    <button data-tab="docs">Docs</button>
+                                    <button data-tab="wordpress">WordPress</button>
+                                </div>
+                                <a class="open-tab-btn" id="open-tab-link" href="#" target="_blank">Open ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-frame-wrap">
+                        <iframe id="preview-iframe" src="about:blank" title="Page preview"></iframe>
+                    </div>
+                </div>
+                <!-- Docs panel -->
+                <div class="docs-panel" id="docs-panel"></div>
+                <!-- WP panel -->
+                <div class="wp-panel" id="wp-panel"></div>
+            </div>
+        </div>
+    </div><!-- /app-body -->
+
+    <script>
+        (function () {
+            // ─── Elements ───
+            var sidebar = document.getElementById('sidebar');
+            var sidebarOverlay = document.getElementById('sidebar-overlay');
+            var sidebarClose = document.getElementById('sidebar-close');
+            var hamburger = document.getElementById('hamburger');
+            var filterInput = document.getElementById('sidebar-filter');
+            var mainTitle = null;
+            // contentToolbar now lives inside preview-panel, no separate toggle needed
+            var tabBar = document.getElementById('tab-bar');
+            var tabBtns = tabBar.querySelectorAll('button');
+            var deviceToggle = document.getElementById('device-toggle-inner');
+            var deviceBtns = deviceToggle.querySelectorAll('button');
+            var openTabLink = document.getElementById('open-tab-link');
+            var welcomeScreen = document.getElementById('welcome-screen');
+            var previewPanel = document.getElementById('preview-panel');
+            var previewTitle = document.getElementById('preview-title');
+            var previewDesc = document.getElementById('preview-desc');
+            var previewLabel = document.getElementById('preview-label');
+            var iframe = document.getElementById('preview-iframe');
+            var docsPanel = document.getElementById('docs-panel');
+            var wpPanel = document.getElementById('wp-panel');
+            var navItems = document.querySelectorAll('.nav-item');
+            var navGroups = document.querySelectorAll('.nav-group-label');
+
+            // ─── Mobile drawer ───
+            function openSidebar() { sidebar.classList.add('open'); sidebarOverlay.classList.add('visible'); }
+            function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('visible'); }
+            hamburger.addEventListener('click', openSidebar);
+
+            // ─── Logo click → welcome screen ───
+            document.getElementById('site-bar-logo').addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.hash = '';
+            });
+            sidebarOverlay.addEventListener('click', closeSidebar);
+            sidebarClose.addEventListener('click', closeSidebar);
+
+            // ─── Nav group collapse ───
+            navGroups.forEach(function (label) {
+                label.addEventListener('click', function () {
+                    label.parentElement.classList.toggle('collapsed');
+                });
+            });
+
+            // ─── Search filter ───
+            filterInput.addEventListener('input', function () {
+                var q = filterInput.value.toLowerCase();
+                navItems.forEach(function (item) {
+                    var text = item.textContent.toLowerCase();
+                    item.style.display = text.indexOf(q) > -1 ? '' : 'none';
+                });
+                // Show groups that have visible items
+                document.querySelectorAll('.nav-group').forEach(function (g) {
+                    var hasVisible = g.querySelector('.nav-item:not([style*="display: none"])');
+                    g.style.display = hasVisible ? '' : 'none';
+                    if (q && hasVisible) g.classList.remove('collapsed');
+                });
+            });
+
+            // ─── State ───
+            var currentTab = 'preview';
+            var currentUrl = '';
+
+            // ─── Tab switching ───
+            tabBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    tabBtns.forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    currentTab = btn.dataset.tab;
+                    showTab();
+                });
+            });
+
+            function showTab() {
+                if (currentTab === 'preview') {
+                    previewPanel.style.display = 'flex';
+                    docsPanel.classList.remove('visible');
+                    wpPanel.classList.remove('visible');
+                } else if (currentTab === 'docs') {
+                    previewPanel.style.display = 'none';
+                    docsPanel.classList.add('visible');
+                    wpPanel.classList.remove('visible');
+                } else {
+                    previewPanel.style.display = 'none';
+                    docsPanel.classList.remove('visible');
+                    wpPanel.classList.add('visible');
+                }
+            }
+
+            // ─── Device toggle ───
+            deviceBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    deviceBtns.forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var view = btn.dataset.view;
+                    iframe.className = view === 'mobile' ? 'mobile-view' : '';
+                    if (iframe.src && iframe.src !== 'about:blank') {
+                        var src = iframe.src;
+                        setTimeout(function () { iframe.src = src; }, 50);
+                    }
+                });
+            });
+
+            // ─── Load component ───
+            function loadComponent(hash) {
+                var item = document.querySelector('.nav-item[href="' + hash + '"]');
+                if (!item) return false;
+                var url = item.dataset.url;
+                var title = item.textContent.trim();
+                currentUrl = url;
+
+                // Update UI
+                navItems.forEach(function (n) { n.classList.remove('active'); });
+                item.classList.add('active');
+                welcomeScreen.classList.add('hidden');
+                openTabLink.href = url;
+
+                // Populate preview header
+                var key = docsAlias[title] || title;
+                var data = docs[key];
+                previewTitle.textContent = title;
+                previewDesc.textContent = data ? data.desc : '';
+                previewLabel.textContent = data ? data.label : 'Component';
+
+                // Load iframe
+                previewPanel.style.display = 'flex';
+                iframe.className = '';
+                iframe.style.height = '';
+                iframe.src = url;
+                deviceBtns.forEach(function (b) { b.classList.remove('active'); });
+                deviceBtns[0].classList.add('active');
+
+                // Reset to preview tab
+                currentTab = 'preview';
+                tabBtns.forEach(function (b) { b.classList.remove('active'); });
+                tabBtns[0].classList.add('active');
+                docsPanel.classList.remove('visible');
+                wpPanel.classList.remove('visible');
+
+                // Render docs
+                renderDocs(title);
+                renderWP(title);
+
+                // Close mobile drawer
+                closeSidebar();
+                return true;
+            }
+
+            // ─── Hash routing ───
+            function handleHash() {
+                var hash = window.location.hash;
+                if (!hash || hash === '#') {
+                    // Show welcome
+                    welcomeScreen.classList.remove('hidden');
+                    previewPanel.style.display = 'none';
+
+                    mainTitle.textContent = 'FMNR Component Library';
+                    navItems.forEach(function (n) { n.classList.remove('active'); });
+                    docsPanel.classList.remove('visible');
+                    wpPanel.classList.remove('visible');
+                    return;
+                }
+                loadComponent(hash);
+            }
+
+            window.addEventListener('hashchange', handleHash);
+
+            // Nav item clicks
+            navItems.forEach(function (item) {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var hash = item.getAttribute('href');
+                    window.location.hash = hash;
+                });
+            });
+
+            // ─── Iframe load overrides + auto-height ───
+            function sizeIframe() {
+                try {
+                    var d = iframe.contentDocument || iframe.contentWindow.document;
+                    if (!d || !d.body) return;
+                    var h = d.documentElement.scrollHeight || d.body.scrollHeight;
+                    if (h > 100) iframe.style.height = h + 'px';
+                } catch (e) { }
+            }
+
+            iframe.addEventListener('load', function () {
+                if (!iframe.src || iframe.src === 'about:blank') return;
+                try {
+                    var doc = iframe.contentDocument || iframe.contentWindow.document;
+                    if (!doc || !doc.head) return;
+                    // Remove the demo-toolbar-style that adds padding/margin to body
+                    var dts = doc.getElementById('demo-toolbar-style');
+                    if (dts) dts.remove();
+                    var s = doc.createElement('style');
+                    s.id = 'docs-viewer-overrides';
+                    var iframeSrc = iframe.getAttribute('src') || '';
+                    var isDemo = /\-demo\.html/.test(iframeSrc);
+                    var isFullPage = doc.querySelector('script[src*="shared-header"]');
+                    var baseCSS = '[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;} .reveal,.reveal-hero,[class*="reveal-"]{opacity:1!important;transform:none!important;transition:none!important;} html,body{scroll-snap-type:none!important;overflow-x:hidden!important;} #demo-toolbar,.demo-toolbar,.demo-nav,[class*="demo-toolbar"],[id*="demo-toolbar"],.dtb{display:none!important;} body>section:first-of-type,body>.block-section:first-of-type,body>main,body>div:not(#demo-toolbar):not(.demo-toolbar){display:block!important;} .video-hero,.hero,.hero-section{height:680px!important;min-height:0!important;}';
+                    if (!isFullPage) { baseCSS += ' body{padding-top:0!important;margin:0!important;margin-top:0!important;}'; }
+                    s.textContent = baseCSS;
+                    doc.head.appendChild(s);
+                } catch (e) { }
+                // Size after overrides apply, then again after images settle
+                setTimeout(sizeIframe, 150);
+                setTimeout(sizeIframe, 800);
+            });
+
+            // ─── Docs rendering ───
+            // Alias map
+            var docsAlias = {
+                "Video Hero": "Video Hero Banner",
+                "Image Hero": "Image Hero with Overlay",
+                "Timeline": "Timeline Accordion",
+                "Split Bio": "Split Bio Panel",
+                "Numbered Pillars": "Numbered Pillars",
+                "Awards Grid": "Awards Grid",
+                "Media Grid": "Media Cards Grid",
+                "Interactive Map": "Interactive Map",
+                "Stat Stack": "Stat Stack",
+                "Pull Quote": "Pull Quote Band",
+                "CTA Band": "CTA Band",
+                "Scrolling Effects": "Scroll Animations",
+                "Data Visualisations": "Bar Chart",
+                "Country Data Widgets": "Impact Stats",
+                "Header & Navigation": "Mega Menu",
+                "Sign-Up Forms": "Contact & Newsletter",
+                "Contact Forms": "Contact & Newsletter",
+                "Search": "Search",
+                "Homepage": "Homepage",
+                "Impact Overview": "Impact Overview",
+                "Country Page": "Country Page",
+                "How FMNR Works": "How FMNR Works",
+                "Faith Partners": "Faith Partners",
+                "Funder Partners": "Funder Partners",
+                "NGO Partners": "NGO Partners",
+                "Government Partners": "Government Partners",
+                "Footer": "Footer",
+                "Heading": "Heading",
+                "Body Text": "Body Text",
+                "Button": "Button",
+                "Icon": "Icon",
+                "Image": "Image",
+                "Video": "Video",
+                "Tag": "Tag",
+                "Stat Number": "Stat Number",
+                "Divider": "Divider",
+                "Spacer": "Spacer",
+                "Form Field": "Form Field",
+                "List Item": "List Item",
+                "Card Grid": "Card Grid",
+                "Editorial Band": "Editorial Band",
+                "Twin Panels": "Twin Panels",
+                "Hub Section": "Hub Section",
+                "Stories Carousel": "Stories Carousel",
+                "Story Block": "Story Block",
+                "Growth Steps": "Growth Steps",
+                "Intro Strip": "Intro Strip",
+                "Infographic": "Infographic Block",
+                "Mega Menu": "Mega Menu"
+            };
+
+            // Plugin screenshots
+            var wpScreenshots = {
+                "Mega Menu": [
+                    { url: "https://ps.w.org/megamenu/assets/banner-772x250.png", caption: "Max Mega Menu" },
+                    { url: "https://ps.w.org/megamenu/assets/screenshot-3.png", caption: "Mega menu column configuration" }
+                ],
+                "Search": [
+                    { url: "https://ps.w.org/searchwp-live-ajax-search/assets/banner-772x250.png", caption: "SearchWP Live Search" }
+                ],
+                "Contact & Newsletter": [
+                    { url: "https://ps.w.org/wpforms-lite/assets/banner-772x250.png", caption: "WPForms Lite" },
+                    { url: "https://ps.w.org/mailchimp-for-wp/assets/banner-772x250.png", caption: "Mailchimp for WordPress" }
+                ],
+                "Interactive Map": [
+                    { url: "https://ps.w.org/wp-google-maps/assets/banner-772x250.png", caption: "WP Go Maps" }
+                ],
+                "Scroll Animations": [
+                    { url: "https://ps.w.org/templately/assets/banner-772x250.jpg", caption: "Templately" }
+                ],
+                "Image Hero with Overlay": [
+                    { url: "https://ps.w.org/kadence-blocks/assets/banner-772x250.jpg", caption: "Kadence Blocks" }
+                ],
+                "Timeline Accordion": [
+                    { url: "https://ps.w.org/essential-blocks/assets/screenshot-1.png", caption: "Essential Blocks library" }
+                ]
+            };
+
+            // Full docs registry (verbatim from components.html)
+            var docs = {
+                "Video Hero Banner": { label: "Block", desc: "Full-viewport autoplay video with gradient overlay, animated headline and dual CTA buttons.", where: "Homepage", blocks: [{ tag: 'section.hero', role: 'Full-viewport wrapper — position: relative, overflow: hidden', depth: 0 }, { tag: 'video', role: 'Background media — autoplay muted loop, object-fit: cover', depth: 1 }, { tag: '.hero-overlay', role: 'Gradient scrim — rgba black → transparent, ensures text contrast', depth: 1 }, { tag: '.hero-content', role: 'Text layer — absolute centered flex column', depth: 1 }, { tag: 'h1', role: 'Headline — FatFrank uppercase, clamp(40px, 6vw, 96px)', depth: 2 }, { tag: '.btn-group', role: 'CTA pair — primary fill + secondary outline', depth: 2 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Primary Green' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Headings' }, { token: '--font-body', value: 'Lato', type: 'font', label: 'Lato — Body' }, { token: '--color-charcoal', value: '#464646', type: 'color', label: '#464646 — Charcoal' }], behaviour: ["Video autoplays muted and loops on desktop; pauses on mobile to save data", "Dark gradient overlay ensures text readability over any video frame", "Headline animates in with fade-up on page load (not scroll-triggered)", "Two CTA buttons: primary (green fill) and secondary (outline white)", "Responsive: stacks vertically on mobile, text size scales down via clamp()"], technical: ["MP4 source with poster image fallback", "Uses object-fit: cover for full-bleed sizing", "100vh height with min-height fallback for mobile browsers", "Text toggle available in preview modal to inspect video without overlay"], wordpress: { desc: "Replicate using the core Gutenberg Cover block with a video source — no plugins required.", plugins: ["None — Cover block ships with WordPress core"], steps: ["In the page editor, add a Cover block", "Click Upload and select your MP4", "In the block sidebar, set Background Type to Video", "Adjust the Overlay Opacity slider (50–70%)", "Add a Heading and Buttons block inside the Cover", "Set the Cover block alignment to Full Width", "Set Minimum height to 100vh"], technical: ["Video autoplays muted and loops automatically", "Compress MP4 under 10 MB using HandBrake", "Poster image: set a featured image as the loading fallback", "Full-width alignment requires theme support for wide alignment"] } },
+                "Mega Menu": { label: "Block", desc: "Multi-column navigation dropdown on desktop with full-screen hamburger drawer on mobile.", where: "All pages", blocks: [{ tag: 'header.site-header', role: 'Sticky top bar — z-index 1000, white background', depth: 0 }, { tag: 'nav.nav-links', role: 'Top-level nav items — flex row, hover triggers mega panel', depth: 1 }, { tag: '.mega-menu', role: 'Dropdown shell — absolute, full-width, opacity transition', depth: 1 }, { tag: '.mega-col-heading', role: 'Col 1: Section title + description + link', depth: 2 }, { tag: '.mega-col-cards', role: 'Col 2: Stacked nav item cards with icon box', depth: 2 }, { tag: '.mega-card', role: 'Individual nav item — bordered card, icon + text', depth: 3 }, { tag: '.mega-col-feature', role: 'Col 3: Feature card with gradient image', depth: 2 }, { tag: '.mega-backdrop', role: 'Blurred overlay — closes menu on click', depth: 1 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Active states, icons' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Section title' }, { token: '--font-body', value: 'Lato', type: 'font', label: 'Lato — Labels and descriptions' }, { token: '--color-charcoal', value: '#464646', type: 'color', label: '#464646 — Body text' }], behaviour: ["Desktop: hover triggers mega dropdown with columns", "Mobile: hamburger icon triggers full-screen drawer", "Mobile sub-menus use accordion pattern", "Sticky header: nav bar remains fixed on scroll"], technical: ["Pure CSS hover on desktop", "Mobile drawer uses transform: translateX", "Breakpoint: switches at 1024px", "Focus trap enabled when mobile drawer is open"], wordpress: { desc: "Use the free Max Mega Menu plugin with your existing WordPress navigation menu.", plugins: ["Max Mega Menu (free) — wordpress.org/plugins/megamenu"], steps: ["Install and activate Max Mega Menu", "Go to Mega Menu > Menu Themes to set colours and fonts", "Go to Appearance > Menus and open your header menu", "For each top-level item, click the grid icon", "Enable Mega Menu and drag sub-items into columns", "Set column count per dropdown item", "Mobile hamburger toggle is automatic"], technical: ["Works with any theme using wp_nav_menu()", "Column layout configured per nav item", "Sticky header via theme Customizer or Custom CSS", "Mobile breakpoint configurable in plugin settings"] } },
+                "Search": { label: "Block", desc: "Full-screen search overlay with predictive results.", where: "All pages (via navigation bar)", blocks: [{ tag: '.search-trigger', role: 'Icon button — opens overlay', depth: 0 }, { tag: '.search-overlay', role: 'Full-screen fixed panel — backdrop-filter blur', depth: 0 }, { tag: '.search-input', role: 'Text input — autofocused, debounced at 200ms', depth: 1 }, { tag: '.search-results', role: 'Results list — grouped by category', depth: 1 }, { tag: '.result-item', role: 'Individual result — icon + label + description', depth: 2 }, { tag: '.recent-searches', role: 'Shown when input is empty', depth: 1 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Result highlights' }, { token: '--font-body', value: 'Lato', type: 'font', label: 'Lato — Input and results' }], behaviour: ["Click search icon or press '/' to open", "Results filter instantly as user types", "Grouped by category: Pages, Resources, Topics", "Keyboard nav: arrows, Enter, Escape"], technical: ["position: fixed with backdrop-filter blur", "Client-side search against JSON index", "Debounced input (200ms)", "aria-live region announces result count"], wordpress: { desc: "Add instant AJAX search using SearchWP Live Search plugin.", plugins: ["SearchWP Live Search (free) — wordpress.org/plugins/searchwp-live-ajax-search"], steps: ["Install SearchWP Live Search", "Go to SearchWP > Settings", "Add Search block to your header", "Plugin auto-enhances it with live AJAX results", "Style via Additional CSS"], technical: ["Free tier searches all posts and pages", "Pairs with SearchWP Pro for custom post types", "Accessible: keyboard navigation works out of the box"] } },
+                "Contact & Newsletter": { label: "Block", desc: "Split-panel contact form with inline newsletter email capture.", where: "Partner page, footer", blocks: [{ tag: '.contact-section', role: 'Two-column wrapper — 50/50 split', depth: 0 }, { tag: '.contact-form', role: 'Left column — Name, Email, Message + Submit', depth: 1 }, { tag: '.newsletter-panel', role: 'Right column — email-only signup', depth: 1 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Submit buttons' }, { token: '--font-body', value: 'Lato', type: 'font', label: 'Lato — Form labels' }], behaviour: ["Form validates inline on blur", "Submit disabled until valid", "Newsletter shows success tick", "Error states: red border + helper text"], technical: ["HTML5 validation with custom styles", "50/50 split, stacks at 768px", "Honeypot for spam prevention"], wordpress: { desc: "Use WPForms Lite for contact and Mailchimp for WP for newsletter.", plugins: ["WPForms Lite (free)", "Mailchimp for WordPress (free)"], steps: ["Install WPForms Lite, create Simple Contact Form", "Add WPForms block to page", "Install Mailchimp for WP, connect account", "Add MC4WP Form block for newsletter", "Wrap in Columns block for 50/50 layout"], technical: ["WPForms includes honeypot spam protection", "Mailchimp connects via API key", "Form submissions stored in WPForms > Entries"] } },
+                "Interactive Map": { label: "Block / Data Vis", desc: "Leaflet.js interactive map with pin markers and data cards.", where: "Homepage, Impact page", blocks: [{ tag: '.map-section', role: 'Outer wrapper', depth: 0 }, { tag: '#leaflet-map', role: 'Leaflet.js canvas — OpenStreetMap tiles', depth: 1 }, { tag: '.map-marker', role: 'Country pin — custom SVG', depth: 2 }, { tag: '.map-popup', role: 'Data card — stats', depth: 2 }, { tag: '.country-carousel', role: 'Mobile swipeable cards', depth: 1 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Map pins' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Country names' }], behaviour: ["Map centred on Africa", "Custom green pin markers", "Click pin for popup stats card", "Mobile: cards as carousel below map"], technical: ["Leaflet.js 1.9.4 with OpenStreetMap tiles", "14 countries in JS data array", "Custom popup template", "Responsive: map height reduces on mobile"], wordpress: { desc: "Use WP Go Maps — create map and add markers in WordPress admin.", plugins: ["WP Go Maps (free) — wordpress.org/plugins/wp-google-maps"], steps: ["Install WP Go Maps, go to Maps > Add New", "Set centre on Africa and zoom level", "Add Marker for each country with stats", "Upload custom green pin SVG", "Add WP Go Maps block to page", "Set width 100%, height 500px"], technical: ["Free tier uses OpenLayers — no API key", "Marker data stored in WordPress DB", "Rich popups via Description field HTML", "Mobile responsive by default"] } },
+                "Scroll Animations": { label: "Interaction", desc: "8 animation patterns triggered on scroll using GSAP + ScrollTrigger.", where: "All pages", blocks: [{ tag: '[data-animate]', role: 'Observed element', depth: 0 }, { tag: '.fade-up', role: 'Fades in + rises 24px', depth: 1 }, { tag: '.stagger-group > *', role: 'Sequential 80ms delay', depth: 1 }, { tag: '.parallax', role: 'Slower scroll speed', depth: 1 }, { tag: '.scale-in', role: '92% → 100% scale', depth: 1 }, { tag: '.count-up', role: 'Counts 0 → target', depth: 1 }, { tag: '.slide-left / .slide-right', role: '40px off-axis slide', depth: 1 }, { tag: '.bar-fill', role: 'Width 0 → data-pct%', depth: 1 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Bar fills' }, { token: 'duration', value: '0.6s', type: 'size', label: 'Base animation duration' }, { token: 'easing', value: 'cubic-bezier(0.4,0,0.2,1)', type: 'size', label: 'Material easing' }], behaviour: ["Fade-up: slide up 32px and fade in", "Stagger: 80ms delay between items", "Parallax: depth effect on images", "Scale-in: grow from 60% with bounce", "Count-up: numbers animate to target", "Bar chart: width animates to target %"], technical: ["GSAP 3.12.5 + ScrollTrigger", "All trigger once (no replay)", "Custom cubic-bezier easing", "IntersectionObserver fallback for count-up"], wordpress: { desc: "Apply animations using Templately's built-in animation controls.", plugins: ["Templately (free) — wordpress.org/plugins/templately"], steps: ["Install Templately", "Select any block to animate", "Open Templately Animation tab", "Choose entrance effect", "Set Duration and Delay", "Preview in editor"], technical: ["Templately injects lightweight animation library", "Works on any block type", "Animations trigger once on scroll", "Ken Burns: use Kadence Cover block"] } },
+                "Image Hero with Overlay": { label: "Block", desc: "Full-viewport image hero with Ken Burns animation and dark gradient.", where: "Tony Rinaudo page", blocks: [{ tag: 'section.image-hero', role: 'Full-viewport wrapper', depth: 0 }, { tag: 'img.hero-bg', role: 'Background — Ken Burns scale', depth: 1 }, { tag: '.hero-gradient', role: 'Gradient overlay', depth: 1 }, { tag: '.hero-eyebrow', role: 'Label chip — uppercase', depth: 1 }, { tag: 'h1.hero-heading', role: 'Main title — FatFrank', depth: 1 }, { tag: '.hero-cta', role: 'Primary action button', depth: 1 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — CTA button' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Hero title' }, { token: 'ken-burns', value: 'scale(1.08)', type: 'size', label: 'Ken Burns end scale' }], behaviour: ["Image fills 100vh with slow zoom (12s)", "Dark gradient overlay for readability", "Eyebrow label (green pill) above heading", "Heading fades in on page load"], technical: ["CSS @keyframes for Ken Burns", "Gradient: transparent to rgba(0,0,0,0.7)", "100vh with -webkit-fill-available fallback"], wordpress: { desc: "Use Kadence Cover block with built-in Ken Burns option.", plugins: ["Kadence Blocks (free) — wordpress.org/plugins/kadence-blocks"], steps: ["Add Kadence Cover block", "Upload hero image", "Enable Ken Burns animation", "Set Overlay to 60-70%", "Add eyebrow + heading inner blocks", "Set minimum height to 100vh"], technical: ["Kadence Cover Ken Burns is CSS-only", "Gradient overlay in Overlay settings", "Scroll indicator via Custom HTML block"] } },
+                "Timeline Accordion": { label: "Block", desc: "Vertical timeline with expandable year entries.", where: "Tony Rinaudo page", blocks: [{ tag: '.timeline', role: 'Container with left rail', depth: 0 }, { tag: '.timeline-item', role: 'Year entry — click to expand', depth: 1 }, { tag: '.timeline-year', role: 'Year label + toggle', depth: 2 }, { tag: '.timeline-dot', role: 'Circle on rail', depth: 2 }, { tag: '.timeline-content', role: 'Expandable area', depth: 2 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Active dot' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Year' }], behaviour: ["Vertical line connects entries", "Click to expand — accordion", "Smooth height animation", "Entries stagger on scroll"], technical: ["CSS transition on max-height", "Vertical line via ::before", "Reusable for any chronological content"], wordpress: { desc: "Use Essential Blocks Timeline block.", plugins: ["Essential Blocks (free) — wordpress.org/plugins/essential-blocks"], steps: ["Add Essential Blocks Timeline", "Enter year, heading, body per item", "Add optional images", "Style connector line colour to #077D57"], technical: ["Timeline draws connecting line automatically", "For accordion: combine with Accordion block", "All content editable in block editor"] } },
+                "Split Bio Panel": { label: "Block", desc: "50/50 image-text split with role tags and biography.", where: "Tony Rinaudo page", blocks: [{ tag: '.bio-section', role: '50/50 Grid wrapper', depth: 0 }, { tag: '.bio-image-col', role: 'Left — full-bleed image', depth: 1 }, { tag: '.bio-text-col', role: 'Right — padded text', depth: 1 }, { tag: '.bio-tags', role: 'Pill tags', depth: 2 }, { tag: 'h2.bio-name', role: 'Name — FatFrank', depth: 2 }, { tag: '.bio-body', role: 'Description paragraphs', depth: 2 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Tag pills' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Name' }], behaviour: ["Left: large rounded portrait", "Right: tags, name, bio", "Stacks vertically on mobile", "Content fades up on scroll"], technical: ["CSS Grid 50/50, stacks at 768px", "Image border-radius: 16px", "Reusable for any profile"], wordpress: { desc: "Use core Media & Text block for 50/50 split.", plugins: ["None — core block"], steps: ["Add Media & Text block", "Upload portrait photo", "Enable Crop image to fill", "Add Heading + Paragraph blocks", "For tags: use styled Paragraphs"], technical: ["Rounded corners: set Border Radius to 16px", "Add .wp-role-tag class for pill styling", "Supports 50/50, 40/60, 33/66 splits"] } },
+                "Numbered Pillars": { label: "Block", desc: "Three-column numbered feature cards.", where: "Tony Rinaudo page", blocks: [{ tag: '.pillars-grid', role: '3-column CSS Grid', depth: 0 }, { tag: '.pillar-card', role: 'Individual pillar', depth: 1 }, { tag: '.pillar-number', role: 'Large numeral — 72px', depth: 2 }, { tag: 'h3.pillar-heading', role: 'Title', depth: 2 }, { tag: 'p.pillar-body', role: 'Description', depth: 2 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Numeral' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Large numeral' }], behaviour: ["Three cards with large numerals", "Cards stagger-animate on scroll", "Equal height regardless of content", "Single column on mobile"], technical: ["CSS Grid 3 equal columns", "Numeral: heading font ~64px", "Stagger delay: 120ms"], wordpress: { desc: "Use Kadence Info Box in a 3-column Row Layout.", plugins: ["Kadence Blocks (free)"], steps: ["Add Kadence Row Layout, 3 columns", "Add Info Box per column", "Set number as icon/heading prefix", "Set equal height via Row settings", "Add stagger animation via Templately"], technical: ["Row Layout handles responsive breakpoints", "Info Box equalises card heights", "Alternative: Essential Blocks Count Up"] } },
+                "Awards Grid": { label: "Block", desc: "Three-column cards with trophy icons and year badges.", where: "Tony Rinaudo page", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Trophy icon' }], behaviour: ["Cards show icon, year, name, body", "Stagger-animate on scroll", "Hover: subtle lift with shadow", "Responsive: 3 → 2 → 1 columns"], technical: ["CSS Grid with gap", "Icon is inline SVG", "Year shown as pill badge"], wordpress: { desc: "Use Kadence Info Box in a 3-column layout.", plugins: ["Kadence Blocks (free)"], steps: ["Add Row Layout, 3 columns", "Add Info Box per column", "Upload trophy SVG icon", "Use Title for award name", "Add year badge via styled Paragraph"], technical: ["Responsive breakpoints automatic", "Icons from Kadence built-in library", "Hover lift via Custom CSS"] } },
+                "Media Cards Grid": { label: "Block", desc: "Four-column external link cards with thumbnails.", where: "Tony Rinaudo page", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Source label' }], behaviour: ["Cards link to external resources (new tab)", "Shows thumbnail, source, title", "Hover: image scales, card lifts", "4 → 2 → 1 columns responsive"], technical: ["Cards are <a> with target='_blank'", "aspect-ratio container with object-fit cover", "Source label uppercase above title"], wordpress: { desc: "Use Kadence Row Layout with Info Box blocks.", plugins: ["Kadence Blocks (free)"], steps: ["Add Row Layout, 4 columns", "Add Info Box per column", "Set link to open in new tab", "Upload thumbnail image", "Add source label as eyebrow text"], technical: ["Image aspect ratio via Info Box Media settings", "External link icon in button label", "Hover scale via Additional CSS"] } },
+                "Pull Quote Band": { label: "Block", desc: "Full-width coloured band with large quotation and attribution.", where: "Tony Rinaudo, Impact pages", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Band background' }], behaviour: ["Full-bleed green background", "Large italic quote text", "Attribution below", "Fades in on scroll"], technical: ["Background: var(--color-green), white text", "Max-width container inside full-bleed", "Font-size: clamp() responsive"], wordpress: { desc: "Use Cover block with solid green background + inner Quote block.", plugins: ["None — core blocks"], steps: ["Add Cover block, set background #077D57", "Set Full Width alignment", "Add Quote block inside", "Set text to white, size XL"], technical: ["Cover solid colour mode — no image needed", "Quote Citation renders as <cite>", "Responsive text scales automatically"] } },
+                "CTA Band": { label: "Block", desc: "Dark full-width call-to-action with dual buttons.", where: "All pages (before footer)", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Primary button' }, { token: '--color-charcoal', value: '#464646', type: 'color', label: '#1d1d1f — Background' }], behaviour: ["Full-bleed dark background", "Centered heading + body text", "Two CTA buttons", "Content fades up on scroll"], technical: ["Background: #1d1d1f", "Buttons: consistent site-wide styles", "Padding: 96px top/bottom"], wordpress: { desc: "Use Cover block with dark background + inner Heading + Buttons.", plugins: ["None — core blocks"], steps: ["Add Cover block, background #1d1d1f", "Set Full Width", "Add Group inside (max-width 700px)", "Add Heading, Paragraph, Buttons", "Style buttons: primary green, secondary outline"], technical: ["Build once as a Synced Pattern", "Updating pattern updates all pages", "Add Templately Fade Up animation"] } },
+                "Impact Stats": { label: "Data Visualisation", desc: "Animated counting numbers on scroll.", where: "Homepage, Impact, Partner pages", blocks: [{ tag: 'section.stats-band', role: 'Full-bleed green band', depth: 0 }, { tag: '.stats-grid', role: 'Four-column grid', depth: 1 }, { tag: '.stat-number', role: 'Animated counter — rAF loop', depth: 2 }, { tag: '.stat-label', role: 'Metric description', depth: 2 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Band background' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Counter numbers' }], behaviour: ["Numbers animate 0 to target over ~2s", "Triggers once on viewport entry", "Supports M, K, + suffixes", "Labels beneath each number"], technical: ["IntersectionObserver triggers count", "requestAnimationFrame for smooth interpolation", "Background: var(--color-green) with white text"], wordpress: { desc: "Use Essential Blocks Counter in a 4-column layout.", plugins: ["Essential Blocks (free)"], steps: ["Add Columns (4 equal)", "Add Essential Blocks Counter per column", "Set target number and suffix", "Wrap in Group with green background (#077D57)", "Set text colour to white"], technical: ["Counter animates on scroll entry", "Duration configurable per counter", "Responsive: set 2 cols on tablet, 1 on mobile"] } },
+                "Bar Chart": { label: "Data Visualisation", desc: "Animated horizontal bar chart on dark background.", where: "Impact page", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Bar fill' }, { token: '--color-charcoal', value: '#464646', type: 'color', label: '#1d1d1f — Background' }], behaviour: ["Bars animate from 0% to target width", "Triggers on scroll", "Labels left, percentages right", "Staggered delay top to bottom"], technical: ["CSS transition on width (1.2s)", "Dark background with teal bars", "Data in JS array", "IntersectionObserver triggers animation"], wordpress: { desc: "Use Custom HTML block with Chart.js or wpDataTables.", plugins: ["Optional: wpDataTables (free)"], steps: ["Option A: paste chart HTML/JS in Custom HTML block", "Edit data array to update values", "Option B: install wpDataTables", "Create Horizontal Bar chart", "Insert via wpDataTables block"], technical: ["Chart.js loads from CDN", "Wrap in Cover block for dark background", "wpDataTables free supports basic bar charts"] } },
+                "Stat Stack": { label: "Data Visualisation", desc: "Vertical stack of headline statistics with animated numbers.", where: "Country pages, Homepage", blocks: [{ tag: 'section.stat-stack', role: 'Container — max-width 900px', depth: 0 }, { tag: '.stat-stack-item', role: 'Full-width stat row', depth: 1 }, { tag: 'hr.stat-divider', role: '2px rule between items', depth: 1 }, { tag: 'h3.stat-sentence', role: 'Stat sentence — FatFrank', depth: 2 }, { tag: 'span.stat-number', role: 'Animated counter', depth: 3 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Stat number colour' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Stat sentences' }], behaviour: ["Full-width sentences with animated numbers", "Items separated by dark rules", "Numbers count up on scroll", "Items stagger-reveal"], technical: ["IntersectionObserver triggers reveal + count", "requestAnimationFrame with ease-out", "Font-size: clamp(28px, 4vw, 48px)", "Data-driven via data-target attribute"], wordpress: { desc: "Build using stacked Heading blocks with Essential Blocks Counter.", plugins: ["Kadence Blocks (free)", "Essential Blocks (free) — optional for counters"], steps: ["Add Group block (max-width 900px)", "Add Heading blocks per stat", "Add Separator blocks between items", "Set heading font to FatFrank, colour green", "For animated numbers: use Essential Blocks Counter inline"], technical: ["Background: set Group to #f5f5f7", "Separator blocks: set colour #1d1d1f", "Mobile: headings scale automatically", "Static numbers still look great without animation"] } },
+                "Homepage": { label: "Page Template", desc: "Full homepage — video hero, stats, stories, map teaser, newsletter.", where: "Homepage (fmnrhub.com.au)", blocks: [{ tag: '.video-hero', role: 'Full-viewport video hero', depth: 0 }, { tag: '.mission-strip', role: '2-column text section', depth: 0 }, { tag: '.stats-band', role: '4-column animated counters', depth: 0 }, { tag: '.how-it-works', role: '4 step cards', depth: 0 }, { tag: '.map-teaser', role: 'Green band with map', depth: 0 }, { tag: '.stories-carousel', role: 'Scrollable story cards', depth: 0 }, { tag: '.newsletter-band', role: 'Email sign-up', depth: 0 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Stats, map' }, { token: '--color-pear', value: '#D4E84B', type: 'color', label: '#D4E84B — Stat tiles' }, { token: '--font-heading', value: 'FatFrank', type: 'font', label: 'FatFrank — Headings' }], behaviour: ["Hero video autoplays muted", "Stats count up on scroll", "Stories carousel with prev/next", "All sections animate on scroll entry"], technical: ["Video hero: Cover block video", "Stats: Essential Blocks Counter", "Map: inline SVG", "Carousel: CSS scroll-snap"], wordpress: { desc: "Assemble section by section using core + Essential Blocks + Stackable.", plugins: ["Templately (free)", "Essential Blocks (free)", "Stackable (free)"], steps: ["Go to Appearance > Editor > Templates > Front Page", "Add Cover block with video for hero", "Add Columns (4 equal) with Counters for stats", "Add Stackable Carousel for stories", "Add WPForms block for newsletter"], technical: ["Build reusable sections as Synced Patterns", "Templately has compatible section templates", "Essential Blocks Counter handles count-up natively"] } },
+                "Impact Overview": { label: "Page Template", desc: "Impact page — dark hero, global stats, Africa map, 4 dimensions, evidence, stories, CTA.", where: "Impact section", blocks: [{ tag: '.impact-hero', role: 'Dark full-bleed hero', depth: 0 }, { tag: '.global-stats', role: '4-column counters', depth: 0 }, { tag: '.africa-map', role: '2-col with SVG map', depth: 0 }, { tag: '.impact-dimensions', role: '4 dimension cards', depth: 0 }, { tag: '.evidence-band', role: 'Green band with evidence cards', depth: 0 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Evidence band' }, { token: '--color-teal', value: '#0FFBAB', type: 'color', label: '#0FFBAB — Eyebrow, stats' }], behaviour: ["Teal eyebrow + large white heading", "Stats count up on scroll", "Africa map highlights FMNR countries", "Evidence cards on green band"], technical: ["Africa SVG map inline", "Stat counters via IntersectionObserver", "Dimension cards: CSS Grid 2×2"], wordpress: { desc: "Build section by section using Essential Blocks, Custom HTML for map, and core blocks.", plugins: ["Essential Blocks (free)", "Stackable (free)"], steps: ["Create Full Width page", "Cover block (dark) for hero", "Columns (4) with Counters for stats", "Custom HTML block for SVG map", "Columns (2×2) for dimension cards", "Cover block (green) for evidence band"], technical: ["SVG map: paste in Custom HTML block", "Evidence cards: white Group blocks on green Cover", "Templately has matching section templates"] } },
+                "Country Page": { label: "Page Template", desc: "Country data page — split hero, metrics, bar chart, resources, stories.", where: "Resources > Country", blocks: [{ tag: '.country-hero', role: 'Split hero — green/image', depth: 0 }, { tag: '.metrics-strip', role: '4 pear stat tiles', depth: 0 }, { tag: '.impact-breakdown', role: 'Bar chart', depth: 0 }, { tag: '.practice-section', role: '3 icon cards', depth: 0 }, { tag: '.country-resources', role: '3 resource cards', depth: 0 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Hero left' }, { token: '--color-pear', value: '#D4E84B', type: 'color', label: '#D4E84B — Metric tiles' }], behaviour: ["Hero splits: country name + stats left, photo right", "Metrics strip: 4 key numbers", "Bar chart animates on scroll", "Resource cards link to PDFs"], technical: ["Hero: CSS Grid 50/50", "Bar chart: CSS width transition", "Reusable template per country"], wordpress: { desc: "Create reusable Country page template with Custom HTML for bar chart.", plugins: ["Essential Blocks (free)", "Document Library Lite (free)"], steps: ["Create Page Template in Site Editor", "Columns (50/50) for hero", "Columns (4) with pear backgrounds for metrics", "Custom HTML block for bar chart", "Document Library Lite for resources"], technical: ["For scalable approach: create 'Country' custom post type", "Bar chart data editable in Custom HTML block", "Document Library handles PDFs with filtering"] } },
+                "How FMNR Works": { label: "Page Template", desc: "Adopt page — explainer, 4 steps, audience cards, resources, CTA.", where: "Adopt section", blocks: [{ tag: '.adopt-hero', role: 'Split hero — green/image', depth: 0 }, { tag: '.explainer-section', role: 'Video + copy', depth: 0 }, { tag: '.steps-grid', role: '4 numbered steps (2×2)', depth: 0 }, { tag: '.audience-cards', role: '3 audience entry cards', depth: 0 }, { tag: '.resource-preview', role: 'Green resource band', depth: 0 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Hero, steps' }, { token: '--color-teal', value: '#0FFBAB', type: 'color', label: '#0FFBAB — Step numbers' }], behaviour: ["Hero introduces the Adopt journey", "Video explains FMNR method", "4 steps in 2×2 grid", "Audience cards branch visitors"], technical: ["Split hero: Grid 50/50", "Video: YouTube iframe", "Steps: Grid 2×2", "Audience cards: 3-col flex"], wordpress: { desc: "Build with split Cover block, Video/oEmbed, and Columns.", plugins: ["Stackable (free)", "Essential Blocks (free)"], steps: ["Create Full Width page", "Columns (50/50) hero", "Video block or YouTube paste for explainer", "Columns (2×2) for steps", "Columns (3) with Stackable Feature for audience cards", "Cover (green) for resource preview"], technical: ["YouTube auto-embeds when pasting URL", "Step numbers: styled small Paragraph", "Audience card colours differentiate journeys"] } },
+                "Faith Partners": { label: "Page Template", desc: "Faith partner page — cream hero, feature cards, stats, quote, logos, 3-step process, CTA.", where: "Partner > Faith-Based", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Logo band, process' }, { token: '--color-pear', value: '#D4E84B', type: 'color', label: '#D4E84B — Stats' }, { token: 'cream', value: '#f9f6f0', type: 'color', label: '#f9f6f0 — Hero warm tone' }], behaviour: ["Cream hero builds trust for faith communities", "Feature cards address faith motivations", "Partner logos build credibility", "3-step process removes friction"], technical: ["Split hero: Grid 50/50, cream left", "Logo row: flex wrap, grayscale hover", "3-step process: flex on dark green"], wordpress: { desc: "Build with Columns, Stackable Features, and Cover blocks.", plugins: ["Stackable (free)", "Essential Blocks (free)"], steps: ["Create Full Width page", "Columns (50/50) hero — cream Group left", "Columns (3) with Stackable Feature for cards", "Columns (4) with pear Groups for stats", "Columns (50/50) for quote section", "Cover (green) with Gallery for logos", "Cover (green) with Columns (3) for process"], technical: ["Cream (#f9f6f0) — add to theme palette", "Logo grayscale via Additional CSS", "Numbered circles via custom CSS class"] } },
+                "Funder Partners": { label: "Page Template", desc: "Funder page — dark hero, 4 callouts, impact report, 3 tiers, logos, CTA.", where: "Partner > Funders", tokens: [{ token: '--color-teal', value: '#0FFBAB', type: 'color', label: '#0FFBAB — Hero stat highlight' }, { token: '--color-charcoal', value: '#464646', type: 'color', label: '#1d1d1f — Hero background' }], behaviour: ["Dark hero positions FMNR as high-ROI", "4 callouts: cost, countries, years, reach", "3 funding tiers reduce decision friction", "Funder logos build credibility"], technical: ["Dark hero: full-bleed Cover, teal highlight", "Callouts: 4-col minimal", "Tiers: 3-col cards with top-border accents"], wordpress: { desc: "Build with dark Cover, Essential Blocks Counter, and Stackable Pricing.", plugins: ["Essential Blocks (free)", "Stackable (free)", "Document Library Lite (free)"], steps: ["Create Full Width page", "Cover (dark) for hero with teal inline colour", "Columns (4) with Counters for callouts", "Media & Text for impact report", "Columns (3) with Groups for tiers", "Cover (green) with Gallery for logos"], technical: ["Teal highlight: use inline text colour picker", "Tier borders via Additional CSS", "Document Library Lite for report downloads"] } },
+                "NGO Partners": { label: "Page Template", desc: "NGO partner page — image hero, intro strip, pear stats, hub section, 4-step process, Kenya editorial band, CTA.", where: "Partner > NGOs", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Hero, process' }, { token: '--color-teal', value: '#0FFBAB', type: 'color', label: '#0FFBAB — Benefit accents' }], behaviour: ["Hero positions FMNR for NGOs", "2×2 benefits grid", "Countries list builds credibility", "Kenya case study with real numbers", "3-step process to implementation"], technical: ["Split hero: Grid 50/50", "Countries: 3-col flex on dark bg", "Case study: 2-col with stat pills"], wordpress: { desc: "Build with Columns, Document Library Lite, and core blocks.", plugins: ["Stackable (free)", "Document Library Lite (free)", "Essential Blocks (free)"], steps: ["Create Full Width page", "Columns (50/50) green hero", "Columns (2×2) for benefits", "Group (dark) with List blocks for countries", "Media & Text for case study", "Cover (green) with Columns for process", "Document Library Lite for resources"], technical: ["Countries list: fully editable in block editor", "Benefit card borders via Additional CSS", "Document Library handles PDFs with filtering"] } },
+                "Government Partners": { label: "Page Template", desc: "Government partner page — image hero, intro strip, pear stats, Niger editorial band, 4-step policy process, 6 mandate cards, CTA.", where: "Partner > Governments", tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Hero, steps' }, { token: '--color-pear', value: '#D4E84B', type: 'color', label: '#D4E84B — Stat tiles' }, { token: '--color-teal', value: '#0FFBAB', type: 'color', label: '#0FFBAB — Editorial accent' }], behaviour: ["Image hero positions FMNR for policy audiences", "Pear stats: 200M ha, 26 countries, $0.50/tree, 5-10× lower cost", "Niger editorial band: 5M hectares restored", "4-step process: Policy Mapping → Pilot → Extension → Scale", "6 mandate cards: NDC, Agriculture, Biodiversity, Women, Livelihoods, SDGs"], technical: ["Full-bleed hero with scroll-parallax", "Stats: 4-col pear tile grid", "Editorial band: fixed-position image with scrim", "Mandate grid: 3-col at desktop, 2-col at tablet, 1-col mobile"], wordpress: { desc: "Build with Cover, Columns, and Stackable Feature blocks.", plugins: ["Stackable (free)", "Essential Blocks (free)"], steps: ["Create Full Width page", "Cover (full-bleed) for hero", "Columns (4) with pear Groups for stats", "Cover with fixed background for Niger editorial", "Columns (4) with Stackable Feature for process steps", "Columns (3) with Groups for mandate cards"], technical: ["Fixed background Cover = CSS parallax effect", "Mandate card grid: use responsive column settings", "Pear (#D4E84B) added to theme colour palette", "Stats section dark background: add black Group wrapper"] } },
+                "Card Grid": { label: "Block Pattern", desc: "Responsive 1–4 column card grid with six variants.", where: "Multiple pages", blocks: [{ tag: '.cards-grid', role: 'CSS Grid wrapper', depth: 0 }, { tag: '.card', role: 'Base card — <a> tag, hover lift', depth: 1 }, { tag: '.card__media', role: 'Image variant', depth: 2 }, { tag: '.card--icon-light', role: 'Icon on light bg', depth: 1 }, { tag: '.card--icon', role: 'Icon on dark bg', depth: 1 }, { tag: '.card--blog', role: 'Blog variant', depth: 1 }], tokens: [{ token: '--color-green', value: '#077D57', type: 'color', label: '#077D57 — Icon stroke, CTA' }, { token: '--color-teal', value: '#0FFBAB', type: 'color', label: '#0FFBAB — Dark icon stroke' }], behaviour: ["All cards: hover lifts + shadow", "Image cards: photo scales on hover", "Column count via data-cols attribute", "Responsive: 4 → 2 → 1 columns"], technical: ["Base .card is <a> — fully accessible", "Image: absolute fill with overlay", "Variants via BEM modifier classes", "CTA arrow via CSS ::after"], wordpress: { desc: "Use Stackable Image Box for image cards, Feature block for icon variants.", plugins: ["Stackable (free)", "Essential Blocks (free)"], steps: ["Add Columns block (1–4)", "Image cards: Stackable Image Box", "Icon cards: Stackable Feature", "Blog cards: Posts block in Grid layout", "Set responsive breakpoints"], technical: ["Stackable Image Box handles gradient overlay", "Hover effects per-block in Stackable", "Posts block auto-generates from post type", "Build card style as Synced Pattern"] } },
+                "Footer": { label: "Template Part", desc: "Site-wide footer with brand column, 5-column nav, copyright and social icons.", where: "All pages", blocks: [{ tag: 'footer', role: 'Dark background #131313', depth: 0 }, { tag: '.footer-brand', role: 'Logo + description', depth: 1 }, { tag: '.footer-nav', role: '5-column link grid', depth: 1 }, { tag: '.footer-bottom', role: 'Copyright + social icons', depth: 1 }], tokens: [{ token: 'charcoal', value: '#131313', type: 'color', label: '#131313 — Footer background' }], behaviour: ["Brand: white logo + description", "5 nav columns with heading + links", "Bottom: copyright + social icons", "Links highlight teal on hover"], technical: ["Background: #131313", "Grid: repeat(5, 1fr)", "Social icons: inline SVGs", "Stacks at 900px"], wordpress: { desc: "Use Site Editor Footer template part with Columns block.", plugins: ["None — core Site Editor"], steps: ["Go to Appearance > Editor > Template Parts > Footer", "Add Group (dark background #131313)", "Add Columns: brand col + nav columns", "Use Navigation or List blocks for links", "Add Social Icons block"], technical: ["Footer template applies to all pages", "Social Icons block supports many platforms", "White logo: upload white version or CSS filter"] } },
+                "Heading": { label: "Core Block", desc: "FatFrank display heading (H1–H4) with clamp() sizing.", where: "All pages", behaviour: ["H1–H4 levels with responsive sizing", "Uppercase text-transform", "Line-height: 1"], technical: ["Font-family: FatFrank", "H1: clamp(40px,6vw,96px)", "Color: #1d1d1f"], wordpress: { desc: "Use core Heading block with FatFrank loaded via theme.", plugins: ["None — core block"], steps: ["Add Heading block, select level", "Theme loads FatFrank via @font-face", "Size inherits from theme styles"], technical: ["FatFrank enqueued in functions.php", "Clamp() sizing via theme.json", "Uppercase via Global Styles Typography"] } },
+                "Body Text": { label: "Core Block", desc: "Lato paragraph — regular, small, caption variants.", where: "All pages", behaviour: ["Regular: 16px, line-height 1.6", "Small: 14px", "Caption: 12px uppercase"], technical: ["Font-family: Lato", "Max-width on paragraphs for readability"], wordpress: { desc: "Use core Paragraph block — Lato set as body font in theme.", plugins: ["None — core block"], steps: ["Add Paragraph block", "Font inherits from theme", "Adjust size via presets"], technical: ["Lato defined in theme.json", "Line-height set in Global Styles"] } },
+                "Button": { label: "Core Block", desc: "Primary (green), Secondary (outline), Ghost variants.", where: "All pages", behaviour: ["Primary: green fill, white text", "Secondary: green border", "Ghost: text-only with underline"], technical: ["Background: var(--color-green)", "Border-radius: 8px", "Padding: 14px 28px"], wordpress: { desc: "Use core Buttons block with colour presets.", plugins: ["None — core block"], steps: ["Add Buttons block", "Primary: background #077D57", "Secondary: Outline style, green border", "Ghost: Outline, no border, green text"], technical: ["Define presets in theme.json", "Block style variations for each type"] } },
+                "Icon": { label: "Core Block", desc: "Inline SVG from site icon library — scalable, token-coloured.", where: "All pages", behaviour: ["Scalable to any size", "Coloured via currentColor", "Common sizes: 16px, 24px, 48px"], technical: ["Inline SVG elements", "stroke/fill use currentColor", "Consistent viewBox: 0 0 24 24"], wordpress: { desc: "Use Kadence Icon block or Custom HTML for inline SVGs.", plugins: ["Kadence Blocks (free) — for Icon block"], steps: ["Add Kadence Icon block", "Choose from icon library", "Set size and colour", "Or paste SVG in Custom HTML"], technical: ["Kadence includes 1500+ icons", "Custom SVGs work in Custom HTML blocks"] } },
+                "Image": { label: "Core Block", desc: "Responsive image with optional Ken Burns animation.", where: "All pages", behaviour: ["Responsive: max-width 100%", "Optional Ken Burns zoom", "Lazy loading"], technical: ["Standard <img> with srcset", "Ken Burns via CSS @keyframes", "loading='lazy'"], wordpress: { desc: "Use core Image block; Ken Burns via Kadence Cover.", plugins: ["None for basic; Kadence for Ken Burns"], steps: ["Add Image block, upload image", "Set alignment and border-radius", "For Ken Burns: wrap in Kadence Cover"], technical: ["WordPress generates srcset automatically", "Lazy loading enabled by default", "Kadence Cover has Ken Burns toggle"] } },
+                "Video": { label: "Core Block", desc: "Autoplay muted inline video with poster frame.", where: "Homepage, hero sections", behaviour: ["Autoplays muted and loops", "Poster image during load", "Pauses when out of viewport"], technical: ["<video> with autoplay muted loop playsinline", "Object-fit: cover", "IntersectionObserver pauses off-screen"], wordpress: { desc: "Use core Video block or Cover block with video.", plugins: ["None — core blocks"], steps: ["Add Video block, upload MP4", "Enable Autoplay, Loop, Muted", "For background: use Cover block", "Set poster image in block settings"], technical: ["Supports MP4, WebM, OGG", "Autoplay requires muted", "Compress under 10MB for performance"] } },
+                "Tag": { label: "Core Block", desc: "Pill label for categories or dates.", where: "Cards, timelines", behaviour: ["Small uppercase pill shape", "Green, orange, charcoal variants", "Non-interactive label"], technical: ["Display: inline-block", "Padding: 4px 12px, radius: 20px", "Font: 11px uppercase"], wordpress: { desc: "Style with custom class on Paragraph or non-linked Button.", plugins: ["None — custom CSS class"], steps: ["Add Paragraph with tag text", "Add CSS class 'fmnr-tag' in Advanced", "Style via Additional CSS"], technical: ["Define .fmnr-tag pill style", "Create colour variants with modifier classes"] } },
+                "Stat Number": { label: "Core Block", desc: "Animated count-up figure in FatFrank.", where: "Impact sections", behaviour: ["Counts 0 to target on scroll", "Suffix (%, M+, K)", "FatFrank at 48-72px"], technical: ["GSAP or rAF animation", "data-target / data-suffix attributes", "IntersectionObserver triggers once"], wordpress: { desc: "Use Essential Blocks Counter block.", plugins: ["Essential Blocks (free)"], steps: ["Add Counter block", "Set target and suffix", "Style font via Additional CSS", "Set animation duration (2s)"], technical: ["Counter animates on scroll entry", "Suffix field built in", "For static: use styled Heading instead"] } },
+                "Divider": { label: "Core Block", desc: "Horizontal separator in green, orange, teal or grey.", where: "All pages", behaviour: ["Simple horizontal line", "Colour variants", "Provides vertical spacing"], technical: ["<hr> element", "Width: 100% or constrained", "Colour via border-color"], wordpress: { desc: "Use core Separator block with custom colours.", plugins: ["None — core block"], steps: ["Add Separator block", "Choose style: Default, Wide, Dots", "Set colour in block settings"], technical: ["Renders semantic <hr>", "Colour presets in theme.json", "Custom thickness via Additional CSS"] } },
+                "Spacer": { label: "Core Block", desc: "Vertical spacing — XS (16px) through XL (120px).", where: "All pages", behaviour: ["Adds vertical whitespace", "Drag to adjust or type exact px", "Invisible — no visual rendering"], technical: ["Empty <div> with fixed height", "No background or content"], wordpress: { desc: "Use core Spacer block.", plugins: ["None — core block"], steps: ["Add Spacer block", "Set height via drag or sidebar", "Use consistent values: 16, 32, 48, 80, 120px"], technical: ["Renders inline height style", "Override at breakpoints via CSS", "Alternative: use block spacing/margins"] } },
+                "Form Field": { label: "Core Block", desc: "Input elements with consistent styling.", where: "Contact, newsletter", behaviour: ["Label above input", "Focus: green border ring", "Error: red border + helper", "Height: 48px, radius: 8px"], technical: ["Border: 1px solid #e5e5e5", "Focus: border-color var(--color-green)", "Padding: 14px 16px"], wordpress: { desc: "Form fields created within WPForms.", plugins: ["WPForms Lite (free)"], steps: ["Create form in WPForms", "Plugin handles labels, validation, styling", "Add custom CSS for border-radius and focus colour", "Insert form via WPForms block"], technical: ["Style via Additional CSS targeting .wpforms-field input", "Focus colour: border-color #077D57", "WPForms handles validation and accessibility"] } },
+                "List Item": { label: "Core Block", desc: "List item with optional icon — used in hub links and nav.", where: "Hub section, footer", behaviour: ["Icon + text in horizontal row", "Hover: colour change", "Consistent vertical spacing"], technical: ["Flexbox row, gap 12px", "Icon: 20px SVG, currentColor", "Hover transition on colour"], wordpress: { desc: "Use core List block or Kadence Icon List.", plugins: ["Kadence Blocks (free) — for Icon List"], steps: ["For simple: core List block", "For icon + text: Kadence Icon List", "Choose icons, set spacing"], technical: ["Kadence Icon List has built-in icon picker", "Both support links on items", "Consistent spacing via block settings"] } },
+                "Editorial Band": { label: "Block Pattern", desc: "Full-bleed parallax image with gradient scrim and overlay text.", where: "Homepage", behaviour: ["Parallax scroll on image", "Dark gradient for legibility", "Eyebrow + stat headline + body", "Fades up on scroll"], technical: ["GSAP parallax yPercent with scrub", "Gradient: transparent to rgba(0,0,0,0.7)", "Object-fit cover, full-width"], wordpress: { desc: "Use Cover block with fixed background for parallax.", plugins: ["None — core Cover block"], steps: ["Add Cover block with image", "Enable 'Fixed background'", "Set overlay 60-70%", "Add inner blocks: Paragraph, Heading, Paragraph", "Set Full Width"], technical: ["Fixed background = CSS parallax", "For smooth parallax: Templately Pro", "Overlay via built-in controls"] } },
+                "Twin Panels": { label: "Block Pattern", desc: "Two side-by-side image cards with overlay text.", where: "Homepage", behaviour: ["Two equal cards with images", "Dark gradient anchors text", "Hover: image scale", "Stacks on mobile"], technical: ["CSS Grid 2-column", "Image: object-fit cover", "Overlay: gradient bottom", "Stacks at 768px"], wordpress: { desc: "Use Kadence Row Layout with Cover blocks.", plugins: ["Kadence Blocks (free)"], steps: ["Add Row Layout, 2 columns", "Cover block in each", "Set overlay + inner text", "Link via Button blocks"], technical: ["Row Layout handles equal heights", "Hover zoom via Additional CSS", "Responsive stacking automatic"] } },
+                "Hub Section": { label: "Block Pattern", desc: "Split layout — large image left, content with icon links right.", where: "Homepage", behaviour: ["Left: large rounded image", "Right: eyebrow, heading, body, link list", "Stacks on mobile"], technical: ["Flexbox with gap:80px", "Image: radius 16px, cover", "Stacks at 1024px"], wordpress: { desc: "Use core Media & Text block.", plugins: ["None — core block"], steps: ["Add Media & Text, upload image", "Add Paragraph, Heading, List blocks on text side", "Set 50/50 split"], technical: ["Responsive stacking automatic", "For icon links: use Kadence Icon List", "Border-radius via block settings or CSS"] } },
+                "Stories Carousel": { label: "Block Pattern", desc: "Horizontal scrollable story cards with progress bar.", where: "Homepage", behaviour: ["Cards scroll with snap", "Progress bar tracks position", "Prev/next buttons", "3 visible → 2 → 1 responsive"], technical: ["CSS overflow-x scroll + scroll-snap", "Progress from scrollLeft/maxScroll", "JS prev/next handlers"], wordpress: { desc: "Use Kadence Posts Carousel.", plugins: ["Kadence Blocks (free)"], steps: ["Add Kadence Posts block", "Switch to Carousel layout", "Set visible columns: 3/2/1", "Enable navigation arrows"], technical: ["Uses Splide.js — performant", "Filter by category for Stories", "For custom progress bar: Custom HTML below"] } },
+                "Story Block": { label: "Block Pattern", desc: "Full-bleed parallax image with blockquote and CTA.", where: "Homepage", behaviour: ["Parallax background image", "Dark gradient overlay", "Large italic blockquote", "CTA button below"], technical: ["GSAP parallax", "Gradient: transparent to rgba(0,0,0,0.7)", "Full-viewport height"], wordpress: { desc: "Use Cover block with fixed background + Quote block.", plugins: ["None — core blocks"], steps: ["Add Cover block with image", "Enable 'Fixed background'", "Set overlay 50-60%", "Add Quote block inside", "Add Buttons block for CTA"], technical: ["Fixed background provides parallax", "Quote renders semantic <blockquote>", "Style quote font-size to XL"] } },
+                "Growth Steps": { label: "Block Pattern", desc: "Four-step numbered grid with illustrations.", where: "Homepage", behaviour: ["4 cards with illustrations", "Sequential numbering", "Stagger-animate on scroll", "Stacks on mobile"], technical: ["CSS Grid: repeat(4, 1fr)", "Illustration with fixed aspect", "Responsive: 2 cols at 900px, 1 at 560px"], wordpress: { desc: "Use Kadence Info Box in 4-column Row Layout.", plugins: ["Kadence Blocks (free)"], steps: ["Add Row Layout, 4 columns", "Info Box per column", "Upload illustration", "Add step number + heading + text", "Set responsive: 2 tablet, 1 mobile"], technical: ["Info Box supports image + heading + text", "Step numbers via styled Paragraph", "Stagger: Templately with delay per column"] } },
+                "Infographic Block": { label: "Block Pattern", desc: "Full-width stat hero with three variations.", where: "Impact pages", behaviour: ["Large stat display", "Light, dark split, and deep green variants", "Animated numbers"], technical: ["Full-bleed sections", "Three visual treatments", "Count-up animation"], wordpress: { desc: "Use Cover blocks with different backgrounds and Essential Blocks Counter.", plugins: ["Essential Blocks (free)"], steps: ["Add Cover block per variant", "Set background colour/image", "Add Counter + Heading blocks inside", "Set Full Width alignment"], technical: ["Three variants = three Cover blocks", "Counter animates on scroll", "Style each variant with different background"] } },
+                "Intro Strip": { label: "Block Pattern", desc: "Two-column text — large statement left, body copy right.", where: "Homepage", behaviour: ["Left: large italic statement", "Right: body + arrow link", "Stacks on mobile", "Fades up on scroll"], technical: ["Flexbox 2-col with gap", "Left: clamp(24px, 3vw, 36px)", "Stacks at 900px"], wordpress: { desc: "Use core Columns block 50/50.", plugins: ["None — core block"], steps: ["Add Columns, 50/50 layout", "Left: Paragraph with large size", "Right: Paragraph + Button (link style)", "Set Group max-width 1280px"], technical: ["Italic via inline formatting", "Arrow link: Button in Link style", "Responsive stacking automatic"] } }
+            };
+
+            function renderDocs(title) {
+                var key = docsAlias[title] || title;
+                var data = docs[key];
+                if (!data) { docsPanel.innerHTML = '<div class="doc-inner" style="color:#86868b;font-size:15px;padding-top:80px;">Documentation not yet available for this component.</div>'; return; }
+                var html = '<div class="doc-inner"><div class="doc-header">';
+                html += '<span class="doc-label">' + data.label + '</span>';
+                html += '<h2 class="doc-title">' + (key) + '</h2>';
+                html += '<p class="doc-desc">' + data.desc + '</p>';
+                if (data.where) html += '<p class="doc-where">Used on: <span>' + data.where + '</span></p>';
+                html += '</div>';
+                if (data.blocks && data.blocks.length) {
+                    html += '<div class="doc-grid doc-grid--full" style="margin-bottom:32px;"><div class="doc-section"><h4>Anatomy</h4><div class="doc-anatomy">';
+                    data.blocks.forEach(function (b) {
+                        html += '<div class="doc-anatomy-item doc-anatomy-depth-' + (b.depth || 0) + '"><span class="doc-anatomy-tag">' + b.tag + '</span><span class="doc-anatomy-role">' + b.role + '</span></div>';
+                    });
+                    html += '</div></div></div>';
+                }
+                if (data.tokens && data.tokens.length) {
+                    html += '<div class="doc-grid doc-grid--full" style="margin-bottom:32px;"><div class="doc-section"><h4>Design Tokens</h4><div class="doc-tokens-grid">';
+                    data.tokens.forEach(function (t) {
+                        var swatch = '';
+                        if (t.type === 'color') swatch = '<span class="doc-token-swatch" style="background:' + t.value + ';"></span>';
+                        else if (t.type === 'font') swatch = '<span class="doc-token-swatch font" style="font-family:' + t.value + ';">' + t.value.charAt(0) + 'a</span>';
+                        else swatch = '<span class="doc-token-swatch" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#6e6e73;">' + t.value + '</span>';
+                        html += '<div class="doc-token">' + swatch + '<div class="doc-token-info"><span class="doc-token-name">' + t.token + '</span><span class="doc-token-value">' + (t.label || t.value) + '</span></div></div>';
+                    });
+                    html += '</div></div></div>';
+                }
+                html += '<div class="doc-grid">';
+                if (data.behaviour) { html += '<div class="doc-section"><h4>Behaviour</h4><ul>'; data.behaviour.forEach(function (i) { html += '<li>' + i + '</li>'; }); html += '</ul></div>'; }
+                if (data.technical) { html += '<div class="doc-section"><h4>Technical Details</h4><ul>'; data.technical.forEach(function (i) { html += '<li>' + i + '</li>'; }); html += '</ul></div>'; }
+                html += '</div></div>';
+                docsPanel.innerHTML = html;
+            }
+
+            function renderWP(title) {
+                var key = docsAlias[title] || title;
+                var data = docs[key];
+                if (!data || !data.wordpress) { wpPanel.innerHTML = '<div class="doc-inner" style="color:#86868b;font-size:15px;padding-top:80px;">WordPress integration guide not yet available.</div>'; return; }
+                var wp = data.wordpress;
+                var shots = wpScreenshots[key] || [];
+                var html = '<div class="doc-inner"><div class="doc-header">';
+                html += '<span class="doc-label">WordPress Integration</span>';
+                html += '<h2 class="doc-title">' + key + '</h2>';
+                html += '<p class="doc-desc">' + wp.desc + '</p>';
+                html += '</div>';
+                if (shots.length) {
+                    html += '<div class="doc-grid doc-grid--full" style="margin-bottom:32px;"><div class="doc-section"><h4>Plugin Screenshots</h4><div class="wp-screenshots-grid">';
+                    shots.forEach(function (s) { html += '<figure class="wp-screenshot-item"><img src="' + s.url + '" alt="' + s.caption + '" loading="lazy"><figcaption>' + s.caption + '</figcaption></figure>'; });
+                    html += '</div></div></div>';
+                }
+                html += '<div class="doc-grid">';
+                if (wp.plugins) { html += '<div class="doc-section"><h4>Plugins Required</h4><ul>'; wp.plugins.forEach(function (i) { html += '<li><span class="wp-plugin-tag">Plugin</span>' + i + '</li>'; }); html += '</ul></div>'; }
+                if (wp.steps) { html += '<div class="doc-section"><h4>Implementation Steps</h4><ul>'; wp.steps.forEach(function (i) { html += '<li>' + i + '</li>'; }); html += '</ul></div>'; }
+                html += '</div>';
+                if (wp.technical) { html += '<div class="doc-grid doc-grid--full" style="margin-top:32px;"><div class="doc-section"><h4>Technical Notes</h4><ul>'; wp.technical.forEach(function (i) { html += '<li>' + i + '</li>'; }); html += '</ul></div></div>'; }
+                html += '</div>';
+                wpPanel.innerHTML = html;
+            }
+
+            // ─── Analytics content ───
+            var analyticsHTML = `
+<div class="doc-inner">
+<div class="doc-header">
+<span class="doc-label" style="color:#6366f1;background:rgba(99,102,241,0.08);">Analytics</span>
+<h2 class="doc-title">Analytics Improvements</h2>
+<p class="doc-desc">The analytics briefing concluded that the Hub is growing in reach but losing engagement — visitors arrive, then don't engage deeply, click further or complete forms. The new prototype is built directly against this diagnosis.</p>
+</div>
+
+<div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
+<div class="doc-section">
+<h4>1. Baseline — What the Briefing Measured</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">The headline pattern is acquisition up, engagement down. Form submissions have collapsed.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Metric</th><th>Apr–Sep 2025</th><th>Oct 2025–Mar 2026</th><th>Change</th></tr></thead>
+<tbody>
+<tr><td>Active users</td><td>5,400</td><td>6,700</td><td style="color:#077D57;">▲ +24%</td></tr>
+<tr><td>New users</td><td>5,249</td><td>6,443</td><td style="color:#077D57;">▲ +23%</td></tr>
+<tr><td>Sessions</td><td>8,793</td><td>9,080</td><td style="color:#077D57;">▲ +3%</td></tr>
+<tr><td>Avg engagement time</td><td>1m 09s</td><td>46s</td><td style="color:#d32f2f;">▼▼ -33%</td></tr>
+<tr><td>Clicks</td><td>2,421</td><td>1,159</td><td style="color:#d32f2f;">▼▼ -52%</td></tr>
+<tr><td>File download events</td><td>963</td><td>881</td><td style="color:#d32f2f;">▼ -9%</td></tr>
+<tr><td>Resource Hub engagement rate</td><td>71%</td><td>59%</td><td style="color:#d32f2f;">▼ -12pp</td></tr>
+<tr><td>Form starts</td><td>45</td><td>59</td><td style="color:#077D57;">▲ +31%</td></tr>
+<tr><td>Form submissions</td><td>12</td><td>2</td><td style="color:#d32f2f;">▼▼ -83%</td></tr>
+<tr><td>Form completion rate</td><td>26.7%</td><td>3.4%</td><td style="color:#d32f2f;">▼▼ -23pp</td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+
+<div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
+<div class="doc-section">
+<h4>2. How the New Prototype Addresses Each Finding</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;"><strong>Confidence key:</strong> HIGH = direct, well-evidenced fix. MED = directionally right, depends on instrumentation. LOW = upside only.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Area</th><th>Finding</th><th>Prototype Solution</th><th>Conf.</th></tr></thead>
+<tbody>
+<tr><td><strong>Engagement</strong></td><td>Avg engagement time dropped 33%</td><td>Country profile uses stat tiles, animated bar chart, region chips. Blog posts add anchor nav, stat tiles, embedded YouTube, pull quotes.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Engagement</strong></td><td>Clicks per session fell 52%</td><td>Mega menu with 6 audience-led options. Each page ends in CTA band with two next steps. Related Stories grids surface 2–4 next clicks.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Discovery</strong></td><td>Resource Hub engagement declining (71% → 59%)</td><td>New Resource Hub modelled on Apple Newsroom: 3 themed sections plus 5 sub-pages. Cards expose meta, language, year, contributor.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Conversion</strong></td><td>Forms collapsed: 12 → 2 submissions (-83%)</td><td>Three sign-up variants designed for context: compact footer, post-article CTA, partner page inline. Plus 4 contact patterns with enquiry-type chips.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Conversion</strong></td><td>Newsletter sign-up not surfaced in context</td><td>EDM sign-up in three contexts: footer, post-article, partner page inline. Each captures 'I am a…' audience type for segmentation.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Conversion</strong></td><td>No audience-specific entry points</td><td>Four dedicated pages: Faith-Based, NGO & Government, Funder & Donor, How FMNR Works (adopt). Each with ROI/stats and contact CTA.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Tracking</strong></td><td>Video tracking gap</td><td>Standardised Video block enables single GA4 event template (video_start / progress / complete).</td><td>MED</td></tr>
+<tr><td><strong>Tracking</strong></td><td>Map/data viz interactions invisible</td><td>Interactive map and animated components each fire a named event on interaction.</td><td>MED</td></tr>
+<tr><td><strong>Cleanup</strong></td><td>404s as major landing page</td><td>New IA + consistent footer URL map + 301 redirect plan.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Engagement</strong></td><td>Tony Rinaudo brand underused</td><td>Dedicated Tony page with biography, timeline, podcasts, articles, awards, external recognitions.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+<tr><td><strong>Engagement</strong></td><td>Country pages are wordy</td><td>Ethiopia profile replaces paragraphs with: 4-up stat tiles, animated bar chart, region chips, 3-column practice band.</td><td><span style="color:#077D57;font-weight:700;">HIGH</span></td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+
+<div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
+<div class="doc-section">
+<h4>3. Target Metrics for Next Review Period</h4>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Metric</th><th>Current</th><th>Target</th><th>Source of Lift</th></tr></thead>
+<tbody>
+<tr><td>Avg engagement time</td><td>46s</td><td><strong>≥ 1m 30s</strong></td><td>New page templates increase scroll-depth</td></tr>
+<tr><td>Clicks per session</td><td>~0.13</td><td><strong>≥ 0.30</strong></td><td>Audience-typed mega menu + mapped user journeys</td></tr>
+<tr><td>Resource Hub engagement rate</td><td>59%</td><td><strong>≥ 70%</strong></td><td>Newsroom-style hub with card grids and clear next-clicks</td></tr>
+<tr><td>File download events</td><td>881</td><td><strong>≥ 1,200</strong></td><td>Resource cards expose type and language at card level</td></tr>
+<tr><td>Form starts</td><td>59</td><td><strong>≥ 90</strong></td><td>Audience-segmented CTAs on every partner page</td></tr>
+<tr><td>Form completion rate</td><td>3.4%</td><td><strong>≥ 25%</strong></td><td>Three short form variants with success states</td></tr>
+<tr><td>404 sessions</td><td>high</td><td><strong>near zero</strong></td><td>New IA + redirect plan</td></tr>
+<tr><td>Video plays (tracked)</td><td>0</td><td><strong>instrumented</strong></td><td>Standardised video block + GA4 events</td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+
+<div class="doc-grid doc-grid--full">
+<div class="doc-section">
+<h4>4. GA4 / GTM Event Taxonomy to Add</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">These ten events convert the prototype's standardised components into measurable analytics. Wire them at WP build, not after.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Event Name</th><th>Trigger</th><th>Why It Matters</th></tr></thead>
+<tbody>
+<tr><td><code>resource_card_click</code></td><td>Click any resource card</td><td>Shows which resource types earn engagement</td></tr>
+<tr><td><code>resource_download</code></td><td>Click 'Download PDF'</td><td>Direct measure of practical value</td></tr>
+<tr><td><code>video_start</code> / <code>progress</code> / <code>complete</code></td><td>Standardised across Video block</td><td>Closes the tracking gap</td></tr>
+<tr><td><code>map_country_click</code></td><td>Click a country pin or card</td><td>Reveals partner interest by geography</td></tr>
+<tr><td><code>mega_menu_select</code></td><td>Click a top-level mega-menu item</td><td>Confirms whether new IA is being used</td></tr>
+<tr><td><code>audience_self_id</code></td><td>Select 'I am a…' on any form</td><td>Day-one EDM segmentation</td></tr>
+<tr><td><code>partner_form_submit</code></td><td>Submit on /partner pages</td><td>Per-audience attribution</td></tr>
+<tr><td><code>newsletter_signup</code></td><td>Submit on any EDM variant</td><td>Shows which placement converts</td></tr>
+<tr><td><code>scroll_depth_50</code> / <code>_90</code></td><td>Scroll past 50% and 90%</td><td>Measures engagement uplift</td></tr>
+<tr><td><code>404_landed</code></td><td>Page-not-found landings</td><td>Measures redirect plan down to near-zero</td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+`;
+
+            // ─── Init ───
+            // Override loadComponent to handle analytics special case
+            var _origLoadComponent = loadComponent;
+            loadComponent = function (hash) {
+                if (hash === '#analytics') {
+                    var item = document.querySelector('.nav-item[href="#analytics"]');
+                    if (!item) return false;
+                    navItems.forEach(function (n) { n.classList.remove('active'); });
+                    item.classList.add('active');
+                    welcomeScreen.classList.add('hidden');
+                    previewPanel.style.display = 'none';
+                    docsPanel.classList.add('visible');
+                    docsPanel.innerHTML = analyticsHTML;
+                    wpPanel.classList.remove('visible');
+                    closeSidebar();
+                    return true;
+                }
+                return _origLoadComponent(hash);
+            };
+
+            handleHash();
+        })();
+    </script>
+</body>
+
+</html>

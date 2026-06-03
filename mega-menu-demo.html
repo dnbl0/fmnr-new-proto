@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mega Menu — Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    .site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:1000}
+    .nav-links{display:flex;gap:18px;padding:12px 24px}
+    .mega-menu{position:absolute;left:0;right:0;top:100%;background:#fff;border-top:1px solid #eee;padding:28px;display:none}
+    .nav-item:hover + .mega-menu, .nav-item:focus + .mega-menu{display:block}
+    .mega-grid{display:flex;gap:20px}
+    .mega-col{flex:1}
+    .demo-wrap{max-width:1280px;margin:40px auto;padding:0 20px}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="demo-wrap" style="display:flex;align-items:center;">
+      <button id="hamburger" aria-label="Open menu">☰</button>
+      <nav class="nav-links" style="margin-left:16px;">
+        <div style="position:relative;">
+          <a href="#" class="nav-item">Explore</a>
+          <div class="mega-menu" aria-hidden="true">
+            <div class="mega-grid">
+              <div class="mega-col">
+                <h4>About FMNR</h4>
+                <ul>
+                  <li><a href="/about-fmnr/index.html">Overview</a></li>
+                  <li><a href="/tony-rinaudo.html">Tony Rinaudo</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4>Resources</h4>
+                <ul>
+                  <li><a href="/resource-hub.html">Resource Hub</a></li>
+                  <li><a href="/blog.html">Stories</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4>Contact</h4>
+                <ul>
+                  <li><a href="/contact/index.html">Get in touch</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#">Impact</a>
+        <a href="#">Countries</a>
+      </nav>
+      <div style="margin-left:auto;">
+        <button id="search-toggle" aria-label="Open search">🔍</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="demo-wrap">
+    <h1>Mega Menu (Demo)</h1>
+    <p>Hover the "Explore" item to reveal the mega panel. On mobile, the hamburger shows a simple drawer.</p>
+  </main>
+
+  <script>
+    // Mobile drawer
+    var hamb = document.getElementById('hamburger');
+    hamb.addEventListener('click', function(){
+      var menu = document.querySelector('.mega-menu');
+      if(!menu.style.display || menu.style.display==='none') menu.style.display='block'; else menu.style.display='none';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+/* Minimal design tokens used by docs and demos */
+:root {
+    --font-body: 'Lato', sans-serif;
+    --font-heading: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+    --color-green: #077D57;
+    --max-width-container: 1280px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: #1d1d1f;
+    background: #fff
+}

@@ -409,11 +409,7 @@
     .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
     /* ===================== BREADCRUMB ===================== */
-    .breadcrumb {
-      background: white;
-      border-bottom: 1px solid #e8e8e8;
-      padding: 16px 0;
-    }
+    .breadcrumb { display: none; }
 
     .breadcrumb-inner {
       max-width: 1280px;
@@ -596,50 +592,89 @@
     }
 
     /* ===================== STAT TILES ===================== */
-    .stat-section {
-      background: #111;
-      padding: 80px 0;
+    .stats-section {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
     }
 
-    .stat-grid {
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+      gap: 4px;
     }
 
     .stat-tile {
-      padding: 48px 36px;
-      border-right: 1px solid rgba(255,255,255,0.08);
+      background: #111;
+      border-radius: 4px;
+      height: 240px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
     }
 
-    .stat-tile:last-child { border-right: none; }
-
-    .stat-label {
+    .stat-overline {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
       font-size: 12px;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: #abb8c3;
+      margin-bottom: 8px;
     }
 
     .stat-value {
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
       font-weight: 900;
-      font-size: 64px;
+      font-size: 48px;
+      line-height: 1;
       text-transform: uppercase;
       color: #0dfaab;
-      line-height: 1;
+      margin-bottom: 12px;
     }
 
-    .stat-desc {
+    .stat-description {
       font-family: 'Lato', sans-serif;
       font-size: 14px;
       color: #abb8c3;
-      line-height: 1.5;
+      line-height: 1.4;
+    }
+
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
     }
 
     /* ===================== PARTNER STORIES ===================== */
@@ -872,14 +907,95 @@
       margin-top: 6px;
     }
 
+    /* ===================== PARTNER RESOURCES ===================== */
+    .resource-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .resource-card {
+      background: #f5f5f5;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-decoration: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .resource-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .resource-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .resource-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .resource-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .resource-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .resource-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .resource-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 4px;
+    }
+
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 1024px) {
       .hero-h1 { font-size: 48px; }
       .section-h2 { font-size: 44px; }
-      .stat-value { font-size: 48px; }
-      .stat-grid { grid-template-columns: repeat(2, 1fr); }
-      .stat-tile { border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .stat-tile:nth-child(2n) { border-right: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile { height: auto; min-height: 200px; }
       .grid-4col { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -893,7 +1009,7 @@
       .hero-h1 { font-size: 36px; }
       .hero-subtitle { font-size: 16px; }
 
-      .section-white, .section-tinted, .stat-section, .cta-section, .related-section { padding: 60px 0; }
+      .section-white, .section-tinted, .cta-section, .related-section { padding: 60px 0; }
       .section-container { padding: 0 24px; }
       .breadcrumb-inner { padding: 0 24px; }
       .cta-inner { padding: 0 24px; }
@@ -908,8 +1024,9 @@
       .step-image { min-height: 240px; }
       .step-content { padding: 40px 24px; }
 
-      .stat-grid { grid-template-columns: 1fr; }
-      .stat-tile { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .stats-grid { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
+      .resource-cards { grid-template-columns: 1fr; }
 
       .cta-h2 { font-size: 36px; }
 
@@ -997,7 +1114,7 @@
 
         <!-- Impact -->
         <div class="mega-item">
-          <a href="#" class="nav-link">Impact</a>
+          <a href="../impact/index.html" class="nav-link">Impact</a>
           <div class="mega-panel">
             <div class="mega-inner">
               <div class="mega-header-row">
@@ -1039,9 +1156,17 @@
           <a href="#" class="nav-link">About</a>
           <div class="mega-panel">
             <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">About FMNR</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
+              <div class="mega-header-row"><h2 class="mega-title">About FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div>
+              <div class="mega-content-row">
+                <a href="../tony-rinaudo.html" class="mega-featured" style="background:linear-gradient(160deg,#1e1e2e 0%,#2e3050 50%,#3a3d65 100%)">
+                  <div class="mega-featured-content"><span class="mega-featured-badge">Featured</span><p class="mega-featured-title">Tony Rinaudo — The Forest Maker</p><p class="mega-featured-desc">The story of the man behind the global FMNR movement.</p><span class="mega-featured-cta">Read his story →</span></div>
+                </a>
+                <div class="mega-icon-grid mega-icon-grid--2x2">
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><p class="mega-icon-title">About FMNR</p><p class="mega-icon-desc">The technique and movement explained</p></a>
+                  <a href="../tony-rinaudo.html" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><p class="mega-icon-title">Tony Rinaudo</p><p class="mega-icon-desc">Meet the Forest Maker</p></a>
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><p class="mega-icon-title">FMNR &amp; World Vision</p><p class="mega-icon-desc">Our partnership and shared mission</p></a>
+                  <a href="#" class="mega-icon-card"><div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><p class="mega-icon-title">FAQs</p><p class="mega-icon-desc">Frequently asked questions about FMNR</p></a>
+                </div>
               </div>
             </div>
           </div>
@@ -1110,7 +1235,7 @@
   <!-- ===================== HOW WE WORK TOGETHER ===================== -->
 
   <!-- Strip 1: image left, content right -->
-  <div class="step-strip">
+  <section class="step-strip">
     <div class="step-image" style="background: linear-gradient(160deg, #0d3320 0%, #1a5c38 50%, #2a7a50 100%);"></div>
     <div class="step-content">
       <p class="step-number">01</p>
@@ -1123,10 +1248,10 @@
         <li>Portfolio identification</li>
       </ul>
     </div>
-  </div>
+  </section>
 
   <!-- Strip 2: image right, content left (reversed) -->
-  <div class="step-strip step-strip--reversed">
+  <section class="step-strip step-strip--reversed">
     <div class="step-image" style="background: linear-gradient(160deg, #1a2e40 0%, #253d52 50%, #2e4d63 100%);"></div>
     <div class="step-content step-content--alt">
       <p class="step-number">02</p>
@@ -1139,31 +1264,35 @@
         <li>Investor community convening</li>
       </ul>
     </div>
-  </div>
+  </section>
 
   <!-- ===================== STAT TILES ===================== -->
-  <section class="stat-section">
-    <div class="section-container">
-      <div class="stat-grid">
+  <section class="stats-section">
+    <div class="section-stack">
+      <div class="section-heading-wrap">
+        <p class="section-overline">FMNR Impact</p>
+        <h2 class="section-heading">Numbers that speak for themselves</h2>
+      </div>
+      <div class="stats-grid">
         <div class="stat-tile">
-          <p class="stat-label">Cost per hectare</p>
+          <p class="stat-overline">Cost per hectare</p>
           <p class="stat-value">$6</p>
-          <p class="stat-desc">Average cost to restore one hectare through FMNR — versus $300+ for tree planting</p>
+          <p class="stat-description">Average cost to restore one hectare through FMNR — versus $300+ for conventional tree planting</p>
         </div>
         <div class="stat-tile">
-          <p class="stat-label">Carbon potential</p>
+          <p class="stat-overline">Carbon potential</p>
           <p class="stat-value">2.4 Gt</p>
-          <p class="stat-desc">Estimated carbon sequestration potential of FMNR at 1 billion hectare scale</p>
+          <p class="stat-description">Estimated carbon sequestration potential of FMNR at 1 billion hectare scale</p>
         </div>
         <div class="stat-tile">
-          <p class="stat-label">Multiplier effect</p>
-          <p class="stat-value">8x</p>
-          <p class="stat-desc">Average economic return to farming households for every $1 invested in FMNR</p>
+          <p class="stat-overline">Multiplier effect</p>
+          <p class="stat-value">8×</p>
+          <p class="stat-description">Average economic return to farming households for every $1 invested in FMNR</p>
         </div>
         <div class="stat-tile">
-          <p class="stat-label">Hectares possible</p>
+          <p class="stat-overline">Hectares possible</p>
           <p class="stat-value">1B+</p>
-          <p class="stat-desc">Global degraded land area suitable for FMNR restoration</p>
+          <p class="stat-description">Global degraded land area suitable for FMNR restoration</p>
         </div>
       </div>
     </div>
@@ -1203,6 +1332,38 @@
             <p class="story-body">A pioneering outcome-based finance instrument rewarding verified landscape restoration by smallholder farmers.</p>
             <span class="card-cta">Read story →</span>
           </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PARTNER RESOURCES ===================== -->
+  <section class="section-tinted">
+    <div class="section-container">
+      <p class="section-label">Resources</p>
+      <h2 class="section-h2">Funder Resources</h2>
+      <p class="section-lead">Evidence briefs, impact frameworks and investment case documents to support your FMNR funding partnership.</p>
+      <div class="resource-cards">
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 12 pages</p>
+          <h3 class="resource-title">Investment Case</h3>
+          <p class="resource-desc">The financial and impact case for FMNR — cost per hectare, return on investment, and portfolio opportunity at scale.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 8 pages</p>
+          <h3 class="resource-title">Impact Reporting Framework</h3>
+          <p class="resource-desc">M&amp;E standards, satellite monitoring methodology and reporting templates for funder partnerships and grant requirements.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 6 pages</p>
+          <h3 class="resource-title">Project Portfolio Overview</h3>
+          <p class="resource-desc">Current landscape of fundable FMNR projects across Sub-Saharan Africa, South Asia and the Pacific — with geography, scale and co-funding notes.</p>
+          <span class="resource-cta">Download →</span>
         </a>
       </div>
     </div>

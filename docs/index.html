@@ -1360,6 +1360,23 @@
                                     try { ch.style.display = (ch === target) ? 'block' : 'none'; } catch (e) { }
                                 });
                                 try { target.style.margin = '0'; target.style.width = '100%'; } catch (e) { }
+                                // If the demo includes a fixed header, add body padding so content isn't hidden beneath it
+                                try {
+                                    var hdr = doc.querySelector('header, .site-bar, .site-header, .header, .site-header--top');
+                                    if (hdr) {
+                                        try {
+                                            var hdrStyle = doc.defaultView.getComputedStyle(hdr);
+                                            var isFixed = hdrStyle && hdrStyle.position === 'fixed';
+                                            var hdrH = hdr.getBoundingClientRect ? Math.ceil(hdr.getBoundingClientRect().height) : (hdr.offsetHeight || 0);
+                                            if (isFixed && hdrH > 0) {
+                                                // Only add padding if target is not the header itself
+                                                if (target !== hdr && target !== doc.body.firstElementChild) {
+                                                    try { doc.body.style.paddingTop = hdrH + 'px'; } catch (e) { }
+                                                }
+                                            }
+                                        } catch (e) { }
+                                    }
+                                } catch (e) { }
                             }
                         }
                     } catch (e) { }

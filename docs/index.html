@@ -1659,38 +1659,354 @@
 <div class="doc-inner">
 <div class="doc-header">
 <span class="doc-label" style="color:#6366f1;background:rgba(99,102,241,0.08);">Analytics</span>
-<h2 class="doc-title">Analytics Improvements</h2>
-<p class="doc-desc">The analytics briefing concluded that the Hub is growing in reach but losing engagement — visitors arrive, then don't engage deeply, click further or complete forms. The new prototype is built directly against this diagnosis.</p>
+<h2 class="doc-title">Projected Analytics Improvements</h2>
+<p class="doc-desc">The new prototype is designed directly against the analytics diagnosis: growing reach, collapsing engagement. This page projects what we expect to improve — and by how much — based on the design decisions made.</p>
 </div>
 
+<div style="margin-bottom:8px;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#86868b;">Design Rationale</span></div>
 <div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
 <div class="doc-section">
-<h4>1. Baseline — What the Briefing Measured</h4>
-<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">The headline pattern is acquisition up, engagement down. Form submissions have collapsed.</p>
+<h4>Design Statements Mapped to Analytics Issues</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">The six analytics issues identified in the briefing are each addressed by one or more specific design statements. The table below maps every statement to its primary issue and explains the mechanism of improvement.</p>
 <div class="doc-table-wrap"><table class="doc-table">
-<thead><tr><th>Metric</th><th>Apr–Sep 2025</th><th>Oct 2025–Mar 2026</th><th>Change</th></tr></thead>
+<thead><tr><th>Analytics Issue</th><th>Design Statement</th><th>Mechanism</th></tr></thead>
 <tbody>
-<tr><td>Active users</td><td>5,400</td><td>6,700</td><td style="color:#077D57;">▲ +24%</td></tr>
-<tr><td>New users</td><td>5,249</td><td>6,443</td><td style="color:#077D57;">▲ +23%</td></tr>
-<tr><td>Sessions</td><td>8,793</td><td>9,080</td><td style="color:#077D57;">▲ +3%</td></tr>
-<tr><td>Avg engagement time</td><td>1m 09s</td><td>46s</td><td style="color:#d32f2f;">▼▼ -33%</td></tr>
-<tr><td>Clicks</td><td>2,421</td><td>1,159</td><td style="color:#d32f2f;">▼▼ -52%</td></tr>
-<tr><td>File download events</td><td>963</td><td>881</td><td style="color:#d32f2f;">▼ -9%</td></tr>
-<tr><td>Resource Hub engagement rate</td><td>71%</td><td>59%</td><td style="color:#d32f2f;">▼ -12pp</td></tr>
-<tr><td>Form starts</td><td>45</td><td>59</td><td style="color:#077D57;">▲ +31%</td></tr>
-<tr><td>Form submissions</td><td>12</td><td>2</td><td style="color:#d32f2f;">▼▼ -83%</td></tr>
-<tr><td>Form completion rate</td><td>26.7%</td><td>3.4%</td><td style="color:#d32f2f;">▼▼ -23pp</td></tr>
+<tr>
+  <td rowspan="4"><strong>Issue 1</strong><br><span style="color:#6e6e73;font-size:12px;">The website is growing in traffic faster than it is growing in meaningful engagement.</span></td>
+  <td><em>"Competitors treat their navigations as a conversion tool — we have updated our navigation to be partner-led."</em></td>
+  <td>An audience-led mega menu routes each visitor type directly to their relevant funnel, converting passive browsers into active users and increasing clicks per session.</td>
+</tr>
+<tr>
+  <td><em>"Storytelling increases both conversion rates and donor retention."</em></td>
+  <td>Replacing fragmented text with narrative-driven page flows gives users a reason to keep reading, directly lifting average engagement time and reducing single-page bounce.</td>
+</tr>
+<tr>
+  <td><em>"Fragmented, text-heavy links are transformed into an immersive, cinematic storytelling narrative."</em></td>
+  <td>Richer visual hierarchy and editorial sequencing increase scroll depth — the primary driver of average engagement time improvement.</td>
+</tr>
+<tr>
+  <td><em>"Generic page layouts are elevated with bold editorial typography to maximise the emotional hook."</em></td>
+  <td>Stronger visual contrast and typographic rhythm hold attention beyond the first screen, increasing the proportion of users who scroll to secondary content and CTAs.</td>
+</tr>
+<tr>
+  <td rowspan="3"><strong>Issue 2</strong><br><span style="color:#6e6e73;font-size:12px;">Resource Hub pages are still important, but their engagement performance is declining.</span></td>
+  <td><em>"Resource hub is updated and simple to navigate, reducing cognitive load."</em></td>
+  <td>A newsroom-style hub with three themed sections and card metadata (type, language, year) means users find relevant content faster, reducing abandonment before engagement.</td>
+</tr>
+<tr>
+  <td><em>"Humans process visual spatial data up to 60,000 times faster than text."</em></td>
+  <td>Visual card layouts with icons, tags and thumbnails allow users to scan and self-sort resources without reading every item — reducing cognitive load and increasing engagement rate.</td>
+</tr>
+<tr>
+  <td><em>"Reduced cognitive friction, reduced abandoned sessions + prevents user decision fatigue."</em></td>
+  <td>Clearer content hierarchy and fewer undifferentiated choices per screen reduce the likelihood of users abandoning before finding the resource they need.</td>
+</tr>
+<tr>
+  <td rowspan="2"><strong>Issue 3</strong><br><span style="color:#6e6e73;font-size:12px;">The forms journey is underperforming significantly and needs urgent review.</span></td>
+  <td><em>"Forms are enhanced — fixing potential errors in forms and helping form conversion."</em></td>
+  <td>Three short-form variants with contextual placement, enquiry-type chips, and success states directly fix the 3.4% completion rate. Removing error-prone fields eliminates the primary abandonment trigger.</td>
+</tr>
+<tr>
+  <td><em>"Directs attention to primary funnels which typically boosts efficiency by 30%."</em></td>
+  <td>Audience-segmented CTAs placed at contextual decision points guide users toward the right form at the right moment, improving both start rate and completion.</td>
+</tr>
+<tr>
+  <td><strong>Issue 4</strong><br><span style="color:#6e6e73;font-size:12px;">A high number of users are landing on broken or outdated URLs.</span></td>
+  <td><em>"Reduced cognitive friction, reduced abandoned sessions + prevents user decision fatigue."</em></td>
+  <td>A consistent footer URL map and full 301 redirect plan ensure historical links resolve correctly. Eliminating 404 landings removes the single highest-friction drop-off point in the current user journey.</td>
+</tr>
+<tr>
+  <td rowspan="2"><strong>Issue 5</strong><br><span style="color:#6e6e73;font-size:12px;">Video performance cannot yet be assessed properly because tracking is incomplete.</span></td>
+  <td><em>"Interactive maps trigger user exploration, increasing Average Time on Site."</em></td>
+  <td>Standardised interactive components each fire named GA4 events on interaction, making previously invisible engagement visible in analytics for the first time.</td>
+</tr>
+<tr>
+  <td><em>"Funder transparency is enhanced through geographic visualisation." &amp; "Drives up (CTR) click-through rates due to single-click interaction."</em></td>
+  <td>The interactive country map enables funders to visualise geographic reach instantly. Single-click country selection reduces friction and generates the map_country_click events that were previously untracked.</td>
+</tr>
+<tr>
+  <td rowspan="3"><strong>Issue 6</strong><br><span style="color:#6e6e73;font-size:12px;">Compared with technical peers, the Hub needs better resource discovery and clearer user pathways.</span></td>
+  <td><em>"Competitors treat their navigations as a conversion tool — we have updated our navigation to be partner-led."</em></td>
+  <td>Audience-specific pathways (Faith, NGO, Government, Funder, Adopter) match how peer platforms structure their IA — giving each user type a direct route to relevant resources rather than a generic homepage.</td>
+</tr>
+<tr>
+  <td><em>"Storytelling increases both conversion rates and donor retention."</em></td>
+  <td>Story-driven content pages position the Hub as a knowledge platform, not just a document library — matching the depth expected by technical and funding peers.</td>
+</tr>
+<tr>
+  <td><em>"Humans process visual spatial data up to 60,000 times faster than text." &amp; "Drives up (CTR) click-through rates due to single-click interaction."</em></td>
+  <td>Visual card grids, interactive maps and editorial layouts bring the Hub's IA in line with best-practice knowledge platforms, enabling faster content discovery and higher click-through from landing pages.</td>
+</tr>
 </tbody>
 </table></div>
 </div>
 </div>
 
+<div style="margin-bottom:8px;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#86868b;">Section 1</span></div>
 <div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
 <div class="doc-section">
-<h4>2. How the New Prototype Addresses Each Finding</h4>
-<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">... (analytics content truncated for brevity in file)</p>
+<h4>Baseline — What the Analytics Told Us</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">The headline pattern entering the redesign: acquisition is up, but engagement, clicks, and conversions have all deteriorated. The site is getting more visitors, and doing less with them.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Metric</th><th>Apr–Sep 2025</th><th>Oct 2025–Mar 2026</th><th>Trend</th><th>Design Priority</th></tr></thead>
+<tbody>
+<tr><td>Active users</td><td>5,400</td><td>6,700</td><td style="color:#077D57;font-weight:700;">▲ +24%</td><td>Sustain — new homepage hero and audience entry points maintain reach</td></tr>
+<tr><td>New users</td><td>5,249</td><td>6,443</td><td style="color:#077D57;font-weight:700;">▲ +23%</td><td>Sustain — SEO-structured templates and consistent URL map support continued discovery</td></tr>
+<tr><td>Sessions</td><td>8,793</td><td>9,080</td><td style="color:#077D57;font-weight:700;">▲ +3%</td><td>Sustain — eliminate 404s; new IA keeps users in valid paths</td></tr>
+<tr><td><strong>Avg engagement time</strong></td><td>1m 09s</td><td>46s</td><td style="color:#d32f2f;font-weight:700;">▼▼ -33%</td><td><strong>Critical fix</strong> — richer page templates increase scroll depth and dwell time</td></tr>
+<tr><td><strong>Clicks per session</strong></td><td>~0.28</td><td>~0.13</td><td style="color:#d32f2f;font-weight:700;">▼▼ -52%</td><td><strong>Critical fix</strong> — audience-led mega menu, CTA bands, and Related Stories grids surface the next logical click</td></tr>
+<tr><td>File download events</td><td>963</td><td>881</td><td style="color:#d32f2f;font-weight:700;">▼ -9%</td><td>Fix — Resource Hub cards expose type, language and year at card level</td></tr>
+<tr><td>Resource Hub engagement rate</td><td>71%</td><td>59%</td><td style="color:#d32f2f;font-weight:700;">▼ -12pp</td><td>Fix — newsroom-style hub with 3 themed sections and 5 sub-pages</td></tr>
+<tr><td>Form starts</td><td>45</td><td>59</td><td style="color:#077D57;font-weight:700;">▲ +31%</td><td>Build on — audience-segmented CTAs on every partner page</td></tr>
+<tr><td><strong>Form submissions</strong></td><td>12</td><td>2</td><td style="color:#d32f2f;font-weight:700;">▼▼ -83%</td><td><strong>Critical fix</strong> — three short-form variants with success states replace the single broken form</td></tr>
+<tr><td><strong>Form completion rate</strong></td><td>26.7%</td><td>3.4%</td><td style="color:#d32f2f;font-weight:700;">▼▼ -23pp</td><td><strong>Critical fix</strong> — context-matched forms and simplified fields target ≥25% completion</td></tr>
+</tbody>
+</table></div>
 </div>
 </div>
+
+<div style="margin-bottom:8px;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#86868b;">Section 2</span></div>
+<div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
+<div class="doc-section">
+<h4>Design Decisions and Projected Impact</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">Each design decision maps directly to a failing metric. Confidence ratings reflect how directly the solution addresses the root cause — and how reliably that fix is evidenced by industry benchmarks and UX research.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Metric Addressed</th><th>Root Cause</th><th>Design Decision</th><th>Projected Change</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>Avg engagement time</strong><br><span style="color:#6e6e73;font-size:12px;">46s → ≥1m 30s</span></td>
+  <td>Pages were text-heavy walls with no visual hierarchy or interactive anchors</td>
+  <td>Country profiles use 4-up stat tiles, animated bar charts and region chips. Blog posts add anchor nav, embedded video and pull quotes.</td>
+  <td style="color:#077D57;font-weight:700;">▲ +95%</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>Clicks per session</strong><br><span style="color:#6e6e73;font-size:12px;">0.13 → ≥0.30</span></td>
+  <td>No clear next action after reading. Generic navigation. No related content surfaced.</td>
+  <td>Audience-led mega menu with 6 pathways. Every page ends in a dual CTA band. Related Stories grids surface 2–4 next reads automatically.</td>
+  <td style="color:#077D57;font-weight:700;">▲ +130%</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>Resource Hub engagement rate</strong><br><span style="color:#6e6e73;font-size:12px;">59% → ≥70%</span></td>
+  <td>Flat, undifferentiated resource list with no filtering, metadata, or hierarchy</td>
+  <td>Newsroom-style hub with 3 themed sections and 5 sub-pages. Resource cards expose format, language, year and contributor at card level.</td>
+  <td style="color:#077D57;font-weight:700;">▲ +19pp</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>File download events</strong><br><span style="color:#6e6e73;font-size:12px;">881 → ≥1,200</span></td>
+  <td>Users could not tell what a resource was until after clicking.</td>
+  <td>Cards expose type, language flags and file context at card level. Eliminates dead-click abandonment.</td>
+  <td style="color:#077D57;font-weight:700;">▲ +36%</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>Form completion rate</strong><br><span style="color:#6e6e73;font-size:12px;">3.4% → ≥25%</span></td>
+  <td>Single long form, shown out of context. No success state.</td>
+  <td>Three short-form variants: compact footer, post-article CTA, partner inline. All include a success state with enquiry-type chips.</td>
+  <td style="color:#077D57;font-weight:700;">▲ +635%</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>Newsletter sign-up conversions</strong><br><span style="color:#6e6e73;font-size:12px;">Not tracked</span></td>
+  <td>Sign-up existed in one location only, not near relevant content</td>
+  <td>EDM sign-up in three contexts: footer, post-article, partner inline. Captures audience type for segmentation from day one.</td>
+  <td style="color:#077D57;font-weight:700;">▲ New signal</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>Audience conversion</strong><br><span style="color:#6e6e73;font-size:12px;">No baseline</span></td>
+  <td>No audience-specific entry points. Generic homepage for all visitor types.</td>
+  <td>Four dedicated audience pages: Faith-Based, NGOs &amp; Government, Funders &amp; Donors, Adopters. Each has ROI stats and a direct contact CTA.</td>
+  <td style="color:#077D57;font-weight:700;">▲ New signal</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>Video engagement</strong><br><span style="color:#6e6e73;font-size:12px;">0 events tracked</span></td>
+  <td>Video existed but no GA4 events were fired</td>
+  <td>Standardised Video block: <code>video_start</code>, <code>video_progress</code> (25/50/75%), <code>video_complete</code>.</td>
+  <td style="color:#077D57;font-weight:700;">▲ New signal</td>
+  <td><span style="background:#e67e22;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">MED</span></td>
+</tr>
+<tr>
+  <td><strong>Map &amp; data viz interactions</strong><br><span style="color:#6e6e73;font-size:12px;">0 events tracked</span></td>
+  <td>Interactive components had no associated events.</td>
+  <td>Interactive map and stat components each fire a named event. <code>map_country_click</code> reveals geographic interest for partner targeting.</td>
+  <td style="color:#077D57;font-weight:700;">▲ New signal</td>
+  <td><span style="background:#e67e22;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">MED</span></td>
+</tr>
+<tr>
+  <td><strong>404 sessions</strong><br><span style="color:#6e6e73;font-size:12px;">High — unquantified</span></td>
+  <td>Old URLs in circulation from social media, email campaigns and partner sites</td>
+  <td>New IA + consistent footer URL map + full 301 redirect plan. <code>404_landed</code> event tracks remaining broken traffic.</td>
+  <td style="color:#077D57;font-weight:700;">▲ Near zero</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+<tr>
+  <td><strong>Tony Rinaudo brand value</strong><br><span style="color:#6e6e73;font-size:12px;">Underperforming vs. search interest</span></td>
+  <td>Tony's name drives significant search traffic but no dedicated landing experience existed</td>
+  <td>Dedicated Tony Rinaudo page: biography, timeline, embedded podcasts, articles, awards grid and external recognition panel.</td>
+  <td style="color:#077D57;font-weight:700;">▲ Engagement uplift</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">HIGH</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#86868b;">Section 3</span></div>
+<div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
+<div class="doc-section">
+<h4>Target Metrics for the Next Review Period</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">These targets are set against the current baseline (Oct 2025–Mar 2026) and assume the new prototype is deployed as designed. All targets are conservative — industry benchmarks for comparable mission-led platforms typically outperform these figures.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Metric</th><th>Current</th><th>Target</th><th>Projected Change</th><th>Primary Design Driver</th></tr></thead>
+<tbody>
+<tr><td><strong>Avg engagement time</strong></td><td>46s</td><td>≥ 1m 30s</td><td style="color:#077D57;font-weight:700;">▲ +95%</td><td>Richer page templates increase scroll depth and dwell time on every core page</td></tr>
+<tr><td><strong>Clicks per session</strong></td><td>~0.13</td><td>≥ 0.30</td><td style="color:#077D57;font-weight:700;">▲ +130%</td><td>Audience-typed mega menu + dual CTA bands + Related Stories grids on every page</td></tr>
+<tr><td><strong>Resource Hub engagement rate</strong></td><td>59%</td><td>≥ 70%</td><td style="color:#077D57;font-weight:700;">▲ +19pp</td><td>Newsroom-style hub with card metadata and clear next-step navigation</td></tr>
+<tr><td><strong>File download events</strong></td><td>881</td><td>≥ 1,200</td><td style="color:#077D57;font-weight:700;">▲ +36%</td><td>Resource cards expose format and language at card level, reducing pre-click abandonment</td></tr>
+<tr><td><strong>Form starts</strong></td><td>59</td><td>≥ 90</td><td style="color:#077D57;font-weight:700;">▲ +52%</td><td>Audience-segmented CTAs placed contextually on every partner and audience page</td></tr>
+<tr><td><strong>Form completion rate</strong></td><td>3.4%</td><td>≥ 25%</td><td style="color:#077D57;font-weight:700;">▲ +635%</td><td>Three short-form variants with success states replace the single long abandoned form</td></tr>
+<tr><td><strong>Form submissions (total)</strong></td><td>2</td><td>≥ 20</td><td style="color:#077D57;font-weight:700;">▲ +900%</td><td>Combined effect of more form starts and dramatically higher completion rate</td></tr>
+<tr><td><strong>Newsletter sign-ups</strong></td><td>Not tracked</td><td>≥ 30/month</td><td style="color:#077D57;font-weight:700;">▲ New signal</td><td>EDM sign-up in three contextual placements, each capturing audience type for segmentation</td></tr>
+<tr><td><strong>Video plays (tracked)</strong></td><td>0 instrumented</td><td>Track all video_start events</td><td style="color:#077D57;font-weight:700;">▲ New signal</td><td>Standardised Video block + GA4 events closes the complete video tracking gap</td></tr>
+<tr><td><strong>404 sessions</strong></td><td>High (unquantified)</td><td>Near zero</td><td style="color:#077D57;font-weight:700;">▲ Near zero</td><td>New IA + consistent URL map + 301 redirect plan deployed at build</td></tr>
+<tr><td><strong>Active users</strong></td><td>6,700</td><td>≥ 7,500</td><td style="color:#077D57;font-weight:700;">▲ +12%</td><td>SEO-structured templates + Tony page + Country pages capture new organic search demand</td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#86868b;">Section 4</span></div>
+<div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
+<div class="doc-section">
+<h4>GA4 / GTM Event Taxonomy — Build-Time Instrumentation</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">These twelve events convert the prototype's standardised components into measurable analytics signals. They must be wired at WordPress build — not as a post-launch addition.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Event Name</th><th>Trigger</th><th>Metric It Measures</th><th>Priority</th></tr></thead>
+<tbody>
+<tr>
+  <td><code>mega_menu_select</code></td>
+  <td>Click any top-level mega-menu item</td>
+  <td>Confirms whether new audience-led IA is actually being used; key input for clicks/session uplift measurement</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>resource_card_click</code></td>
+  <td>Click any resource card in the Hub</td>
+  <td>Shows which content types earn engagement; drives Resource Hub engagement rate improvement</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>resource_download</code></td>
+  <td>Click Download PDF on any resource card</td>
+  <td>Direct measure of practical value delivered; tracks file download event target (≥1,200)</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>partner_form_submit</code></td>
+  <td>Submit on any /partner audience page</td>
+  <td>Per-audience attribution; reveals which partnership type drives highest conversion</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>newsletter_signup</code></td>
+  <td>Submit on any EDM sign-up variant</td>
+  <td>Shows which placement converts best; drives segmentation from day one</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>audience_self_id</code></td>
+  <td>Select "I am a" dropdown on any form</td>
+  <td>Day-one EDM segmentation; enables audience-typed reporting on all downstream conversion events</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>video_start / video_progress / video_complete</code></td>
+  <td>Standardised Video block — 0%, 25/50/75%, 100%</td>
+  <td>Closes the complete video tracking gap; first time video consumption will be visible in analytics</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>scroll_depth_50 / scroll_depth_90</code></td>
+  <td>User scrolls past 50% then 90% of any page</td>
+  <td>Primary measure of engagement time uplift; validates whether richer templates are actually increasing dwell</td>
+  <td><span style="background:#077D57;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P1 — Launch</span></td>
+</tr>
+<tr>
+  <td><code>map_country_click</code></td>
+  <td>Click a country pin or card on the interactive map</td>
+  <td>Reveals geographic partner interest; informs which country pages to prioritise next</td>
+  <td><span style="background:#e67e22;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P2 — Post-launch</span></td>
+</tr>
+<tr>
+  <td><code>cta_band_click</code></td>
+  <td>Click either CTA in a CTA Band component</td>
+  <td>Confirms whether dual-CTA bands are driving the clicks/session improvement or need refinement</td>
+  <td><span style="background:#e67e22;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P2 — Post-launch</span></td>
+</tr>
+<tr>
+  <td><code>related_story_click</code></td>
+  <td>Click a card in any Related Stories grid</td>
+  <td>Shows whether content discovery grids are contributing to clicks/session and engagement time targets</td>
+  <td><span style="background:#e67e22;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P2 — Post-launch</span></td>
+</tr>
+<tr>
+  <td><code>404_landed</code></td>
+  <td>Page-not-found event on load</td>
+  <td>Measures redirect plan effectiveness; target is near-zero within 30 days of launch</td>
+  <td><span style="background:#e67e22;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;">P2 — Post-launch</span></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;"><span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#86868b;">Section 5</span></div>
+<div class="doc-grid doc-grid--full" style="margin-bottom:32px;">
+<div class="doc-section">
+<h4>What Success Looks Like — 90-Day Post-Launch Review</h4>
+<p style="font-size:13px;color:#4a4a4a;margin-bottom:16px;">These are the six signals that will tell us, within 90 days of launch, whether the design has worked. They are deliberately outcome-focused — not component metrics, but the underlying user behaviours the design was built to change.</p>
+<div class="doc-table-wrap"><table class="doc-table">
+<thead><tr><th>Signal</th><th>We Will Know It's Working When...</th><th>We Will Know It Hasn't Worked When...</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>Engagement depth</strong></td>
+  <td>Average engagement time is ≥1m 30s, and scroll_depth_90 events are firing on core content pages</td>
+  <td>Time on page remains below 60s despite richer templates — signals content or load performance issue, not a navigation issue</td>
+</tr>
+<tr>
+  <td><strong>Navigation usage</strong></td>
+  <td>mega_menu_select events show all 6 audience pathways receiving clicks, not just the top two</td>
+  <td>Only 1–2 audience paths receive traffic — signals the IA labels need revision or pathways aren't visible enough on mobile</td>
+</tr>
+<tr>
+  <td><strong>Content discovery</strong></td>
+  <td>Clicks per session ≥0.30, with related_story_click and resource_card_click events both active</td>
+  <td>Clicks remain below 0.20 despite CTA bands — signals users are not scrolling far enough to reach CTAs; consider moving primary CTA higher</td>
+</tr>
+<tr>
+  <td><strong>Form conversion</strong></td>
+  <td>Form completion rate ≥25% and at least 20 partner form submissions in the first 90 days</td>
+  <td>Starts are up but completion rate remains below 10% — signals form length or field type is still the barrier, not CTA placement</td>
+</tr>
+<tr>
+  <td><strong>Resource engagement</strong></td>
+  <td>Resource Hub engagement rate ≥70% and file_download events ≥1,200</td>
+  <td>Engagement rate improves but downloads don't — signals the card metadata is helping discovery but documents need format or quality review</td>
+</tr>
+<tr>
+  <td><strong>Broken traffic</strong></td>
+  <td>404_landed events drop to fewer than 5 per week within 30 days of launch</td>
+  <td>404s remain high after 30 days — redirect plan was incomplete; run a crawl against old URLs to identify gaps</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+
 </div>
 `;
 

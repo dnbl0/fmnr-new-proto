@@ -867,7 +867,8 @@
     <div class="section-container">
       <p class="section-label">Send us a message</p>
       <h2 class="section-h2">We'd love to hear from you</h2>
-      <p class="section-lead">Whether you're a practitioner, researcher, funder or community leader, we welcome your questions, partnership enquiries and feedback.</p>
+      <p class="section-lead">Together we can help nature fight back against climate change and lift millions of people out of poverty at the same time.</p>
+      <p style="font-family:'Lato',sans-serif; font-size:14px; color:rgba(0,0,0,0.55); line-height:1.65; max-width:640px; margin-top:-24px; margin-bottom:40px;">We will use your information to process your request, engage with you and keep you updated on our work. Want to know more about how we will manage your personal information? Read our <a href="../privacy/index.html" style="color:#077d57; font-weight:700;">Privacy Policy</a>.</p>
       <form action="#" method="post" style="max-width:640px; display:flex; flex-direction:column; gap:20px;">
         <div style="display:flex; flex-direction:column; gap:6px;">
           <label for="contact-name" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Name</label>
@@ -878,12 +879,29 @@
           <input type="email" id="contact-email" name="email" required placeholder="you@example.com" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%;" />
         </div>
         <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="contact-country" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Country</label>
+          <input type="text" id="contact-country" name="country" placeholder="Your country" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%;" />
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
           <label for="contact-org" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Organisation</label>
           <input type="text" id="contact-org" name="organisation" placeholder="Organisation name (optional)" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%;" />
         </div>
         <div style="display:flex; flex-direction:column; gap:6px;">
-          <label for="contact-message" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Message</label>
-          <textarea id="contact-message" name="message" required rows="6" placeholder="Tell us how we can help…" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%; resize:vertical;"></textarea>
+          <label for="contact-help" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">How can we help you</label>
+          <select id="contact-help" name="help" required style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%; cursor:pointer;">
+            <option value="" disabled selected>Select an option</option>
+            <option value="implement">I would like to implement FMNR in my community</option>
+            <option value="guidance">I am already implementing FMNR and need some guidance</option>
+            <option value="partner">I would like to partner with World Vision</option>
+            <option value="learn">I would like to learn more about FMNR</option>
+            <option value="resources">I have a question about the FMNR resources/training</option>
+            <option value="updates">I would like to receive updates on FMNR</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="contact-message" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Questions or comments</label>
+          <textarea id="contact-message" name="message" rows="6" placeholder="Your questions or comments…" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%; resize:vertical;"></textarea>
         </div>
         <div>
           <button type="submit" class="btn-donate" style="font-size:16px; padding:14px 32px; border-radius:4px; cursor:pointer;">Send message</button>

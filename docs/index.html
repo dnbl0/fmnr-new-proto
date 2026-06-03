@@ -969,15 +969,15 @@
                             <span class="nav-subgroup-label">Resource Hub</span>
                             <a class="nav-item" href="#resource-hub" data-url="../resource-hub.html">All Resources</a>
                             <a class="nav-item" href="#resources-research"
-                                data-url="../resource-hub.html">Research</a>
+                                data-url="../resource-hub/research.html">Research</a>
                             <a class="nav-item" href="#resources-country"
-                                data-url="../resource-hub.html">Country-Specific Resources</a>
+                                data-url="../resource-hub/country-specific.html">Country-Specific Resources</a>
                             <a class="nav-item" href="#resources-fundamentals"
-                                data-url="../resource-hub.html">FMNR Manual</a>
-                            <a class="nav-item" href="#resources-media" data-url="../resource-hub.html">FMNR Media</a>
-                            <a class="nav-item" href="#resources-ecourse" data-url="../resource-hub.html">FMNR
+                                data-url="../resource-hub/manual.html">FMNR Manual</a>
+                            <a class="nav-item" href="#resources-media" data-url="../resource-hub/media.html">FMNR Media</a>
+                            <a class="nav-item" href="#resources-ecourse" data-url="../resource-hub/e-courses.html">FMNR
                                 e-Courses</a>
-                            <a class="nav-item" href="#resources-webinar" data-url="../resource-hub.html">FMNR Webinar</a>
+                            <a class="nav-item" href="#resources-webinar" data-url="../resource-hub/webinars.html">FMNR Webinar</a>
                         </div>
 
                         <div class="nav-subgroup">
@@ -993,8 +993,7 @@
                         <div class="nav-subgroup">
                             <span class="nav-subgroup-label">Stories</span>
                             <a class="nav-item" href="#blog" data-url="../blog.html">All Stories</a>
-                            <a class="nav-item" href="#blog-post" data-url="../blog-post.html">Story Category</a>
-                            <a class="nav-item" href="#blog-post-2" data-url="../blog-post.html">Story Category</a>
+                            <a class="nav-item" href="#blog-post" data-url="../blog-post.html">Story post</a>
                         </div>
 
                         <div class="nav-subgroup">
@@ -1006,12 +1005,12 @@
                                 FMNR</a>
                             <a class="nav-item" href="#fmnr-world-vision" data-url="../index.html">FMNR and
                                 World Vision</a>
-                            <a class="nav-item" href="#scaling-projects" data-url="../index.html">FMNR Scaling
+                            <a class="nav-item" href="#scaling-projects" data-url="../about-fmnr/scaling-projects.html">FMNR Scaling
                                 Projects</a>
-                            <a class="nav-item" href="#tracking-tool" data-url="../index.html">FMNR Tracking
+                            <a class="nav-item" href="#tracking-tool" data-url="../about-fmnr/tracking-tool.html">FMNR Tracking
                                 Tool</a>
-                            <a class="nav-item" href="#latest-updates" data-url="../blog.html">Latest Updates</a>
-                            <a class="nav-item" href="#fmnr-faqs" data-url="../index.html">FMNR FAQs</a>
+                            <a class="nav-item" href="#latest-updates" data-url="../about-fmnr/latest-updates.html">Latest Updates</a>
+                            <a class="nav-item" href="#fmnr-faqs" data-url="../about-fmnr/faqs.html">FMNR FAQs</a>
                         </div>
                     </div>
                 </div>
@@ -1402,82 +1401,36 @@
                         }
                     } catch (e) { }
 
+                    // Inject a capture-phase wheel listener so mouse wheel always
+                    // scrolls the iframe root, even when page scripts call
+                    // preventDefault() for parallax / scroll-snap / animation effects.
+                    // Runs before any page listener; backs off if a nearer scrollable
+                    // container can absorb the delta so inner carousels still work.
+                    try {
+                        var root = doc.scrollingElement || doc.documentElement;
+                        doc.addEventListener('wheel', function (wh) {
+                            var el = wh.target;
+                            while (el && el !== root) {
+                                var oy = doc.defaultView.getComputedStyle(el).overflowY;
+                                if (oy === 'auto' || oy === 'scroll') {
+                                    var canAbsorb = wh.deltaY > 0
+                                        ? el.scrollTop < el.scrollHeight - el.clientHeight - 1
+                                        : el.scrollTop > 0;
+                                    if (canAbsorb) return;
+                                }
+                                el = el.parentElement;
+                            }
+                            var dy = wh.deltaMode === 1 ? wh.deltaY * 16
+                                   : wh.deltaMode === 2 ? root.clientHeight * wh.deltaY
+                                   : wh.deltaY;
+                            root.scrollTop += dy;
+                            wh.preventDefault();
+                        }, { capture: true, passive: false });
+                    } catch (we) {}
+
                 } catch (e) { }
             });
 
-            // Keep scrolling sane between the parent preview shell and the iframe.
-            // When the iframe is same-origin, forward wheel and touch gestures
-            // to the iframe content when it can scroll, and prevent the parent
-            // from stealing the scroll. This avoids stuck wheel handoffs and
-            // intermittent disabled scrolling when the iframe contains a
-            // scrollable document.
-            (function () {
-                function canScrollInDoc(doc, deltaY) {
-                    var el = doc.scrollingElement || doc.documentElement || doc.body;
-                    var max = el.scrollHeight - el.clientHeight;
-                    if (max <= 0) return false;
-                    if (deltaY > 0 && el.scrollTop >= max) return false;
-                    if (deltaY < 0 && el.scrollTop <= 0) return false;
-                    return true;
-                }
-
-                function onWheel(e) {
-                    try {
-                        var doc = iframe.contentDocument || iframe.contentWindow.document;
-                        if (!doc) return;
-                        if (canScrollInDoc(doc, e.deltaY)) {
-                            // iframe can scroll in this direction — consume the event
-                            e.preventDefault();
-                            e.stopPropagation();
-                            var el = doc.scrollingElement || doc.documentElement || doc.body;
-                            el.scrollTop += e.deltaY;
-                        }
-                        // otherwise allow the parent to handle (do nothing)
-                    } catch (err) { /* cross-origin or other errors — ignore */ }
-                }
-
-                function onTouch(e) {
-                    try {
-                        if (e.type === 'touchstart') {
-                            iframe._touchY = e.touches[0] && e.touches[0].clientY;
-                            return;
-                        }
-                        if (e.type === 'touchmove') {
-                            var y = e.touches[0] && e.touches[0].clientY;
-                            if (typeof iframe._touchY !== 'number') { iframe._touchY = y; return; }
-                            var delta = iframe._touchY - y;
-                            var doc = iframe.contentDocument || iframe.contentWindow.document;
-                            if (doc && canScrollInDoc(doc, delta)) {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                var el = doc.scrollingElement || doc.documentElement || doc.body;
-                                el.scrollTop += delta;
-                                iframe._touchY = y;
-                            } else {
-                                // if iframe can't scroll, allow parent to handle; update touchY
-                                iframe._touchY = y;
-                            }
-                        }
-                    } catch (err) { /* ignore */ }
-                }
-
-                // Attach handlers to the iframe element. Use non-passive so we can preventDefault.
-                try {
-                    iframe.addEventListener('wheel', onWheel, { passive: false });
-                    iframe.addEventListener('touchstart', onTouch, { passive: false });
-                    iframe.addEventListener('touchmove', onTouch, { passive: false });
-                } catch (e) { /* if iframe isn't available yet or addEventListener fails, ignore */ }
-            })();
-
-            // Embedded docs can report their own height, but the preview no longer
-            // expands the iframe. Keeping the frame fixed gives the preview exactly
-            // one scroll surface and avoids stuck wheel handoffs.
-            window.addEventListener('message', function (e) {
-                var d = e.data;
-                if (!d || d.type !== 'fmnr:doc-height' || !(d.height > 0)) return;
-                if (e.source !== iframe.contentWindow) return;
-                resetIframeHeight();
-            });
 
             // ─── Docs rendering ───
             // Alias map

@@ -10,51 +10,886 @@
   <link rel="stylesheet" href="../assets/css/header.css" />
   <link rel="stylesheet" href="../assets/css/search.css" />
   <style>
-    @font-face { font-family:'FatFrank'; src:url('../fatfrank.otf') format('opentype'); font-weight:900; font-style:normal; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Lato',sans-serif; background:#f9f9f9; color:#1a1a1a; overflow-x:hidden; }
-    .stub-main { min-height:62vh; }
-    .stub-hero { background:linear-gradient(160deg,#0d2318 0%,#1a4028 55%,#265c3a 100%); color:#fff; padding:72px 0 64px; }
-    .stub-wrap { max-width:1280px; margin:0 auto; padding:0 40px; }
-    .stub-crumbs { font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.72); margin-bottom:18px; }
-    .stub-crumbs a { color:rgba(255,255,255,.72); text-decoration:none; }
-    .stub-crumbs a:hover { color:#fff; }
-    .stub-title { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; text-transform:uppercase; font-size:56px; line-height:1; }
-    .stub-sub { margin-top:16px; font-size:18px; max-width:640px; color:rgba(255,255,255,.9); line-height:1.5; }
-    .stub-body { padding:56px 0 80px; }
-    .stub-card { background:#fff; border:1px solid #e8e8e8; border-radius:14px; padding:40px; max-width:720px; }
-    .stub-badge { display:inline-block; background:#e8eeeb; color:#00552f; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:5px 12px; border-radius:20px; }
-    .stub-card h2 { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:28px; text-transform:uppercase; margin:16px 0 10px; color:#111; }
-    .stub-card p { color:#555; line-height:1.6; font-size:16px; }
-    .stub-back { display:inline-flex; align-items:center; gap:6px; margin-top:24px; background:#00552f; color:#fff; font-weight:700; padding:12px 22px; border-radius:6px; text-decoration:none; }
-    .stub-back:hover { background:#004026; }
-    .stub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-top:34px; max-width:940px; }
-    .stub-tile { background:#fff; border:1px solid #e8e8e8; border-radius:12px; padding:22px; text-decoration:none; color:#00552f; font-weight:700; transition:box-shadow .15s,border-color .15s; }
-    .stub-tile:hover { border-color:#b2d4c0; box-shadow:0 2px 14px rgba(0,85,47,.09); }
-    .stub-tile span { display:block; color:#999; font-weight:400; font-size:13px; margin-top:4px; }
-    @media (max-width:768px){ .stub-title{ font-size:38px; } .stub-hero{ padding:52px 0 44px; } .stub-card{ padding:28px; } }
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      position: relative;
+      height: 540px;
+      display: flex;
+      align-items: flex-end;
+      background: linear-gradient(160deg, #0d1f2a 0%, #1a3a4a 50%, #0d2030 100%);
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 40px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-h1 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 780px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
+      color: #003d22;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: #0ae49e; }
+
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
+    /* ===================== BREADCRUMB ===================== */
+    .breadcrumb { background: #fff; border-bottom: 1px solid #e8e8e8; }
+
+    .breadcrumb-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 40px;
+    }
+
+    .breadcrumb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+    }
+
+    .breadcrumb-link:hover { text-decoration: underline; }
+
+    /* ===================== SECTION SHARED ===================== */
+    .section-white { background: white; padding: 80px 0; }
+    .section-tinted { background: #f9f9f9; padding: 80px 0; }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+      margin-bottom: 12px;
+    }
+
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    /* ===================== FEATURE CARDS ===================== */
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #f8f9f8;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .feature-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .feature-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+    }
+
+    /* ===================== SECTION WRAPPER ===================== */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section-cream { background: #f9f9f9; }
+
+    /* ===================== STEP STRIPS ===================== */
+    .step-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 460px;
+    }
+
+    .step-strip--reversed { direction: rtl; }
+
+    .step-image { min-height: 380px; background-size: cover; background-position: center; }
+
+    .step-content {
+      direction: ltr;
+      padding: 64px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      background: white;
+    }
+
+    .step-content--alt { background: #f9f9f9; }
+
+    .step-number {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      color: #e0ede6;
+      line-height: 1;
+    }
+
+    .step-h3 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.05;
+    }
+
+    .step-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 480px;
+    }
+
+    .step-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .step-checklist li {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #222;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .step-checklist li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 12px;
+      height: 7px;
+      border-left: 2px solid #00552f;
+      border-bottom: 2px solid #00552f;
+      transform: rotate(-45deg);
+    }
+
+    /* ===================== STAT TILES ===================== */
+    .stats-section {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .stat-tile {
+      background: #111;
+      border-radius: 4px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #abb8c3;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+      margin-bottom: 12px;
+    }
+
+    .stat-description {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #abb8c3;
+      line-height: 1.4;
+    }
+
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* ===================== STORIES ===================== */
+    .stories-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .story-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .story-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    .story-card-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a2e3a 0%, #2d4a5a 100%);
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .story-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .story-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .story-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .story-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    /* ===================== CTA ===================== */
+    .cta-section {
+      background: #00552f;
+      padding: 80px 0;
+    }
+
+    .cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .cta-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 720px;
+    }
+
+    .cta-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-outline-teal {
+      display: inline-block;
+      background: transparent;
+      color: #0dfaab;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #0dfaab;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-outline-teal:hover { background: rgba(13,250,171,0.1); }
+
+    /* ===================== RELATED ===================== */
+    .related-section {
+      background: #f9f9f9;
+      padding: 80px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .related-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .related-card {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      border: 1px solid #e8e8e8;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .related-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .related-card-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 4px;
+    }
+
+    .related-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .related-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .related-card-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+    }
+
+    .related-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 6px;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .hero-h1 { font-size: 44px; }
+      .section-h2 { font-size: 40px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile { height: auto; min-height: 200px; }
+      .grid-4col { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
+
+      .section-white, .section-tinted, .cta-section, .related-section { padding: 60px 0; }
+      .section-container { padding: 0 24px; }
+      .breadcrumb-inner { padding: 16px 24px; }
+      .cta-inner { padding: 0 24px; }
+
+      .section-h2 { font-size: 36px; }
+      .feature-cards { grid-template-columns: 1fr; }
+      .grid-3col { grid-template-columns: 1fr; }
+      .grid-4col { grid-template-columns: 1fr; }
+
+      .section { padding: 60px 24px; }
+      .step-strip { grid-template-columns: 1fr; min-height: auto; }
+      .step-strip--reversed { direction: ltr; }
+      .step-image { min-height: 240px; }
+      .step-content { padding: 40px 24px; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
+
+      .cta-h2 { font-size: 36px; }
+      .related-heading { font-size: 28px; }
+    }
   </style>
 </head>
 <body>
-  <main class="stub-main">
-    <section class="stub-hero">
-      <div class="stub-wrap">
-        <nav class="stub-crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="../about-fmnr/index.html">About</a> / <span>Scaling Projects</span></nav>
-        <h1 class="stub-title">Scaling Projects</h1>
-        <p class="stub-sub">How FMNR is scaling across regions and landscapes.</p>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/2017ETH-FE-Trip-Humbo-Project__DSC6983.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">About FMNR · Scaling Projects</p>
+      <h1 class="hero-h1">From One Farmer To Five Million Hectares.</h1>
+      <p class="hero-subtitle">FMNR began with a single change of mind in Niger and has spread, farmer to farmer, across regions, landscapes and nations. This is how a low-cost technique becomes a movement at scale.</p>
+      <div class="hero-buttons">
+        <a href="../impact/index.html" class="btn-teal">See the impact</a>
+        <a href="#how-it-scales" class="btn-outline-white">How it scales</a>
       </div>
-    </section>
-    <section class="stub-body">
-      <div class="stub-wrap">
-        <div class="stub-card">
-          <span class="stub-badge">Coming soon</span>
-          <h2>Content in progress</h2>
-          <p>This page is part of the FMNR site structure and is being built out. Check back soon for full content, or explore the rest of the site in the meantime.</p>
-          <a class="stub-back" href="../about-fmnr/index.html">← Back to About FMNR</a>
+    </div>
+  </section>
+
+  <!-- ===================== BREADCRUMB ===================== -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="../about-fmnr/index.html" class="breadcrumb-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to About FMNR
+      </a>
+    </div>
+  </div>
+
+  <!-- ===================== WHY IT SCALES ===================== -->
+  <section class="section-white">
+    <div class="section-container">
+      <p class="section-label">Built to spread</p>
+      <h2 class="section-h2">Why FMNR Scales Where Planting Programmes Fail</h2>
+      <p class="section-lead">Conventional reforestation — raising seedlings in nurseries and planting them out — repeatedly failed in the drylands. FMNR works with what is already in the ground: living rootstock, stumps and seeds. That is what lets it move from a single farm to a whole landscape at almost no cost.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <p class="feature-overline">Low cost</p>
+          <h3 class="feature-heading">No Inputs, No Nurseries</h3>
+          <p class="feature-body">FMNR requires no external inputs or expensive equipment. A significant proportion of degraded agricultural land was cleared by methods that leave roots in the ground — making regreening immediately possible at scale.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Farmer-led</p>
+          <h3 class="feature-heading">Spread Farmer To Farmer</h3>
+          <p class="feature-body">In Niger the practice spread largely from one farmer to the next over a 20-year period. Visible results — better crops growing amongst the trees — did the convincing, with little investment from government or NGOs.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Adaptable</p>
+          <h3 class="feature-heading">Tailored To Each Landscape</h3>
+          <p class="feature-body">Communities tailor FMNR to their own needs — available species, local climate, soil and crop conditions — so the same core technique takes root across deserts, croplands and highlands alike.</p>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT SCALES — STEP STRIPS ===================== -->
+  <section id="how-it-scales" class="section section-white">
+    <div class="step-strip">
+      <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/11/Unknown_2017_Niger_BNATonywithcar_HQ_CNS.jpg');"></div>
+      <div class="step-content">
+        <p class="step-number">01</p>
+        <h3 class="step-h3">It Starts In Niger</h3>
+        <p class="step-body">In the early 1980s Niger's agricultural zone was turning to desert. During a country-wide famine, a food-for-work programme required communities to protect trees on their farmland — and for the first time some 500,000 trees were left standing across a whole district. Crops grew better amongst the trees, and the idea took hold.</p>
+        <ul class="step-checklist">
+          <li>500,000 trees protected in a single district</li>
+          <li>A change in mindset, not a planting campaign</li>
+          <li>Farmers saw better crops within one season</li>
+          <li>The technique outlived the project that started it</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream">
+    <div class="step-strip step-strip--reversed">
+      <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/11/Unknown_2005_Niger_satellite-after_LQimage.png');"></div>
+      <div class="step-content step-content--alt">
+        <p class="step-number">02</p>
+        <h3 class="step-h3">Five Million Hectares, Visible From Space</h3>
+        <p class="step-body">Over the following 20 years FMNR spread from farmer to farmer until five million hectares of farmland in Niger had been re-vegetated — a transformation so large it is visible in satellite imagery from 1975 compared to 2005. This happened in one of the world's poorest countries, moving FMNR from a "project" to a "movement".</p>
+        <ul class="step-checklist">
+          <li>5 million hectares re-vegetated in Niger</li>
+          <li>200 million trees regenerated across the Sahel</li>
+          <li>Desertification halted, deforestation reversed</li>
+          <li>Achieved with minimal forestry-sector investment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-white">
+    <div class="step-strip">
+      <div class="step-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/2017ETH-FE-Trip-Humbo-Project__DSC6983.jpg');"></div>
+      <div class="step-content">
+        <p class="step-number">03</p>
+        <h3 class="step-h3">Catalysing New Regions</h3>
+        <p class="step-body">From the Sahel, FMNR has been deliberately catalysed across new landscapes — from the Humbo regreening project in Ethiopia to the Uganda FMNR Catalyst Project. The pattern repeats: train, demonstrate, let visible results drive adoption, then step back as communities carry the practice forward themselves.</p>
+        <ul class="step-checklist">
+          <li>Humbo, Ethiopia — degraded hillsides restored</li>
+          <li>Uganda FMNR Catalyst Project — household clusters</li>
+          <li>Active across 20+ countries and 5 continents</li>
+          <li>Farmer-led spread designed in from day one</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STAT TILES ===================== -->
+  <section class="stats-section">
+    <div class="section-stack">
+      <div class="section-heading-wrap">
+        <p class="section-overline">Scale Of FMNR</p>
+        <h2 class="section-heading">Numbers that speak for themselves</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-tile">
+          <p class="stat-overline">Trees regenerated</p>
+          <p class="stat-value">200M</p>
+          <p class="stat-description">Trees regenerated across the Sahel through farmer-led FMNR — one of the largest positive environmental transformations on the continent</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Land restored</p>
+          <p class="stat-value">5M+</p>
+          <p class="stat-description">Hectares of farmland re-vegetated in Niger alone over roughly two decades, spreading largely farmer to farmer</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Trees per hectare</p>
+          <p class="stat-value">40–150</p>
+          <p class="stat-description">Trees now left on farmland by FMNR farmers — up from the "clean farm" practice of clearing every tree</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Global reach</p>
+          <p class="stat-value">20+</p>
+          <p class="stat-description">Countries across five continents where FMNR is being practised, adapted and scaled to local landscapes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT STORIES ===================== -->
+  <section class="section-tinted">
+    <div class="section-container">
+      <div class="stories-header">
+        <p class="section-label">Projects at scale</p>
+        <h2 class="section-h2">Where FMNR Is Scaling Now</h2>
+      </div>
+      <div class="grid-3col">
+        <a href="../impact/index.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/11/fmnr-humbo_google_earth-1024x566-1.png');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Ethiopia</p>
+            <h3 class="story-heading">Humbo Regreening Project</h3>
+            <p class="story-body">Once-barren hillsides above Humbo have been restored through community-managed FMNR — recovering forest, reducing erosion and generating carbon revenue for local communities.</p>
+            <span class="card-cta">Explore the impact →</span>
+          </div>
+        </a>
+        <a href="../impact/index.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2026/01/AU395-0060-06.jpg');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Uganda</p>
+            <h3 class="story-heading">Uganda FMNR Catalyst Project</h3>
+            <p class="story-body">Working through household clusters, the Catalyst Project has spread FMNR across Ugandan farmland — boosting on-farm firewood, soil fertility, livestock fodder and diversified incomes.</p>
+            <span class="card-cta">Read more →</span>
+          </div>
+        </a>
+        <a href="../impact/index.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/11/Unknown_2005_Niger_satellite-after_LQimage.png');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Niger / Sahel</p>
+            <h3 class="story-heading">A Global Scaling Movement</h3>
+            <p class="story-body">Niger's experience — from 500,000 protected trees to five million restored hectares — has inspired a worldwide movement to catalyse FMNR across new regions and landscapes.</p>
+            <span class="card-cta">See the story →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="cta-h2">Help FMNR Reach The Next Landscape</h2>
+      <p class="cta-body">Every hectare restored began with a single farmer choosing to let a tree grow. Partner with us, fund a catalyst project, or learn the technique — and help carry FMNR to the next region.</p>
+      <div class="cta-buttons">
+        <a href="../partners.html" class="btn-teal">Partner with FMNR</a>
+        <a href="../adopt/how-fmnr-works.html" class="btn-outline-teal">Learn how FMNR works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RELATED ===================== -->
+  <section class="related-section">
+    <div class="section-container">
+      <h2 class="related-heading">Explore More About FMNR</h2>
+      <div class="grid-4col">
+        <a href="../adopt/how-fmnr-works.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22V8"/><path d="M12 8c0-3 2-5 5-5 0 3-2 5-5 5z"/><path d="M12 12c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg>
+          </div>
+          <p class="related-card-title">How FMNR Works</p>
+          <p class="related-card-body">The technique and its five core steps — find, prune, protect, grow and utilise — explained in full.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../impact/evidence.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+          </div>
+          <p class="related-card-title">Evidence Of Impact</p>
+          <p class="related-card-body">Peer-reviewed research and data behind FMNR's livelihood and environmental results.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../about-fmnr/tony-rinaudo.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          </div>
+          <p class="related-card-title">Tony Rinaudo</p>
+          <p class="related-card-body">The agronomist whose change of approach in Niger sparked the global FMNR movement.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../partners.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/></svg>
+          </div>
+          <p class="related-card-title">Partner With FMNR</p>
+          <p class="related-card-body">See how NGOs, governments, funders and faith networks help scale FMNR worldwide.</p>
+          <span class="related-card-cta">View all →</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Search overlay markup (site-wide) -->
   <div class="search-overlay" id="search-overlay" aria-hidden="true">

@@ -320,7 +320,9 @@
         .preview-panel {
             flex: 1;
             background: #fafafa;
-            overflow-y: auto;
+            /* Keep the docs shell fixed; the preview iframe below is the single
+               vertical scroll surface. */
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -354,7 +356,9 @@
         .preview-frame-wrap {
             width: 100%;
             padding: 0 48px 48px;
-            flex-shrink: 0;
+            flex: 1;
+            min-height: 0;
+            display: flex;
         }
 
         .preview-frame-wrap iframe {
@@ -364,7 +368,7 @@
             background: #fff;
             display: block;
             transition: width 0.3s ease;
-            height: auto; /* allow JS to size dynamically */
+            height: 100%;
             min-height: 0;
         }
 
@@ -1249,10 +1253,6 @@
                     btn.classList.add('active');
                     var view = btn.dataset.view;
                     iframe.className = view === 'mobile' ? 'mobile-view' : '';
-                    if (iframe.src && iframe.src !== 'about:blank') {
-                        var src = iframe.src;
-                        setTimeout(function () { iframe.src = src; }, 50);
-                    }
                 });
             });
 
@@ -1275,15 +1275,33 @@
                 var data = docs[key];
                 previewTitle.textContent = title;
                 previewDesc.textContent = data ? data.desc : '';
-                previewLabel.textContent = data ? data.label : 'Component';
+                // If docs data exists use its label; otherwise fall back to a label
+                // inferred from the sidebar group (pages → Page, blocks → Block, etc.)
+                if (data && data.label) {
+                    previewLabel.textContent = data.label;
+                } else {
+                    var group = item.closest('.nav-group');
+                    var groupKey = group && group.dataset && group.dataset.group;
+                    var groupLabelMap = {
+                        pages: 'Page',
+                        templates: 'Template',
+                        blocks: 'Block',
+                        forms: 'Form',
+                        ia: 'Information Architecture',
+                        analytics: 'Analytics'
+                    };
+                    var inferred = groupKey && groupLabelMap[groupKey] ? groupLabelMap[groupKey] : (group ? (group.querySelector('.nav-group-label') || { textContent: 'Component' }).textContent.trim() : 'Component');
+                    // If the group label found is plural (ends with "s"), convert to singular naively
+                    if (!groupKey && /^.+s$/i.test(inferred)) {
+                        inferred = inferred.replace(/s$/i, '');
+                    }
+                    previewLabel.textContent = inferred || 'Component';
+                }
 
                 // Load iframe
                 previewPanel.style.display = 'flex';
                 contentToolbar.style.display = 'flex';
                 iframe.className = '';
-                // disconnect any observer watching previous iframe content
-                try { if (iframe._docsObserver) { iframe._docsObserver.disconnect(); iframe._docsObserver = null; } } catch (e) {}
-                iframe.style.height = '';
                 // allow caller to target a specific section inside the demo page
                 iframe._docsSection = item.dataset.section || '';
                 iframe.src = url;
@@ -1315,7 +1333,7 @@
                     previewPanel.style.display = 'none';
                     contentToolbar.style.display = 'none';
 
-                    mainTitle.textContent = 'FMNR Component Library';
+                    if (mainTitle) mainTitle.textContent = 'FMNR Component Library';
                     navItems.forEach(function (n) { n.classList.remove('active'); });
                     docsPanel.classList.remove('visible');
                     wpPanel.classList.remove('visible');
@@ -1335,24 +1353,7 @@
                 });
             });
 
-            // ─── Iframe load overrides + auto-height ───
-            function sizeIframe() {
-                try {
-                    var d = iframe.contentDocument || iframe.contentWindow.document;
-                    if (!d || !d.body) { iframe.style.height = 'auto'; return; }
-                    // Constrain the iframe to the block's design viewport (680px — the
-                    // same height the hero clamp uses) BEFORE measuring. This makes
-                    // full-bleed blocks that use height:100vh / 100% resolve to their
-                    // intended height instead of ballooning to the measuring height.
-                    // Normal-flow content taller than this is still reported by
-                    // scrollHeight, so the iframe ends up sized to the isolated block.
-                    var previous = iframe.style.height;
-                    iframe.style.height = '680px';
-                    var h = d.body.scrollHeight || 0;
-                    iframe.style.height = (h > 0 ? h + 'px' : previous || 'auto');
-                } catch (e) { iframe.style.height = 'auto'; }
-            }
-
+            // ─── Iframe load overrides ───
             iframe.addEventListener('load', function () {
                 if (!iframe.src || iframe.src === 'about:blank') return;
                 try {
@@ -1363,10 +1364,8 @@
                     if (dts) dts.remove();
                     var s = doc.createElement('style');
                     s.id = 'docs-viewer-overrides';
-                    var iframeSrc = iframe.getAttribute('src') || '';
-                    var isDemo = /\-demo\.html/.test(iframeSrc);
                     var isFullPage = doc.querySelector('script[src*="shared-header"]');
-                    var baseCSS = '[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;} .reveal,.reveal-hero,[class*="reveal-"]{opacity:1!important;transform:none!important;transition:none!important;} html,body{scroll-snap-type:none!important;overflow-x:hidden!important;} #demo-toolbar,.demo-toolbar,.demo-nav,[class*="demo-toolbar"],[id*="demo-toolbar"],.dtb{display:none!important;} body>.search-overlay:not(.open),body>.mega-menu-overlay:not(.open),body>div[aria-hidden="true"]:not(.open){display:none!important;} .video-hero,.hero,.hero-section{height:680px!important;min-height:0!important;}';
+                    var baseCSS = '[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;} .reveal,.reveal-hero,[class*="reveal-"]{opacity:1!important;transform:none!important;transition:none!important;} html{overflow-y:auto!important;} html,body{scroll-snap-type:none!important;overflow-x:hidden!important;overscroll-behavior:contain!important;} #demo-toolbar,.demo-toolbar,.demo-nav,[class*="demo-toolbar"],[id*="demo-toolbar"],.dtb{display:none!important;} body>.search-overlay:not(.open),body>.mega-menu-overlay:not(.open),body>div[aria-hidden="true"]:not(.open){display:none!important;} .video-hero,.hero,.hero-section,.page-hero{height:680px!important;min-height:0!important;}';
                     if (!isFullPage) { baseCSS += ' body{padding-top:0!important;margin:0!important;margin-top:0!important;}'; }
                     s.textContent = baseCSS;
                     doc.head.appendChild(s);
@@ -1404,30 +1403,81 @@
                         }
                     } catch (e) { }
 
-                    // ensure we disconnect any previous observer attached to iframe
-                    try { if (iframe._docsObserver) { iframe._docsObserver.disconnect(); iframe._docsObserver = null; } } catch (e) {}
-
-                    // create a MutationObserver inside the parent to watch iframe body for changes and re-size
-                    try {
-                        var observer = new MutationObserver(function () { setTimeout(sizeIframe, 50); });
-                        observer.observe(doc.body, { childList: true, subtree: true, attributes: true });
-                        iframe._docsObserver = observer;
-                    } catch (e) { /* ignore if cross-origin or other errors */ }
-
                 } catch (e) { }
-                // Size after overrides apply, then again after images settle
-                setTimeout(sizeIframe, 150);
-                setTimeout(sizeIframe, 800);
             });
 
-            // Some embedded pages report their own height via postMessage
-            // (used when the parent can't read the iframe doc, e.g. cross-origin
-            // or file://). Only honour messages from the currently loaded frame.
+            // Keep scrolling sane between the parent preview shell and the iframe.
+            // When the iframe is same-origin, forward wheel and touch gestures
+            // to the iframe content when it can scroll, and prevent the parent
+            // from stealing the scroll. This avoids stuck wheel handoffs and
+            // intermittent disabled scrolling when the iframe contains a
+            // scrollable document.
+            (function () {
+                function canScrollInDoc(doc, deltaY) {
+                    var el = doc.scrollingElement || doc.documentElement || doc.body;
+                    var max = el.scrollHeight - el.clientHeight;
+                    if (max <= 0) return false;
+                    if (deltaY > 0 && el.scrollTop >= max) return false;
+                    if (deltaY < 0 && el.scrollTop <= 0) return false;
+                    return true;
+                }
+
+                function onWheel(e) {
+                    try {
+                        var doc = iframe.contentDocument || iframe.contentWindow.document;
+                        if (!doc) return;
+                        if (canScrollInDoc(doc, e.deltaY)) {
+                            // iframe can scroll in this direction — consume the event
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var el = doc.scrollingElement || doc.documentElement || doc.body;
+                            el.scrollTop += e.deltaY;
+                        }
+                        // otherwise allow the parent to handle (do nothing)
+                    } catch (err) { /* cross-origin or other errors — ignore */ }
+                }
+
+                function onTouch(e) {
+                    try {
+                        if (e.type === 'touchstart') {
+                            iframe._touchY = e.touches[0] && e.touches[0].clientY;
+                            return;
+                        }
+                        if (e.type === 'touchmove') {
+                            var y = e.touches[0] && e.touches[0].clientY;
+                            if (typeof iframe._touchY !== 'number') { iframe._touchY = y; return; }
+                            var delta = iframe._touchY - y;
+                            var doc = iframe.contentDocument || iframe.contentWindow.document;
+                            if (doc && canScrollInDoc(doc, delta)) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                var el = doc.scrollingElement || doc.documentElement || doc.body;
+                                el.scrollTop += delta;
+                                iframe._touchY = y;
+                            } else {
+                                // if iframe can't scroll, allow parent to handle; update touchY
+                                iframe._touchY = y;
+                            }
+                        }
+                    } catch (err) { /* ignore */ }
+                }
+
+                // Attach handlers to the iframe element. Use non-passive so we can preventDefault.
+                try {
+                    iframe.addEventListener('wheel', onWheel, { passive: false });
+                    iframe.addEventListener('touchstart', onTouch, { passive: false });
+                    iframe.addEventListener('touchmove', onTouch, { passive: false });
+                } catch (e) { /* if iframe isn't available yet or addEventListener fails, ignore */ }
+            })();
+
+            // Embedded docs can report their own height, but the preview no longer
+            // expands the iframe. Keeping the frame fixed gives the preview exactly
+            // one scroll surface and avoids stuck wheel handoffs.
             window.addEventListener('message', function (e) {
                 var d = e.data;
                 if (!d || d.type !== 'fmnr:doc-height' || !(d.height > 0)) return;
                 if (e.source !== iframe.contentWindow) return;
-                iframe.style.height = Math.ceil(d.height) + 'px';
+                resetIframeHeight();
             });
 
             // ─── Docs rendering ───

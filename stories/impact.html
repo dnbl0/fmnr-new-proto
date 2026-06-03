@@ -12,49 +12,244 @@
   <style>
     @font-face { font-family:'FatFrank'; src:url('../fatfrank.otf') format('opentype'); font-weight:900; font-style:normal; }
     * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Lato',sans-serif; background:#f9f9f9; color:#1a1a1a; overflow-x:hidden; }
-    .stub-main { min-height:62vh; }
-    .stub-hero { background:linear-gradient(160deg,#0d2318 0%,#1a4028 55%,#265c3a 100%); color:#fff; padding:72px 0 64px; }
-    .stub-wrap { max-width:1280px; margin:0 auto; padding:0 40px; }
-    .stub-crumbs { font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.72); margin-bottom:18px; }
-    .stub-crumbs a { color:rgba(255,255,255,.72); text-decoration:none; }
-    .stub-crumbs a:hover { color:#fff; }
-    .stub-title { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; text-transform:uppercase; font-size:56px; line-height:1; }
-    .stub-sub { margin-top:16px; font-size:18px; max-width:640px; color:rgba(255,255,255,.9); line-height:1.5; }
-    .stub-body { padding:56px 0 80px; }
-    .stub-card { background:#fff; border:1px solid #e8e8e8; border-radius:14px; padding:40px; max-width:720px; }
-    .stub-badge { display:inline-block; background:#e8eeeb; color:#00552f; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:5px 12px; border-radius:20px; }
-    .stub-card h2 { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:28px; text-transform:uppercase; margin:16px 0 10px; color:#111; }
-    .stub-card p { color:#555; line-height:1.6; font-size:16px; }
-    .stub-back { display:inline-flex; align-items:center; gap:6px; margin-top:24px; background:#00552f; color:#fff; font-weight:700; padding:12px 22px; border-radius:6px; text-decoration:none; }
-    .stub-back:hover { background:#004026; }
-    .stub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-top:34px; max-width:940px; }
-    .stub-tile { background:#fff; border:1px solid #e8e8e8; border-radius:12px; padding:22px; text-decoration:none; color:#00552f; font-weight:700; transition:box-shadow .15s,border-color .15s; }
-    .stub-tile:hover { border-color:#b2d4c0; box-shadow:0 2px 14px rgba(0,85,47,.09); }
-    .stub-tile span { display:block; color:#999; font-weight:400; font-size:13px; margin-top:4px; }
-    @media (max-width:768px){ .stub-title{ font-size:38px; } .stub-hero{ padding:52px 0 44px; } .stub-card{ padding:28px; } }
+    body { font-family:'Lato',sans-serif; background:#f9f9f9; overflow-x:hidden; }
+    .section-container { max-width:1280px; margin:0 auto; width:100%; padding:0 40px; }
+
+    .hero {
+      position:relative; height:540px; display:flex; align-items:flex-end;
+      background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480-scaled.jpg');
+      background-size:cover; background-position:center 40%; overflow:hidden;
+    }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0) 100%); }
+    .hero-content { position:relative; z-index:1; padding:0 40px 72px; max-width:1280px; margin:0 auto; width:100%; display:flex; flex-direction:column; gap:16px; }
+    .hero-crumbs { font-family:'Lato',sans-serif; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.7); }
+    .hero-crumbs a { color:rgba(255,255,255,.7); text-decoration:none; }
+    .hero-crumbs a:hover { color:#fff; }
+    .hero-label { font-family:'Lato',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.65); }
+    .hero-h1 { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:64px; text-transform:uppercase; color:white; line-height:1; max-width:860px; }
+    .hero-subtitle { font-family:'Lato',sans-serif; font-size:18px; color:rgba(255,255,255,0.85); line-height:1.6; max-width:600px; }
+    .hero-buttons { display:flex; gap:16px; flex-wrap:wrap; margin-top:8px; }
+    .btn-teal { display:inline-block; background:#0dfaab; color:#003d22; font-family:'Lato',sans-serif; font-weight:700; font-size:16px; padding:14px 28px; border-radius:4px; text-decoration:none; transition:background 0.2s; }
+    .btn-teal:hover { background:#0ae49e; }
+    .btn-outline-white { display:inline-block; background:transparent; color:white; font-family:'Lato',sans-serif; font-weight:700; font-size:16px; padding:14px 28px; border-radius:4px; text-decoration:none; border:2px solid rgba(255,255,255,0.5); transition:border-color 0.2s; }
+    .btn-outline-white:hover { border-color:white; }
+
+    .blog-section { padding:80px 0; }
+    .blog-section + .blog-section { border-top:1px solid #e8e8e8; }
+    .blog-section-inner { max-width:1280px; margin:0 auto; padding:0 40px; display:flex; flex-direction:column; gap:40px; }
+    .blog-section-header { display:flex; flex-direction:column; gap:8px; }
+    .blog-overline { font-family:'Lato',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#077d57; }
+    .blog-heading { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:56px; text-transform:uppercase; line-height:1; color:#111; }
+    .blog-subheading { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:36px; text-transform:uppercase; line-height:1; color:#111; }
+
+    .blog-card { background:white; border:1px solid #f0ede5; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; text-decoration:none; }
+    .blog-card-image { aspect-ratio:16/9; background-color:#e0e0e0; background-size:cover; background-position:center; flex-shrink:0; }
+    .blog-card-body { padding:20px; display:flex; flex-direction:column; gap:8px; flex:1; }
+    .blog-card-overline { font-family:'Lato',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#077d57; }
+    .blog-card-heading { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:22px; line-height:1.1; text-transform:uppercase; color:#111; }
+    .blog-card-sub { font-family:'Lato',sans-serif; font-size:14px; color:rgba(0,0,0,0.6); line-height:1.5; flex:1; }
+    .btn-link { display:inline-flex; align-items:center; gap:6px; font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#00552f; text-decoration:none; margin-top:8px; }
+    .btn-link:hover { text-decoration:underline; }
+
+    .featured-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .featured-grid .blog-card-image { aspect-ratio:16/10; }
+    .featured-grid .blog-card-heading { font-size:28px; }
+    .grid-4col { display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; }
+    .grid-3col { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+
+    .cta-band { background:#00552f; border-radius:16px; padding:56px 48px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px; }
+    .cta-overline { font-family:'Lato',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#0dfaab; }
+    .cta-heading { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:40px; text-transform:uppercase; line-height:1; color:white; }
+    .cta-sub { font-family:'Lato',sans-serif; font-size:16px; color:rgba(255,255,255,0.85); line-height:1.6; max-width:560px; }
+    .cta-buttons { display:flex; gap:14px; margin-top:14px; flex-wrap:wrap; justify-content:center; }
+    .btn-white { display:inline-block; background:white; color:#00552f; font-family:'Lato',sans-serif; font-weight:700; font-size:16px; padding:14px 28px; border-radius:4px; text-decoration:none; }
+
+    @media (max-width:768px) {
+      .hero { height:auto; padding:80px 0 48px; align-items:flex-start; }
+      .hero-content { padding:0 24px; }
+      .hero-h1 { font-size:36px; }
+      .hero-subtitle { font-size:16px; }
+      .blog-section { padding:60px 0; }
+      .blog-section-inner { padding:0 24px; }
+      .blog-heading { font-size:36px; }
+      .blog-subheading { font-size:28px; }
+      .featured-grid { grid-template-columns:1fr; }
+      .grid-4col { grid-template-columns:1fr 1fr; }
+      .grid-3col { grid-template-columns:1fr; }
+      .cta-band { padding:40px 24px; }
+      .cta-heading { font-size:30px; }
+    }
+    @media (max-width:480px) { .grid-4col { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
-  <main class="stub-main">
-    <section class="stub-hero">
-      <div class="stub-wrap">
-        <nav class="stub-crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="../blog.html">Stories</a> / <span>Impact Stories</span></nav>
-        <h1 class="stub-title">Impact Stories</h1>
-        <p class="stub-sub">Lives and landscapes transformed by FMNR.</p>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <nav class="hero-crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="../blog.html">Stories</a> / <span>Impact Stories</span></nav>
+      <p class="hero-label">Impact Stories</p>
+      <h1 class="hero-h1">Lives &amp; Landscapes Transformed</h1>
+      <p class="hero-subtitle">Behind every restored hectare is a family with more food, more income and more hope. These are the people whose lives FMNR has changed — told in their own fields, in their own words.</p>
+      <div class="hero-buttons">
+        <a href="#featured" class="btn-teal">Read the stories</a>
+        <a href="../impact/index.html" class="btn-outline-white">See the data</a>
       </div>
-    </section>
-    <section class="stub-body">
-      <div class="stub-wrap">
-        <div class="stub-card">
-          <span class="stub-badge">Coming soon</span>
-          <h2>Content in progress</h2>
-          <p>This page is part of the FMNR site structure and is being built out. Check back soon for full content, or explore the rest of the site in the meantime.</p>
-          <a class="stub-back" href="../blog.html">← Back to Stories</a>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: FEATURED (2-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section" id="featured">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Featured Stories</p>
+        <h1 class="blog-heading">Real Lives, Real Change</h1>
+      </div>
+      <div class="featured-grid">
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/10/W200-0587-006_08.2023_Kenya_FMNRtrees_HQ_CNS-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Kenya · West Pokot</span>
+            <h2 class="blog-card-heading">From Deforestation to Restoration in Senetwo</h2>
+            <p class="blog-card-sub">How FMNR is transforming Senetwo Sublocation in West Pokot. Once-bare slopes are greening again as families protect and prune the trees regenerating naturally on their farms — restoring soil, water and hope.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/11/Unknown_2017_Niger_BNATonywithcar_HQ_CNS-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Niger</span>
+            <h2 class="blog-card-heading">How Niger Inspired a Global Scaling Movement</h2>
+            <p class="blog-card-sub">Niger's regreening of five million hectares is one of the largest positive environmental transformations in Africa — and it has inspired a worldwide movement to scale FMNR across the globe.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: STORIES FROM THE FIELD (3-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">From the Field</p>
+        <h2 class="blog-subheading">Stories of Impact</h2>
+      </div>
+      <div class="grid-3col">
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A1087-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Kenya · Champion</span>
+            <h3 class="blog-card-heading">An FMNR Champion Leads Her Village</h3>
+            <p class="blog-card-sub">A determined woman leads her village in land restoration, proving that one champion's example can move an entire community to action.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/1403MD870-1-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Communities</span>
+            <h3 class="blog-card-heading">Improving Living Standards Through FMNR</h3>
+            <p class="blog-card-sub">Thanks to the transformative impact of FMNR, many families are witnessing a remarkable turnaround — better harvests, healthier livestock and rising incomes.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/AU485-0015-10.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Uganda · Apiary</span>
+            <h3 class="blog-card-heading">Turning Honey Into Money</h3>
+            <p class="blog-card-sub">Ivan Opio's journey as an apiary farmer. The acacia trees regenerated through FMNR are a source of nectar for his bees — and a steady new income for his family.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: MORE STORIES (4-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">More Stories</p>
+        <h2 class="blog-subheading">Resilience in Drought</h2>
+      </div>
+      <div class="grid-4col">
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Kenya · Baringo</span>
+            <h3 class="blog-card-heading">Trees Help a Family Thrive in Drought</h3>
+            <p class="blog-card-sub">Despite drought, Grace has enough grass for her livestock thanks to increased tree cover — boosting milk and income.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/DSC_4279-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Women's Empowerment</span>
+            <h3 class="blog-card-heading">Boosting Women's Economic Empowerment</h3>
+            <p class="blog-card-sub">A simple tree-regeneration technique is lifting incomes and independence for women across rural Kenya.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/150904_FMNR_0604-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Kenya · Turnaround</span>
+            <h3 class="blog-card-heading">Turning Over a New Leaf</h3>
+            <p class="blog-card-sub">From charcoal burner to environmentalist — one man's transformation from cutting trees to restoring them.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+        <a href="../blog-post.html" class="blog-card">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/AU115-0014-12-scaled.jpg')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-overline">Climate Resilience</span>
+            <h3 class="blog-card-heading">How Trees Cushion Communities From Drought</h3>
+            <p class="blog-card-sub">Regenerated tree cover is helping communities withstand the climate-induced droughts that once pushed them into poverty.</p>
+            <span class="btn-link">Read more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: CTA -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="cta-band">
+        <p class="cta-overline">Multiply the impact</p>
+        <h2 class="cta-heading">Help Transform More Lives</h2>
+        <p class="cta-sub">Every story here is one family, one farm, one restored landscape. Your support helps FMNR reach the next community — and write the next story of transformation.</p>
+        <div class="cta-buttons">
+          <a href="../donate.html" class="btn-white">Donate now</a>
+          <a href="../impact/index.html" class="btn-teal">See the impact</a>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- Search overlay markup (site-wide) -->
   <div class="search-overlay" id="search-overlay" aria-hidden="true">

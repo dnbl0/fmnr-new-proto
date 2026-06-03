@@ -1,24 +1,1011 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — FMNR</title>
-  <meta name="robots" content="noindex">
-  <style>body{font-family:Arial,Helvetica,sans-serif;padding:44px;background:#f7f7f7;color:#111}a{color:#077d57}</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — FMNR Scale-Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/search.css" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('/fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    .header {
+      background: #f9f9f9;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav-link {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      color: #00552f;
+      text-decoration: none;
+      padding: 24px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .nav-link:hover { opacity: 0.7; }
+
+    .nav-link.active {
+      font-weight: 700;
+      /* no bottom border for active nav-link */
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .btn-donate {
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-donate:hover { background: #004026; }
+
+    .mega-item { position: static; }
+
+    .mega-panel {
+      position: fixed;
+      left: 0; right: 0;
+      top: 0; /* positioned below header via JS */
+      background: white;
+      border-top: 3px solid #00552f;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+      z-index: 200;
+      display: none;
+      animation: megaFadeIn 0.18s ease;
+    }
+
+    @keyframes megaFadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .mega-item:focus-within .mega-panel { display: block; }
+
+    .mega-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mega-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mega-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+    }
+
+    .mega-contact-btn {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      border: 2px solid #00552f;
+      border-radius: 4px;
+      padding: 8px 20px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mega-contact-btn:hover { background: #00552f; color: white; }
+
+    .mega-content-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mega-featured {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 360px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .mega-featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.08) 100%);
+    }
+
+    .mega-featured-content {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mega-featured-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.45);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    .mega-featured-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .mega-featured-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
+    }
+
+    .mega-featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #00552f;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+    }
+
+    .mega-featured-cta:hover { background: #004026; }
+
+    .mega-icon-grid {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .mega-icon-grid--2x2 { grid-template-columns: repeat(2, 1fr); }
+    .mega-icon-grid--2x3 { grid-template-columns: repeat(3, 1fr); }
+
+    .mega-icon-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px 18px 20px;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+      background: #f8f9f8;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+
+    .mega-icon-card:hover {
+      border-color: #b2d4c0;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .mega-icon-wrap {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mega-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mega-icon-title {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      line-height: 1.2;
+    }
+
+    .mega-icon-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .hero {
+      position: relative;
+      height: 580px;
+      display: flex;
+      align-items: flex-end;
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/KEN-DryDev-FMNR-Farmer-Group-1-3B8A0006.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 40px 72px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-h1 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 860px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 580px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
+      color: #003d22;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: #0ae49e; }
+
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
+    .section-white { background: white; padding: 80px 0; }
+    .section-tinted { background: #f9f9f9; padding: 80px 0; }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+      margin-bottom: 12px;
+    }
+
+    .section-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .partner-type-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .partner-type-card {
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #e8e8e8;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .partner-type-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+
+    .partner-type-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .partner-type-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+    }
+
+    /* partner-type-badge removed — no longer used */
+
+    .partner-type-body {
+      padding: 20px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .partner-type-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .partner-type-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .partner-type-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #f8f9f8;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: #e0ede6;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .feature-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .feature-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+    }
+
+    .stats-section {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .stat-tile {
+      background: #111;
+      border-radius: 4px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #abb8c3;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+      margin-bottom: 12px;
+    }
+
+    .stat-description {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #abb8c3;
+      line-height: 1.4;
+    }
+
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .stories-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .stories-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+    }
+
+    .btn-link:hover { text-decoration: underline; }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .story-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .story-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    .story-card-image {
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .story-card-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .story-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .story-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .story-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    .cta-section {
+      background: #00552f;
+      padding: 80px 0;
+    }
+
+    .cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .cta-left { display: flex; flex-direction: column; gap: 16px; }
+
+    .cta-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 680px;
+    }
+
+    .cta-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-outline-teal {
+      display: inline-block;
+      background: transparent;
+      color: #0dfaab;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #0dfaab;
+      transition: background 0.2s;
+    }
+
+    .btn-outline-teal:hover { background: rgba(13,250,171,0.1); }
+
+    @media (max-width: 1024px) {
+      .hero-h1 { font-size: 48px; }
+      .section-h2 { font-size: 40px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile { height: auto; min-height: 200px; }
+      .partner-type-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .header { padding: 16px 0; }
+      .nav-links { display: none; }
+      .mega-panel { top: 0; }
+
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
+
+      .section-white, .section-tinted, .cta-section { padding: 60px 0; }
+      .section-container { padding: 0 24px; }
+      .cta-inner { padding: 0 24px; }
+
+      .section-h2 { font-size: 36px; }
+      .feature-cards { grid-template-columns: 1fr; }
+      .partner-type-grid { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
+
+      .cta-h2 { font-size: 32px; }
+      .stories-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Contact FMNR</h1>
-  <p>Thanks for your interest. Please email <a href="mailto:info@example.org">info@example.org</a> or use the form below (placeholder).</p>
-  <form>
-    <label>Name <input type="text" name="name"></label><br><br>
-    <label>Email <input type="email" name="email"></label><br><br>
-    <label>Message<br><textarea name="message" rows="6" cols="60"></textarea></label><br><br>
-    <button type="submit">Send</button>
-  </form>
-  <p><a href="../">Return home</a></p>
-  <script src="../assets/js/header.js" defer></script>
-  <script src="../assets/js/footer.js" defer></script>
-  <script src="../assets/js/motion-init.js" defer></script>
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">Get in Touch</p>
+      <h1 class="hero-h1">Contact Us</h1>
+      <p class="hero-subtitle">Get in touch with the FMNR Scale-Up team at World Vision Australia.</p>
+    </div>
+  </section>
+
+  <section class="section-white">
+    <div class="section-container">
+      <p class="section-label">Send us a message</p>
+      <h2 class="section-h2">We'd love to hear from you</h2>
+      <p class="section-lead">Whether you're a practitioner, researcher, funder or community leader, we welcome your questions, partnership enquiries and feedback.</p>
+      <form action="#" method="post" style="max-width:640px; display:flex; flex-direction:column; gap:20px;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="contact-name" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Name</label>
+          <input type="text" id="contact-name" name="name" required placeholder="Your full name" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%;" />
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="contact-email" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Email</label>
+          <input type="email" id="contact-email" name="email" required placeholder="you@example.com" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%;" />
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="contact-org" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Organisation</label>
+          <input type="text" id="contact-org" name="organisation" placeholder="Organisation name (optional)" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%;" />
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="contact-message" style="font-family:'Lato',sans-serif; font-weight:700; font-size:14px; color:#111;">Message</label>
+          <textarea id="contact-message" name="message" required rows="6" placeholder="Tell us how we can help…" style="font-family:'Lato',sans-serif; font-size:15px; padding:12px 16px; border:1px solid #d0d0d0; border-radius:4px; color:#111; background:#fff; width:100%; resize:vertical;"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn-donate" style="font-size:16px; padding:14px 32px; border-radius:4px; cursor:pointer;">Send message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section-tinted">
+    <div class="section-container">
+      <p class="section-label">Other ways to reach us</p>
+      <h2 class="section-h2">Stay connected</h2>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <p class="feature-overline">Email</p>
+          <h3 class="feature-heading">Drop us a line</h3>
+          <p class="feature-body"><a href="mailto:info@fmnrhub.com.au" style="color:#00552f; font-weight:700;">info@fmnrhub.com.au</a></p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <p class="feature-overline">Partner with us</p>
+          <h3 class="feature-heading">Join the network</h3>
+          <p class="feature-body">Governments, NGOs, faith groups and funders are all scaling FMNR alongside World Vision Australia.</p>
+          <a href="/partners.html" class="card-cta">Partner with us</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <p class="feature-overline">Resources</p>
+          <h3 class="feature-heading">Explore the hub</h3>
+          <p class="feature-body">Field guides, training packs, research and case studies — everything you need to implement or scale FMNR.</p>
+          <a href="/resource-hub.html" class="card-cta">Visit Resource Hub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-left">
+        <h2 class="cta-h2">Make a difference today</h2>
+        <p class="cta-body">Partner with us to scale FMNR across communities, or support the work through a donation to World Vision Australia.</p>
+        <div class="cta-buttons">
+          <a href="/partners.html" class="btn-teal">Partner with us</a>
+          <a href="/donate.html" class="btn-outline-teal">Donate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="search-overlay" id="search-overlay" aria-hidden="true">
+    <div class="search-overlay-inner">
+      <form class="search-input-wrap" id="search-form" action="resource-hub.html" method="get" autocomplete="off">
+        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M16 16l5 5"></path></svg>
+        <input type="text" id="search-input" name="q" placeholder="Search FMNR resources, topics, regions..." aria-label="Search">
+        <button type="button" class="search-clear" id="search-clear" aria-label="Clear">
+          <svg viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </form>
+      <div class="search-body" id="search-body">
+        <p class="search-section-label">Quick Links</p>
+        <ul class="search-suggestions" id="search-suggestions"><li><a href="/partners.html">Partner with FMNR</a></li><li><a href="/resource-hub.html">Resource Hub</a></li><li><a href="/impact/index.html">See the Impact</a></li><li><a href="/about-fmnr/tony-rinaudo.html">Tony Rinaudo</a></li><li><a href="/contact/index.html">Get in Touch</a></li></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/search.js"></script>
+  <script>
+    (function () {
+      document.querySelectorAll('.mega-item').forEach(function (item) {
+        var panel = item.querySelector('.mega-panel');
+        if (!panel) return;
+        var hideTimer = null;
+
+        function show() {
+          clearTimeout(hideTimer);
+          document.querySelectorAll('.mega-panel').forEach(function (p) {
+            if (p !== panel) p.style.display = 'none';
+          });
+          panel.style.display = 'block';
+        }
+
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () { panel.style.display = 'none'; }, 80);
+        }
+
+        item.addEventListener('mouseenter', show);
+        item.addEventListener('mouseleave', scheduleHide);
+        panel.addEventListener('mouseenter', show);
+        panel.addEventListener('mouseleave', scheduleHide);
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
+          document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.display = 'none'; });
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
+  <script src="/assets/js/header.js" defer></script>
+  <script src="/assets/js/footer.js" defer></script>
+  <script src="/assets/js/site-a11y.js" defer></script>
+  <script src="/assets/js/motion-init.js" defer></script>
 </body>
 </html>

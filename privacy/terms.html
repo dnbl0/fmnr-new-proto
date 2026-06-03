@@ -3,79 +3,418 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms & Conditions — FMNR</title>
+  <title>Terms &amp; Conditions — FMNR</title>
+  <meta name="description" content="The terms and conditions governing the use of the FMNR Hub website, operated by World Vision Australia." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/header.css" />
-  <link rel="stylesheet" href="../assets/css/search.css" />
   <style>
-    @font-face { font-family:'FatFrank'; src:url('../fatfrank.otf') format('opentype'); font-weight:900; font-style:normal; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Lato',sans-serif; background:#f9f9f9; color:#1a1a1a; overflow-x:hidden; }
-    .stub-main { min-height:62vh; }
-    .stub-hero { background:linear-gradient(160deg,#0d2318 0%,#1a4028 55%,#265c3a 100%); color:#fff; padding:72px 0 64px; }
-    .stub-wrap { max-width:1280px; margin:0 auto; padding:0 40px; }
-    .stub-crumbs { font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.72); margin-bottom:18px; }
-    .stub-crumbs a { color:rgba(255,255,255,.72); text-decoration:none; }
-    .stub-crumbs a:hover { color:#fff; }
-    .stub-title { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; text-transform:uppercase; font-size:56px; line-height:1; }
-    .stub-sub { margin-top:16px; font-size:18px; max-width:640px; color:rgba(255,255,255,.9); line-height:1.5; }
-    .stub-body { padding:56px 0 80px; }
-    .stub-card { background:#fff; border:1px solid #e8e8e8; border-radius:14px; padding:40px; max-width:720px; }
-    .stub-badge { display:inline-block; background:#e8eeeb; color:#00552f; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:5px 12px; border-radius:20px; }
-    .stub-card h2 { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:28px; text-transform:uppercase; margin:16px 0 10px; color:#111; }
-    .stub-card p { color:#555; line-height:1.6; font-size:16px; }
-    .stub-back { display:inline-flex; align-items:center; gap:6px; margin-top:24px; background:#00552f; color:#fff; font-weight:700; padding:12px 22px; border-radius:6px; text-decoration:none; }
-    .stub-back:hover { background:#004026; }
-    .stub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-top:34px; max-width:940px; }
-    .stub-tile { background:#fff; border:1px solid #e8e8e8; border-radius:12px; padding:22px; text-decoration:none; color:#00552f; font-weight:700; transition:box-shadow .15s,border-color .15s; }
-    .stub-tile:hover { border-color:#b2d4c0; box-shadow:0 2px 14px rgba(0,85,47,.09); }
-    .stub-tile span { display:block; color:#999; font-weight:400; font-size:13px; margin-top:4px; }
-    @media (max-width:768px){ .stub-title{ font-size:38px; } .stub-hero{ padding:52px 0 44px; } .stub-card{ padding:28px; } }
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ===================== HEADER ===================== */
+    .header {
+      background: #f9f9f9;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header .section-container { display: flex; align-items: center; justify-content: space-between; }
+
+    /* ===================== MEGA MENU ===================== */
+    .mega-item { position: static; }
+
+    .mega-panel {
+      position: fixed;
+      left: 0; right: 0;
+      top: 0;
+      background: white;
+      border-top: 3px solid #00552f;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+      z-index: 200;
+      display: none;
+      animation: megaFadeIn 0.18s ease;
+    }
+
+    @keyframes megaFadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .mega-item:focus-within .mega-panel { display: block; }
+
+    /* ===================== PAGE HERO (SECONDARY BANNER) ===================== */
+    .page-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 80vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .page-hero-left {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px;
+      gap: 20px;
+    }
+
+    .page-hero-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .page-hero-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .page-hero-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 20px;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      max-width: 420px;
+    }
+
+    .page-hero-right {
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/W200-0376-010-scaled.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: #1a3a25;
+    }
+
+    /* ===================== BLOG / CONTENT SECTIONS ===================== */
+    .blog-section { padding: 80px 0; }
+
+    .blog-section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .blog-section-header { display: flex; flex-direction: column; gap: 8px; }
+
+    .blog-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .blog-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .section-lead {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.65;
+      max-width: 720px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .btn-link:hover { text-decoration: underline; }
+
+    /* ===================== LONG-FORM PROSE ===================== */
+    .prose {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .prose-meta {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.45);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .prose h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      text-transform: uppercase;
+      line-height: 1.05;
+      color: #111;
+      margin-top: 28px;
+    }
+
+    .prose h2:first-of-type { margin-top: 0; }
+
+    .prose p {
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(0,0,0,0.7);
+    }
+
+    .prose a { color: #00552f; font-weight: 700; }
+    .prose a:hover { text-decoration: underline; }
+
+    /* ===================== CTA SECTION ===================== */
+    .tony-cta {
+      background: #2da57f;
+      padding: 80px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tony-cta-inner {
+      max-width: 1280px;
+      width: 100%;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .tony-cta-text { display: flex; flex-direction: column; gap: 8px; }
+
+    .tony-cta-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .tony-cta-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+      max-width: 720px;
+    }
+
+    .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+
+    .btn-cta-white {
+      background: white;
+      color: #00552f;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta-white:hover { background: #f0fff8; }
+
+    .btn-cta-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.7);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 30px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta-outline:hover { background: rgba(255,255,255,0.12); }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .header { padding: 16px 0; }
+      .mega-panel { top: 0; }
+      .page-hero { grid-template-columns: 1fr; height: auto; }
+      .page-hero-left { padding: 60px 24px 48px; }
+      .page-hero-heading { font-size: 48px; }
+      .page-hero-right { height: 320px; }
+      .blog-section { padding: 60px 0; }
+      .blog-section-inner { padding: 0 24px; }
+      .blog-heading { font-size: 36px; }
+      .prose h2 { font-size: 24px; }
+      .tony-cta-heading { font-size: 32px; }
+      .tony-cta-inner { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
-  <main class="stub-main">
-    <section class="stub-hero">
-      <div class="stub-wrap">
-        <nav class="stub-crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="../privacy/index.html">Privacy</a> / <span>Terms & Conditions</span></nav>
-        <h1 class="stub-title">Terms & Conditions</h1>
-        <p class="stub-sub">The terms governing use of this site.</p>
-      </div>
-    </section>
-    <section class="stub-body">
-      <div class="stub-wrap">
-        <div class="stub-card">
-          <span class="stub-badge">Coming soon</span>
-          <h2>Content in progress</h2>
-          <p>This page is part of the FMNR site structure and is being built out. Check back soon for full content, or explore the rest of the site in the meantime.</p>
-          <a class="stub-back" href="../privacy/index.html">← Back to Privacy</a>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <!-- Search overlay markup (site-wide) -->
-  <div class="search-overlay" id="search-overlay" aria-hidden="true">
-    <div class="search-overlay-inner">
-      <form class="search-input-wrap" id="search-form" action="../resource-hub.html" method="get" autocomplete="off">
-        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M16 16l5 5"></path></svg>
-        <input type="text" id="search-input" name="q" placeholder="Search FMNR resources, topics, regions…" aria-label="Search">
-        <button type="button" class="search-clear" id="search-clear" aria-label="Clear">
-          <svg viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        <kbd class="search-kbd">⌘K</kbd>
-      </form>
-      <div class="search-body" id="search-body">
-        <p class="search-section-label">Quick Links</p>
-        <ul class="search-suggestions" id="search-suggestions"><li><a href="../partners.html">Partner with FMNR</a></li><li><a href="../resource-hub.html">Resource Hub</a></li><li><a href="../impact/index.html">See the Impact</a></li><li><a href="../about-fmnr/tony-rinaudo.html">Tony Rinaudo</a></li><li><a href="../contact/index.html">Get in Touch</a></li></ul>
+  <!-- ============================================================ -->
+  <!-- HEADER (injected via header.js) -->
+  <!-- ============================================================ -->
+
+  <!-- ============================================================ -->
+  <!-- PAGE HERO -->
+  <!-- ============================================================ -->
+  <section class="page-hero">
+    <div class="page-hero-left">
+      <p class="page-hero-overline">Legal · Using this site</p>
+      <h1 class="page-hero-heading">Terms &amp; Conditions</h1>
+      <p class="page-hero-tagline">The terms governing access to and use of the FMNR Hub website.</p>
+    </div>
+    <div class="page-hero-right" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/W200-0376-010-scaled.jpg');" role="img" aria-label="Farmers in a regenerated landscape"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TERMS PROSE -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">FMNR Hub website terms and conditions</p>
+        <h2 class="blog-heading">Terms of use</h2>
+        <p class="section-lead" style="margin-top:8px;">Welcome to World Vision Australia's FMNR Hub website. By accessing or using our Website, you agree to comply with and be bound by these terms and conditions.</p>
+      </div>
+      <div class="prose">
+        <p class="prose-meta">Last updated: October 2024</p>
+
+        <h2>1. Introduction</h2>
+        <p>Welcome to World Vision Australia's FMNR Hub website (the "<strong>Website</strong>"). By accessing or using our Website, you agree to comply with and be bound by these terms and conditions (the "<strong>Terms</strong>"). If you do not agree to these Terms, please do not use our Website. These terms and conditions may be changed or updated from time to time.</p>
+
+        <h2>2. Use of Website</h2>
+        <p>Unless otherwise indicated, the content and resources provided on this Website are owned by World Vision Australia (<strong>WVA</strong>) and are intended for informational and educational purposes.</p>
+        <p>You may use and share the resources on the Website for personal or non-commercial purposes only. Any other use, including the reproduction, modification, distribution, transmission, republication, display, or performance of the content on this Website for commercial purposes is strictly prohibited.</p>
+
+        <h2>3. Intellectual Property</h2>
+        <p>All content on the Website, including but not limited to text, graphics, logos, images, and software, is the property of WVA or its content suppliers/partners and is protected by copyright, trademark, and other intellectual property laws. You may not use any of the content on the Website for commercial purposes without the prior written consent of WVA.</p>
+
+        <h2>4. Collection of Contact Details</h2>
+        <p>WVA may collect personal information, including contact details, from users who voluntarily provide such information through the Website. The collection and use of personal information are governed by <a href="https://www.worldvision.com.au/our-work/about-us/our-policies/your-privacy">WVA's Privacy Policy</a>, which is incorporated into these Terms by reference. You can also read our <a href="index.html">Privacy Policy</a> for this Website.</p>
+
+        <h2>5. Warranties</h2>
+        <p>The Website and its content are provided "as is" without any warranties of any kind, either express or implied. WVA does not warrant the accuracy, reliability, completeness or currency of information and materials on the Website. The Website may include links to other sites that are not maintained by WVA, and WVA is not responsible for the content of those sites.</p>
+
+        <h2>6. Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, WVA shall not be liable for any damages arising out of or in connection with the use of the Website.</p>
+
+        <h2>7. Governing Law</h2>
+        <p>These Terms shall be governed by and construed in accordance with the laws of Victoria, Australia.</p>
+
+        <p style="margin-top:14px;">If you have any questions about these Terms, please <a href="../contact/index.html">get in touch</a>.</p>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CTA -->
+  <!-- ============================================================ -->
+  <section class="tony-cta">
+    <div class="tony-cta-inner">
+      <div class="tony-cta-text">
+        <p class="tony-cta-overline">Need to know more?</p>
+        <h2 class="tony-cta-heading">Read our privacy policy.</h2>
+      </div>
+      <div class="cta-actions">
+        <a href="../contact/index.html" class="btn-cta-outline">Contact us</a>
+        <a href="index.html" class="btn-cta-white">Privacy Policy</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      document.querySelectorAll('.mega-item').forEach(item => {
+        const panel = item.querySelector('.mega-panel');
+        if (!panel) return;
+        let hideTimer = null;
+        function show() {
+          clearTimeout(hideTimer);
+          document.querySelectorAll('.mega-panel').forEach(p => { if (p !== panel) p.style.display = 'none'; });
+          panel.style.display = 'block';
+        }
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(() => { panel.style.display = 'none'; }, 80);
+        }
+        item.addEventListener('mouseenter', show);
+        item.addEventListener('mouseleave', scheduleHide);
+        panel.addEventListener('mouseenter', show);
+        panel.addEventListener('mouseleave', scheduleHide);
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
+          document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none');
+        }
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
 
   <script src="../assets/js/header.js" defer></script>
-  <script src="../assets/js/search.js" defer></script>
   <script src="../assets/js/footer.js" defer></script>
   <script src="../assets/js/site-a11y.js" defer></script>
   <script src="../assets/js/motion-init.js" defer></script>

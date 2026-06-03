@@ -1091,9 +1091,9 @@
     }
 
     @media (max-width: 768px) {
-      .header { height: 88px; }
+      .header { padding: 16px 0; }
       .nav-links { display: none; }
-      .mega-panel { top: 88px; }
+      .mega-panel { top: 0; }
 
       .adopt-hero { height: auto; min-height: 520px; }
       .adopt-hero-content { padding: 0 24px 56px; }
@@ -1936,6 +1936,19 @@
           document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none');
         }
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
     })();
   </script>
 

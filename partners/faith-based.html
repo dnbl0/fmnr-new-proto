@@ -34,7 +34,8 @@
     /* ===================== HEADER ===================== */
     .header {
       background: #f9f9f9;
-      height: 118px;
+      padding-top: 16px;
+      padding-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,7 +80,7 @@
 
     .nav-link.active {
       font-weight: 700;
-      border-bottom: 3px solid #00552f;
+      /* no bottom border for active nav-link */
     }
 
     .header-actions {
@@ -110,7 +111,7 @@
     .mega-panel {
       position: fixed;
       left: 0; right: 0;
-      top: 118px;
+      top: 0; /* positioned below header via JS */
       background: white;
       border-top: 3px solid #00552f;
       box-shadow: 0 8px 40px rgba(0,0,0,0.13);
@@ -1076,9 +1077,9 @@
     }
 
     @media (max-width: 768px) {
-      .header { height: 88px; }
+      .header { padding-top: 12px; padding-bottom: 12px; }
       .nav-links { display: none; }
-      .mega-panel { top: 88px; }
+      .mega-panel { top: var(--header-height, 88px); }
 
       .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
       .hero-content { padding: 0 24px; }
@@ -1516,6 +1517,27 @@
   <!-- ===================== MEGA MENU JS ===================== -->
   <script>
     (function () {
+      // keep a CSS variable --header-height in sync with the header's computed height
+      function updateHeaderHeight() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', h + 'px');
+      }
+
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateHeaderHeight, 120);
+      });
+
+      // run once after DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateHeaderHeight);
+      } else {
+        updateHeaderHeight();
+      }
+
       document.querySelectorAll('.mega-item').forEach(function (item) {
         var panel = item.querySelector('.mega-panel');
         if (!panel) return;
@@ -1549,6 +1571,19 @@
           });
         }
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
     })();
   </script>
 </body>

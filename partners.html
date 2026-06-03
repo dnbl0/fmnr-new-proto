@@ -34,7 +34,7 @@
     /* ===================== HEADER ===================== */
     .header {
       background: #f9f9f9;
-      height: 118px;
+      padding: 16px 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,7 +79,7 @@
 
     .nav-link.active {
       font-weight: 700;
-      border-bottom: 3px solid #00552f;
+      /* no bottom border for active nav-link */
     }
 
     .header-actions {
@@ -110,7 +110,7 @@
     .mega-panel {
       position: fixed;
       left: 0; right: 0;
-      top: 118px;
+      top: 0; /* positioned below header via JS */
       background: white;
       border-top: 3px solid #00552f;
       box-shadow: 0 8px 40px rgba(0,0,0,0.13);
@@ -476,21 +476,7 @@
       background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
     }
 
-    .partner-type-badge {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      z-index: 1;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: white;
-      background: rgba(0,85,47,0.85);
-      padding: 4px 10px;
-      border-radius: 3px;
-    }
+    /* partner-type-badge removed — no longer used */
 
     .partner-type-body {
       padding: 20px 20px 24px;
@@ -884,9 +870,9 @@
     }
 
     @media (max-width: 768px) {
-      .header { height: 88px; }
+      .header { padding: 16px 0; }
       .nav-links { display: none; }
-      .mega-panel { top: 88px; }
+      .mega-panel { top: 0; }
 
       .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
       .hero-content { padding: 0 24px; }
@@ -1028,7 +1014,6 @@
 
         <a href="partners/faith-based.html" class="partner-type-card">
           <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Malawi_day1_151.jpg');">
-            <span class="partner-type-badge">Faith</span>
           </div>
           <div class="partner-type-body">
             <h2 class="partner-type-heading">Faith-Based Partners</h2>
@@ -1039,7 +1024,6 @@
 
         <a href="partners/ngo.html" class="partner-type-card">
           <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480.jpg');">
-            <span class="partner-type-badge">NGO</span>
           </div>
           <div class="partner-type-body">
             <h2 class="partner-type-heading">NGO &amp; Development</h2>
@@ -1050,7 +1034,6 @@
 
         <a href="partners/government.html" class="partner-type-card">
           <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/09/AU200-0033-17.jpg');">
-            <span class="partner-type-badge">Government</span>
           </div>
           <div class="partner-type-body">
             <h2 class="partner-type-heading">Government &amp; Policy</h2>
@@ -1061,7 +1044,6 @@
 
         <a href="partners/funders.html" class="partner-type-card">
           <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/10/W200-0586-008_12.2024_Kenya_womanwithfood_HQ_CNS.jpg');">
-            <span class="partner-type-badge">Funders</span>
           </div>
           <div class="partner-type-body">
             <h2 class="partner-type-heading">Funders &amp; Investors</h2>
@@ -1230,6 +1212,23 @@
           document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.display = 'none'; });
         }
       });
+    })();
+  </script>
+  <script>
+    // ensure mega panels sit directly beneath the header when header size is padding-driven
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) {
+          p.style.top = h + 'px';
+        });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      // also update when fonts or images load
+      window.addEventListener('load', updateMegaPanelTop);
     })();
   </script>
 </body>

@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adopt FMNR — Farmer Managed Natural Regeneration</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/search.css" />
   <style>
     @font-face {
       font-family: 'FatFrank';
@@ -24,10 +24,16 @@
       overflow-x: hidden;
     }
 
-    /* ===================== HEADER ===================== */
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
     .header {
       background: #f9f9f9;
-      height: 118px;
+      padding: 16px 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -38,10 +44,6 @@
     }
 
     .header .section-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      width: 100%;
-      padding: 0 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -50,6 +52,7 @@
     .logo {
       display: flex;
       align-items: center;
+      gap: 2px;
       text-decoration: none;
       flex-shrink: 0;
     }
@@ -75,7 +78,7 @@
 
     .nav-link.active {
       font-weight: 700;
-      border-bottom: 3px solid #00552f;
+      /* no bottom border for active nav-link */
     }
 
     .header-actions {
@@ -83,64 +86,6 @@
       align-items: center;
       gap: 24px;
     }
-
-    /* ===================== SEARCH OVERLAY ===================== */
-    .search-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 400;
-      backdrop-filter: blur(4px);
-    }
-
-    .search-overlay.open { display: flex; }
-
-    .search-overlay-inner {
-      width: 100%;
-      max-width: 880px;
-      margin: 0 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-      overflow: hidden;
-    }
-
-    .search-input-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 20px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .search-input-wrap svg { width: 22px; height: 22px; stroke: #666; }
-
-    .search-input-wrap input[type="text"] {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      padding: 8px 6px;
-      font-family: 'Lato', sans-serif;
-      color: #111;
-    }
-
-    .search-clear {
-      background: none;
-      border: none;
-      width: 36px;
-      height: 36px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .search-body { padding: 18px 22px; }
-
 
     .btn-donate {
       background: #00552f;
@@ -158,13 +103,12 @@
 
     .btn-donate:hover { background: #004026; }
 
-    /* ===================== MEGA MENU ===================== */
     .mega-item { position: static; }
 
     .mega-panel {
       position: fixed;
       left: 0; right: 0;
-      top: 118px;
+      top: 0; /* positioned below header via JS */
       background: white;
       border-top: 3px solid #00552f;
       box-shadow: 0 8px 40px rgba(0,0,0,0.13);
@@ -235,6 +179,8 @@
       flex-direction: column;
       justify-content: flex-end;
       text-decoration: none;
+      background-size: cover;
+      background-position: center;
     }
 
     .mega-featured::after {
@@ -367,698 +313,365 @@
       line-height: 1.4;
     }
 
-    /* ===================== PAGE HERO ===================== */
-    .adopt-hero {
+    .hero {
       position: relative;
-      height: 620px;
-      overflow: hidden;
+      height: 580px;
       display: flex;
       align-items: flex-end;
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/07/KEN-DryDev-FMNR-Farmer-Group-1-3B8A0006.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      overflow: hidden;
     }
 
-    .adopt-hero-bg {
+    .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, #0d2818 0%, #1a4a2a 45%, #2d6040 100%);
-      background-color: #1a4a2a;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.05) 100%);
     }
 
-    .adopt-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.05) 100%);
-    }
-
-    .adopt-hero-content {
+    .hero-content {
       position: relative;
-      z-index: 10;
-      width: 100%;
+      z-index: 1;
+      padding: 0 40px 72px;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 40px 72px;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-    }
-
-    .adopt-hero-label {
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #0dfaab;
-    }
-
-    .adopt-hero-title {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 72px;
-      line-height: 0.95;
-      text-transform: uppercase;
-      color: white;
-      max-width: 860px;
-    }
-
-    .adopt-hero-sub {
-      font-family: 'Lato', sans-serif;
-      font-size: 20px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.82);
-      max-width: 600px;
-    }
-
-    .adopt-hero-actions {
-      display: flex;
       gap: 16px;
-      align-items: center;
-      margin-top: 8px;
     }
 
-    .btn-primary {
-      background: #0dfaab;
-      color: #00552f;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 14px 32px;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.15s;
-    }
-
-    .btn-primary:hover { background: #0be09d; }
-
-    .btn-outline-white {
-      color: white;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 14px 32px;
-      border: 2px solid rgba(255,255,255,0.5);
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: border-color 0.15s, background 0.15s;
-    }
-
-    .btn-outline-white:hover {
-      border-color: white;
-      background: rgba(255,255,255,0.08);
-    }
-
-    /* ===================== INTRO SECTION ===================== */
-    .section {
-      padding: 80px 40px;
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-
-    .section-full {
-      padding: 80px 0;
-    }
-
-    .section-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    .section-label {
+    .hero-label {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #2da57f;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-h1 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 860px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 580px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
+      color: #003d22;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: #0ae49e; }
+
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
+    .section-white { background: white; padding: 80px 0; }
+    .section-tinted { background: #f9f9f9; padding: 80px 0; }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
       margin-bottom: 12px;
     }
 
     .section-h2 {
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
       font-weight: 900;
-      font-size: 56px;
-      line-height: 1;
+      font-size: 52px;
       text-transform: uppercase;
       color: #111;
-      margin-bottom: 20px;
-    }
-
-    .section-h3 {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 36px;
       line-height: 1;
-      text-transform: uppercase;
-      color: #111;
       margin-bottom: 16px;
     }
 
-    .body-text {
+    .section-lead {
       font-family: 'Lato', sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
-      color: rgba(0,0,0,0.65);
-    }
-
-    .lead-text {
-      font-family: 'Lato', sans-serif;
-      font-size: 20px;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
       line-height: 1.65;
-      color: rgba(0,0,0,0.65);
+      max-width: 640px;
+      margin-bottom: 48px;
     }
 
-    /* ===================== IMAGE & VIDEO PLACEHOLDERS ===================== */
-    .img-placeholder {
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid #b5bdbc;
-      background: linear-gradient(to bottom, rgba(217,217,217,0) 54%, #999 100%);
-      background-color: #e0e0e0;
-      position: relative;
-    }
-
-    .img-placeholder--16x9 { aspect-ratio: 16/9; }
-    .img-placeholder--4x3 { aspect-ratio: 4/3; }
-    .img-placeholder--3x2 { aspect-ratio: 3/2; }
-    .img-placeholder--1x1 { aspect-ratio: 1/1; }
-    .img-placeholder--wide { aspect-ratio: 21/9; }
-
-    .video-placeholder {
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid #b5bdbc;
-      background: linear-gradient(160deg, #111 0%, #1e2e1e 100%);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .video-placeholder--16x9 { aspect-ratio: 16/9; }
-    .video-placeholder--4x3 { aspect-ratio: 4/3; }
-
-    .video-play-btn {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: 2px solid rgba(255,255,255,0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-      transition: background 0.18s, border-color 0.18s;
-      cursor: pointer;
-    }
-
-    .video-play-btn:hover {
-      background: rgba(13,250,171,0.18);
-      border-color: #0dfaab;
-    }
-
-    .video-play-btn svg {
-      width: 28px;
-      height: 28px;
-      fill: white;
-      margin-left: 4px;
-    }
-
-    .video-label {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      font-family: 'Lato', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      z-index: 2;
-    }
-
-    .video-duration {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      font-family: 'Lato', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: rgba(255,255,255,0.5);
-      z-index: 2;
-    }
-
-    /* ===================== INTRO LAYOUT ===================== */
-    .intro-layout {
+    .partner-type-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
     }
 
-    .intro-video-wrap {
+    .partner-type-card {
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #e8e8e8;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .partner-type-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+
+    .partner-type-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
       position: relative;
+      flex-shrink: 0;
     }
 
-    .intro-video-badge {
+    .partner-type-image::after {
+      content: '';
       position: absolute;
-      top: -16px;
-      right: -16px;
-      background: #0dfaab;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+    }
+
+    /* partner-type-badge removed — no longer used */
+
+    .partner-type-body {
+      padding: 20px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .partner-type-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .partner-type-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .partner-type-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
       color: #00552f;
+      margin-top: 8px;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #f8f9f8;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: #e0ede6;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-overline {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
       font-size: 12px;
-      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 8px 16px;
-      border-radius: 4px;
-      z-index: 2;
+      letter-spacing: 0.08em;
+      color: #077d57;
     }
 
-    /* ===================== STEP SECTIONS ===================== */
-    .step-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      min-height: 560px;
-    }
-
-    .step-strip--reverse { direction: rtl; }
-    .step-strip--reverse > * { direction: ltr; }
-
-    .step-media {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .step-media .img-placeholder,
-    .step-media .video-placeholder {
-      height: 100%;
-      border-radius: 0;
-      border: none;
-    }
-
-    .step-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 60px 64px;
-      background: white;
-    }
-
-    .step-content--dark {
-      background: #111;
-    }
-
-    .step-number {
+    .feature-heading {
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
       font-weight: 900;
-      font-size: 96px;
-      line-height: 1;
-      text-transform: uppercase;
-      color: #0dfaab;
-      margin-bottom: 8px;
-      opacity: 0.25;
-    }
-
-    .step-number--light {
-      color: rgba(255,255,255,0.15);
-      opacity: 1;
-    }
-
-    .step-h3 {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 40px;
-      line-height: 1;
+      font-size: 20px;
       text-transform: uppercase;
       color: #111;
-      margin-bottom: 16px;
+      line-height: 1.1;
     }
 
-    .step-h3--light { color: white; }
-
-    .step-body {
+    .feature-body {
       font-family: 'Lato', sans-serif;
-      font-size: 16px;
-      line-height: 1.75;
-      color: rgba(0,0,0,0.65);
-      margin-bottom: 24px;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
     }
 
-    .step-body--light { color: rgba(255,255,255,0.7); }
-
-    .step-checklist {
-      list-style: none;
+    .stats-section {
+      background: #f9f9f9;
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      justify-content: center;
     }
 
-    .step-checklist li {
-      font-family: 'Lato', sans-serif;
-      font-size: 15px;
-      color: rgba(0,0,0,0.7);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.5;
-    }
-
-    .step-checklist--light li { color: rgba(255,255,255,0.75); }
-
-    .step-checklist li::before {
-      content: '';
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #2da57f;
-      flex-shrink: 0;
-      margin-top: 2px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .step-checklist--light li::before {
-      background-color: #0dfaab;
-    }
-
-    /* ===================== STAT TILES ===================== */
-    .stat-section {
-      background: #111;
-      padding: 80px 40px;
-    }
-
-    .stat-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-
-    .stat-grid {
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 4px;
     }
 
     .stat-tile {
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
+      background: #111;
       border-radius: 4px;
-      padding: 36px 28px;
+      height: 240px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      text-align: center;
       align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
     }
 
     .stat-overline {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
-      font-size: 11px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: #abb8c3;
+      margin-bottom: 8px;
     }
 
     .stat-value {
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
       font-weight: 900;
-      font-size: 56px;
+      font-size: 48px;
       line-height: 1;
       text-transform: uppercase;
       color: #0dfaab;
+      margin-bottom: 12px;
     }
 
-    .stat-desc {
+    .stat-description {
       font-family: 'Lato', sans-serif;
       font-size: 14px;
       color: #abb8c3;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
-    /* ===================== VIDEO GALLERY ===================== */
-    .video-gallery {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 16px;
-    }
-
-    .video-gallery-main {
-      grid-row: 1 / 3;
-    }
-
-    /* ===================== IMAGE MOSAIC ===================== */
-    .img-mosaic {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 260px 260px;
-      gap: 12px;
-    }
-
-    .img-mosaic-wide {
-      grid-column: 1 / 3;
-    }
-
-    /* ===================== STEPS OVERVIEW (NUMBERED CARDS) ===================== */
-    .steps-overview {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    .step-card {
-      background: white;
-      border: 1px solid #e8e8e8;
-      border-radius: 8px;
-      padding: 28px 24px 32px;
+    .section-stack {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-    }
-
-    .step-card-num {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 40px;
-      line-height: 1;
-      color: #2da57f;
-    }
-
-    .step-card-title {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      line-height: 1.1;
-      text-transform: uppercase;
-      color: #111;
-    }
-
-    .step-card-body {
-      font-family: 'Lato', sans-serif;
-      font-size: 14px;
-      line-height: 1.65;
-      color: rgba(0,0,0,0.6);
-    }
-
-    /* ===================== PULLQUOTE ===================== */
-    .pullquote {
-      border-left: 4px solid #00552f;
-      padding: 20px 0 20px 32px;
-      margin: 8px 0;
-    }
-
-    .pullquote p {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 28px;
-      line-height: 1.15;
-      text-transform: uppercase;
-      color: #00552f;
-    }
-
-    /* ===================== CTA SECTION ===================== */
-    .cta-section {
-      background: #00552f;
+      gap: 29px;
       padding: 80px 40px;
-      text-align: center;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
     }
 
-    .cta-inner {
-      max-width: 720px;
-      margin: 0 auto;
+    .section-heading-wrap {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 24px;
+      gap: 8px;
     }
 
-    .cta-h2 {
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
       font-weight: 900;
       font-size: 56px;
       line-height: 1;
       text-transform: uppercase;
-      color: white;
-    }
-
-    .cta-body {
-      font-family: 'Lato', sans-serif;
-      font-size: 18px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.78);
-    }
-
-    .cta-actions {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-teal {
-      background: #0dfaab;
-      color: #00552f;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 14px 32px;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-
-    .btn-teal:hover { background: #0be09d; }
-
-    .btn-outline-teal {
-      color: #0dfaab;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 14px 32px;
-      border: 2px solid rgba(13,250,171,0.45);
-      border-radius: 4px;
-      text-decoration: none;
-      transition: border-color 0.15s, background 0.15s;
-    }
-
-    .btn-outline-teal:hover {
-      border-color: #0dfaab;
-      background: rgba(13,250,171,0.08);
-    }
-
-    /* ===================== RELATED RESOURCES ===================== */
-    .related-section {
-      background: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      border-top: 1px solid #e8e8e8;
-    }
-
-    .related-inner {
-      max-width: 1280px;
-      width: 100%;
-      padding: 80px 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 29px;
-    }
-
-    .related-heading {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 36px;
-      line-height: 1;
-      text-transform: uppercase;
       color: #111;
     }
 
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+    .stories-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
     }
 
-    .related-card {
-      background: #f9f9f9;
-      border: 1px solid #f9f9f9;
-      border-radius: 8px;
-      overflow: hidden;
+    .stories-header-left {
       display: flex;
       flex-direction: column;
-      text-decoration: none;
-      transition: border-color 0.18s, box-shadow 0.18s;
-    }
-
-    .related-card:hover {
-      border-color: #e8e8e8;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-    }
-
-    .related-card-image {
-      aspect-ratio: 280/157;
-      background: linear-gradient(to bottom, rgba(217,217,217,0) 54%, #999 100%);
-      background-color: #e0e0e0;
-      border-radius: 8px 8px 0 0;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .related-card-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid #cfcabe;
-      border-radius: 8px 8px 0 0;
-      pointer-events: none;
-    }
-
-    .related-card-body {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-      background: #f5f5f5;
-    }
-
-    .related-card-overline {
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #666;
-      margin-bottom: 2px;
-    }
-
-    .related-card-heading {
-      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-      line-height: 1;
-      text-transform: uppercase;
-      color: #111;
-      margin-bottom: 4px;
-    }
-
-    .related-card-sub {
-      font-family: 'Lato', sans-serif;
-      font-size: 14px;
-      color: rgba(0,0,0,0.6);
-      line-height: 1.4;
-      flex: 1;
+      gap: 8px;
     }
 
     .btn-link {
@@ -1070,78 +683,177 @@
       font-size: 14px;
       color: #00552f;
       text-decoration: none;
-      margin-top: 12px;
     }
 
     .btn-link:hover { text-decoration: underline; }
 
-    /* ===================== DIVIDERS ===================== */
-    .section-divider {
-      border: none;
-      border-top: 1px solid #e8e8e8;
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
     }
 
-    /* ===================== RESPONSIVE ===================== */
+    .story-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .story-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    .story-card-image {
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .story-card-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .story-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .story-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .story-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    .cta-section {
+      background: #00552f;
+      padding: 80px 0;
+    }
+
+    .cta-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .cta-left { display: flex; flex-direction: column; gap: 16px; }
+
+    .cta-h2 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 680px;
+    }
+
+    .cta-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-outline-teal {
+      display: inline-block;
+      background: transparent;
+      color: #0dfaab;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid #0dfaab;
+      transition: background 0.2s;
+    }
+
+    .btn-outline-teal:hover { background: rgba(13,250,171,0.1); }
+
     @media (max-width: 1024px) {
-      .step-strip { grid-template-columns: 1fr; min-height: unset; }
-      .step-strip--reverse { direction: ltr; }
-      .step-media { height: 380px; }
-      .step-content { padding: 48px 40px; }
-      .stat-grid { grid-template-columns: repeat(2, 1fr); }
-      .steps-overview { grid-template-columns: repeat(2, 1fr); }
-      .video-gallery { grid-template-columns: 1fr 1fr; }
-      .video-gallery-main { grid-row: auto; grid-column: 1 / 3; }
+      .hero-h1 { font-size: 48px; }
+      .section-h2 { font-size: 40px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile { height: auto; min-height: 200px; }
+      .partner-type-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-inner { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      .header { height: 88px; }
+      .header { padding: 16px 0; }
       .nav-links { display: none; }
-      .mega-panel { top: 88px; }
+      .mega-panel { top: 0; }
 
-      .adopt-hero { height: auto; min-height: 520px; }
-      .adopt-hero-content { padding: 0 24px 56px; }
-      .adopt-hero-title { font-size: 48px; }
-      .adopt-hero-sub { font-size: 17px; }
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
 
-      .section { padding: 60px 24px; }
-      .section-h2 { font-size: 40px; }
-      .section-h3 { font-size: 28px; }
+      .section-white, .section-tinted, .cta-section { padding: 60px 0; }
+      .section-container { padding: 0 24px; }
+      .cta-inner { padding: 0 24px; }
 
-      .intro-layout { grid-template-columns: 1fr; gap: 40px; }
+      .section-h2 { font-size: 36px; }
+      .feature-cards { grid-template-columns: 1fr; }
+      .partner-type-grid { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr; }
 
-      .step-content { padding: 40px 24px; }
-      .step-h3 { font-size: 32px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .section-stack { padding: 60px 24px; }
 
-      .stat-grid { grid-template-columns: 1fr; gap: 8px; }
-      .stat-section { padding: 60px 24px; }
-      .stat-inner { padding: 0; }
-
-      .video-gallery { grid-template-columns: 1fr; }
-      .video-gallery-main { grid-column: auto; }
-
-      .img-mosaic { grid-template-columns: 1fr; grid-template-rows: auto; gap: 12px; }
-      .img-mosaic-wide { grid-column: auto; }
-
-      .steps-overview { grid-template-columns: 1fr; }
-
-      .cta-section { padding: 60px 24px; }
-      .cta-h2 { font-size: 40px; }
-
-      .related-inner { padding: 60px 24px; }
-      .related-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-    }
-
-    @media (max-width: 480px) {
-      .related-grid { grid-template-columns: 1fr; }
-      .adopt-hero-actions { flex-direction: column; align-items: flex-start; }
+      .cta-h2 { font-size: 32px; }
+      .stories-header { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ============================================================ -->
-  <!-- HEADER -->
-  <!-- ============================================================ -->
   <header class="header">
     <div class="section-container">
       <a href="index.html" class="logo">
@@ -1154,17 +866,11 @@
             <path d="M265.182 68.7333C262.304 68.8184 259.426 68.8485 256.548 68.8086C254.346 68.778 252.271 68.1894 250.421 66.9886C247.661 65.1978 246.019 62.5998 245.209 59.4557C245.07 58.9135 244.993 58.3401 244.99 57.7805C244.969 54.6078 244.98 51.4349 244.98 48.1184C245.291 48.1184 245.578 48.1184 245.864 48.1184C248.47 48.1185 251.075 48.096 253.68 48.1246C256.454 48.1551 258.886 49.1104 260.986 50.9204C263.002 52.6572 264.301 54.8096 264.843 57.416C264.864 57.5165 264.993 57.5947 265.127 57.6219C265.182 61.2564 265.182 64.9523 265.182 68.7333Z" fill="#FA6B01"/>
             <path d="M18.5646 38.1317C18.4651 35.4532 18.6819 32.934 19.975 30.5989C20.8171 29.0781 21.862 27.7543 23.2516 26.6971C25.5196 24.9715 28.0849 24.2676 30.9155 24.3212C33.4883 24.3699 36.0628 24.3315 38.7671 24.3315C38.7671 24.6579 38.7671 24.9457 38.7671 25.2336C38.7671 27.7433 38.7604 30.253 38.7691 32.7627C38.7767 34.9352 38.3615 37.0323 37.275 38.9056C35.9002 41.2758 34.0274 43.1285 31.3726 44.1526C29.6621 44.8124 27.93 45.035 26.1331 45.0323C23.6513 45.0286 21.1695 45.0314 18.5646 45.0314C18.5646 42.7316 18.5646 40.477 18.5646 38.1317Z" fill="#FA6B01"/>
           </g>
-          <defs>
-            <clipPath id="clip0_adopt">
-              <rect width="265" height="69" fill="white"/>
-            </clipPath>
-          </defs>
+          <defs><clipPath id="clip0_adopt"><rect width="265" height="69" fill="white"/></clipPath></defs>
         </svg>
       </a>
 
       <nav class="nav-links" id="mainNav">
-
-        <!-- ══════════════ PARTNER ══════════════ -->
         <div class="mega-item">
           <a href="partners.html" class="nav-link">Partner</a>
           <div class="mega-panel">
@@ -1174,31 +880,31 @@
                 <a href="/contact/" class="mega-contact-btn">Contact us</a>
               </div>
               <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1a3a25 0%,#2d6040 50%,#3a7a52 100%)">
+                <a href="partners.html" class="mega-featured" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/03/W232-0346-029.jpg');">
                   <div class="mega-featured-content">
                     <span class="mega-featured-badge">Featured</span>
                     <p class="mega-featured-title">Scaling FMNR Across Sub-Saharan Africa</p>
                     <p class="mega-featured-desc">See how faith networks and NGOs are driving landscape restoration.</p>
-                    <span class="mega-featured-cta">Explore →</span>
+                    <span class="mega-featured-cta">Explore</span>
                   </div>
                 </a>
                 <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="#" class="mega-icon-card">
+                  <a href="partners/faith-based.html" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
                     <p class="mega-icon-title">Faith-Based Partners</p>
                     <p class="mega-icon-desc">Churches, pastors and faith network leaders</p>
                   </a>
-                  <a href="#" class="mega-icon-card">
+                  <a href="partners/ngo.html" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
                     <p class="mega-icon-title">NGOs &amp; Development Orgs</p>
                     <p class="mega-icon-desc">Programme teams and implementation partners</p>
                   </a>
-                  <a href="#" class="mega-icon-card">
+                  <a href="partners/government.html" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="20" width="18" height="2" rx="1"/><path d="M4 8l8-5 8 5"/><rect x="6" y="8" width="3" height="12"/><rect x="10.5" y="8" width="3" height="12"/><rect x="15" y="8" width="3" height="12"/></svg></div>
                     <p class="mega-icon-title">Governments &amp; Policy</p>
                     <p class="mega-icon-desc">National programme leaders and policy makers</p>
                   </a>
-                  <a href="#" class="mega-icon-card">
+                  <a href="partners/funders.html" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
                     <p class="mega-icon-title">Funders &amp; Investors</p>
                     <p class="mega-icon-desc">Philanthropists, impact investors and grant-makers</p>
@@ -1209,7 +915,6 @@
           </div>
         </div>
 
-        <!-- ══════════════ ADOPT (active) ══════════════ -->
         <div class="mega-item">
           <a href="adopt.html" class="nav-link active">Adopt</a>
           <div class="mega-panel">
@@ -1219,31 +924,31 @@
                 <a href="/contact/" class="mega-contact-btn">Contact us</a>
               </div>
               <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#252e1a 0%,#445a28 50%,#5a7835 100%)">
+                <a href="resource-post.html" class="mega-featured" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480.jpg');">
                   <div class="mega-featured-content">
                     <span class="mega-featured-badge">Featured</span>
                     <p class="mega-featured-title">Field Guide to FMNR Adoption</p>
-                    <p class="mega-featured-desc">Step-by-step practitioner guide for your landscape.</p>
-                    <span class="mega-featured-cta">Explore →</span>
+                    <p class="mega-featured-desc">Step-by-step practitioner guidance for your landscape.</p>
+                    <span class="mega-featured-cta">Explore</span>
                   </div>
                 </a>
                 <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="#" class="mega-icon-card">
+                  <a href="#how-it-works" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C9.5 9 6 9 4 10c0 3 2 6 5 7 1-3 2-5 3-5z"/><path d="M12 12c2.5-3 6-3 8-2 0 3-2 6-5 7-1-3-2-5-3-5z"/></svg></div>
                     <p class="mega-icon-title">How FMNR Works</p>
                     <p class="mega-icon-desc">The technique and its core principles explained</p>
                   </a>
-                  <a href="#" class="mega-icon-card">
+                  <a href="#get-started" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M12 8v8"/><path d="M8.5 14l3.5 4 3.5-4"/></svg></div>
                     <p class="mega-icon-title">Growth Steps</p>
                     <p class="mega-icon-desc">Step-by-step guide to implementing FMNR</p>
                   </a>
-                  <a href="#" class="mega-icon-card">
+                  <a href="#community" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
                     <p class="mega-icon-title">Community Engagement</p>
                     <p class="mega-icon-desc">Mobilise your community for adoption</p>
                   </a>
-                  <a href="#" class="mega-icon-card">
+                  <a href="resource-post.html" class="mega-icon-card">
                     <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
                     <p class="mega-icon-title">FMNR Manual</p>
                     <p class="mega-icon-desc">Comprehensive practitioner reference guide</p>
@@ -1254,691 +959,274 @@
           </div>
         </div>
 
-        <!-- ══════════════ IMPACT ══════════════ -->
         <div class="mega-item">
-          <a href="/impact/" class="nav-link">Impact</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Our Impact</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#0d2318 0%,#1a4028 50%,#265c3a 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">1 Billion Hectare Vision</p>
-                    <p class="mega-featured-desc">Track progress toward our global restoration target.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-                    <p class="mega-icon-title">Impact Overview</p>
-                    <p class="mega-icon-desc">Comprehensive data on FMNR outcomes</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
-                    <p class="mega-icon-title">Evidence of Impact</p>
-                    <p class="mega-icon-desc">Research and peer-reviewed studies</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-                    <p class="mega-icon-title">27 Countries</p>
-                    <p class="mega-icon-desc">See where FMNR is being practised</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
-                    <p class="mega-icon-title">Impact Stories</p>
-                    <p class="mega-icon-desc">Stories from FMNR communities</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <a href="impact/index.html" class="nav-link">Impact</a>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Our Impact</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
         </div>
-
-        <!-- ══════════════ RESOURCE HUB ══════════════ -->
         <div class="mega-item">
           <a href="resource-hub.html" class="nav-link">Resource Hub</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Resource Hub</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1a2535 0%,#2d4560 50%,#3a5878 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">FMNR e-Courses Now Available</p>
-                    <p class="mega-featured-desc">Online learning modules for practitioners at every level.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x3">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
-                    <p class="mega-icon-title">Resource Library</p>
-                    <p class="mega-icon-desc">Browse all resources, tools and materials</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-                    <p class="mega-icon-title">FMNR e-Courses</p>
-                    <p class="mega-icon-desc">Online learning modules and training</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <p class="mega-icon-title">Country Resources</p>
-                    <p class="mega-icon-desc">Region and country-specific guides</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M9 3H5l2 9H5l2 9h10l2-9h-2l2-9h-4"/><line x1="9" y1="3" x2="15" y2="3"/></svg></div>
-                    <p class="mega-icon-title">Research &amp; Evidence</p>
-                    <p class="mega-icon-desc">Technical papers and published studies</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-                    <p class="mega-icon-title">Case Studies</p>
-                    <p class="mega-icon-desc">In-depth case studies from the field</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
-                    <p class="mega-icon-title">FMNR Manual</p>
-                    <p class="mega-icon-desc">The comprehensive FMNR practitioner manual</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Resource Hub</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
         </div>
-
-        <!-- ══════════════ STORIES ══════════════ -->
         <div class="mega-item">
           <a href="blog.html" class="nav-link">Stories</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">Stories</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#2e1e10 0%,#5a3820 50%,#744830 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">From Desert to Forest: Niger's Transformation</p>
-                    <p class="mega-featured-desc">How millions of farmers changed the Sahel landscape.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x3">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
-                    <p class="mega-icon-title">All Stories</p>
-                    <p class="mega-icon-desc">Browse all FMNR community stories</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
-                    <p class="mega-icon-title">Niger</p>
-                    <p class="mega-icon-desc">The greening of the Sahel</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg></div>
-                    <p class="mega-icon-title">Kenya</p>
-                    <p class="mega-icon-desc">Dryland transformation in Kenya</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22v-7"/><path d="M5.45 5.11L2 12h20l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg></div>
-                    <p class="mega-icon-title">Zambia</p>
-                    <p class="mega-icon-desc">Community forests in Zambia</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg></div>
-                    <p class="mega-icon-title">Tigray, Ethiopia</p>
-                    <p class="mega-icon-desc">Restoration in Tigray highlands</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12c-2-3-6-3-8-2 0 4 2 7 5 8 1-3 2-5 3-6zM12 12c2-3 6-3 8-2 0 4-2 7-5 8-1-3-2-5-3-6z"/></svg></div>
-                    <p class="mega-icon-title">Honey &amp; Livelihoods</p>
-                    <p class="mega-icon-desc">How FMNR creates new income streams</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">Stories</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
         </div>
-
-        <!-- ══════════════ ABOUT ══════════════ -->
         <div class="mega-item">
-          <a href="/about-fmnr/" class="nav-link">About</a>
-          <div class="mega-panel">
-            <div class="mega-inner">
-              <div class="mega-header-row">
-                <h2 class="mega-title">About FMNR</h2>
-                <a href="/contact/" class="mega-contact-btn">Contact us</a>
-              </div>
-              <div class="mega-content-row">
-                <a href="#" class="mega-featured" style="background:linear-gradient(160deg,#1e1e2e 0%,#2e3050 50%,#3a3d65 100%)">
-                  <div class="mega-featured-content">
-                    <span class="mega-featured-badge">Featured</span>
-                    <p class="mega-featured-title">Tony Rinaudo — The Forest Maker</p>
-                    <p class="mega-featured-desc">The story of the man behind the global FMNR movement.</p>
-                    <span class="mega-featured-cta">Explore →</span>
-                  </div>
-                </a>
-                <div class="mega-icon-grid mega-icon-grid--2x2">
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
-                    <p class="mega-icon-title">About FMNR</p>
-                    <p class="mega-icon-desc">The technique and movement explained</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-                    <p class="mega-icon-title">Tony Rinaudo</p>
-                    <p class="mega-icon-desc">Meet the Forest Maker</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-                    <p class="mega-icon-title">FMNR &amp; World Vision</p>
-                    <p class="mega-icon-desc">Our partnership and shared mission</p>
-                  </a>
-                  <a href="#" class="mega-icon-card">
-                    <div class="mega-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-                    <p class="mega-icon-title">FAQs</p>
-                    <p class="mega-icon-desc">Frequently asked questions about FMNR</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <a href="about-fmnr/index.html" class="nav-link">About</a>
+          <div class="mega-panel"><div class="mega-inner"><div class="mega-header-row"><h2 class="mega-title">About FMNR</h2><a href="/contact/" class="mega-contact-btn">Contact us</a></div></div></div>
         </div>
-
       </nav>
 
       <div class="header-actions">
         <button id="search-toggle" aria-label="Open search" aria-controls="search-overlay" aria-expanded="false" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round">
-            <circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/>
-          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/></svg>
         </button>
         <a href="#" class="btn-donate">Donate</a>
       </div>
     </div>
   </header>
 
-  <!-- ============================================================ -->
-  <!-- HERO BANNER -->
-  <!-- ============================================================ -->
-  <section class="adopt-hero">
-    <div class="adopt-hero-bg"></div>
-    <div class="adopt-hero-overlay"></div>
-    <div class="adopt-hero-content">
-      <p class="adopt-hero-label">Adopt FMNR</p>
-      <h1 class="adopt-hero-title">Grow a Forest from the Ground Up</h1>
-      <p class="adopt-hero-sub">FMNR is one of the most powerful — and affordable — land restoration techniques available. Anyone can start. Here's how.</p>
-      <div class="adopt-hero-actions">
-        <a href="#get-started" class="btn-primary">
-          Get started
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="resource-hub.html" class="btn-outline-white">Download the manual</a>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">Adopt FMNR</p>
+      <h1 class="hero-h1">Grow a Forest from the Ground Up</h1>
+      <p class="hero-subtitle">FMNR is one of the most powerful and affordable land restoration techniques available. Anyone can start. Here's how.</p>
+      <div class="hero-buttons">
+        <a href="#get-started" class="btn-teal">Start the four steps</a>
+        <a href="resource-post.html" class="btn-outline-white">Download the manual</a>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- INTRO — What is FMNR Adoption? -->
-  <!-- ============================================================ -->
-  <section style="background: white; padding: 80px 0;">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
-      <div class="intro-layout">
-        <div>
-          <p class="section-label">What is FMNR?</p>
-          <h2 class="section-h2">Your land already holds the answer</h2>
-          <p class="lead-text" style="margin-bottom: 24px;">Farmer Managed Natural Regeneration (FMNR) is a low-cost, farmer-driven technique that works with nature — not against it. Instead of planting new trees, FMNR protects and manages the regrowth of trees and shrubs from existing root systems already in your soil.</p>
-          <p class="body-text" style="margin-bottom: 32px;">Used by millions of farmers across 27 countries, FMNR restores degraded farmland, improves soil health, increases crop yields, and builds resilience against drought — often within a single growing season. The technique requires no expensive inputs. Just knowledge, observation, and consistent practice.</p>
-          <div class="pullquote">
-            <p>"The trees were always there — underground, waiting."</p>
+  <section class="section-white" id="how-it-works">
+    <div class="section-container">
+      <p class="section-label">What is FMNR?</p>
+      <h2 class="section-h2">Your land already holds the answer</h2>
+      <p class="section-lead">Farmer Managed Natural Regeneration is a low-cost, farmer-driven technique that works with nature, not against it. Instead of planting new trees, FMNR protects and manages the regrowth of trees and shrubs from existing root systems already in your soil.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C9.5 9 6 9 4 10c0 3 2 6 5 7 1-3 2-5 3-5z"/><path d="M12 12c2.5-3 6-3 8-2 0 3-2 6-5 7-1-3-2-5-3-5z"/></svg>
           </div>
+          <p class="feature-overline">Regrowth</p>
+          <h3 class="feature-heading">Use Living Roots</h3>
+          <p class="feature-body">Find existing stumps, roots and shrub regrowth, then protect the strongest shoots so trees can return quickly.</p>
         </div>
-        <div class="intro-video-wrap">
-          <div class="video-placeholder video-placeholder--16x9">
-            <div class="video-play-btn">
-              <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
-            </div>
-            <span class="video-label">Introduction to FMNR</span>
-            <span class="video-duration">4:22</span>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
           </div>
-          <span class="intro-video-badge">Watch the film</span>
+          <p class="feature-overline">Knowledge</p>
+          <h3 class="feature-heading">Learn by Practice</h3>
+          <p class="feature-body">The technique requires no expensive inputs. It depends on observation, pruning, protection and consistent management.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <p class="feature-overline">Results</p>
+          <h3 class="feature-heading">Build Resilience</h3>
+          <p class="feature-body">Used across dozens of countries, FMNR restores degraded farmland, improves soil health, increases yields and helps communities withstand drought.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- OVERVIEW — 4 Steps at a Glance -->
-  <!-- ============================================================ -->
-  <section id="get-started" style="background: #f9f9f9; padding: 80px 0; border-top: 1px solid #e8e8e8;">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
+  <section class="section-tinted" id="get-started">
+    <div class="section-container">
       <p class="section-label">The Process</p>
       <h2 class="section-h2">Four steps to regeneration</h2>
-      <p class="lead-text" style="max-width: 680px;">FMNR is built on four core practices. Each step builds on the last, and most farmers begin to see measurable results within their first season.</p>
-      <div class="steps-overview">
-        <div class="step-card">
-          <p class="step-card-num">01</p>
-          <p class="step-card-title">Assess Your Land</p>
-          <p class="step-card-body">Walk your fields and map existing stumps, root systems, and shrub regrowth. Identify which species are most valuable for your landscape and goals.</p>
-        </div>
-        <div class="step-card">
-          <p class="step-card-num">02</p>
-          <p class="step-card-title">Select &amp; Prune</p>
-          <p class="step-card-body">Choose the strongest shoots on each stump and prune away the rest. Focus your farm's energy on the trees with the greatest potential.</p>
-        </div>
-        <div class="step-card">
-          <p class="step-card-num">03</p>
-          <p class="step-card-title">Protect &amp; Guard</p>
-          <p class="step-card-body">Shield young trees from grazing animals and overuse during the critical early growth period. Community agreements help protect shared land.</p>
-        </div>
-        <div class="step-card">
-          <p class="step-card-num">04</p>
-          <p class="step-card-title">Monitor &amp; Grow</p>
-          <p class="step-card-body">Track your trees' progress across seasons. As your canopy expands, continue pruning and managing for maximum yield and benefit.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- STEP 1 — Assess Your Land -->
-  <!-- ============================================================ -->
-  <section class="section-full" style="background: white;">
-    <div class="step-strip">
-      <div class="step-media">
-        <div class="img-placeholder" style="height:100%; border-radius:0; border:none;" role="img" aria-label="Farmer walking field and inspecting tree stumps"></div>
-      </div>
-      <div class="step-content">
-        <p class="step-number">01</p>
-        <h2 class="step-h3">Assess Your Land</h2>
-        <p class="step-body">Before you begin, walk your farm and take stock of what's already there. Beneath degraded-looking soil, living root systems are almost always present — waiting for the chance to regenerate. Your first task is to find them.</p>
-        <ul class="step-checklist">
-          <li>Walk each field and mark every stump, shrub, and root system</li>
-          <li>Identify tree species and their traditional uses in your community</li>
-          <li>Note which areas receive most grazing pressure</li>
-          <li>Record baseline data — canopy cover, soil condition, crop yields</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- STEP 2 — Select & Prune -->
-  <!-- ============================================================ -->
-  <section class="section-full" style="background: #f9f9f9;">
-    <div class="step-strip step-strip--reverse">
-      <div class="step-media">
-        <div class="video-placeholder" style="height:100%; border-radius:0; border:none;">
-          <div class="video-play-btn">
-            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+      <p class="section-lead">Each FMNR step builds on the last. Most farmers begin to see measurable change within their first season when the practice is protected and repeated.</p>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           </div>
-          <span class="video-label">Pruning technique — step by step</span>
-          <span class="video-duration">6:14</span>
+          <p class="feature-overline">Step 01</p>
+          <h3 class="feature-heading">Assess Your Land</h3>
+          <p class="feature-body">Walk your fields and map existing stumps, root systems and shrub regrowth. Identify which species are most valuable for your landscape and goals.</p>
         </div>
-      </div>
-      <div class="step-content">
-        <p class="step-number">02</p>
-        <h2 class="step-h3">Select &amp; Prune</h2>
-        <p class="step-body">Pruning is the heart of FMNR. By selecting only the strongest shoots and removing competing growth, you direct your land's energy into the trees that will deliver the most benefit — shade, fodder, fruit, fuel, and soil improvement.</p>
-        <ul class="step-checklist">
-          <li>Select 1–5 stems per stump depending on species and intended use</li>
-          <li>Prune at an angle to prevent water pooling and rot</li>
-          <li>Remove pruned material — don't leave it piled at the stump</li>
-          <li>Repeat pruning 2–3 times per year in early stages</li>
-          <li>Use removed branches for fodder, mulch, or fuel</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- IMAGE MOSAIC — In the Field -->
-  <!-- ============================================================ -->
-  <section style="background: white; padding: 80px 0; border-top: 1px solid #e8e8e8;">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
-      <p class="section-label">In the Field</p>
-      <h2 class="section-h2" style="margin-bottom: 40px;">What FMNR looks like in practice</h2>
-      <div class="img-mosaic">
-        <div class="img-placeholder img-mosaic-wide" role="img" aria-label="Wide view of FMNR farmland showing canopy regeneration"></div>
-        <div class="img-placeholder img-placeholder--1x1" role="img" aria-label="Farmer pruning tree shoots on degraded plot"></div>
-        <div class="img-placeholder img-placeholder--1x1" role="img" aria-label="Before and after: bare soil next to restored plot"></div>
-        <div class="img-placeholder img-placeholder--1x1" role="img" aria-label="Women farmers inspecting growing tree canopy"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- STEP 3 — Protect & Guard -->
-  <!-- ============================================================ -->
-  <section class="section-full" style="background: #111;">
-    <div class="step-strip">
-      <div class="step-media">
-        <div class="img-placeholder" style="height:100%; border-radius:0; border:none; background: linear-gradient(to bottom, rgba(20,30,20,0) 40%, #1a2a1a 100%); background-color: #2a3a2a;" role="img" aria-label="Community meeting to agree on grazing boundaries"></div>
-      </div>
-      <div class="step-content step-content--dark">
-        <p class="step-number step-number--light">03</p>
-        <h2 class="step-h3 step-h3--light">Protect &amp; Guard</h2>
-        <p class="step-body step-body--light">Young regrowth is fragile. Grazing animals, firewood collectors, and unsupervised children can undo months of progress in a single day. Protection requires both individual discipline and community coordination.</p>
-        <ul class="step-checklist step-checklist--light">
-          <li>Establish community agreements on grazing boundaries and seasons</li>
-          <li>Use temporary fencing or thorn-bush barriers on vulnerable plots</li>
-          <li>Designate a plot guardian during peak grazing season</li>
-          <li>Educate neighbouring farmers on the value of the regrowth</li>
-          <li>Engage local leaders to back community bylaws</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- VIDEO GALLERY — Learning & Training -->
-  <!-- ============================================================ -->
-  <section style="background: #f9f9f9; padding: 80px 0; border-top: 1px solid #e8e8e8;">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
-      <p class="section-label">Training &amp; Learning</p>
-      <h2 class="section-h2" style="margin-bottom: 40px;">Watch, learn, apply</h2>
-      <div class="video-gallery">
-        <div class="video-placeholder video-placeholder--16x9 video-gallery-main">
-          <div class="video-play-btn">
-            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 011.4 0l1.6 1.6a1 1 0 010 1.4L9 18H5v-4z"/><path d="M13 8l3 3"/></svg>
           </div>
-          <span class="video-label">Full FMNR training series — Module 1</span>
-          <span class="video-duration">18:45</span>
+          <p class="feature-overline">Step 02</p>
+          <h3 class="feature-heading">Select &amp; Prune</h3>
+          <p class="feature-body">Choose the strongest shoots on each stump and prune away the rest. Focus your farm's energy on the trees with the greatest potential.</p>
         </div>
-        <div class="video-placeholder video-placeholder--16x9">
-          <div class="video-play-btn" style="width:52px;height:52px;">
-            <svg viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M5 3l14 9-14 9V3z"/></svg>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <span class="video-label">Community mobilisation</span>
-          <span class="video-duration">11:30</span>
+          <p class="feature-overline">Step 03</p>
+          <h3 class="feature-heading">Protect &amp; Guard</h3>
+          <p class="feature-body">Shield young trees from grazing, fire and overuse during the critical early growth period. Community agreements help protect shared land.</p>
         </div>
-        <div class="video-placeholder video-placeholder--16x9">
-          <div class="video-play-btn" style="width:52px;height:52px;">
-            <svg viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M5 3l14 9-14 9V3z"/></svg>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           </div>
-          <span class="video-label">Monitoring your progress</span>
-          <span class="video-duration">8:02</span>
-        </div>
-        <div class="video-placeholder video-placeholder--16x9">
-          <div class="video-play-btn" style="width:52px;height:52px;">
-            <svg viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M5 3l14 9-14 9V3z"/></svg>
-          </div>
-          <span class="video-label">FMNR in Niger — case study</span>
-          <span class="video-duration">14:17</span>
-        </div>
-        <div class="video-placeholder video-placeholder--16x9">
-          <div class="video-play-btn" style="width:52px;height:52px;">
-            <svg viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M5 3l14 9-14 9V3z"/></svg>
-          </div>
-          <span class="video-label">Women &amp; FMNR leadership</span>
-          <span class="video-duration">9:54</span>
+          <p class="feature-overline">Step 04</p>
+          <h3 class="feature-heading">Monitor &amp; Grow</h3>
+          <p class="feature-body">Track tree growth, crop yields and canopy cover across seasons. Share lessons with neighbours and adjust pruning as trees mature.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- STEP 4 — Monitor & Grow -->
-  <!-- ============================================================ -->
-  <section class="section-full" style="background: white;">
-    <div class="step-strip step-strip--reverse">
-      <div class="step-media">
-        <div class="img-placeholder" style="height:100%; border-radius:0; border:none;" role="img" aria-label="Farmer recording tree height measurement in a field notebook"></div>
+  <section class="stats-section">
+    <div class="section-stack">
+      <div class="section-heading-wrap">
+        <p class="section-overline">Proven results at scale</p>
+        <h2 class="section-heading">Adoption can start with what is already there</h2>
       </div>
-      <div class="step-content">
-        <p class="step-number">04</p>
-        <h2 class="step-h3">Monitor &amp; Grow</h2>
-        <p class="step-body">FMNR is not a one-time intervention — it's a long-term land management practice. Regular monitoring helps farmers understand what's working, share knowledge with neighbours, and adapt their approach across seasons and years.</p>
-        <ul class="step-checklist">
-          <li>Record canopy cover and tree height each season</li>
-          <li>Track crop yield changes alongside tree growth</li>
-          <li>Share data with local extension officers and NGO partners</li>
-          <li>Adjust pruning regimes as trees mature</li>
-          <li>Document your journey — photo records tell the story over time</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- IMPACT STATS -->
-  <!-- ============================================================ -->
-  <section class="stat-section">
-    <div class="stat-inner">
-      <p class="section-label" style="color: #2da57f; margin-bottom: 36px;">Proven results at scale</p>
-      <div class="stat-grid">
+      <div class="stats-grid">
         <div class="stat-tile">
           <p class="stat-overline">Countries practising FMNR</p>
           <p class="stat-value">27</p>
-          <p class="stat-desc">From Niger and Kenya to India and East Timor</p>
+          <p class="stat-description">From Niger and Kenya to India and East Timor</p>
         </div>
         <div class="stat-tile">
           <p class="stat-overline">Hectares restored</p>
           <p class="stat-value">30M+</p>
-          <p class="stat-desc">Of degraded farmland and landscape brought back to life</p>
+          <p class="stat-description">Of degraded farmland and landscape brought back to life</p>
         </div>
         <div class="stat-tile">
           <p class="stat-overline">Increase in crop yield</p>
           <p class="stat-value">+20%</p>
-          <p class="stat-desc">Average for FMNR-practising households in the Sahel</p>
+          <p class="stat-description">Average for FMNR-practising households in the Sahel</p>
         </div>
         <div class="stat-tile">
           <p class="stat-overline">Cost to adopt</p>
           <p class="stat-value">$0</p>
-          <p class="stat-desc">FMNR requires no purchased inputs — only time and knowledge</p>
+          <p class="stat-description">FMNR requires no purchased inputs, only time and knowledge</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- COMMUNITY SECTION — image + video side by side -->
-  <!-- ============================================================ -->
-  <section style="background: white; padding: 80px 0;">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
-        <div>
-          <p class="section-label">Community Mobilisation</p>
-          <h2 class="section-h2">FMNR works best as a community</h2>
-          <p class="body-text" style="margin-bottom: 20px;">While individual farmers can begin FMNR on their own plots, the technique reaches its full potential when adopted across an entire landscape. Community-wide adoption protects regenerating trees from grazing and human pressure, and creates a shared sense of ownership over the land's recovery.</p>
-          <p class="body-text" style="margin-bottom: 32px;">Faith leaders, women's groups, village elders, and local government can all play a role in driving adoption. In Niger, farmer-to-farmer learning was the single most important driver of FMNR's spread — not government programmes or NGO campaigns.</p>
-          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-            <a href="blog.html" class="btn-primary" style="background: #00552f; color: white;">Read community stories</a>
-            <a href="resource-hub.html" class="btn-link" style="padding: 14px 0;">
-              Facilitator resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+  <section class="section-white" id="community">
+    <div class="section-container">
+      <p class="section-label">Community Mobilisation</p>
+      <h2 class="section-h2">FMNR works best as a community</h2>
+      <p class="section-lead">Individual farmers can begin FMNR on their own plots, but the technique reaches its full potential when adopted across an entire landscape. Faith leaders, women's groups, village elders and local government can all help protect regrowth and spread practice.</p>
+      <div class="featured-grid">
+        <a href="blog.html" class="story-card">
+          <div class="story-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Malawi_day1_151.jpg');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Community Adoption</p>
+            <h3 class="story-heading">Mobilise Local Leaders</h3>
+            <p class="story-body">Community-wide adoption protects regenerating trees from grazing and human pressure, and creates a shared sense of ownership over the land's recovery.</p>
+            <span class="card-cta">Read community stories</span>
           </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <div class="img-placeholder img-placeholder--3x2" role="img" aria-label="Community gathering under a large regenerated tree canopy"></div>
-          <div class="video-placeholder video-placeholder--16x9">
-            <div class="video-play-btn" style="width:56px;height:56px;">
-              <svg viewBox="0 0 24 24" style="width:22px;height:22px;"><path d="M5 3l14 9-14 9V3z"/></svg>
-            </div>
-            <span class="video-label">Community adoption — Zambia</span>
-            <span class="video-duration">7:38</span>
+        </a>
+        <a href="resource-hub.html" class="story-card">
+          <div class="story-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/03/W232-0346-029.jpg');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Training &amp; Learning</p>
+            <h3 class="story-heading">Watch, Learn, Apply</h3>
+            <p class="story-body">Use field guides, e-courses and facilitator materials to support farmers, extension officers and community trainers at every stage.</p>
+            <span class="card-cta">Explore resources</span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- TOOLS & RESOURCES ROW -->
-  <!-- ============================================================ -->
-  <section style="background: #f9f9f9; padding: 80px 0; border-top: 1px solid #e8e8e8;">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px;">
-      <p class="section-label">Resources to Get You Started</p>
-      <h2 class="section-h2" style="margin-bottom: 48px;">Everything you need to begin</h2>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-
-        <div style="background: white; border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden;">
-          <div class="img-placeholder img-placeholder--16x9" style="border-radius: 0; border: none; border-bottom: 1px solid #e8e8e8;"></div>
-          <div style="padding: 24px 24px 28px;">
-            <p style="font-family:'Lato',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#2da57f; margin-bottom:8px;">Manual</p>
-            <h3 style="font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:22px; line-height:1.1; text-transform:uppercase; color:#111; margin-bottom:10px;">FMNR Practitioner Manual</h3>
-            <p style="font-family:'Lato',sans-serif; font-size:14px; line-height:1.65; color:rgba(0,0,0,0.6); margin-bottom:20px;">The comprehensive step-by-step field guide for farmers and extension workers implementing FMNR.</p>
-            <a href="resource-post.html" class="btn-link">Download PDF <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
+  <section class="section-tinted">
+    <div class="section-container">
+      <div class="stories-header">
+        <div class="stories-header-left">
+          <p class="section-label">Resources to Get You Started</p>
+          <h2 class="section-h2" style="margin-bottom:0">Everything you need to begin</h2>
         </div>
-
-        <div style="background: white; border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden;">
-          <div class="video-placeholder video-placeholder--16x9" style="border-radius: 0; border: none; border-bottom: 1px solid #e8e8e8;">
-            <div class="video-play-btn" style="width:52px;height:52px;">
-              <svg viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M5 3l14 9-14 9V3z"/></svg>
-            </div>
-            <span class="video-duration">12 modules</span>
+        <a href="resource-hub.html" class="btn-link">
+          Browse all resources
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="partner-type-grid">
+        <a href="resource-post.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/KEN-DRYDEV-3B8A0480.jpg');">
           </div>
-          <div style="padding: 24px 24px 28px;">
-            <p style="font-family:'Lato',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#2da57f; margin-bottom:8px;">e-Course</p>
-            <h3 style="font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:22px; line-height:1.1; text-transform:uppercase; color:#111; margin-bottom:10px;">FMNR Online Training</h3>
-            <p style="font-family:'Lato',sans-serif; font-size:14px; line-height:1.65; color:rgba(0,0,0,0.6); margin-bottom:20px;">Self-paced online learning modules for practitioners, facilitators and community leaders at every level.</p>
-            <a href="resource-hub.html" class="btn-link">Start learning <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">FMNR Practitioner Manual</h2>
+            <p class="partner-type-desc">The comprehensive step-by-step field guide for farmers and extension workers implementing FMNR.</p>
+            <span class="partner-type-cta">Download PDF</span>
           </div>
-        </div>
-
-        <div style="background: white; border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden;">
-          <div class="img-placeholder img-placeholder--16x9" style="border-radius: 0; border: none; border-bottom: 1px solid #e8e8e8;"></div>
-          <div style="padding: 24px 24px 28px;">
-            <p style="font-family:'Lato',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#2da57f; margin-bottom:8px;">Toolkit</p>
-            <h3 style="font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:22px; line-height:1.1; text-transform:uppercase; color:#111; margin-bottom:10px;">Facilitator &amp; Training Pack</h3>
-            <p style="font-family:'Lato',sans-serif; font-size:14px; line-height:1.65; color:rgba(0,0,0,0.6); margin-bottom:20px;">Ready-to-use workshop materials, slide decks, and field activity cards for community training sessions.</p>
-            <a href="resource-hub.html" class="btn-link">Browse toolkit <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </a>
+        <a href="resource-hub.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/07/KEN-DryDev-FMNR-Farmer-Group-1-3B8A0006.jpg');">
           </div>
-        </div>
-
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">FMNR Online Training</h2>
+            <p class="partner-type-desc">Self-paced online learning modules for practitioners, facilitators and community leaders at every level.</p>
+            <span class="partner-type-cta">Start learning</span>
+          </div>
+        </a>
+        <a href="resource-hub.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/W485-0178-115.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">Facilitator &amp; Training Pack</h2>
+            <p class="partner-type-desc">Ready-to-use workshop materials, slide decks and field activity cards for community training sessions.</p>
+            <span class="partner-type-cta">Browse toolkit</span>
+          </div>
+        </a>
+        <a href="blog-post.html" class="partner-type-card">
+          <div class="partner-type-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/11/Unknown_2017_Niger_BNATonywithcar_HQ_CNS.jpg');">
+          </div>
+          <div class="partner-type-body">
+            <h2 class="partner-type-heading">From Desert to Forest</h2>
+            <p class="partner-type-desc">How millions of farmers in Niger's Maradi region reversed decades of land degradation.</p>
+            <span class="partner-type-cta">Read story</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- CTA SECTION -->
-  <!-- ============================================================ -->
   <section class="cta-section">
     <div class="cta-inner">
-      <h2 class="cta-h2">Ready to start restoring?</h2>
-      <p class="cta-body">FMNR has transformed millions of hectares across 27 countries. Your land can be next. Download the practitioner manual, enrol in our free e-courses, or connect with a partner organisation in your region.</p>
-      <div class="cta-actions">
-        <a href="resource-post.html" class="btn-teal">Download the manual</a>
-        <a href="resource-hub.html" class="btn-outline-teal">Explore resources</a>
+      <div class="cta-left">
+        <h2 class="cta-h2">Ready to start restoring?</h2>
+        <p class="cta-body">FMNR has transformed millions of hectares across 27 countries. Your land can be next. Download the practitioner manual, enrol in the free e-courses, or connect with a partner organisation in your region.</p>
+        <div class="cta-buttons">
+          <a href="resource-post.html" class="btn-teal">Download the manual</a>
+          <a href="resource-hub.html" class="btn-outline-teal">Explore resources</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- RELATED STORIES -->
-  <!-- ============================================================ -->
-  <section class="related-section">
-    <div class="related-inner">
-      <h2 class="related-heading">Stories from Adopters</h2>
-      <div class="related-grid">
-
-        <a href="blog-post.html" class="related-card">
-          <div class="related-card-image"></div>
-          <div class="related-card-body">
-            <p class="related-card-overline">Niger</p>
-            <h3 class="related-card-heading">From Desert to Forest</h3>
-            <p class="related-card-sub">How millions of farmers in Niger's Maradi region reversed decades of land degradation.</p>
-            <span class="btn-link">
-              Read story
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
-
-        <a href="blog-post.html" class="related-card">
-          <div class="related-card-image"></div>
-          <div class="related-card-body">
-            <p class="related-card-overline">Kenya</p>
-            <h3 class="related-card-heading">Dryland Revival</h3>
-            <p class="related-card-sub">Farmers in Kenya's drylands double their crop yields through systematic FMNR practice.</p>
-            <span class="btn-link">
-              Read story
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
-
-        <a href="blog-post.html" class="related-card">
-          <div class="related-card-image"></div>
-          <div class="related-card-body">
-            <p class="related-card-overline">Ethiopia</p>
-            <h3 class="related-card-heading">Tigray Highlands</h3>
-            <p class="related-card-sub">Community-led restoration across Tigray's highland slopes reduces erosion and restores biodiversity.</p>
-            <span class="btn-link">
-              Read story
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
-
-        <a href="blog-post.html" class="related-card">
-          <div class="related-card-image"></div>
-          <div class="related-card-body">
-            <p class="related-card-overline">Zambia</p>
-            <h3 class="related-card-heading">Community Forests</h3>
-            <p class="related-card-sub">Faith networks and local churches drive FMNR adoption in rural Zambia's miombo woodlands.</p>
-            <span class="btn-link">
-              Read story
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Search overlay -->
   <div class="search-overlay" id="search-overlay" aria-hidden="true">
     <div class="search-overlay-inner">
       <form class="search-input-wrap" id="search-form" action="resource-hub.html" method="get" autocomplete="off">
         <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M16 16l5 5"></path></svg>
-        <input type="text" id="search-input" name="q" placeholder="Search FMNR resources, topics, regions…" aria-label="Search">
+        <input type="text" id="search-input" name="q" placeholder="Search FMNR resources, topics, regions..." aria-label="Search">
         <button type="button" class="search-clear" id="search-clear" aria-label="Clear">
           <svg viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
-        <kbd class="search-kbd">⌘K</kbd>
       </form>
       <div class="search-body" id="search-body">
         <p class="search-section-label">Quick Links</p>
-        <ul class="search-suggestions" id="search-suggestions"><li><a href="partner.html">Partner with FMNR</a></li><li><a href="resource-hub.html">Resource Hub</a></li><li><a href="impact.html">See the Impact</a></li><li><a href="tony-rinaudo.html">Tony Rinaudo</a></li><li><a href="index.html#contact">Get in Touch</a></li></ul>
+        <ul class="search-suggestions" id="search-suggestions"><li><a href="partners.html">Partner with FMNR</a></li><li><a href="resource-hub.html">Resource Hub</a></li><li><a href="impact/index.html">See the Impact</a></li><li><a href="tony-rinaudo.html">Tony Rinaudo</a></li><li><a href="contact/index.html">Get in Touch</a></li></ul>
       </div>
     </div>
   </div>
 
-  <script src="/assets/js/search.js"></script>
-
+  <script src="assets/js/search.js"></script>
   <script>
-    // ── MEGA MENU ─────────────────────────────────────────────────────────────
     (function () {
-      document.querySelectorAll('.mega-item').forEach(item => {
-        const panel = item.querySelector('.mega-panel');
+      document.querySelectorAll('.mega-item').forEach(function (item) {
+        var panel = item.querySelector('.mega-panel');
         if (!panel) return;
-
-        let hideTimer = null;
+        var hideTimer = null;
 
         function show() {
           clearTimeout(hideTimer);
-          document.querySelectorAll('.mega-panel').forEach(p => {
+          document.querySelectorAll('.mega-panel').forEach(function (p) {
             if (p !== panel) p.style.display = 'none';
           });
           panel.style.display = 'block';
@@ -1946,7 +1234,7 @@
 
         function scheduleHide() {
           clearTimeout(hideTimer);
-          hideTimer = setTimeout(() => { panel.style.display = 'none'; }, 80);
+          hideTimer = setTimeout(function () { panel.style.display = 'none'; }, 80);
         }
 
         item.addEventListener('mouseenter', show);
@@ -1955,13 +1243,25 @@
         panel.addEventListener('mouseleave', scheduleHide);
       });
 
-      document.addEventListener('click', (e) => {
+      document.addEventListener('click', function (e) {
         if (!e.target.closest('.mega-item') && !e.target.closest('.mega-panel')) {
-          document.querySelectorAll('.mega-panel').forEach(p => p.style.display = 'none');
+          document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.display = 'none'; });
         }
       });
     })();
   </script>
-
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
 </body>
 </html>

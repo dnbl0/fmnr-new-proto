@@ -9,6 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
   <script>
+  <script>
+    (function () {
+      function updateMegaPanelTop() {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var h = Math.ceil(header.getBoundingClientRect().height);
+        document.querySelectorAll('.mega-panel').forEach(function (p) { p.style.top = h + 'px'; });
+      }
+      updateMegaPanelTop();
+      window.addEventListener('resize', updateMegaPanelTop);
+      window.addEventListener('load', updateMegaPanelTop);
+    })();
+  </script>
     tailwind.config = {
       theme: {
         extend: {
@@ -64,7 +77,7 @@
     /* ===================== HEADER ===================== */
     .header {
       background: #f9f9f9;
-      height: 118px;
+        height: 88px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -72,7 +85,8 @@
       top: 0;
       z-index: 50;
       border-bottom: 1px solid #e8e8e8;
-    }
+        padding: 16px 0;
+      }
 
     .header .section-container {
       display: flex;
@@ -92,7 +106,8 @@
       font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
       font-weight: 900;
       font-size: 28px;
-      line-height: 1;
+        /* no bottom border for active nav-link */
+      }
     }
 
     .logo-f { color: #2da57f; }
@@ -731,7 +746,7 @@
     .mega-panel {
       position: fixed;
       left: 0; right: 0;
-      top: 118px;
+          top: 88px; /* positioned below header via JS */
       background: white;
       border-top: 3px solid #00552f;
       box-shadow: 0 8px 40px rgba(0,0,0,0.13);
@@ -1267,7 +1282,7 @@
 
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 768px) {
-      .header { height: 88px; }
+      .header { padding: 16px 0; }
       .nav-links { display: none; }
       .banner-heading { font-size: 36px; }
       .section-heading { font-size: 36px; }
@@ -1278,7 +1293,7 @@
       .map-layout { grid-template-columns: 1fr; }
       .section-stack { padding: 60px 24px; }
       .bar-graph-label { font-size: 11px; }
-      .mega-panel { top: 88px; }
+      .mega-panel { top: 0; }
       .text-block-grid,
       .video-block-grid { grid-template-columns: 1fr; gap: 32px; }
       .text-block-heading,

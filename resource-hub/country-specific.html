@@ -4,57 +4,690 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Country-Specific Resources — FMNR</title>
+  <script src="../assets/js/tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/header.css" />
+  <link rel="stylesheet" href="../assets/css/filter.css" />
   <link rel="stylesheet" href="../assets/css/search.css" />
   <style>
-    @font-face { font-family:'FatFrank'; src:url('../fatfrank.otf') format('opentype'); font-weight:900; font-style:normal; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Lato',sans-serif; background:#f9f9f9; color:#1a1a1a; overflow-x:hidden; }
-    .stub-main { min-height:62vh; }
-    .stub-hero { background:linear-gradient(160deg,#0d2318 0%,#1a4028 55%,#265c3a 100%); color:#fff; padding:72px 0 64px; }
-    .stub-wrap { max-width:1280px; margin:0 auto; padding:0 40px; }
-    .stub-crumbs { font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:rgba(255,255,255,.72); margin-bottom:18px; }
-    .stub-crumbs a { color:rgba(255,255,255,.72); text-decoration:none; }
-    .stub-crumbs a:hover { color:#fff; }
-    .stub-title { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; text-transform:uppercase; font-size:56px; line-height:1; }
-    .stub-sub { margin-top:16px; font-size:18px; max-width:640px; color:rgba(255,255,255,.9); line-height:1.5; }
-    .stub-body { padding:56px 0 80px; }
-    .stub-card { background:#fff; border:1px solid #e8e8e8; border-radius:14px; padding:40px; max-width:720px; }
-    .stub-badge { display:inline-block; background:#e8eeeb; color:#00552f; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:5px 12px; border-radius:20px; }
-    .stub-card h2 { font-family:'FatFrank','Impact','Arial Black',sans-serif; font-weight:900; font-size:28px; text-transform:uppercase; margin:16px 0 10px; color:#111; }
-    .stub-card p { color:#555; line-height:1.6; font-size:16px; }
-    .stub-back { display:inline-flex; align-items:center; gap:6px; margin-top:24px; background:#00552f; color:#fff; font-weight:700; padding:12px 22px; border-radius:6px; text-decoration:none; }
-    .stub-back:hover { background:#004026; }
-    .stub-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-top:34px; max-width:940px; }
-    .stub-tile { background:#fff; border:1px solid #e8e8e8; border-radius:12px; padding:22px; text-decoration:none; color:#00552f; font-weight:700; transition:box-shadow .15s,border-color .15s; }
-    .stub-tile:hover { border-color:#b2d4c0; box-shadow:0 2px 14px rgba(0,85,47,.09); }
-    .stub-tile span { display:block; color:#999; font-weight:400; font-size:13px; margin-top:4px; }
-    @media (max-width:768px){ .stub-title{ font-size:38px; } .stub-hero{ padding:52px 0 44px; } .stub-card{ padding:28px; } }
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      position: relative;
+      height: 580px;
+      display: flex;
+      align-items: flex-end;
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Humbo-Project-Ethiopia-After.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 40px 72px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-crumbs {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hero-crumbs a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .hero-crumbs a:hover { color: #fff; }
+
+    .hero-h1 {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      text-transform: uppercase;
+      color: white;
+      line-height: 1;
+      max-width: 860px;
+    }
+
+    .hero-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 580px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-teal {
+      display: inline-block;
+      background: #0dfaab;
+      color: #003d22;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: #0ae49e; }
+
+    .btn-outline-white {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
+    /* ===================== RESOURCE SECTIONS ===================== */
+    .blog-section { padding: 80px 0; }
+    .blog-section + .blog-section { border-top: 1px solid #e8e8e8; }
+
+    .blog-section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .blog-section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .blog-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #077d57;
+    }
+
+    .blog-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    .blog-subheading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: #111;
+    }
+
+    /* ── Resource card ── */
+    .blog-card {
+      background: white;
+      border: 1px solid #f0ede5;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .blog-card-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(to bottom, rgba(217,217,217,0) 54%, #b0b0b0 100%);
+      background-color: #e0e0e0;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .blog-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .blog-card-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .blog-card-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .btn-link:hover { text-decoration: underline; }
+
+    /* ── Featured grid (2-col) ── */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .featured-grid .blog-card-image { aspect-ratio: 16/10; }
+    .featured-grid .blog-card-heading { font-size: 28px; }
+
+    /* ── 4-col grid ── */
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    /* ── 3-col grid ── */
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ── Card meta row (format / file size) ── */
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .blog-card-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: #c4c4c4; }
+
+    /* ── Faceted filter bar ── */
+    .filter-bar-section {
+      background: #f9f9f9;
+      border-bottom: 1px solid #e4e4e0;
+    }
+
+    .filter-bar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-result-count {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1a1a1a;
+      flex-shrink: 0;
+    }
+
+    .filter-empty {
+      display: none;
+      padding: 80px 40px;
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #888;
+    }
+
+    /* ── PDF / download card affordances ── */
+    .blog-card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #00552f;
+      background: #e8eeeb;
+      border-radius: 4px;
+      padding: 4px 9px;
+    }
+
+    .blog-card-tag svg {
+      width: 13px; height: 13px;
+      stroke: #00552f; fill: none; stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── CTA band ── */
+    .cta-band {
+      background: #00552f;
+      border-radius: 16px;
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .cta-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .cta-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 40px;
+      text-transform: uppercase;
+      line-height: 1;
+      color: white;
+    }
+
+    .cta-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 540px;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-input {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      padding: 14px 18px;
+      border-radius: 4px;
+      border: none;
+      width: 320px;
+      max-width: 100%;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 768px) {
+      .hero { height: auto; padding: 80px 0 48px; align-items: flex-start; }
+      .hero-content { padding: 0 24px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-subtitle { font-size: 16px; }
+      .blog-section { padding: 60px 0; }
+      .blog-section-inner { padding: 0 24px; }
+      .blog-heading { font-size: 36px; }
+      .blog-subheading { font-size: 28px; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .grid-4col { grid-template-columns: 1fr 1fr; }
+      .grid-3col { grid-template-columns: 1fr; }
+      .filter-bar-inner { padding: 18px 24px; flex-direction: column; align-items: stretch; gap: 14px; }
+      .cta-band { padding: 40px 24px; }
+      .cta-heading { font-size: 30px; }
+      .cta-input { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .grid-4col { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <main class="stub-main">
-    <section class="stub-hero">
-      <div class="stub-wrap">
-        <nav class="stub-crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="../resource-hub.html">Resource Hub</a> / <span>Country-Specific Resources</span></nav>
-        <h1 class="stub-title">Country-Specific Resources</h1>
-        <p class="stub-sub">Region and country-specific guides and materials.</p>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <nav class="hero-crumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="../resource-hub.html">Resource Hub</a> / <span>Country-Specific Resources</span></nav>
+      <h1 class="hero-h1">Country-Specific Resources</h1>
+      <p class="hero-subtitle">Localised manuals, primers and learning materials tailored to the land, species, policy and culture of the countries where FMNR is taking root.</p>
+      <div class="hero-buttons">
+        <a href="#featured" class="btn-teal">Browse by country</a>
+        <a href="../resource-hub.html" class="btn-outline-white">All resources</a>
       </div>
-    </section>
-    <section class="stub-body">
-      <div class="stub-wrap">
-        <div class="stub-card">
-          <span class="stub-badge">Coming soon</span>
-          <h2>Content in progress</h2>
-          <p>This page is part of the FMNR site structure and is being built out. Check back soon for full content, or explore the rest of the site in the meantime.</p>
-          <a class="stub-back" href="../resource-hub.html">← Back to Resource Hub</a>
+    </div>
+  </section>
+
+  <!-- ===================== FILTER BAR (faceted) ===================== -->
+  <section class="filter-bar-section" id="filter">
+    <div class="filter-bar-inner">
+      <div class="filter-controls">
+        <div class="filter-selects">
+
+          <div class="filter-dropdown" data-facet="country">
+            <button type="button" class="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <span class="filter-dropdown-label">Country</span>
+              <span class="filter-dropdown-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="filter-dropdown-panel" role="group" aria-label="Filter by country" hidden>
+              <label class="filter-check"><input type="checkbox" value="ethiopia"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Ethiopia</span></label>
+              <label class="filter-check"><input type="checkbox" value="kenya"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Kenya</span></label>
+              <label class="filter-check"><input type="checkbox" value="uganda"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Uganda</span></label>
+              <label class="filter-check"><input type="checkbox" value="zambia"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Zambia</span></label>
+              <label class="filter-check"><input type="checkbox" value="mali"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Mali</span></label>
+            </div>
+          </div>
+
+          <div class="filter-dropdown" data-facet="area">
+            <button type="button" class="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <span class="filter-dropdown-label">Area of Work</span>
+              <span class="filter-dropdown-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="filter-dropdown-panel" role="group" aria-label="Filter by area of work" hidden>
+              <label class="filter-check"><input type="checkbox" value="food-security"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Food Security</span></label>
+              <label class="filter-check"><input type="checkbox" value="livelihoods"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Livelihoods</span></label>
+              <label class="filter-check"><input type="checkbox" value="community-engagement"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Community Engagement</span></label>
+              <label class="filter-check"><input type="checkbox" value="education"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Schools &amp; Education</span></label>
+            </div>
+          </div>
+
+          <div class="filter-dropdown" data-facet="type">
+            <button type="button" class="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <span class="filter-dropdown-label">Document Type</span>
+              <span class="filter-dropdown-chevron" aria-hidden="true"></span>
+            </button>
+            <div class="filter-dropdown-panel" role="group" aria-label="Filter by document type" hidden>
+              <label class="filter-check"><input type="checkbox" value="manual"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Manual</span></label>
+              <label class="filter-check"><input type="checkbox" value="primer"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Primer</span></label>
+              <label class="filter-check"><input type="checkbox" value="booklet"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Booklet</span></label>
+              <label class="filter-check"><input type="checkbox" value="handbook"><span class="filter-check-box" aria-hidden="true"></span><span class="filter-check-text">Handbook</span></label>
+            </div>
+          </div>
+
         </div>
+        <div class="filter-chips" id="filterChips" aria-live="polite"></div>
+        <button type="button" class="filter-clear-all" id="filterClearAll" hidden>Clear all</button>
       </div>
-    </section>
-  </main>
+      <span class="filter-result-count" id="filterResultCount" data-noun="Resource" data-noun-plural="Resources"></span>
+    </div>
+  </section>
+
+  <!-- No-results message -->
+  <p class="filter-empty" id="filterEmpty">No resources match these filters — try removing one.</p>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: FEATURED COUNTRY GUIDES (2-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section" id="featured" data-filterable>
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Featured</p>
+        <h1 class="blog-heading">FMNR Around The World</h1>
+      </div>
+      <div class="featured-grid">
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2025/08/FMNR-in-Kenya-A-primer-for-development-practitioners-WVK-April-2020.pdf" class="blog-card" data-type="primer" data-area="food-security" data-country="kenya">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/08/kenya-primer-image.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Kenya</span>
+            <h2 class="blog-card-heading">FMNR in Kenya: A Primer</h2>
+            <p class="blog-card-sub">World Vision Kenya's primer for development practitioners — a practical, Kenya-specific introduction to the case for FMNR, how to implement it, and the outcomes seen on the ground.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Kenya</span><span class="dot"></span><span>2020</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2024/05/RtG-FMNR-Manual_Ethiopia-November-2021.pdf" class="blog-card" data-type="manual" data-area="food-security" data-country="ethiopia">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/08/ethiopia-manual-.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Ethiopia</span>
+            <h2 class="blog-card-heading">FMNR Manual Ethiopia</h2>
+            <p class="blog-card-sub">The Regreening the Globe FMNR manual for Ethiopia (November 2021) — tailored to Ethiopian landscapes, species and community contexts, from the highlands to the lowland drylands.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Ethiopia</span><span class="dot"></span><span>2021</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: COUNTRY MANUALS (4-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section" data-filterable>
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Browse by Country</p>
+        <h2 class="blog-subheading">Country Manuals</h2>
+      </div>
+      <div class="grid-4col">
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2025/08/FMNR-Manual-Uganda-World-Agroforestry-Center-ICRAF-2018.pdf" class="blog-card" data-type="manual" data-area="livelihoods" data-country="uganda">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/08/Uganda-Manual.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Uganda</span>
+            <h3 class="blog-card-heading">FMNR Manual Uganda</h3>
+            <p class="blog-card-sub">World Agroforestry Centre (ICRAF), 2018 — FMNR guidance tailored to Ugandan farming systems and species.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Uganda</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2024/05/FMNR-KENYA-MANUAL.pdf" class="blog-card" data-type="manual" data-area="food-security" data-country="kenya">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/01/FMNR-Manual-Kenyan.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Kenya</span>
+            <h3 class="blog-card-heading">Kenya FMNR Manual</h3>
+            <p class="blog-card-sub">The full FMNR manual for Kenya — species, land tenure and community practice for Kenyan drylands.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Kenya</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2024/05/RtG-FMNR-Manual_Ethiopia-November-2021.pdf" class="blog-card" data-type="manual" data-area="food-security" data-country="ethiopia">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/08/ethiopia-manual-.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Ethiopia</span>
+            <h3 class="blog-card-heading">FMNR Manual Ethiopia</h3>
+            <p class="blog-card-sub">The Ethiopia FMNR manual (Nov 2021) — practical guidance for Ethiopian highland and lowland landscapes.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Ethiopia</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2025/08/FMNR-Mali-Aminata-Fofana-Regreening-Africa-May-2020.pdf" class="blog-card" data-type="manual" data-area="livelihoods" data-country="mali">
+          <div class="blog-card-image"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Mali</span>
+            <h3 class="blog-card-heading">FMNR in Mali</h3>
+            <p class="blog-card-sub">Aminata Fofana / Regreening Africa (May 2020) — FMNR practice adapted for Malian Sahelian communities.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Mali</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: ZAMBIA & SCHOOLS RESOURCES (3-col) -->
+  <!-- ============================================================ -->
+  <section class="blog-section" data-filterable>
+    <div class="blog-section-inner">
+      <div class="blog-section-header">
+        <p class="blog-overline">Schools &amp; Community</p>
+        <h2 class="blog-subheading">Education &amp; Local Materials</h2>
+      </div>
+      <div class="grid-3col">
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2025/08/AChildrens-Handbook-on-our-Enviroment_SLaR_-WVZambia.pdf" class="blog-card" data-type="handbook" data-area="education" data-country="zambia">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/Zambia-.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Zambia</span>
+            <h3 class="blog-card-heading">A Children's Handbook on our Environment</h3>
+            <p class="blog-card-sub">World Vision Zambia's Sustainable Land Regeneration (SLaR) project handbook — introducing children to caring for their environment and the basics of regeneration.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Zambia</span><span class="dot"></span><span>Schools</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2026/04/Junior-School-booklet-13th-April-26-1.pdf" class="blog-card" data-type="booklet" data-area="education" data-country="kenya">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2026/04/Kenya-Junior-School-Booklet.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Kenya</span>
+            <h3 class="blog-card-heading">Kenya Junior School Booklet</h3>
+            <p class="blog-card-sub">An FMNR learning booklet developed for junior school students in Kenya — bringing land regeneration into the classroom.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Kenya</span><span class="dot"></span><span>Junior</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="https://fmnrhub.com.au/wp-content/uploads/2026/04/Senior-School-booklet-13th-April-26_compressed.pdf" class="blog-card" data-type="booklet" data-area="education" data-country="kenya">
+          <div class="blog-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2026/04/Kenya-senior-school-booket.png')"></div>
+          <div class="blog-card-body">
+            <span class="blog-card-tag"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Kenya</span>
+            <h3 class="blog-card-heading">Kenya Senior School Booklet</h3>
+            <p class="blog-card-sub">An FMNR learning booklet for senior school students in Kenya — deepening understanding of regeneration, ecology and stewardship.</p>
+            <div class="blog-card-meta"><span>PDF</span><span class="dot"></span><span>Kenya</span><span class="dot"></span><span>Senior</span></div>
+            <span class="btn-link">
+              Download PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 2v7M5 6.5L8 9.5L11 6.5M3.5 13h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: NEWSLETTER CTA -->
+  <!-- ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-section-inner">
+      <div class="cta-band">
+        <p class="cta-overline">New country resources monthly</p>
+        <h2 class="cta-heading">Get Local Resources First</h2>
+        <p class="cta-sub">Be the first to know when we publish new country-specific manuals, primers and learning materials. Join our practitioner mailing list for a monthly round-up of the latest FMNR resources from the field.</p>
+        <form class="cta-form" onsubmit="return false;">
+          <input type="email" class="cta-input" placeholder="you@example.com" aria-label="Email address" />
+          <button type="submit" class="btn-teal">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <!-- Search overlay markup (site-wide) -->
   <div class="search-overlay" id="search-overlay" aria-hidden="true">
@@ -74,6 +707,7 @@
     </div>
   </div>
 
+  <script src="../assets/js/filter.js" defer></script>
   <script src="../assets/js/header.js" defer></script>
   <script src="../assets/js/search.js" defer></script>
   <script src="../assets/js/footer.js" defer></script>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bar Graph — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    /* Wrapper to match the section padding/width used on the homepage */
+    .bar-graph-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    /* ===================== SECTION HEADING (separate component) ===================== */
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #abb8c3;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .section-heading span { color: #0dfaab; }
+
+    /* ===================== BAR GRAPH ===================== */
+    .bar-graph-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .bar-graph-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      height: 19px;
+    }
+
+    .bar-graph-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #abb8c3;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .bar-graph-label.highlight { color: #0dfaab; }
+
+    .bar-graph-track {
+      flex: 1;
+      background: #f9f9f9;
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .bar-graph-fill {
+      height: 10px;
+      background: #0dfaab;
+      border-radius: 999px;
+      transition: width 1s ease-out;
+    }
+
+    .bar-graph-value {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #0dfaab;
+      white-space: nowrap;
+      width: 80px;
+    }
+
+    .block-disclaimer {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 40px 48px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #abb8c3;
+    }
+
+    @media (max-width: 768px) {
+      .section-heading { font-size: 36px; }
+      .bar-graph-label { font-size: 11px; }
+      .bar-graph-stack { padding: 60px 24px; }
+      .block-disclaimer { padding: 0 24px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar-graph-stack">
+    <div class="section-heading-wrap">
+      <p class="section-overline">FMNR Impact</p>
+      <h2 class="section-heading">Land restored by <span>country</span></h2>
+    </div>
+    <div class="bar-graph-list">
+      <div class="bar-graph-row">
+        <span class="bar-graph-label highlight">Niger</span>
+        <div class="bar-graph-track"><div class="bar-graph-fill" style="width:100%"></div></div>
+        <span class="bar-graph-value">5M ha</span>
+      </div>
+      <div class="bar-graph-row">
+        <span class="bar-graph-label">Ethiopia</span>
+        <div class="bar-graph-track"><div class="bar-graph-fill" style="width:92%"></div></div>
+        <span class="bar-graph-value">4.6M ha</span>
+      </div>
+      <div class="bar-graph-row">
+        <span class="bar-graph-label">Kenya</span>
+        <div class="bar-graph-track"><div class="bar-graph-fill" style="width:90%"></div></div>
+        <span class="bar-graph-value">4.5M ha</span>
+      </div>
+      <div class="bar-graph-row">
+        <span class="bar-graph-label">Uganda</span>
+        <div class="bar-graph-track"><div class="bar-graph-fill" style="width:46%"></div></div>
+        <span class="bar-graph-value">2.28M ha</span>
+      </div>
+      <div class="bar-graph-row">
+        <span class="bar-graph-label">Zambia</span>
+        <div class="bar-graph-track"><div class="bar-graph-fill" style="width:40%"></div></div>
+        <span class="bar-graph-value">2M ha</span>
+      </div>
+    </div>
+  </div>
+  <p class="block-disclaimer">Note: the section heading above (<code>.section-heading-wrap</code>) is a separate, reusable component block — it is not part of the bar graph (<code>.bar-graph-list</code>).</p>
+</body>
+</html>

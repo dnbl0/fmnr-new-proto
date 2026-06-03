@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stat Stack — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .section-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+      padding: 80px 40px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    .section-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .section-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ===================== STATS SECTION ===================== */
+    .stats-section {
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+
+    .stat-tile {
+      background: #111;
+      border-radius: 4px;
+      height: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #abb8c3;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+      margin-bottom: 12px;
+    }
+
+    .stat-description {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #abb8c3;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .section-heading { font-size: 36px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .section-stack { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="stats-section">
+    <div class="section-stack">
+      <div class="section-heading-wrap">
+        <p class="section-overline">FMNR Impact</p>
+        <h2 class="section-heading">Numbers that speak for themselves</h2>
+      </div>
+      <div class="stats-grid" data-mfx="stagger-fade" data-mfx-stagger="0.09" data-mfx-duration="0.6" data-mfx-done="true">
+        <div class="stat-tile">
+          <p class="stat-overline">Since 1983</p>
+          <p class="stat-value">200M<br>Trees</p>
+          <p class="stat-description">Regrown in Niger alone</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Land Restored</p>
+          <p class="stat-value">5M<br>Hectares</p>
+          <p class="stat-description">Re-greened across Niger</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Global Reach</p>
+          <p class="stat-value">27<br>Countries</p>
+          <p class="stat-description">Practising FMNR today</p>
+        </div>
+        <div class="stat-tile">
+          <p class="stat-overline">Food Security</p>
+          <p class="stat-value">2.5M<br>People</p>
+          <p class="stat-description">Better fed from restored land</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

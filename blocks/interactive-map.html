@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Interactive Map — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    .map-demo-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 48px 40px;
+    }
+
+    /* ===================== INTERACTIVE MAP ===================== */
+    .igm-map-container {
+      position: relative;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .igm-map-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #e8f4f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .igm-zoom-controls {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 50;
+    }
+
+    .igm-zoom-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 6px;
+      background: #fff;
+      color: #333;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: background 0.2s, transform 0.1s;
+      user-select: none;
+    }
+
+    .igm-zoom-btn:hover { background: #f0f0f0; }
+    .igm-zoom-btn:active { transform: scale(0.92); }
+    .igm-zoom-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .igm-map-wrapper svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .igm-region {
+      fill: #c8e6d8;
+      stroke: #ffffff;
+      stroke-width: 0.5;
+      cursor: pointer;
+      transition: fill 0.2s, opacity 0.2s;
+    }
+
+    .igm-region:hover { fill: #a0d4b8; }
+
+    .igm-region.highlighted {
+      fill: #077d57;
+      stroke: #fff;
+      stroke-width: 1;
+      cursor: pointer;
+      transition: fill 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .igm-region.highlighted:hover { fill: #099e6d; }
+
+    .igm-region.highlighted.active {
+      fill: #fa6b01;
+      filter: drop-shadow(0 0 8px rgba(250,107,1,0.4));
+      stroke: #fff;
+      stroke-width: 2;
+    }
+
+    .igm-region.highlighted.dimmed {
+      fill: #a3d4c0;
+      opacity: 0.5;
+    }
+
+    .igm-region.highlighted:focus {
+      outline: 3px solid #fa6b01;
+      outline-offset: 2px;
+    }
+
+    .igm-tooltip {
+      position: absolute;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 6px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
+      min-width: 240px;
+      max-width: 300px;
+    }
+
+    .igm-tooltip.visible { opacity: 1; }
+
+    .igm-tooltip-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #077d57;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #b8fa1a;
+    }
+
+    .igm-tooltip-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      font-size: 13px;
+    }
+
+    .igm-tooltip-stat .label { color: #636363; font-weight: 400; }
+    .igm-tooltip-stat .value { color: #111; font-weight: 700; }
+    .igm-tooltip-stat.total .value { color: #077d57; font-size: 15px; }
+
+    .igm-tooltip-link {
+      display: block;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-size: 12px;
+      color: #fa6b01;
+      font-weight: 700;
+    }
+
+    .igm-legend {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 24px;
+      background: #f5f9f7;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      flex-wrap: wrap;
+    }
+
+    .igm-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #464646;
+    }
+
+    .igm-legend-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="map-demo-wrap">
+      <div class="igm-map-container">
+        <div class="igm-map-wrapper" id="geoMap">
+          <div class="igm-zoom-controls">
+            <button class="igm-zoom-btn" id="zoomIn" aria-label="Zoom in" title="Zoom in">+</button>
+            <button class="igm-zoom-btn" id="zoomOut" aria-label="Zoom out" title="Zoom out">&minus;</button>
+            <button class="igm-zoom-btn" id="zoomReset" aria-label="Reset zoom" title="Reset view" style="font-size:14px">&#x27F2;</button>
+          </div>
+          <svg id="mapSvg" viewBox="380 190 460 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Africa showing FMNR countries">
+            <!-- Background countries -->
+            <path class="igm-region" d="M387.5,444.7L390.1,452.3L393.2,458.3L395.6,461.6L399.7,466.9L406.8,466.1L410.3,464.7L416.2,466.1L417.8,463.6L420.5,457.7L427.1,457.3L427.6,455.5L433.1,455.5L432.2,459.1L445.1,459.0L445.3,465.4L447.5,469.3L445.9,475.4L446.7,481.7L450.2,485.4L449.7,497.5L452.3,496.6L456.9,496.8L463.5,495.3L468.4,495.9L469.5,499.0L468.3,503.9L470.2,508.7L468.6,512.5L469.5,516.0L447.3,515.9L446.8,548.1L454.0,556.4L461.0,562.7L441.4,566.9L415.5,565.4L408.1,560.6L364.9,561.0L363.3,561.7L356.9,557.1L350.0,556.8L343.6,558.6L338.5,560.5L337.5,554.1L339.0,545.2L342.7,535.9L343.2,531.6L346.7,522.4L349.2,518.3L355.3,511.7L358.8,507.1L359.9,499.6L359.3,493.9L356.1,490.3L353.3,484.1L350.7,478.0L351.2,475.9L354.5,471.9L351.3,462.1L349.1,455.3L343.8,448.9L344.8,447.0L349.2,445.6L352.3,445.8L356.0,444.6L387.5,444.7Z M346.0,442.7L343.3,443.8L340.4,436.2L344.7,431.8L348.0,430.1L352.0,433.6L348.1,435.7L346.3,438.3L346.0,442.7Z" data-id="AG" aria-label="Angola"/>
+            <path class="igm-region" d="M526.3,430.7L525.6,418.5L522.9,413.9L529.4,414.7L532.7,408.9L538.3,409.6L539.0,413.6L541.3,415.9L541.4,419.2L538.7,421.3L534.6,426.6L530.7,430.3L526.3,430.7Z" data-id="BD" aria-label="Burundi"/>
+            <path class="igm-region" d="M242.0,321.7L233.2,322.9L230.6,315.9L231.1,292.6L228.9,290.5L228.5,285.6L224.8,282.0L221.6,279.0L222.9,273.7L226.6,272.5L228.8,268.1L234.0,267.2L236.3,264.1L239.9,261.2L243.7,261.1L251.9,267.0L251.4,270.3L253.8,276.3L251.7,280.4L252.9,283.1L247.7,289.4L244.4,292.5L242.4,298.9L242.7,305.4L242.0,321.7Z" data-id="BE" aria-label="Benin"/>
+            <path class="igm-region" d="M183.2,287.4L175.9,284.8L170.9,285.2L167.1,287.7L162.3,285.6L160.5,282.2L155.7,280.0L155.0,274.1L157.9,269.8L157.6,266.4L166.1,258.0L167.7,251.1L170.6,248.6L175.8,250.0L180.2,247.9L181.7,245.3L190.0,240.7L192.0,237.6L202.0,233.4L207.8,231.9L210.5,233.9L217.3,233.8L216.5,238.7L217.9,243.4L223.9,250.0L224.3,254.9L236.6,257.2L236.3,264.1L234.0,267.2L228.8,268.1L226.6,272.5L222.9,273.7L213.6,273.5L208.7,272.7L205.2,274.3L200.5,273.5L182.0,274.0L181.7,279.8L183.2,287.4Z" data-id="BF" aria-label="Burkina Faso"/>
+            <path class="igm-region" d="M486.9,573.0L489.1,574.8L492.4,580.7L504.5,591.8L509.1,592.9L509.1,596.5L512.2,602.9L520.5,604.5L527.3,609.0L512.2,616.5L502.6,624.1L499.1,630.8L495.8,634.6L490.0,635.4L488.2,640.3L487.1,643.4L480.3,645.8L471.6,645.3L466.5,642.5L462.0,641.2L456.8,643.6L454.2,648.4L449.1,651.5L443.8,656.0L436.2,657.0L433.8,653.5L434.8,647.3L428.4,637.7L425.6,636.2L425.6,606.6L436.1,606.2L436.4,570.1L444.3,569.8L460.8,566.2L464.8,570.4L471.7,566.4L474.9,566.4L480.9,564.1L482.8,564.9L486.9,573.0Z" data-id="BW" aria-label="Botswana"/>
+            <path class="igm-region" d="M376.3,309.9L385.1,309.2L387.1,306.5L388.9,306.7L391.5,309.0L405.0,305.2L409.5,301.2L415.1,297.7L414.0,294.1L417.0,293.2L427.3,293.8L437.3,289.1L445.1,278.0L450.5,273.9L457.2,272.2L458.4,276.5L464.6,282.9L464.6,287.0L462.9,291.2L463.6,294.4L467.3,297.3L475.4,301.7L481.2,305.8L481.3,309.1L488.5,314.4L492.9,318.8L495.6,324.9L503.6,328.9L505.3,332.1L501.8,333.2L495.0,332.9L486.9,331.9L483.0,332.7L481.4,335.2L477.9,335.5L473.7,333.4L461.8,338.4L457.0,337.4L455.5,338.2L452.3,344.3L444.4,342.3L436.6,341.3L429.8,337.6L421.0,334.1L415.3,337.4L411.1,342.5L410.2,349.6L403.3,349.1L396.1,347.3L389.7,352.7L384.1,362.2L383.0,359.2L382.5,354.6L377.7,351.3L373.7,346.1L372.8,342.5L367.8,337.2L368.6,334.1L367.6,329.9L368.4,322.0L370.9,320.2L376.3,309.9Z" data-id="CA" aria-label="Central African Republic"/>
+            <path class="igm-region" d="M182.9,334.5L178.0,334.6L170.6,332.6L163.7,332.8L151.1,334.5L143.7,337.4L133.1,341.2L131.1,340.9L131.9,332.6L132.9,331.3L132.6,327.3L128.1,323.0L124.7,322.4L121.6,319.6L123.9,315.1L122.8,310.2L123.3,307.2L125.0,307.2L125.6,302.8L124.8,300.8L125.8,299.4L129.8,298.2L127.2,290.1L124.7,285.9L125.6,282.5L127.7,281.7L129.1,280.8L132.0,282.3L140.3,282.4L142.2,279.4L144.1,279.6L147.1,278.5L148.8,282.8L151.3,281.5L155.7,280.0L160.5,282.2L162.3,285.6L167.1,287.7L170.9,285.2L175.9,284.8L183.2,287.4L186.0,301.8L181.5,310.3L178.7,321.8L183.4,330.5L182.9,334.5Z" data-id="CI" aria-label="Ivory Coast"/>
+            <path class="igm-region" d="M352.8,362.2L351.5,361.6L345.2,362.9L338.7,361.6L333.6,362.2L316.3,362.0L317.8,354.0L313.6,347.3L308.8,345.6L306.6,341.0L303.9,339.6L304.0,336.8L306.7,329.6L311.8,319.8L314.9,319.7L321.3,313.8L325.3,313.6L331.3,317.8L338.6,314.4L339.6,310.2L342.0,306.1L343.7,301.0L349.4,296.8L351.5,289.7L353.8,287.4L355.3,282.2L358.1,275.7L367.1,267.8L367.7,264.5L368.8,262.6L364.6,258.6L364.9,255.4L368.0,254.8L372.2,261.3L372.9,268.0L372.5,274.8L378.3,284.0L372.4,283.9L369.4,284.6L364.5,283.6L362.2,288.3L368.5,294.3L373.1,296.0L374.6,300.2L378.0,307.2L376.3,309.9L370.9,320.2L368.4,322.0L367.6,329.9L368.6,334.1L367.8,337.2L372.8,342.5L373.7,346.1L377.7,351.3L382.5,354.6L383.0,359.2L384.1,362.2L383.4,367.6L374.9,365.2L366.3,362.6L352.8,362.2Z" data-id="CM" aria-label="Cameroon"/>
+            <path class="igm-region" d="M542.2,349.6L545.9,362.8L538.3,369.1L532.0,379.1L528.9,391.1L525.8,401.6L523.9,408.4L525.6,418.5L528.2,440.1L529.3,451.2L541.2,469.7L522.7,470.3L516.8,478.0L517.3,494.5L518.9,506.5L529.2,508.6L522.0,519.4L513.7,509.5L503.1,502.8L488.0,504.6L477.7,499.0L472.1,496.1L463.5,495.3L452.3,496.6L450.2,485.4L445.9,475.4L445.3,465.4L432.2,459.1L427.6,455.5L420.5,457.7L416.2,466.1L406.8,466.1L395.6,461.6L390.1,452.3L356.0,444.6L349.2,445.6L343.3,443.8L346.3,438.3L352.0,433.6L358.4,430.7L364.9,433.7L375.2,429.2L384.1,421.0L388.3,402.8L400.3,392.7L401.7,385.7L402.9,376.5L406.3,361.2L410.2,349.6L415.3,337.4L429.8,337.6L444.4,342.3L455.5,338.2L461.8,338.4L477.9,335.5L483.0,332.7L495.0,332.9L505.3,332.1L516.6,341.7L524.4,340.6L532.8,342.8L542.2,349.6Z" data-id="CO" aria-label="Democratic Republic of the Congo"/>
+            <path class="igm-region" d="M352.0,433.6L348.0,430.1L344.7,431.8L340.4,436.2L331.7,425.5L339.8,419.9L335.8,413.2L339.4,410.6L346.6,409.4L347.5,404.9L353.2,409.8L362.6,410.2L365.9,405.4L367.2,398.6L366.0,390.7L361.0,384.7L365.6,373.0L363.0,371.0L355.0,371.8L352.0,366.6L352.8,362.2L366.3,362.6L374.9,365.2L383.4,367.6L384.1,362.2L389.7,352.7L396.1,347.3L403.3,349.1L410.2,349.6L409.5,355.7L406.3,361.2L404.3,367.5L402.9,376.5L403.5,382.2L401.7,385.7L401.5,389.4L400.3,392.7L393.2,397.6L388.3,402.8L383.7,412.6L384.1,421.0L381.4,424.2L375.2,429.2L368.9,435.5L364.9,433.7L364.2,430.8L358.4,430.7L354.8,434.6L352.0,433.6Z" data-id="CG" aria-label="Republic of the Congo"/>
+            <path class="igm-region" d="M672.9,256.4L675.4,259.6L675.1,263.8L669.0,266.2L673.5,269.0L669.6,274.4L667.3,272.6L664.7,273.3L658.7,273.1L658.6,270.0L657.7,267.3L661.3,262.5L665.1,258.0L669.6,258.9L672.9,256.4Z" data-id="DJ" aria-label="Djibouti"/>
+            <path class="igm-region" d="M331.7,425.5L320.7,415.2L313.7,406.9L307.2,396.4L307.5,393.0L309.8,389.8L312.4,382.4L314.6,374.9L318.2,374.3L333.7,374.4L333.6,362.2L338.7,361.6L345.2,362.9L351.5,361.6L352.8,362.2L352.0,366.6L355.0,371.8L363.0,371.0L365.6,373.0L361.0,384.7L366.0,390.7L367.2,398.6L365.9,405.4L362.6,410.2L353.2,409.8L347.5,404.9L346.6,409.4L339.4,410.6L335.8,413.2L339.8,419.9L331.7,425.5Z" data-id="GA" aria-label="Gabon"/>
+            <path class="igm-region" d="M224.6,325.0L207.9,331.0L202.0,334.5L192.4,337.4L182.9,334.5L183.4,330.5L178.7,321.8L181.5,310.3L186.0,301.8L183.2,287.4L181.7,279.8L182.0,274.0L200.5,273.5L205.2,274.3L208.7,272.7L213.6,273.5L212.8,276.6L217.3,281.8L217.2,289.2L218.3,297.2L220.9,300.9L218.6,310.0L219.4,315.1L222.3,321.5L224.6,325.0Z" data-id="GH" aria-label="Ghana"/>
+            <path class="igm-region" d="M304.0,336.8L292.9,340.4L288.9,339.9L284.8,342.2L276.2,341.9L270.5,335.6L267.0,328.3L259.5,321.6L251.5,321.7L242.0,321.7L242.7,305.4L242.4,298.9L244.4,292.5L247.7,289.4L252.9,283.1L251.7,280.4L253.8,276.3L251.4,270.3L251.9,267.0L252.6,257.9L255.7,253.8L257.2,248.0L259.9,245.8L271.4,244.6L282.1,248.4L286.1,252.2L291.5,252.4L296.6,249.9L309.5,255.1L314.9,254.9L321.2,250.6L327.5,250.9L330.6,249.5L336.3,250.0L344.6,253.0L352.9,247.3L355.4,247.7L362.6,258.8L364.6,258.6L368.8,262.6L367.7,264.5L367.1,267.8L358.1,275.7L355.3,282.2L353.8,287.4L351.5,289.7L349.4,296.8L343.7,301.0L342.0,306.1L339.6,310.2L338.6,314.4L331.3,317.8L325.3,313.6L321.3,313.8L314.9,319.7L311.8,319.8L306.7,329.6L304.0,336.8Z" data-id="NG" aria-label="Nigeria"/>
+            <path class="igm-region" d="M537.8,396.6L542.0,402.4L541.4,408.3L538.3,409.6L532.7,408.9L529.4,414.7L522.9,413.9L523.9,408.4L525.4,407.6L525.8,401.6L528.8,398.7L531.4,399.8L537.8,396.6Z" data-id="RW" aria-label="Rwanda"/>
+            <path class="igm-region" d="M575.0,394.8L576.8,395.9L615.5,416.5L616.2,422.4L631.5,432.5L626.6,445.0L627.2,450.8L634.0,454.5L634.3,457.1L631.4,463.2L632.0,466.3L631.3,471.1L635.0,477.5L639.5,487.5L643.4,489.7L634.9,495.6L623.2,499.5L616.8,499.3L613.0,502.4L605.6,502.6L602.8,503.9L590.0,501.1L582.0,501.9L579.0,488.1L575.4,483.4L573.2,480.6L562.8,478.7L556.7,475.6L549.9,473.9L545.7,472.2L541.2,469.7L535.5,456.9L529.3,451.2L527.1,445.3L528.2,440.1L526.3,430.7L530.7,430.3L534.6,426.6L538.7,421.3L541.4,419.2L541.3,415.9L539.0,413.6L538.3,409.6L541.4,408.3L542.0,402.4L537.8,396.6L541.5,395.4L553.2,395.5L575.0,394.8Z" data-id="TZ" aria-label="United Republic of Tanzania"/>
+            <path class="igm-region" d="M546.0,610.7L540.4,609.6L536.8,610.9L531.6,609.1L527.3,609.0L520.5,604.5L512.2,602.9L509.1,596.5L509.1,592.9L504.5,591.8L492.4,580.7L489.1,574.8L486.9,573.0L482.8,564.9L494.7,566.0L498.2,567.2L501.8,566.9L507.7,560.4L517.0,552.0L520.8,551.2L522.1,547.7L528.2,543.7L536.3,542.3L536.9,546.1L545.8,545.9L550.8,548.0L553.1,550.5L558.2,551.3L563.7,554.5L563.7,567.4L561.7,574.4L561.2,582.0L562.9,585.0L561.7,590.9L560.1,591.8L557.3,599.2L546.0,610.7Z" data-id="ZW" aria-label="Zimbabwe"/>
+            <path class="igm-region" d="M582.0,501.9L590.0,501.1L602.8,503.9L605.6,502.6L613.0,502.4L616.8,499.3L623.2,499.5L634.9,495.6L643.4,489.7L645.1,494.2L644.7,504.3L646.0,513.2L646.4,529.1L648.3,534.0L645.1,541.3L641.0,548.3L634.2,554.6L624.4,558.5L612.4,563.4L600.3,574.3L596.2,576.1L588.8,583.3L584.4,585.6L583.5,592.9L588.5,600.6L590.6,606.5L590.8,609.5L592.7,609.0L592.4,619.0L590.6,623.7L593.1,625.4L591.6,629.6L587.1,633.2L578.3,636.7L565.5,642.1L560.8,645.9L561.7,650.2L564.4,650.8L563.5,656.2L555.4,656.1L554.5,651.6L552.9,647.1L552.0,643.4L553.9,632.1L551.2,624.9L546.0,610.7L557.3,599.2L560.1,591.8L561.7,590.9L562.9,585.0L561.2,582.0L561.7,574.4L563.7,567.4L563.7,554.5L558.2,551.3L553.1,550.5L550.8,548.0L545.8,545.9L536.9,546.1L536.3,542.3L535.2,535.1L567.6,526.7L573.8,531.6L576.7,530.7L580.9,533.2L581.5,537.3L579.3,542.0L580.1,549.2L587.0,555.4L590.3,548.4L594.9,546.3L594.0,533.2L589.5,525.9L585.7,522.6L582.0,522.8L579.0,509.6L582.0,501.9Z" data-id="MO" aria-label="Mozambique"/>
+            <path class="igm-region" d="M387.7,674.8L379.8,667.1L375.6,659.7L373.2,649.8L370.6,642.5L367.0,626.9L366.8,614.8L365.4,609.2L361.3,605.1L355.8,596.7L350.2,584.5L347.8,578.2L339.1,568.3L338.5,560.5L343.6,558.6L350.0,556.8L356.9,557.1L363.3,561.7L364.9,561.0L408.1,560.6L415.5,565.4L441.4,566.9L461.0,562.7L469.7,560.4L476.6,561.0L480.8,563.3L480.9,564.1L474.9,566.4L471.7,566.4L464.8,570.4L460.8,566.2L444.3,569.8L436.4,570.1L436.1,606.2L425.6,606.6L425.6,636.2L425.5,673.6L416.0,678.8L410.3,679.5L403.6,677.6L398.8,676.9L397.0,672.5L392.8,669.8L387.7,674.8Z" data-id="NA" aria-label="Namibia"/>
+            <path class="igm-region" d="M549.6,681.7L547.5,683.1L543.0,688.3L540.0,693.5L533.9,700.7L521.9,711.2L514.3,717.3L506.3,721.9L495.1,725.8L489.7,726.4L488.3,729.2L481.8,727.7L476.6,729.6L465.0,727.6L458.5,728.9L454.1,728.4L443.1,732.4L434.0,734.0L427.4,737.8L422.6,738.0L418.1,734.4L414.5,734.2L409.9,729.7L409.4,731.1L407.9,728.4L408.0,722.4L404.5,715.7L408.0,713.8L407.7,706.0L400.7,696.5L395.4,688.0L395.3,687.9L387.7,674.8L392.8,669.8L397.0,672.5L398.8,676.9L403.6,677.6L410.3,679.5L416.0,678.8L425.5,673.6L425.6,636.2L428.4,637.7L434.8,647.3L433.8,653.5L436.2,657.0L443.8,656.0L449.1,651.5L454.2,648.4L456.8,643.6L462.0,641.2L466.5,642.5L471.6,645.3L480.3,645.8L487.1,643.4L488.2,640.3L490.0,635.4L495.8,634.6L499.1,630.8L502.6,624.1L512.2,616.5L527.3,609.0L531.6,609.1L536.8,610.9L540.4,609.6L546.0,610.7L551.2,624.9L553.9,632.1L552.0,643.4L552.9,647.1L547.6,645.2L544.5,645.9L543.5,648.9L540.6,652.7L540.7,656.2L547.0,661.7L553.3,660.6L555.4,656.1L563.5,656.2L560.9,663.5L559.6,672.0L556.8,676.5L549.6,681.7Z" data-id="ZA" aria-label="South Africa"/>
+            <!-- Highlighted FMNR countries -->
+            <path class="igm-region highlighted" d="M617.7,233.5L624.1,238.1L630.4,235.7L633.0,237.9L640.3,238.0L649.6,242.0L652.3,245.5L657.1,248.8L661.4,254.7L665.1,258.0L661.3,262.5L657.7,267.3L658.6,270.0L658.7,273.1L664.7,273.3L667.3,272.6L669.6,274.4L667.3,278.0L671.2,283.6L675.2,288.4L679.2,292.1L714.1,304.1L723.1,304.0L692.9,334.4L679.0,334.9L669.5,342.0L662.7,342.2L659.8,345.4L652.5,345.4L648.2,342.0L638.5,346.2L635.3,350.5L628.2,349.7L625.8,348.5L623.3,348.8L620.0,348.7L606.5,340.1L599.0,340.1L595.4,336.7L595.4,331.0L589.8,329.3L583.5,318.3L578.7,316.0L576.8,311.9L571.4,307.0L564.8,306.2L568.5,300.5L574.1,300.2L575.7,297.1L575.6,288.0L578.7,277.4L583.8,274.6L584.9,270.4L589.4,262.7L595.9,257.7L600.2,247.7L601.9,239.0L614.3,241.1L617.7,233.5Z" data-id="ET" data-country="ethiopia" aria-label="Ethiopia — 4.6 million hectares"/>
+            <path class="igm-region highlighted" d="M650.6,393.8L656.9,402.2L649.4,406.2L646.8,410.5L642.8,411.2L641.3,418.4L637.9,422.4L635.8,429.2L631.5,432.5L616.2,422.4L615.5,416.5L576.8,395.9L575.0,394.8L574.9,384.0L577.9,379.9L583.2,373.2L587.1,365.8L582.4,354.2L581.1,349.1L576.1,342.1L582.6,336.0L589.8,329.3L595.4,331.0L595.4,336.7L599.0,340.1L606.5,340.1L620.0,348.7L623.3,348.8L625.8,348.5L628.2,349.7L635.3,350.5L638.5,346.2L648.2,342.0L652.5,345.4L659.8,345.4L650.5,356.9L650.6,393.8Z" data-id="KE" data-country="kenya" aria-label="Kenya — 4.5 million hectares"/>
+            <path class="igm-region highlighted" d="M553.2,395.5L541.5,395.4L537.8,396.6L531.4,399.8L528.8,398.7L528.9,391.1L531.4,387.2L532.0,379.1L534.3,374.4L538.3,369.1L542.4,366.4L545.9,362.8L541.6,361.4L542.2,349.6L546.6,346.8L553.4,349.1L562.0,346.7L569.5,346.7L576.1,342.1L581.1,349.1L582.4,354.2L587.1,365.8L583.2,373.2L577.9,379.9L574.9,384.0L575.0,394.8L553.2,395.5Z" data-id="UG" data-country="uganda" aria-label="Uganda — 2.28 million hectares"/>
+            <path class="igm-region highlighted" d="M562.8,478.7L567.8,483.2L570.5,491.8L568.7,494.6L566.6,502.8L568.6,511.2L565.2,514.7L562.0,524.1L567.6,526.7L535.2,535.1L536.3,542.3L528.2,543.7L522.1,547.7L520.8,551.2L517.0,552.0L507.7,560.4L501.8,566.9L498.2,567.2L494.7,566.0L482.8,564.9L480.9,564.1L480.8,563.3L476.6,561.0L469.7,560.4L461.0,562.7L454.0,556.4L446.8,548.1L447.3,515.9L469.5,516.0L468.6,512.5L470.2,508.7L468.3,503.9L469.5,499.0L468.4,495.9L472.1,496.1L472.7,499.3L477.7,499.0L484.5,500.0L488.0,504.6L496.6,506.0L503.1,502.8L505.5,508.1L513.7,509.5L517.6,513.8L522.0,519.4L530.1,519.5L529.2,508.6L526.3,510.4L518.9,506.5L516.0,504.7L517.3,494.5L519.2,482.5L516.8,478.0L519.8,471.6L522.7,470.3L537.0,468.6L541.2,469.7L545.7,472.2L549.9,473.9L556.7,475.6L562.8,478.7Z" data-id="ZM" data-country="zambia" aria-label="Zambia — 2 million hectares"/>
+          </svg>
+
+          <div class="igm-tooltip" id="mapTooltip">
+            <div class="igm-tooltip-title" id="tooltipTitle">Ethiopia</div>
+            <div class="igm-tooltip-stat total"><span class="label">Total Area</span><span class="value" id="tooltipTotal">4.6M ha</span></div>
+            <div class="igm-tooltip-stat"><span class="label">Direct</span><span class="value" id="tooltipDirect">700,000 ha</span></div>
+            <div class="igm-tooltip-stat"><span class="label">Indirect</span><span class="value" id="tooltipIndirect">3.9M ha</span></div>
+            <span class="igm-tooltip-link">Click to view country page &#8594;</span>
+          </div>
+        </div>
+
+        <div class="igm-legend">
+          <div class="igm-legend-item">
+            <div class="igm-legend-swatch" style="background:#077d57;"></div>
+            <span>Active FMNR Countries</span>
+          </div>
+          <div class="igm-legend-item">
+            <div class="igm-legend-swatch" style="background:#c8e6d8;"></div>
+            <span>Other African Countries</span>
+          </div>
+          <div class="igm-legend-item">
+            <div class="igm-legend-swatch" style="background:#077d57;"></div>
+            <span style="font-weight:700;color:#077d57;">Direct</span>
+          </div>
+          <div class="igm-legend-item">
+            <div class="igm-legend-swatch" style="background:#0dfaab;"></div>
+            <span style="font-weight:700;color:#0a9e72;">Indirect</span>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <script>
+  (function() {
+    'use strict';
+    var countries = {
+      ethiopia: { name: 'Ethiopia', total: '4.6M ha', direct: '700,000 ha', indirect: '3.9M ha' },
+      kenya:    { name: 'Kenya',    total: '4.5M ha', direct: '744,681 ha', indirect: '3.76M ha' },
+      uganda:   { name: 'Uganda',   total: '2.28M ha', direct: '571,526 ha', indirect: '1.71M ha' },
+      zambia:   { name: 'Zambia',   total: '2M ha',   direct: '600,000 ha', indirect: '1.4M ha' }
+    };
+    var tooltip = document.getElementById('mapTooltip');
+    var mapWrapper = document.getElementById('geoMap');
+    var mapSvg = document.getElementById('mapSvg');
+    if (!tooltip || !mapWrapper || !mapSvg) return;
+    var regions = document.querySelectorAll('.igm-region.highlighted');
+    var cards = document.querySelectorAll('.country-card');
+    var selectedCountry = null;
+    var defaultView = { x: 380, y: 190, w: 460, h: 460 };
+    var currentView = { x: 380, y: 190, w: 460, h: 460 };
+    var zoomStep = 0.7;
+    var minZoom = 120;
+    var maxZoom = 800;
+
+    function setViewBox(v) {
+      currentView = { x: v.x, y: v.y, w: v.w, h: v.h };
+      mapSvg.setAttribute('viewBox', v.x + ' ' + v.y + ' ' + v.w + ' ' + v.h);
+      document.getElementById('zoomIn').disabled = currentView.w <= minZoom;
+      document.getElementById('zoomOut').disabled = currentView.w >= maxZoom;
+    }
+
+    document.getElementById('zoomIn').addEventListener('click', function() {
+      var newW = currentView.w * zoomStep, newH = currentView.h * zoomStep;
+      if (newW < minZoom) return;
+      setViewBox({ x: currentView.x + (currentView.w - newW) / 2, y: currentView.y + (currentView.h - newH) / 2, w: newW, h: newH });
+    });
+    document.getElementById('zoomOut').addEventListener('click', function() {
+      var newW = Math.min(currentView.w / zoomStep, maxZoom), newH = Math.min(currentView.h / zoomStep, maxZoom * (currentView.h / currentView.w));
+      setViewBox({ x: currentView.x - (newW - currentView.w) / 2, y: currentView.y - (newH - currentView.h) / 2, w: newW, h: newH });
+    });
+    document.getElementById('zoomReset').addEventListener('click', function() { setViewBox(defaultView); });
+
+    mapWrapper.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      var factor = e.deltaY > 0 ? 1 / zoomStep : zoomStep;
+      var newW = currentView.w * factor, newH = currentView.h * factor;
+      if (newW < minZoom || newW > maxZoom) return;
+      var rect = mapWrapper.getBoundingClientRect();
+      var mx = (e.clientX - rect.left) / rect.width, my = (e.clientY - rect.top) / rect.height;
+      var svgX = currentView.x + currentView.w * mx, svgY = currentView.y + currentView.h * my;
+      setViewBox({ x: svgX - newW * mx, y: svgY - newH * my, w: newW, h: newH });
+    }, { passive: false });
+
+    var isDragging = false, dragStartX, dragStartY, dragStartView, hasDragged = false;
+    mapWrapper.addEventListener('mousedown', function(e) {
+      if (e.target.closest('.igm-zoom-controls')) return;
+      isDragging = true; hasDragged = false;
+      dragStartX = e.clientX; dragStartY = e.clientY;
+      dragStartView = { x: currentView.x, y: currentView.y, w: currentView.w, h: currentView.h };
+      mapWrapper.style.cursor = 'grabbing'; e.preventDefault();
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var rect = mapWrapper.getBoundingClientRect();
+      var dx = (e.clientX - dragStartX) / rect.width * currentView.w;
+      var dy = (e.clientY - dragStartY) / rect.height * currentView.h;
+      if (Math.abs(e.clientX - dragStartX) > 3 || Math.abs(e.clientY - dragStartY) > 3) hasDragged = true;
+      setViewBox({ x: dragStartView.x - dx, y: dragStartView.y - dy, w: currentView.w, h: currentView.h });
+    });
+    document.addEventListener('mouseup', function() { if (isDragging) { isDragging = false; mapWrapper.style.cursor = ''; } });
+
+    function selectCountry(key) {
+      if (selectedCountry === key) { deselectAll(); return; }
+      selectedCountry = key;
+      regions.forEach(function(r) {
+        r.classList.toggle('active', r.dataset.country === key);
+        r.classList.toggle('dimmed', r.dataset.country !== key);
+      });
+      cards.forEach(function(c) {
+        c.classList.toggle('active', c.dataset.highlight === key);
+        c.classList.toggle('dimmed', c.dataset.highlight !== key);
+      });
+      var activeCard = document.querySelector('.country-card[data-highlight="' + key + '"]');
+      if (activeCard) activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function deselectAll() {
+      selectedCountry = null;
+      regions.forEach(function(r) { r.classList.remove('active', 'dimmed'); });
+      cards.forEach(function(c) { c.classList.remove('active', 'dimmed'); });
+    }
+
+    regions.forEach(function(region) {
+      region.setAttribute('tabindex', '0');
+      region.setAttribute('role', 'button');
+      region.addEventListener('mouseenter', function(e) {
+        var d = countries[this.dataset.country]; if (!d) return;
+        document.getElementById('tooltipTitle').textContent = d.name;
+        document.getElementById('tooltipTotal').textContent = d.total;
+        document.getElementById('tooltipDirect').textContent = d.direct;
+        document.getElementById('tooltipIndirect').textContent = d.indirect;
+        tooltip.classList.add('visible'); positionTooltip(e);
+      });
+      region.addEventListener('mousemove', positionTooltip);
+      region.addEventListener('mouseleave', function() { tooltip.classList.remove('visible'); });
+      region.addEventListener('click', function(e) { e.preventDefault(); if (hasDragged) return; selectCountry(this.dataset.country); });
+      region.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCountry(this.dataset.country); }
+        if (e.key === 'Escape') deselectAll();
+      });
+    });
+
+    function positionTooltip(e) {
+      var rect = mapWrapper.getBoundingClientRect();
+      var x = e.clientX - rect.left + 16, y = e.clientY - rect.top - 10;
+      if (x + 260 > rect.width) x = x - 280;
+      if (y + 150 > rect.height) y = y - 120;
+      tooltip.style.left = x + 'px'; tooltip.style.top = y + 'px';
+    }
+
+    cards.forEach(function(card) {
+      var key = card.dataset.highlight;
+      var region = document.querySelector('[data-country="' + key + '"]');
+      card.addEventListener('click', function(e) { if (selectedCountry !== key) { e.preventDefault(); selectCountry(key); } });
+      card.addEventListener('mouseenter', function() { if (region && !selectedCountry) { region.style.fill = '#099e6d'; region.style.strokeWidth = '2'; } });
+      card.addEventListener('mouseleave', function() { if (region && !selectedCountry) { region.style.fill = ''; region.style.strokeWidth = ''; } });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.igm-map-wrapper') && !e.target.closest('.country-cards')) deselectAll();
+    });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') deselectAll(); });
+    setViewBox(defaultView);
+  })();
+  </script>
+</body>
+</html>

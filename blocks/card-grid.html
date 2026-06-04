@@ -107,15 +107,352 @@
       margin-top: 8px;
     }
 
+    /* ===================== FEATURE CARDS ===================== */
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #f8f9f8;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: #e0ede6;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .feature-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .feature-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+    }
+
+    /* Faith-based variant — lighter fill, no border, larger type (from faith-based.html) */
+    .feature-cards--faith .feature-card {
+      background: #f5f5f5;
+      border: none;
+      padding: 32px 28px;
+      gap: 12px;
+    }
+
+    .feature-cards--faith .feature-overline { letter-spacing: 0.1em; }
+    .feature-cards--faith .feature-heading { font-size: 22px; }
+
+    .feature-cards--faith .feature-body {
+      font-size: 15px;
+      color: rgba(0,0,0,0.65);
+      line-height: 1.6;
+    }
+
+    /* ===================== FEATURED / STORY GRID ===================== */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .story-card {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+
+    .story-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    .story-card-image {
+      height: 280px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .story-card-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .story-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #077d57;
+    }
+
+    .story-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    .story-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00552f;
+      margin-top: 8px;
+    }
+
+    /* ===================== 3-COLUMN STORY GRID (from faith-based.html) ===================== */
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Faith-based story-card variant — 16/9 image, smaller type */
+    .grid-3col .story-card-image {
+      height: auto;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a0d25 0%, #2e1a40 100%);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .grid-3col .story-card-body { padding: 24px; }
+    .grid-3col .story-heading { font-size: 20px; }
+
+    .grid-3col .story-body {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ===================== RESOURCE CARDS (from faith-based.html) ===================== */
+    .resource-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .resource-card {
+      background: #f5f5f5;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-decoration: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .resource-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .resource-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .resource-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .resource-type {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #077d57;
+    }
+
+    .resource-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .resource-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .resource-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 4px;
+    }
+
+    /* ===================== 4-COLUMN RELATED CARDS (from faith-based.html) ===================== */
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .related-card {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      border: 1px solid #e8e8e8;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    .related-card:hover {
+      border-color: #b2d4c0;
+      box-shadow: 0 2px 14px rgba(0,85,47,0.09);
+    }
+
+    .related-card-icon {
+      width: 44px;
+      height: 44px;
+      background: #e8eeeb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 4px;
+    }
+
+    .related-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00552f;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .related-card-title {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .related-card-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      line-height: 1.5;
+    }
+
+    .related-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00552f;
+      margin-top: 6px;
+    }
+
     /* ===================== RESPONSIVE ===================== */
     @media (max-width: 1024px) {
       .partner-type-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-4col { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
       .section-white { padding: 60px 0; }
       .section-container { padding: 0 24px; }
       .partner-type-grid { grid-template-columns: 1fr; }
+      .feature-cards { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr; }
+      .grid-3col { grid-template-columns: 1fr; }
+      .resource-cards { grid-template-columns: 1fr; }
+      .grid-4col { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -164,6 +501,192 @@
           </div>
         </a>
 
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white">
+    <div class="section-container">
+      <div class="feature-cards" data-mfx="stagger-fade" data-mfx-done="true">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C9.5 9 6 9 4 10c0 3 2 6 5 7 1-3 2-5 3-5z"/><path d="M12 12c2.5-3 6-3 8-2 0 3-2 6-5 7-1-3-2-5-3-5z"/></svg>
+          </div>
+          <p class="feature-overline">Scale</p>
+          <h3 class="feature-heading">Proven at Every Scale</h3>
+          <p class="feature-body">From a single farm to millions of hectares — FMNR has been validated across 24+ countries, with peer-reviewed evidence of landscape, livelihood and climate outcomes at national scale.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <p class="feature-overline">Simplicity</p>
+          <h3 class="feature-heading">No Special Inputs Required</h3>
+          <p class="feature-body">FMNR relies on the knowledge and agency of farmers — no seeds, no seedlings, no external inputs. This makes it resilient, affordable and transferable across diverse agro-ecological contexts.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <p class="feature-overline">Evidence</p>
+          <h3 class="feature-heading">Measurable Returns</h3>
+          <p class="feature-body">FMNR generates documented improvements in crop yields, income, biodiversity, carbon sequestration and water availability — with satellite monitoring and farmer-reported data available to partners.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white">
+    <div class="section-container">
+      <div class="featured-grid" data-mfx="stagger-fade" data-mfx-done="true">
+
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2024/09/W485-0178-115.jpg');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Faith Partnership · Zambia</p>
+            <h3 class="story-heading">How Church Networks Scaled FMNR Across Zambia</h3>
+            <p class="story-body">Faith leaders in Zambia mobilised thousands of farming households through existing church networks — restoring miombo woodlands and transforming livelihoods in the process.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image:url('https://fmnrhub.com.au/wp-content/uploads/2025/11/Unknown_2017_Niger_BNATonywithcar_HQ_CNS.jpg');"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Government Partnership · Niger</p>
+            <h3 class="story-heading">Niger's National Policy Shift Towards FMNR</h3>
+            <p class="story-body">How a government partnership enabled farmer-led restoration to be recognised in national land policy — unlocking millions of hectares of degraded farmland for regeneration.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white">
+    <div class="section-container">
+      <div class="feature-cards feature-cards--faith" data-mfx="stagger-fade" data-mfx-done="true">
+        <div class="feature-card">
+          <p class="feature-overline">Mobilisation</p>
+          <h3 class="feature-heading">Community Engagement</h3>
+          <p class="feature-body">Workshops, sermons and demonstration plots help faith communities understand and adopt FMNR. Restoration becomes embedded in the rhythms of congregational life — not a separate project, but an expression of faith.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Training</p>
+          <h3 class="feature-heading">Leader Resources</h3>
+          <p class="feature-body">Faith-adapted training packs, guides and sermon outlines let pastors and imams integrate land stewardship into their teaching. Materials are designed for local languages and oral traditions across Sub-Saharan Africa and beyond.</p>
+        </div>
+        <div class="feature-card">
+          <p class="feature-overline">Networks</p>
+          <h3 class="feature-heading">Faith Network Reach</h3>
+          <p class="feature-body">We work with the World Council of Churches and regional faith networks to scale FMNR rapidly across denominations and traditions — amplifying local champions through connected institutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white">
+    <div class="section-container">
+      <div class="grid-3col" data-mfx="stagger-fade" data-mfx-done="true">
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2024/05/Malawi_day1_151.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Ethiopia</p>
+            <h3 class="story-heading">Gebregziebeher — "Tony the Second"</h3>
+            <p class="story-body">A local faith leader in Ethiopia so inspired by Tony Rinaudo's work that he became known as "Tony the Second" — visiting congregations every Sunday to teach FMNR and mobilise farmers across his region.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2026/03/D395-0940-089-scaled.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Niger</p>
+            <h3 class="story-heading">World Council of Churches FMNR Programme</h3>
+            <p class="story-body">The World Council of Churches partnered to embed FMNR within its existing African member churches — reaching communities across West Africa through trusted denominational structures that no NGO programme could replicate.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+        <a href="../blog-post.html" class="story-card">
+          <div class="story-card-image" style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/11/1-Trailor-circa-1983.jpg'); background-size: cover; background-position: center top;"></div>
+          <div class="story-card-body">
+            <p class="story-overline">Kenya</p>
+            <h3 class="story-heading">DryDev Faith Leader Network</h3>
+            <p class="story-body">In drought-affected regions of Kenya, faith leaders trained through the DryDev programme became the primary vehicle for FMNR adoption — achieving community uptake rates more than five times higher than parallel extension approaches.</p>
+            <span class="card-cta">Read story →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white">
+    <div class="section-container">
+      <div class="resource-cards" data-mfx="stagger-fade" data-mfx-done="true">
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 20 pages</p>
+          <h3 class="resource-title">Faith Leader Guide</h3>
+          <p class="resource-desc">A comprehensive introduction to FMNR for faith leaders — including the theological case for land stewardship, practical steps and how to engage your congregation.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 8 pages</p>
+          <h3 class="resource-title">Sermon Outline Pack</h3>
+          <p class="resource-desc">Six ready-to-use sermon outlines connecting scripture to land stewardship and FMNR — adaptable for Christian, Muslim and interfaith contexts.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <p class="resource-type">PDF · 28 pages</p>
+          <h3 class="resource-title">Community Mobilisation Toolkit</h3>
+          <p class="resource-desc">Step-by-step workshop guides, demonstration plot instructions and congregation engagement tools for faith communities introducing FMNR at the grassroots.</p>
+          <span class="resource-cta">Download →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white">
+    <div class="section-container">
+      <div class="grid-4col" data-mfx="stagger-fade" data-mfx-done="true">
+        <a href="../partners/ngo.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          </div>
+          <p class="related-card-title">NGO &amp; Development</p>
+          <p class="related-card-body">Programme teams and implementation partners embedding FMNR in development work at scale.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../partners/government.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="20" width="18" height="2" rx="1"/><path d="M4 8l8-5 8 5"/><rect x="6" y="8" width="3" height="12"/><rect x="10.5" y="8" width="3" height="12"/><rect x="15" y="8" width="3" height="12"/></svg>
+          </div>
+          <p class="related-card-title">Government &amp; Policy</p>
+          <p class="related-card-body">National programme leaders and policy makers integrating FMNR at restoration scale.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../partners/funders.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <p class="related-card-title">Funders &amp; Investors</p>
+          <p class="related-card-body">Philanthropists, impact investors and bilateral donors funding FMNR at landscape scale.</p>
+          <span class="related-card-cta">Learn more →</span>
+        </a>
+        <a href="../partners.html" class="related-card">
+          <div class="related-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+          </div>
+          <p class="related-card-title">All Partner Types</p>
+          <p class="related-card-body">See all the ways organisations and individuals can partner with FMNR globally.</p>
+          <span class="related-card-cta">View all →</span>
+        </a>
       </div>
     </div>
   </section>

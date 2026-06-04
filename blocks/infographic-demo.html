@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Infographic — FMNR Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'FatFrank';
+      src: url('../fatfrank.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* ── Shared ── */
+    .infographic-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    /* ────────────────────────────────────────────
+       VARIANT A — White, lime top border, centred
+       ──────────────────────────────────────────── */
+    .infographic-a {
+      background: #fff;
+      border-top: 8px solid #b8fa1a;
+      display: flex;
+      justify-content: center;
+    }
+
+    .infographic-a .infographic-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      gap: 40px;
+    }
+
+    .infographic-a .ig-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #00552f;
+    }
+
+    .infographic-a .ig-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .infographic-a .ig-stat {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 96px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #00552f;
+    }
+
+    .infographic-a .ig-stat-sub {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #00552f;
+    }
+
+    .infographic-a .ig-body-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      max-width: 720px;
+    }
+
+    .infographic-a .ig-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(0,0,0,0.65);
+      line-height: 1.6;
+    }
+
+    .infographic-a .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #00552f;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .infographic-a .ig-btn:hover { background: #004026; }
+
+    .infographic-a .ig-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ────────────────────────────────────────────
+       VARIANT B — Dark green, left-aligned
+       ──────────────────────────────────────────── */
+    .infographic-b {
+      background: #00552f;
+      display: flex;
+      justify-content: center;
+    }
+
+    .infographic-b .infographic-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      gap: 40px;
+    }
+
+    .infographic-b .ig-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b8fa1a;
+    }
+
+    .infographic-b .ig-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .infographic-b .ig-stat {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 96px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #b8fa1a;
+    }
+
+    .infographic-b .ig-stat-sub {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .infographic-b .ig-body-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      max-width: 640px;
+    }
+
+    .infographic-b .ig-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+
+    .infographic-b .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #b8fa1a;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 22px;
+      border-radius: 4px;
+      border: 2px solid #b8fa1a;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .infographic-b .ig-btn:hover { background: rgba(184,250,26,0.1); }
+
+    .infographic-b .ig-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ────────────────────────────────────────────
+       VARIANT C — Black, two-column with stat tiles
+       ──────────────────────────────────────────── */
+    .infographic-c {
+      background: #111;
+    }
+
+    .infographic-c .infographic-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 655px;
+    }
+
+    .infographic-c-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+      padding: 80px 60px 80px 0;
+    }
+
+    .infographic-c .ig-overline {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b8fa1a;
+    }
+
+    .infographic-c .ig-heading-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .infographic-c .ig-stat {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .infographic-c .ig-stat-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .stat-tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat-tile {
+      background: #1a1a1a;
+      border-radius: 4px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .stat-tile-value {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #0dfaab;
+    }
+
+    .stat-tile-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #b8fa1a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .infographic-c .ig-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .infographic-c-right {
+      position: relative;
+      background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/10/W200-0587-006_08.2023_Kenya_FMNRtrees_HQ_CNS-scaled.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .infographic-c-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0) 50%);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .infographic-a .ig-stat { font-size: 72px; }
+      .infographic-b .ig-stat { font-size: 72px; }
+      .infographic-c .ig-stat { font-size: 56px; }
+    }
+
+    @media (max-width: 768px) {
+      .infographic-inner { padding: 0 16px; }
+
+      .infographic-a .infographic-inner { padding-top: 48px; padding-bottom: 48px; gap: 24px; }
+      .infographic-a .ig-stat { font-size: 56px; }
+      .infographic-a .ig-stat-sub { font-size: 28px; }
+
+      .infographic-b .infographic-inner { padding-top: 48px; padding-bottom: 48px; gap: 24px; }
+      .infographic-b .ig-stat { font-size: 56px; }
+      .infographic-b .ig-stat-sub { font-size: 28px; }
+
+      .infographic-c .infographic-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .infographic-c-left { padding: 48px 0; gap: 28px; }
+      .infographic-c .ig-stat { font-size: 48px; }
+      .stat-tiles { grid-template-columns: 1fr; gap: 8px; }
+      .stat-tile-value { font-size: 36px; }
+
+      .infographic-c-right { height: 280px; }
+      .infographic-c-right::after { background: linear-gradient(to bottom, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0) 50%); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- VARIANT A — White, lime top border, centred -->
+  <!-- ============================================================ -->
+  <section class="infographic-a">
+    <div class="infographic-inner">
+      <p class="ig-overline">Infographic</p>
+      <div class="ig-heading-wrap">
+        <span class="ig-stat">1 Billion</span>
+        <span class="ig-stat-sub">Hectares</span>
+      </div>
+      <div class="ig-body-wrap">
+        <p class="ig-body">The vision: restore one billion hectares of degraded land within the next decade using Farmer-Managed Natural Regeneration — working with nature, not against it, to reverse generations of environmental decline.</p>
+        <a href="../impact/index.html" class="ig-btn">
+          Explore the impact
+          <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VARIANT B — Dark green, left-aligned -->
+  <!-- ============================================================ -->
+  <section class="infographic-b">
+    <div class="infographic-inner">
+      <p class="ig-overline">Infographic</p>
+      <div class="ig-heading-wrap">
+        <span class="ig-stat">1 Billion</span>
+        <span class="ig-stat-sub">Hectares</span>
+      </div>
+      <div class="ig-body-wrap">
+        <p class="ig-body">The vision: restore one billion hectares of degraded land within the next decade using Farmer-Managed Natural Regeneration — working with nature, not against it, to reverse generations of environmental decline.</p>
+        <a href="../impact/index.html" class="ig-btn">
+          Explore the impact
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M6 3l5 5-5 5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VARIANT C — Black, two-column with stat tiles + image -->
+  <!-- ============================================================ -->
+  <section class="infographic-c">
+    <div class="infographic-inner">
+      <div class="infographic-c-left">
+        <p class="ig-overline">Infographic</p>
+        <div class="ig-heading-wrap">
+          <span class="ig-stat">1 Billion Hectares</span>
+          <span class="ig-stat-sub">Our 10-Year Vision</span>
+        </div>
+        <div class="stat-tiles">
+          <div class="stat-tile">
+            <span class="stat-tile-value">1B</span>
+            <span class="stat-tile-label">Hectare target</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-tile-value">10YR</span>
+            <span class="stat-tile-label">Timeline</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-tile-value">30+</span>
+            <span class="stat-tile-label">Countries active</span>
+          </div>
+        </div>
+        <div class="ig-body">
+          <p>Farmer-Managed Natural Regeneration is the most cost-effective and rapidly scalable land restoration technique known. By working with the natural regrowth capacity already present in the soil, FMNR can transform degraded farmland in a matter of years — not decades.</p>
+          <p>The 1-Billion Hectare Vision is not a distant dream. It is a strategic goal underpinned by proven methodology, growing practitioner networks, and mounting evidence of ecosystem, food security, and climate outcomes.</p>
+        </div>
+      </div>
+      <div class="infographic-c-right"></div>
+    </div>
+  </section>
+
+  <script src="../assets/js/header.js" defer></script>
+  <script src="../assets/js/footer.js" defer></script>
+</body>
+</html>

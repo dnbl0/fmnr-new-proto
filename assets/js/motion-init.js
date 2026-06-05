@@ -59,8 +59,10 @@
     });
   }
 
+  // Computed at module level so all functions share the same value
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   ready(function () {
-    var REDUCED   = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var isMobile  = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
     var lowMemory = navigator.deviceMemory && navigator.deviceMemory < 2;
 
@@ -309,9 +311,11 @@
         if (!entry.isIntersecting || seen.has(entry.target)) return;
         seen.add(entry.target);
         observer.unobserve(entry.target);
-        animateCountEl(entry.target);
+        // Delay slightly so stagger-fade has started revealing the tile before numbers begin
+        var delay = parseInt(entry.target.getAttribute('data-count-delay') || '350', 10);
+        setTimeout(function () { animateCountEl(entry.target); }, delay);
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.2 });
 
     nums.forEach(function (el) {
       var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);

@@ -1515,6 +1515,205 @@
       .text-block-heading,
       .video-block-heading { font-size: 48px; }
     }
+
+    /* ===================== HOW IT WORKS — TAB SECTION ===================== */
+    .hiw-section {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hiw-inner {
+      max-width: 1280px;
+      width: 100%;
+      padding: 80px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 29px;
+    }
+
+    .hiw-heading {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* Tab block: tab list + media panel, no gap */
+    .hiw-block {
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* ── Tab list ── */
+    .hiw-tabs {
+      width: 422px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #b5bdbc;
+      border-right: none;
+    }
+
+    .hiw-tab {
+      flex: 1;
+      min-height: 95px;
+      padding: 18px 24px 18px 20px;
+      border-bottom: 1px solid #b5bdbc;
+      border-left: 4px solid transparent;
+      cursor: pointer;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      transition: background 0.18s, border-left-color 0.18s;
+      user-select: none;
+    }
+
+    .hiw-tab:last-child { border-bottom: none; }
+
+    .hiw-tab:hover { background: #f0f5f2; }
+
+    .hiw-tab.is-active {
+      background: #fff;
+      border-left-color: #00552f;
+    }
+
+    .hiw-tab-step {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FF6600;
+      line-height: 1;
+    }
+
+    .hiw-tab-name {
+      font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif;
+      font-weight: 900;
+      font-size: 32px;
+      line-height: 1;
+      text-transform: uppercase;
+      color: #00552f;
+    }
+
+    .hiw-tab-desc {
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #555;
+      margin-top: 6px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.28s ease, opacity 0.22s ease, margin-top 0.22s ease;
+    }
+
+    .hiw-tab.is-active .hiw-tab-desc {
+      max-height: 80px;
+      opacity: 1;
+    }
+
+    /* ── Media panel ── */
+    .hiw-media {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      border: 1px solid #b5bdbc;
+      background: #111;
+      overflow: hidden;
+    }
+
+    /* Each step's panel */
+    .hiw-panel {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hiw-panel.is-active { display: flex; }
+
+    .hiw-panel-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Gradient overlay (same as Figma spec) */
+    .hiw-panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(249,249,249,0) 49.74%, #4f4f4f 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Play button — frosted glass circle */
+    .hiw-play-btn {
+      position: relative;
+      z-index: 2;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      transition: background 0.18s, transform 0.18s;
+      flex-shrink: 0;
+    }
+
+    .hiw-play-btn:hover {
+      background: rgba(255, 255, 255, 0.96);
+      transform: scale(1.1);
+    }
+
+    .hiw-play-btn svg { width: 24px; height: 24px; display: block; }
+
+    /* Inline iframe replaces panel on play */
+    .hiw-panel .hiw-iframe-wrap {
+      position: absolute;
+      inset: 0;
+      display: none;
+      z-index: 3;
+    }
+    .hiw-panel .hiw-iframe-wrap.is-active { display: block; }
+    .hiw-panel .hiw-iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+    .hiw-panel .hiw-iframe-wrap.is-active ~ .hiw-panel-media,
+    .hiw-panel .hiw-iframe-wrap.is-active ~ .hiw-panel-overlay,
+    .hiw-panel .hiw-iframe-wrap.is-active ~ .hiw-play-btn { display: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hiw-block { flex-direction: column; }
+      .hiw-tabs { width: 100%; border-right: 1px solid #b5bdbc; border-bottom: none; flex-direction: row; flex-wrap: wrap; }
+      .hiw-tab { min-height: auto; padding: 12px 16px; border-bottom: 1px solid #b5bdbc; border-left: none; border-top: 4px solid transparent; flex: 1 0 30%; }
+      .hiw-tab.is-active { border-top-color: #00552f; border-left-color: transparent; }
+      .hiw-tab-desc { display: none; }
+      .hiw-tab-name { font-size: 22px; }
+      .hiw-media { min-height: 240px; border-top: none; }
+      .hiw-heading { font-size: 48px; }
+    }
+
+    @media (max-width: 600px) {
+      .hiw-inner { padding: 48px 20px; gap: 20px; }
+      .hiw-tab { flex: 1 0 45%; }
+    }
   </style>
   <link rel="stylesheet" href="assets/css/search.css">
 </head>
@@ -1643,6 +1842,94 @@
           <div class="bar-graph-track"><div class="bar-graph-fill" style="width:98%"></div></div>
           <span class="bar-graph-value">98%</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- HOW IT WORKS — TAB SECTION -->
+  <!-- ============================================================ -->
+  <section class="hiw-section" id="how-fmnr-works">
+    <div class="hiw-inner">
+
+      <h2 class="hiw-heading" data-mfx="fade">How Does FMNR Work?</h2>
+
+      <div class="hiw-block" role="tablist" aria-label="FMNR steps">
+
+        <!-- Tab list -->
+        <div class="hiw-tabs">
+      <div class="hiw-tab is-active" data-target="find" role="tab" aria-selected="true" tabindex="0">
+        <p class="hiw-tab-step">Step 1</p>
+        <p class="hiw-tab-name">Find</p>
+        <p class="hiw-tab-desc">Walk your land and identify stumps and root systems with regenerative potential — the hidden underground forest that is already there, waiting to grow.</p>
+      </div>
+      <div class="hiw-tab" data-target="prune" role="tab" aria-selected="false" tabindex="-1">
+        <p class="hiw-tab-step">Step 2</p>
+        <p class="hiw-tab-name">Prune</p>
+        <p class="hiw-tab-desc">Select the strongest shoots on each stump and remove the rest. Redirecting growth energy into chosen stems accelerates development significantly.</p>
+      </div>
+      <div class="hiw-tab" data-target="protect" role="tab" aria-selected="false" tabindex="-1">
+        <p class="hiw-tab-step">Step 3</p>
+        <p class="hiw-tab-name">Protect</p>
+        <p class="hiw-tab-desc">Guard regenerating shoots from livestock during the vulnerable early phase. Even basic enclosures or close monitoring gives the trees the start they need.</p>
+      </div>
+      <div class="hiw-tab" data-target="grow" role="tab" aria-selected="false" tabindex="-1">
+        <p class="hiw-tab-step">Step 4</p>
+        <p class="hiw-tab-name">Grow</p>
+        <p class="hiw-tab-desc">Within one season trees begin to provide shade, improve soil moisture and reduce erosion. Most farmers report visible, tangible benefits in the first year.</p>
+      </div>
+      <div class="hiw-tab" data-target="utilise" role="tab" aria-selected="false" tabindex="-1">
+        <p class="hiw-tab-step">Step 5</p>
+        <p class="hiw-tab-name">Utilise</p>
+        <p class="hiw-tab-desc">Harvest tree products sustainably — firewood, fodder, fruit, timber, medicine — while keeping the tree alive and productive for generations.</p>
+      </div>
+        </div>
+
+        <!-- Media panel -->
+        <div class="hiw-media">
+      <div class="hiw-panel is-active" data-step="find" data-video-id="0xF27ROVrbg">
+        <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/05/M1p1-gif2-Survey-the-land-360p-240802.gif" alt="" loading="lazy" />
+        <div class="hiw-panel-overlay"></div>
+        <button class="hiw-play-btn" aria-label="Play video">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
+        </button>
+        <div class="hiw-iframe-wrap"></div>
+      </div>
+      <div class="hiw-panel" data-step="prune" data-video-id="hO1xlL9WCO8">
+        <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/09/M1p1-Step2-gif1-Pruning-360p-240814.gif" alt="" loading="lazy" />
+        <div class="hiw-panel-overlay"></div>
+        <button class="hiw-play-btn" aria-label="Play video">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
+        </button>
+        <div class="hiw-iframe-wrap"></div>
+      </div>
+      <div class="hiw-panel" data-step="protect" data-video-id="0xF27ROVrbg">
+        <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/09/M1p1-Step3-Gif-Protect-360p-240811.gif" alt="" loading="lazy" />
+        <div class="hiw-panel-overlay"></div>
+        <button class="hiw-play-btn" aria-label="Play video">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
+        </button>
+        <div class="hiw-iframe-wrap"></div>
+      </div>
+      <div class="hiw-panel" data-step="grow" data-video-id="29bqRTW2aow">
+        <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/09/M1P1-Step4-Gif-Grow-360p-240824.gif" alt="" loading="lazy" />
+        <div class="hiw-panel-overlay"></div>
+        <button class="hiw-play-btn" aria-label="Play video">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
+        </button>
+        <div class="hiw-iframe-wrap"></div>
+      </div>
+      <div class="hiw-panel" data-step="utilise" data-video-id="bigghGgsVcw">
+        <img class="hiw-panel-media" src="https://img.youtube.com/vi/bigghGgsVcw/maxresdefault.jpg" alt="" loading="lazy" />
+        <div class="hiw-panel-overlay"></div>
+        <button class="hiw-play-btn" aria-label="Play video">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
+        </button>
+        <div class="hiw-iframe-wrap"></div>
+      </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2320,5 +2607,64 @@
   <script src="assets/js/header.js" defer></script>
   <script src="assets/js/footer.js" defer></script>
   <script src="assets/js/site-a11y.js" defer></script>
+
+  <script>
+    // ── HOW IT WORKS — TAB INTERACTION ───────────────────────────────────────
+    (function () {
+      var tabs   = document.querySelectorAll('.hiw-tab');
+      var panels = document.querySelectorAll('.hiw-panel');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', activate);
+        tab.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate.call(tab); }
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { moveFocus(tab, 1); }
+          if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { moveFocus(tab, -1); }
+        });
+      });
+
+      function activate() {
+        var target = this.getAttribute('data-target');
+
+        // Reset any open iframe in the current panel
+        var currentPanel = document.querySelector('.hiw-panel.is-active');
+        if (currentPanel) {
+          var iw = currentPanel.querySelector('.hiw-iframe-wrap');
+          if (iw) { iw.innerHTML = ''; iw.classList.remove('is-active'); }
+        }
+
+        tabs.forEach(function (t) {
+          var on = t.getAttribute('data-target') === target;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.setAttribute('tabindex', on ? '0' : '-1');
+        });
+
+        panels.forEach(function (p) {
+          p.classList.toggle('is-active', p.getAttribute('data-step') === target);
+        });
+      }
+
+      function moveFocus(current, dir) {
+        var arr = Array.prototype.slice.call(tabs);
+        var idx = (arr.indexOf(current) + dir + arr.length) % arr.length;
+        arr[idx].focus();
+        arr[idx].click();
+      }
+
+      // Play button — inline embed
+      document.querySelectorAll('.hiw-play-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var panel = btn.closest('.hiw-panel');
+          var vid   = panel.getAttribute('data-video-id');
+          if (!vid) return;
+          var wrap  = panel.querySelector('.hiw-iframe-wrap');
+          var src   = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0';
+          wrap.innerHTML = '<iframe src="' + src + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+          wrap.classList.add('is-active');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

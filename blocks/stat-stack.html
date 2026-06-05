@@ -110,9 +110,54 @@
       line-height: 1.4;
     }
 
+    /* ===================== LIME VARIANT ===================== */
+    .stats-section--lime {
+      background: #f9f9f9;
+    }
+
+    /* 3-col: equal widths */
+    .stats-grid--3col {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* 3-col: first tile featured (wider) */
+    .stats-grid--featured {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .stat-tile--lime {
+      background: #b8fa1a;
+    }
+
+    .stat-tile--lime .stat-overline {
+      color: #333;
+    }
+
+    .stat-tile--lime .stat-value {
+      color: #111;
+    }
+
+    .stat-tile--lime .stat-description {
+      color: #444;
+    }
+
+    /* Featured tile gets larger value text to reinforce prominence */
+    .stat-tile--featured-hero .stat-value {
+      font-size: 64px;
+    }
+
+    /* Divider between variants */
+    .variant-divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 0;
+    }
+
     @media (max-width: 768px) {
       .section-heading { font-size: 36px; }
       .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .stats-grid--3col,
+      .stats-grid--featured { grid-template-columns: 1fr; gap: 16px; }
       .section-stack { padding: 60px 24px; }
     }
   </style>
@@ -124,7 +169,7 @@
         <p class="section-overline">FMNR Impact</p>
         <h2 class="section-heading">Numbers that speak for themselves</h2>
       </div>
-      <div class="stats-grid" data-mfx="stagger-fade" data-mfx-stagger="0.09" data-mfx-duration="0.6" data-mfx-done="true">
+      <div class="stats-grid" data-mfx="stagger-fade" data-mfx-stagger="0.09" data-mfx-duration="0.6">
         <div class="stat-tile">
           <p class="stat-overline">Since 1983</p>
           <p class="stat-value">200M<br>Trees</p>
@@ -148,6 +193,105 @@
       </div>
     </div>
   </section>
+
+  <hr class="variant-divider">
+
+  <!-- Variant B: Lime tiles · light bg · 3-col · count-up headings -->
+  <section id="lime" class="stats-section stats-section--lime">
+    <div class="section-stack">
+      <div class="section-heading-wrap" data-mfx="fade">
+        <p class="section-overline">FMNR Impact</p>
+        <h2 class="section-heading">Numbers that speak for themselves</h2>
+      </div>
+      <div class="stats-grid stats-grid--3col" data-mfx="stagger-fade" data-mfx-stagger="0.09" data-mfx-duration="0.6">
+        <div class="stat-tile stat-tile--lime">
+          <p class="stat-overline">Since 1983</p>
+          <p class="stat-value"><span class="count-num" data-to="200">200</span>M<br>Trees</p>
+          <p class="stat-description">Regrown in Niger alone</p>
+        </div>
+        <div class="stat-tile stat-tile--lime">
+          <p class="stat-overline">Land Restored</p>
+          <p class="stat-value"><span class="count-num" data-to="5">5</span>M<br>Hectares</p>
+          <p class="stat-description">Re-greened across Niger</p>
+        </div>
+        <div class="stat-tile stat-tile--lime">
+          <p class="stat-overline">Global Reach</p>
+          <p class="stat-value"><span class="count-num" data-to="27">27</span><br>Countries</p>
+          <p class="stat-description">Practising FMNR today</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="variant-divider">
+
+  <!-- Variant C: Lime tiles · 3-col featured (first tile wider) · count-up headings -->
+  <section id="lime-featured" class="stats-section stats-section--lime">
+    <div class="section-stack">
+      <div class="section-heading-wrap" data-mfx="fade">
+        <p class="section-overline">FMNR Impact</p>
+        <h2 class="section-heading">Numbers that speak for themselves</h2>
+      </div>
+      <div class="stats-grid stats-grid--featured" data-mfx="stagger-fade" data-mfx-stagger="0.09" data-mfx-duration="0.6">
+        <div class="stat-tile stat-tile--lime stat-tile--featured-hero">
+          <p class="stat-overline">Since 1983</p>
+          <p class="stat-value"><span class="count-num" data-to="200">200</span>M<br>Trees</p>
+          <p class="stat-description">Regrown in Niger alone</p>
+        </div>
+        <div class="stat-tile stat-tile--lime">
+          <p class="stat-overline">Land Restored</p>
+          <p class="stat-value"><span class="count-num" data-to="5">5</span>M<br>Hectares</p>
+          <p class="stat-description">Re-greened across Niger</p>
+        </div>
+        <div class="stat-tile stat-tile--lime">
+          <p class="stat-overline">Global Reach</p>
+          <p class="stat-value"><span class="count-num" data-to="27">27</span><br>Countries</p>
+          <p class="stat-description">Practising FMNR today</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script src="../assets/js/motion-init.js" defer></script>
+  <script>
+    (function () {
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function animateCount(el) {
+        var target = parseFloat(el.getAttribute('data-to'));
+        var duration = 1800;
+        var start = null;
+        (function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          el.textContent = Math.round(easeOutCubic(progress) * target);
+          if (progress < 1) requestAnimationFrame(step);
+        })(performance.now());
+      }
+
+      function initCountUp() {
+        var nums = Array.prototype.slice.call(document.querySelectorAll('.count-num[data-to]'));
+        if (!nums.length || !window.IntersectionObserver) return;
+
+        var seen = new WeakSet();
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting || seen.has(entry.target)) return;
+            seen.add(entry.target);
+            observer.unobserve(entry.target);
+            animateCount(entry.target);
+          });
+        }, { threshold: 0.4 });
+
+        nums.forEach(function (el) {
+          el.textContent = '0';
+          observer.observe(el);
+        });
+      }
+
+      if (document.readyState !== 'loading') initCountUp();
+      else document.addEventListener('DOMContentLoaded', initCountUp);
+    })();
+  </script>
 </body>
 </html>

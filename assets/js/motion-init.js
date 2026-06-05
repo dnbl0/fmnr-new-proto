@@ -292,4 +292,48 @@
     tag(STAGGER, 'stagger-fade', true);
     tag(FADE, 'fade', false);
   }
+
+  // ── Count-up ──────────────────────────────────────────────────────────────
+  // Targets any element with class .count-num and data-to="<number>".
+  // Optional data-decimals="1" for values like 2.5.
+  // Fires once when the element reaches 40% visibility; respects reduced motion.
+
+  function initCountUp() {
+    if (REDUCED) return;
+    var nums = Array.prototype.slice.call(document.querySelectorAll('.count-num[data-to]'));
+    if (!nums.length || !window.IntersectionObserver) return;
+
+    var seen = new WeakSet();
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting || seen.has(entry.target)) return;
+        seen.add(entry.target);
+        observer.unobserve(entry.target);
+        animateCountEl(entry.target);
+      });
+    }, { threshold: 0.4 });
+
+    nums.forEach(function (el) {
+      var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      el.textContent = decimals > 0 ? (0).toFixed(decimals) : '0';
+      observer.observe(el);
+    });
+  }
+
+  function animateCountEl(el) {
+    var target   = parseFloat(el.getAttribute('data-to'));
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var duration = 1800;
+    var start    = null;
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+    (function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var val = easeOut(progress) * target;
+      el.textContent = decimals > 0 ? val.toFixed(decimals) : Math.round(val);
+      if (progress < 1) requestAnimationFrame(step);
+    })(performance.now());
+  }
+
+  ready(initCountUp);
 })();

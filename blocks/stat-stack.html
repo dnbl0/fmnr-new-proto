@@ -253,45 +253,5 @@
   </section>
 
   <script src="../assets/js/motion-init.js" defer></script>
-  <script>
-    (function () {
-      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-      function animateCount(el) {
-        var target = parseFloat(el.getAttribute('data-to'));
-        var duration = 1800;
-        var start = null;
-        (function step(ts) {
-          if (!start) start = ts;
-          var progress = Math.min((ts - start) / duration, 1);
-          el.textContent = Math.round(easeOutCubic(progress) * target);
-          if (progress < 1) requestAnimationFrame(step);
-        })(performance.now());
-      }
-
-      function initCountUp() {
-        var nums = Array.prototype.slice.call(document.querySelectorAll('.count-num[data-to]'));
-        if (!nums.length || !window.IntersectionObserver) return;
-
-        var seen = new WeakSet();
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting || seen.has(entry.target)) return;
-            seen.add(entry.target);
-            observer.unobserve(entry.target);
-            animateCount(entry.target);
-          });
-        }, { threshold: 0.4 });
-
-        nums.forEach(function (el) {
-          el.textContent = '0';
-          observer.observe(el);
-        });
-      }
-
-      if (document.readyState !== 'loading') initCountUp();
-      else document.addEventListener('DOMContentLoaded', initCountUp);
-    })();
-  </script>
 </body>
 </html>

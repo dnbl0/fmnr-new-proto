@@ -1,26 +1,22 @@
 /* assets/css/motion.css */
 
-/* Only apply will-change when JS has initialized (body.mfx-ready) */
+/* GPU compositing — set on init, cleared after animation to free memory */
 body.mfx-ready [data-mfx] {
     will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
-/* Subtle helper for items that may be visually moved */
-[data-mfx] {
-    transition: transform 0.28s ease-out, opacity 0.28s ease-out;
+body.mfx-ready [data-mfx-done] {
+    will-change: auto;
 }
 
-/* Respect user reduced motion */
+/* Reduced motion — GSAP is never loaded in this case, so just ensure
+   visibility in case the pre-hide CSS fired before the check resolved */
 @media (prefers-reduced-motion: reduce) {
-
-    body.mfx-ready [data-mfx],
     [data-mfx] {
-        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
         will-change: auto !important;
     }
-}
-
-/* Prevent accidental layout shift by ensuring animated layers are composited */
-body.mfx-ready [data-mfx] {
-    backface-visibility: hidden;
 }

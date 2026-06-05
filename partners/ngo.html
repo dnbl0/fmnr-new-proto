@@ -1019,6 +1019,22 @@
       .cta-h2 { font-size: 36px; }
       .related-heading { font-size: 28px; }
     }
+  
+    /* ===================== HUB SECTION ===================== */
+    .hub-section { background: #fff; display: flex; justify-content: center; }
+    .hub-section-inner { display: flex; align-items: stretch; gap: 40px; max-width: 1280px; width: 100%; padding: 80px 40px; }
+    .hub-section-image { flex: 1 0 0; min-width: 0; min-height: 320px; border: 1px solid #b5bdbc; border-radius: 4px; overflow: hidden; position: relative; background-color: #e8e8e8; background-size: cover; background-position: center; }
+    .hub-section-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(249,249,249,0) 49.74%, #4f4f4f 100%); pointer-events: none; }
+    .hub-section-content { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; justify-content: center; }
+    .hub-section-overline { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+    .hub-section-title { font-family: 'FatFrank', 'Impact', 'Arial Black', sans-serif; font-weight: 900; font-size: 72px; line-height: 1; text-transform: uppercase; color: #111; margin-bottom: 12px; }
+    .hub-section-description { font-family: 'Lato', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.5; color: #444; }
+    .hub-link-stack { list-style: none; border-top: 1px solid #e8e8e8; }
+    .hub-link-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; border-bottom: 1px solid #e8e8e8; text-decoration: none; color: #111; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 16px; line-height: 1.2; transition: color 0.18s, padding-left 0.18s; }
+    .hub-link-item:hover { color: #077D57; padding-left: 4px; }
+    .hub-link-item:hover .hub-link-icon { transform: translateX(3px); }
+    .hub-link-icon { flex-shrink: 0; width: 20px; height: 20px; color: currentColor; transition: transform 0.18s; }
+    @media (max-width: 768px) { .hub-section-inner { flex-direction: column; padding: 32px 20px; gap: 32px; } .hub-section-image { min-height: 183px; flex: none; width: 100%; } .hub-section-title { font-size: 48px; } }
   </style>
 </head>
 <body>
@@ -1201,6 +1217,31 @@
           <p class="resource-desc">Monitoring and evaluation framework, outcome indicators and data collection tools adapted for FMNR integration in NGO programmes.</p>
           <span class="resource-cta">Download →</span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- ===================== HUB SECTION ===================== -->
+  <section class="hub-section">
+    <div class="hub-section-inner">
+      <div class="hub-section-image"
+           style="background-image: url('https://fmnrhub.com.au/wp-content/uploads/2025/10/W200-0587-010_08.2023_Kenya_training_HQ_CNS-scaled.jpg');"
+           role="img"
+           aria-label="NGO field team running an FMNR training session in Kenya">
+      </div>
+      <div class="hub-section-content" data-mfx="fade">
+        <div>
+          <p class="hub-section-overline">Resource Category</p>
+          <h2 class="hub-section-title">Programme Hub</h2>
+          <p class="hub-section-description">Programme integration guides, field training materials and M&E toolkits for NGO and development organisation partners.</p>
+        </div>
+        <ul class="hub-link-stack">
+          <li><a href="#" class="hub-link-item">Programme Integration Guide<svg class="hub-link-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="#" class="hub-link-item">Field Training Manual<svg class="hub-link-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="#" class="hub-link-item">M&E Toolkit<svg class="hub-link-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          <li><a href="#" class="hub-link-item">NGO Partnership Stories<svg class="hub-link-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        </ul>
       </div>
     </div>
   </section>

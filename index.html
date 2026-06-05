@@ -1658,34 +1658,70 @@
       z-index: 1;
     }
 
-    /* Play button — frosted glass circle */
-    .hiw-play-btn {
-      position: relative;
-      z-index: 2;
-      width: 48px;
-      height: 48px;
+    /* ── Video controls pill — replaces simple play button ── */
+    .hiw-video-pill {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
       background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       border-radius: 999px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      transition: background 0.18s;
+    }
+
+    .hiw-video-pill:hover { background: rgba(255, 255, 255, 0.92); }
+
+    .hvp-btn {
+      background: none;
       border: none;
       cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
-      transition: background 0.18s, transform 0.18s;
+      transition: background 0.15s;
       flex-shrink: 0;
     }
 
-    .hiw-play-btn:hover {
-      background: rgba(255, 255, 255, 0.96);
-      transform: scale(1.1);
+    .hvp-btn:hover { background: rgba(0, 0, 0, 0.07); }
+    .hvp-btn svg { width: 16px; height: 16px; display: block; pointer-events: none; }
+
+    .hvp-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(0, 0, 0, 0.18);
+      margin: 0 2px;
+      flex-shrink: 0;
     }
 
-    .hiw-play-btn svg { width: 24px; height: 24px; display: block; }
+    /* Idle: only play visible */
+    .hiw-video-pill .hvp-pause,
+    .hiw-video-pill .hvp-divider,
+    .hiw-video-pill .hvp-mute,
+    .hiw-video-pill .hvp-unmute { display: none; }
 
-    /* Inline iframe replaces panel on play */
+    /* Playing: pause + volume controls */
+    .hiw-video-pill[data-state="playing"] .hvp-play { display: none; }
+    .hiw-video-pill[data-state="playing"] .hvp-pause,
+    .hiw-video-pill[data-state="playing"] .hvp-divider { display: flex; }
+    .hiw-video-pill[data-state="playing"][data-muted="false"] .hvp-mute { display: flex; }
+    .hiw-video-pill[data-state="playing"][data-muted="true"]  .hvp-unmute { display: flex; }
+
+    /* Paused: play + volume controls */
+    .hiw-video-pill[data-state="paused"] .hvp-divider { display: flex; }
+    .hiw-video-pill[data-state="paused"][data-muted="false"] .hvp-mute { display: flex; }
+    .hiw-video-pill[data-state="paused"][data-muted="true"]  .hvp-unmute { display: flex; }
+
+    /* Inline iframe */
     .hiw-panel .hiw-iframe-wrap {
       position: absolute;
       inset: 0;
@@ -1694,9 +1730,10 @@
     }
     .hiw-panel .hiw-iframe-wrap.is-active { display: block; }
     .hiw-panel .hiw-iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-    .hiw-panel .hiw-iframe-wrap.is-active ~ .hiw-panel-media,
-    .hiw-panel .hiw-iframe-wrap.is-active ~ .hiw-panel-overlay,
-    .hiw-panel .hiw-iframe-wrap.is-active ~ .hiw-play-btn { display: none; }
+
+    /* Hide background media once video is loaded; keep pill on top */
+    .hiw-panel.is-playing .hiw-panel-media,
+    .hiw-panel.is-playing .hiw-panel-overlay { display: none; }
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
@@ -1891,42 +1928,62 @@
       <div class="hiw-panel is-active" data-step="find" data-video-id="0xF27ROVrbg">
         <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/05/M1p1-gif2-Survey-the-land-360p-240802.gif" alt="" loading="lazy" />
         <div class="hiw-panel-overlay"></div>
-        <button class="hiw-play-btn" aria-label="Play video">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
-        </button>
         <div class="hiw-iframe-wrap"></div>
+        <div class="hiw-video-pill" data-state="idle" data-muted="false" role="group" aria-label="Video controls">
+          <button class="hvp-btn hvp-play"   aria-label="Play">  <svg viewBox="0 0 16 16" fill="none"><path d="M5 3.5l8 4.5-8 4.5V3.5z" fill="#111"/></svg></button>
+          <button class="hvp-btn hvp-pause"  aria-label="Pause"> <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="4" height="12" rx="1" fill="#111"/><rect x="9" y="2" width="4" height="12" rx="1" fill="#111"/></svg></button>
+          <span class="hvp-divider"></span>
+          <button class="hvp-btn hvp-mute"   aria-label="Mute">  <svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><path d="M10.5 5.5a3 3 0 010 5" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+          <button class="hvp-btn hvp-unmute" aria-label="Unmute"><svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><line x1="10" y1="6" x2="14" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><line x1="14" y1="6" x2="10" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <div class="hiw-panel" data-step="prune" data-video-id="hO1xlL9WCO8">
         <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/09/M1p1-Step2-gif1-Pruning-360p-240814.gif" alt="" loading="lazy" />
         <div class="hiw-panel-overlay"></div>
-        <button class="hiw-play-btn" aria-label="Play video">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
-        </button>
         <div class="hiw-iframe-wrap"></div>
+        <div class="hiw-video-pill" data-state="idle" data-muted="false" role="group" aria-label="Video controls">
+          <button class="hvp-btn hvp-play"   aria-label="Play">  <svg viewBox="0 0 16 16" fill="none"><path d="M5 3.5l8 4.5-8 4.5V3.5z" fill="#111"/></svg></button>
+          <button class="hvp-btn hvp-pause"  aria-label="Pause"> <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="4" height="12" rx="1" fill="#111"/><rect x="9" y="2" width="4" height="12" rx="1" fill="#111"/></svg></button>
+          <span class="hvp-divider"></span>
+          <button class="hvp-btn hvp-mute"   aria-label="Mute">  <svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><path d="M10.5 5.5a3 3 0 010 5" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+          <button class="hvp-btn hvp-unmute" aria-label="Unmute"><svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><line x1="10" y1="6" x2="14" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><line x1="14" y1="6" x2="10" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <div class="hiw-panel" data-step="protect" data-video-id="0xF27ROVrbg">
         <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/09/M1p1-Step3-Gif-Protect-360p-240811.gif" alt="" loading="lazy" />
         <div class="hiw-panel-overlay"></div>
-        <button class="hiw-play-btn" aria-label="Play video">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
-        </button>
         <div class="hiw-iframe-wrap"></div>
+        <div class="hiw-video-pill" data-state="idle" data-muted="false" role="group" aria-label="Video controls">
+          <button class="hvp-btn hvp-play"   aria-label="Play">  <svg viewBox="0 0 16 16" fill="none"><path d="M5 3.5l8 4.5-8 4.5V3.5z" fill="#111"/></svg></button>
+          <button class="hvp-btn hvp-pause"  aria-label="Pause"> <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="4" height="12" rx="1" fill="#111"/><rect x="9" y="2" width="4" height="12" rx="1" fill="#111"/></svg></button>
+          <span class="hvp-divider"></span>
+          <button class="hvp-btn hvp-mute"   aria-label="Mute">  <svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><path d="M10.5 5.5a3 3 0 010 5" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+          <button class="hvp-btn hvp-unmute" aria-label="Unmute"><svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><line x1="10" y1="6" x2="14" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><line x1="14" y1="6" x2="10" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <div class="hiw-panel" data-step="grow" data-video-id="29bqRTW2aow">
         <img class="hiw-panel-media" src="https://fmnrhub.com.au/wp-content/uploads/2024/09/M1P1-Step4-Gif-Grow-360p-240824.gif" alt="" loading="lazy" />
         <div class="hiw-panel-overlay"></div>
-        <button class="hiw-play-btn" aria-label="Play video">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
-        </button>
         <div class="hiw-iframe-wrap"></div>
+        <div class="hiw-video-pill" data-state="idle" data-muted="false" role="group" aria-label="Video controls">
+          <button class="hvp-btn hvp-play"   aria-label="Play">  <svg viewBox="0 0 16 16" fill="none"><path d="M5 3.5l8 4.5-8 4.5V3.5z" fill="#111"/></svg></button>
+          <button class="hvp-btn hvp-pause"  aria-label="Pause"> <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="4" height="12" rx="1" fill="#111"/><rect x="9" y="2" width="4" height="12" rx="1" fill="#111"/></svg></button>
+          <span class="hvp-divider"></span>
+          <button class="hvp-btn hvp-mute"   aria-label="Mute">  <svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><path d="M10.5 5.5a3 3 0 010 5" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+          <button class="hvp-btn hvp-unmute" aria-label="Unmute"><svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><line x1="10" y1="6" x2="14" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><line x1="14" y1="6" x2="10" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
       <div class="hiw-panel" data-step="utilise" data-video-id="bigghGgsVcw">
         <img class="hiw-panel-media" src="https://img.youtube.com/vi/bigghGgsVcw/maxresdefault.jpg" alt="" loading="lazy" />
         <div class="hiw-panel-overlay"></div>
-        <button class="hiw-play-btn" aria-label="Play video">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#111" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#111"/></svg>
-        </button>
         <div class="hiw-iframe-wrap"></div>
+        <div class="hiw-video-pill" data-state="idle" data-muted="false" role="group" aria-label="Video controls">
+          <button class="hvp-btn hvp-play"   aria-label="Play">  <svg viewBox="0 0 16 16" fill="none"><path d="M5 3.5l8 4.5-8 4.5V3.5z" fill="#111"/></svg></button>
+          <button class="hvp-btn hvp-pause"  aria-label="Pause"> <svg viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="4" height="12" rx="1" fill="#111"/><rect x="9" y="2" width="4" height="12" rx="1" fill="#111"/></svg></button>
+          <span class="hvp-divider"></span>
+          <button class="hvp-btn hvp-mute"   aria-label="Mute">  <svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><path d="M10.5 5.5a3 3 0 010 5" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+          <button class="hvp-btn hvp-unmute" aria-label="Unmute"><svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5h2.5L8 3v10l-3.5-2.5H2V5.5z" fill="#111"/><line x1="10" y1="6" x2="14" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><line x1="14" y1="6" x2="10" y2="10" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+        </div>
       </div>
         </div>
 
@@ -2626,11 +2683,14 @@
       function activate() {
         var target = this.getAttribute('data-target');
 
-        // Reset any open iframe in the current panel
+        // Reset any playing panel back to idle
         var currentPanel = document.querySelector('.hiw-panel.is-active');
         if (currentPanel) {
-          var iw = currentPanel.querySelector('.hiw-iframe-wrap');
-          if (iw) { iw.innerHTML = ''; iw.classList.remove('is-active'); }
+          var iw   = currentPanel.querySelector('.hiw-iframe-wrap');
+          var pill = currentPanel.querySelector('.hiw-video-pill');
+          if (iw)   { iw.innerHTML = ''; iw.classList.remove('is-active'); }
+          if (pill) { pill.dataset.state = 'idle'; pill.dataset.muted = 'false'; }
+          currentPanel.classList.remove('is-playing');
         }
 
         tabs.forEach(function (t) {
@@ -2652,16 +2712,59 @@
         arr[idx].click();
       }
 
-      // Play button — inline embed
-      document.querySelectorAll('.hiw-play-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var panel = btn.closest('.hiw-panel');
-          var vid   = panel.getAttribute('data-video-id');
-          if (!vid) return;
-          var wrap  = panel.querySelector('.hiw-iframe-wrap');
-          var src   = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0';
-          wrap.innerHTML = '<iframe src="' + src + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-          wrap.classList.add('is-active');
+      // ── Video controls pill — state machine ─────────────────────────────
+      function yttMsg(iframe, fn) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: 'command', func: fn, args: '' }), '*'
+        );
+      }
+
+      document.querySelectorAll('.hiw-video-pill').forEach(function (pill) {
+        var panel = pill.closest('.hiw-panel');
+        var wrap  = panel.querySelector('.hiw-iframe-wrap');
+
+        pill.querySelector('.hvp-play').addEventListener('click', function () {
+          var state = pill.dataset.state;
+
+          if (state === 'idle') {
+            // First play — load the iframe
+            var vid = panel.getAttribute('data-video-id');
+            if (!vid) return;
+            var src = 'https://www.youtube.com/embed/' + vid
+                    + '?autoplay=1&rel=0&enablejsapi=1';
+            wrap.innerHTML = '<iframe src="' + src
+                           + '" allow="autoplay; fullscreen; picture-in-picture"'
+                           + ' allowfullscreen></iframe>';
+            wrap.classList.add('is-active');
+            panel.classList.add('is-playing');
+            pill.dataset.state = 'playing';
+
+          } else if (state === 'paused') {
+            // Resume
+            var iframe = wrap.querySelector('iframe');
+            if (iframe) yttMsg(iframe, 'playVideo');
+            panel.classList.add('is-playing');
+            pill.dataset.state = 'playing';
+          }
+        });
+
+        pill.querySelector('.hvp-pause').addEventListener('click', function () {
+          var iframe = wrap.querySelector('iframe');
+          if (iframe) yttMsg(iframe, 'pauseVideo');
+          panel.classList.remove('is-playing');
+          pill.dataset.state = 'paused';
+        });
+
+        pill.querySelector('.hvp-mute').addEventListener('click', function () {
+          var iframe = wrap.querySelector('iframe');
+          if (iframe) yttMsg(iframe, 'mute');
+          pill.dataset.muted = 'true';
+        });
+
+        pill.querySelector('.hvp-unmute').addEventListener('click', function () {
+          var iframe = wrap.querySelector('iframe');
+          if (iframe) yttMsg(iframe, 'unMute');
+          pill.dataset.muted = 'false';
         });
       });
     })();
